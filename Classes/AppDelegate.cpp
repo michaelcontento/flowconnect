@@ -3,16 +3,18 @@
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
+using namespace CocosDenshion;
 
-AppDelegate::AppDelegate() {
-
+AppDelegate::AppDelegate()
+{
 }
 
 AppDelegate::~AppDelegate() 
 {
 }
 
-bool AppDelegate::applicationDidFinishLaunching() {
+bool AppDelegate::applicationDidFinishLaunching()
+{
     // initialize director
     CCDirector* pDirector = CCDirector::sharedDirector();
     CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
@@ -34,14 +36,16 @@ bool AppDelegate::applicationDidFinishLaunching() {
     return true;
 }
 
-void AppDelegate::applicationDidEnterBackground() {
+void AppDelegate::applicationDidEnterBackground()
+{
     CCDirector::sharedDirector()->stopAnimation();
 
     SimpleAudioEngine::sharedEngine()->pauseAllEffects();
     SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
-void AppDelegate::applicationWillEnterForeground() {
+void AppDelegate::applicationWillEnterForeground()
+{
     CCDirector::sharedDirector()->startAnimation();
 
     SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
