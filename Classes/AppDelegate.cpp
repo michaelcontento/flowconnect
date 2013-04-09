@@ -13,6 +13,8 @@ AppDelegate::~AppDelegate()
 {
 }
 
+#pragma mark Lifecycle
+
 bool AppDelegate::applicationDidFinishLaunching()
 {
     CCDirector* pDirector = CCDirector::sharedDirector();
