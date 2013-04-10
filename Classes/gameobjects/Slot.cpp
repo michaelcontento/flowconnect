@@ -45,6 +45,8 @@ void Slot::removeDirection()
         removeChild(line);
         CC_SAFE_RELEASE_NULL(line);
     }
+
+    markAsPending();
 }
 
 void Slot::setDirection(const int direction)
