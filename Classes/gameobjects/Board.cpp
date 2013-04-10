@@ -94,6 +94,9 @@ void Board::createSlotsFromData(const char* data)
         }
     }
 
+    // free unused memory
+    slots->reduceMemoryFootprint();
+
     assert(!nextSlotWithNumber && "nextTokenWithNumber flag still active");
 }
 
