@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "GameScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
@@ -18,13 +18,13 @@ AppDelegate::~AppDelegate()
 bool AppDelegate::applicationDidFinishLaunching()
 {
     CCDirector* pDirector = CCDirector::sharedDirector();
-    pDirector->setDisplayStats(true);
-    pDirector->setAnimationInterval(1.0 / 60);
+    // pDirector->setDisplayStats(true);
 
     CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
     pDirector->setOpenGLView(pEGLView);
-    
-    CCScene *pScene = HelloWorld::scene();
+    pEGLView->setDesignResolutionSize(768, 1024, kResolutionShowAll);
+
+    CCScene *pScene = GameScene::scene();
     pDirector->runWithScene(pScene);
 
     return true;
