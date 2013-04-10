@@ -12,15 +12,18 @@ CCSize Slot::getSize()
 
 Slot::Slot()
 : isFinal_(false)
+, isNextSlot_(false)
 , background(NULL)
 , line(NULL)
 , label(NULL)
 , labelBackground(NULL)
+, labelPulseAction(NULL)
 {
 }
 
 Slot::~Slot()
 {
+    CC_SAFE_RELEASE_NULL(labelPulseAction);
 }
 
 bool Slot::init()
@@ -108,6 +111,24 @@ bool Slot::isPending() const
     return !isFinal_;
 }
 
+void Slot::markAsNextSlot(const bool flag)
+{
+    if (labelBackground) {
+        if (flag && isNextSlot_ != flag) {
+            labelBackground->runAction(labelPulseAction);
+        } else {
+            labelBackground->stopAllActions();
+        }
+    }
+
+    isNextSlot_ = flag;
+}
+
+bool Slot::isNextSlot() const
+{
+    return isNextSlot_;
+}
+
 #pragma mark Number handleing
 
 void Slot::setNumber(const int newNumber)
@@ -145,6 +166,19 @@ void Slot::showNumber()
         labelBackground->setPositionX(getSize().width / 2);
         labelBackground->setPositionY(getSize().height / 2);
         addChild(labelBackground);
+
+        labelPulseAction = CCRepeatForever::create(
+            CCSequence::create(
+                CCScaleTo::create(0.125, 1.05),
+                CCDelayTime::create(0.125),
+                CCScaleTo::create(0.125, 1),
+                CCDelayTime::create(2),
+                NULL
+            )
+        );
+        labelPulseAction->retain();
+        
+        markAsNextSlot(isNextSlot());
     }
 
     if (label) {

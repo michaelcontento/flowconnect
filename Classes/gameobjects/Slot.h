@@ -28,6 +28,9 @@ public:
     void markAsPending();
     bool isPending() const;
 
+    void markAsNextSlot(const bool flag=true);
+    bool isNextSlot() const;
+
     cocos2d::CCSize getSize();
 
     CC_SYNTHESIZE_READONLY(int, number, Number)
@@ -35,10 +38,12 @@ public:
 
 private:
     bool isFinal_;
+    bool isNextSlot_;
     cocos2d::CCSprite* background;
     cocos2d::CCSprite* line;
     cocos2d::CCLabelTTF* label;
     cocos2d::CCSprite* labelBackground;
+    cocos2d::CCAction* labelPulseAction;
 
     void hideNumber();
     void showNumber();
