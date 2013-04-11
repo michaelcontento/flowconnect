@@ -9,7 +9,7 @@ using namespace cocos2d;
 Board::Board()
 : directions()
 , slots(NULL)
-, lastSlot(NULL)
+, userPath(NULL)
 , lastCheckpoint(NULL)
 , touchIndicator(NULL)
 {
@@ -19,6 +19,8 @@ Board::~Board()
 {
     removeAllSlots();
     CC_SAFE_RELEASE_NULL(slots);
+
+    CC_SAFE_RELEASE_NULL(userPath);
 }
 
 bool Board::init()
@@ -30,6 +32,9 @@ bool Board::init()
     slots = CCArray::create();
     CC_SAFE_RETAIN(slots);
 
+    userPath = CCArray::create();
+    CC_SAFE_RETAIN(userPath);
+    
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
         ->addTargetedDelegate(this, 0, true);
@@ -52,7 +57,119 @@ bool Board::initWithLevel(const cocos2d::CCSize newSize, const char* data)
     return true;
 }
 
-#pragma mark Slots housekeeping
+#pragma mark Touch handling
+
+bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+    const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
+
+    Slot* slot = getSlotFromPoint(touchPos);
+    if (!slot){
+        return false;
+    }
+
+    if (slot->isCheckpoint()) {
+        if (isFirstCheckpoint(slot) || !slot->isFree()) {
+            lastCheckpoint = slot;
+            slot->setLineOut(SlotLineType::NONE);
+        } else {
+            return false;
+        }
+    } else {
+        if (!slot->isFree()) {
+            slot->setLineOut(SlotLineType::NONE);
+        } else {
+            return false;
+        }
+    }
+
+    clearAllSlotsAfter(slot);
+    Slot* lastSlot = getLastUserPathSlot();
+    if (lastSlot != slot) {
+        userPath->addObject(slot);
+    }
+    activateNextCheckpoint();
+
+    createTouchIndicator();
+    touchIndicator->setPosition(touchPos);
+
+    return true;
+}
+
+void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
+{
+    const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
+
+    Slot* currentSlot = getSlotFromPoint(touchPos);
+    if (!currentSlot) {
+        return;
+    }
+
+    Slot* lastSlot = getLastUserPathSlot();
+    assert(lastSlot && "should always be there because of ccTouchBegin");
+
+    // ----- Validate movement
+
+    CCPoint lastGridIdx = lastSlot->gridIndex;
+    CCPoint currentGridIdx = get2dIndexFromPoint(touchPos);
+
+    int distanceX = lastGridIdx.x - currentGridIdx.x;
+    int distanceY = lastGridIdx.y - currentGridIdx.y;
+    int distanceSum = abs(distanceX) + abs(distanceY);
+
+    if (distanceSum == 0) {
+        touchIndicator->setPosition(touchPos);
+        return;
+    }
+
+    if (distanceSum > 1) {
+        return;
+    }
+
+    // ----- Update slots
+
+    if (currentSlot->isCheckpoint() && !currentSlot->isNextSlot()) {
+        return;
+    }
+
+    if (!lastSlot->isFree() && !currentSlot->isFree()) {
+        currentSlot->setLineOut(SlotLineType::NONE);
+        lastSlot->reset();
+        clearAllSlotsAfter(currentSlot);
+    } else if (distanceX == -1) {
+        lastSlot->setLineOut(SlotLineType::RIGHT);
+        currentSlot->setLineIn(SlotLineType::LEFT);
+    } else if (distanceX == 1 ) {
+        lastSlot->setLineOut(SlotLineType::LEFT);
+        currentSlot->setLineIn(SlotLineType::RIGHT);
+    } else if (distanceY == -1) {
+        lastSlot->setLineOut(SlotLineType::BOTTOM);
+        currentSlot->setLineIn(SlotLineType::TOP);
+    } else if (distanceY == 1) {
+        lastSlot->setLineOut(SlotLineType::TOP);
+        currentSlot->setLineIn(SlotLineType::BOTTOM);
+    } else {
+        assert(false && "this shouldn't happen at all");
+    }
+
+    lastSlot = getLastUserPathSlot();
+    if (lastSlot != currentSlot) {
+        userPath->addObject(currentSlot);
+    }
+    activateNextCheckpoint();
+
+    touchIndicator->setPosition(touchPos);
+}
+
+void Board::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
+{
+}
+
+void Board::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
+{
+}
+
+#pragma mark Slot loading
 
 void Board::removeAllSlots()
 {
@@ -160,128 +277,95 @@ void Board::rearrangeSlotsInArray()
     }
 }
 
-void Board::activateNextCheckpoint(Slot* slot) const
+void Board::clearAllSlotsAfter(Slot* slot) const
 {
-    slot->markAsNextSlot(false);
-
-    Slot* nextCheckpoint = getNextCheckpoint(slot);
-    if (nextCheckpoint) {
-        nextCheckpoint->markAsNextSlot(true);
-    }
-}
-
-Slot* Board::getNextCheckpoint(const Slot* currentSlot) const
-{
-    bool returnNextCheckpoint = false;
+    bool removeFollowing = false;
+    CCArray* removeObjects = CCArray::create();
     CCObject* it;
 
-    CCARRAY_FOREACH(slots, it) {
+    CCARRAY_FOREACH(userPath, it) {
         Slot* compareSlot = static_cast<Slot*>(it);
 
-        if (returnNextCheckpoint && compareSlot->isCheckpoint()) {
-            return compareSlot;
-        }
-
-        if (compareSlot == currentSlot) {
-            returnNextCheckpoint = true;
+        if (removeFollowing) {
+            compareSlot->reset();
+            removeObjects->addObject(compareSlot);
+        } else if (compareSlot == slot) {
+            removeFollowing = true;
         }
     }
 
-    return NULL;
+    userPath->removeObjectsInArray(removeObjects);
+    userPath->reduceMemoryFootprint();
 }
 
-#pragma mark Touch handling
-
-bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+void Board::activateNextCheckpoint() const
 {
-    const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
-    Slot* slot = getSlotFromPoint(touchPos);
+    CCObject* it = NULL;
+    Slot* slot = NULL;
+    Slot* lastCheckpoint = NULL;
 
-    // ignore clicks on empty slots
-    if (!slot->isCheckpoint() && slot->isFree()) {
-        return false;
+    if (userPath->count() > 1) {
+        CCARRAY_FOREACH(userPath, it) {
+            slot = static_cast<Slot*>(it);
+            if (slot->isCheckpoint()) {
+                lastCheckpoint = slot;
+            }
+        }
     }
 
-    // handle checkpoint clicks
-    if (slot->isCheckpoint()) {
-        if (slot->isNextSlot() || slot->isLocked()) {
-            // click on the next checkpoint OR one that is already reached
-            lastCheckpoint = slot;
-            activateNextCheckpoint(slot);
+    bool flagNextCheckpoint = false;
+    if (!lastCheckpoint) {
+        flagNextCheckpoint = true;
+    }
+
+    CCARRAY_FOREACH(slots, it) {
+        slot = static_cast<Slot*>(it);
+
+        if (!slot->isCheckpoint()) {
+            continue;
+        }
+
+        if (flagNextCheckpoint) {
+            slot->markAsNextSlot(true);
+            flagNextCheckpoint = false;
         } else {
-            // the user tried to skip ahead to the next checkpoint
-            return false;
+            slot->markAsNextSlot(false);
+        }
+
+        if (slot == lastCheckpoint) {
+            flagNextCheckpoint = true;
         }
     }
-
-    // update lasSlot, move the indicator and clear the trailing path. this has
-    // to be done for checkpoint clicks and click somewhere on the existing path.
-    lastSlot = slot;
-    // TODO: clearAllSlotsAfter(slot);
-
-    createTouchIndicator();
-    touchIndicator->setPosition(touchPos);
-
-    return true;
 }
 
-void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
+Slot* Board::getLastUserPathSlot() const
 {
-    const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
-    Slot* currentSlot = getSlotFromPoint(touchPos);
-
-    // ----- Validate movement
-
-    if (currentSlot->isCheckpoint() && !currentSlot->isNextSlot()) {
-        return;
+    if (userPath->count() == 0) {
+        return NULL;
     }
-
-    CCPoint lastGridIdx = lastSlot->gridIndex;
-    CCPoint currentGridIdx = get2dIndexFromPoint(touchPos);
-
-    int distanceX = lastGridIdx.x - currentGridIdx.x;
-    int distanceY = lastGridIdx.y - currentGridIdx.y;
-    int distanceSum = abs(distanceX) + abs(distanceY);
-
-    if (distanceSum == 0 || distanceSum > 1) {
-        return;
-    }
-
-    // ----- Update slots
-
-    if (distanceX == -1) {
-        lastSlot->setLineOut(SlotLineType::RIGHT);
-        currentSlot->setLineIn(SlotLineType::LEFT);
-    } else if (distanceX == 1 ) {
-        lastSlot->setLineOut(SlotLineType::LEFT);
-        currentSlot->setLineIn(SlotLineType::RIGHT);
-    } else if (distanceY == -1) {
-        lastSlot->setLineOut(SlotLineType::BOTTOM);
-        currentSlot->setLineIn(SlotLineType::TOP);
-    } else if (distanceY == 1) {
-        lastSlot->setLineOut(SlotLineType::TOP);
-        currentSlot->setLineIn(SlotLineType::BOTTOM);
-    } else {
-        assert(false && "this shouldn't happen at all");
-    }
-
-    if (currentSlot->isCheckpoint()) {
-        activateNextCheckpoint(currentSlot);
-    }
-
-    lastSlot = currentSlot;
-    touchIndicator->setPosition(touchPos);
-}
-
-void Board::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
-{
-}
-
-void Board::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
-{
+    
+    return static_cast<Slot*>(userPath->lastObject());
 }
 
 #pragma mark Touch helper
+
+bool Board::isFirstCheckpoint(const Slot* slot) const
+{
+    if (!slot->isCheckpoint()) {
+        return false;
+    }
+
+    if (userPath->count() == 0) {
+        return true;
+    }
+
+    Slot* lastSlot = static_cast<Slot*>(userPath->lastObject());
+    if (lastSlot == slot) {
+        return true;
+    }
+
+    return false;
+}
 
 void Board::createTouchIndicator()
 {
@@ -315,16 +399,10 @@ Slot* Board::getSlotFromPoint(const CCPoint point) const
 {
     CCPoint gridIdx = get2dIndexFromPoint(point);
     int idx = convert2dTo1dIndex(gridIdx);
-    
+
+    if (idx < 0 || idx >= slots->count()) {
+        return NULL;
+    }
+
     return static_cast<Slot*>(slots->objectAtIndex(idx));
 }
-
-
-
-
-
-
-
-
-
-

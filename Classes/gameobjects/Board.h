@@ -26,8 +26,8 @@ public:
 
 private:
     cocos2d::CCArray* slots;
+    cocos2d::CCArray* userPath;
     std::vector<int> directions;
-    Slot* lastSlot;
     Slot* lastCheckpoint;
     cocos2d::CCSprite* touchIndicator;
 
@@ -35,13 +35,15 @@ private:
     void createSlotsFromData(const char* data);
     void positionSlotsOnScreen();
     void rearrangeSlotsInArray();
-    
-    Slot* getSlotFromPoint(const cocos2d::CCPoint point) const;
-    Slot* getNextCheckpoint(const Slot* currentSlot) const;
-    void activateNextCheckpoint(Slot* slot) const;
+    void clearAllSlotsAfter(Slot* slot) const;
+    void activateNextCheckpoint() const;
+    Slot* getLastUserPathSlot() const;
+
+    bool isFirstCheckpoint(const Slot* slot) const;
     void createTouchIndicator();
-    cocos2d::CCPoint get2dIndexFromPoint(const cocos2d::CCPoint point) const;
     int convert2dTo1dIndex(const cocos2d::CCPoint grid) const;
+    cocos2d::CCPoint get2dIndexFromPoint(const cocos2d::CCPoint point) const;
+    Slot* getSlotFromPoint(const cocos2d::CCPoint point) const;
 };
 
 #endif /* defined(__FlowConnect__Board__) */

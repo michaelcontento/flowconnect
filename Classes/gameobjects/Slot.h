@@ -34,6 +34,7 @@ public:
 
     CC_SYNTHESIZE_READONLY(int, number, Number)
     void setNumber(const int newNumber);
+    bool isCheckpoint() const;
 
     CC_SYNTHESIZE_READONLY(SlotLineType::Enum, lineIn, LineIn);
     void setLineIn(const SlotLineType::Enum line);
@@ -49,7 +50,6 @@ public:
 
     void reset();
     bool isFree() const;
-    bool isCheckpoint() const;
 
     cocos2d::CCSize getSize();
 

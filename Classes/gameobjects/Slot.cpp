@@ -120,18 +120,20 @@ bool Slot::isFree() const
     return (lineIn == SlotLineType::NONE && lineOut == SlotLineType::NONE);
 }
 
-bool Slot::isCheckpoint() const
-{
-    return (getNumber() != SLOT_DEFAULT_NUMBER);
-}
-
 void Slot::updateLineImage()
 {
     lineLayer->removeAllChildren();
+    
+    if (lineIn == SlotLineType::NONE && lineOut == SlotLineType::NONE) {
+        return;
+    }
+
     addLineImage(lineIn);
     addLineImage(lineOut);
 
-    // TODO: Fix curves
+    if (lineIn != SlotLineType::NONE && lineOut != SlotLineType::NONE) {
+        addLineImage(SlotLineType::NONE);
+    }
 }
 
 void Slot::addLineImage(const SlotLineType::Enum type)
@@ -159,6 +161,11 @@ void Slot::setNumber(const int newNumber)
         snprintf(buf, sizeof(buf), "%d", newNumber);
         label->setString(buf);
     }
+}
+
+bool Slot::isCheckpoint() const
+{
+    return (getNumber() != SLOT_DEFAULT_NUMBER);
 }
 
 void Slot::hideNumber()
