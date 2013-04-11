@@ -95,6 +95,7 @@ void Slot::markAsNextSlot(const bool flag)
             labelBackground->runAction(labelPulseAction);
         } else {
             labelBackground->stopAllActions();
+            labelBackground->setScale(1);
         }
     }
 
