@@ -37,7 +37,9 @@ private:
     void rearrangeSlotsInArray();
     void clearAllSlotsAfter(Slot* slot) const;
     void activateNextCheckpoint() const;
+    void lockCompleteLines() const;
     Slot* getLastUserPathSlot() const;
+    void appendUserPath(Slot* slot);
 
     bool isFirstCheckpoint(const Slot* slot) const;
     void createTouchIndicator();

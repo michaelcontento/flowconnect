@@ -144,6 +144,10 @@ void Slot::addLineImage(const SlotLineType::Enum type)
 
     CCSprite* line = CCSprite::createWithSpriteFrameName(name.c_str());
     lineLayer->addChild(line);
+
+    if (isLocked()) {
+        line->setColor(ccGRAY);
+    }
 }
 
 #pragma mark Number handling

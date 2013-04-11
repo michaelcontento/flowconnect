@@ -84,11 +84,7 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     }
 
     clearAllSlotsAfter(slot);
-    Slot* lastSlot = getLastUserPathSlot();
-    if (lastSlot != slot) {
-        userPath->addObject(slot);
-    }
-    activateNextCheckpoint();
+    appendUserPath(slot);
 
     createTouchIndicator();
     touchIndicator->setPosition(touchPos);
@@ -109,6 +105,10 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
     assert(lastSlot && "should always be there because of ccTouchBegin");
 
     // ----- Validate movement
+
+    if (currentSlot->isLocked() && !lastSlot->isLocked()) {
+        return;
+    }
 
     CCPoint lastGridIdx = lastSlot->gridIndex;
     CCPoint currentGridIdx = get2dIndexFromPoint(touchPos);
@@ -152,12 +152,7 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
         assert(false && "this shouldn't happen at all");
     }
 
-    lastSlot = getLastUserPathSlot();
-    if (lastSlot != currentSlot) {
-        userPath->addObject(currentSlot);
-    }
-    activateNextCheckpoint();
-
+    appendUserPath(currentSlot);
     touchIndicator->setPosition(touchPos);
 }
 
@@ -169,7 +164,18 @@ void Board::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
 }
 
-#pragma mark Slot loading
+#pragma mark Slot handling
+
+void Board::appendUserPath(Slot* slot)
+{
+    Slot* lastSlot = getLastUserPathSlot();
+    if (lastSlot != slot) {
+        userPath->addObject(slot);
+    }
+    
+    activateNextCheckpoint();
+    lockCompleteLines();
+}
 
 void Board::removeAllSlots()
 {
@@ -334,6 +340,26 @@ void Board::activateNextCheckpoint() const
 
         if (slot == lastCheckpoint) {
             flagNextCheckpoint = true;
+        }
+    }
+}
+
+void Board::lockCompleteLines() const
+{
+    CCObject* it = NULL;
+    bool checkpointFound = false;
+
+    CCARRAY_FOREACH_REVERSE(userPath, it) {
+        Slot* slot = static_cast<Slot*>(it);
+
+        if (!checkpointFound && slot->isCheckpoint()) {
+            checkpointFound = true;
+        }
+
+        if (checkpointFound) {
+            slot->lock(true);
+        } else {
+            slot->lock(false);
         }
     }
 }
