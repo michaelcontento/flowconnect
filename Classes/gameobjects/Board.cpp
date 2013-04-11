@@ -12,6 +12,7 @@ Board::Board()
 , userPath(NULL)
 , lastCheckpoint(NULL)
 , touchIndicator(NULL)
+, allCheckpointVisited(false)
 {
 }
 
@@ -94,6 +95,12 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 
 void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
+    // no checkpoint to reach? the user might a) proceed to the next level
+    // or b) restart somewhere with _a new_ touch.
+    if (allCheckpointVisited) {
+        return;
+    }
+
     const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
 
     Slot* currentSlot = getSlotFromPoint(touchPos);
@@ -105,10 +112,6 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
     assert(lastSlot && "should always be there because of ccTouchBegin");
 
     // ----- Validate movement
-
-    if (currentSlot->isLocked() && !lastSlot->isLocked()) {
-        return;
-    }
 
     CCPoint lastGridIdx = lastSlot->gridIndex;
     CCPoint currentGridIdx = get2dIndexFromPoint(touchPos);
@@ -126,11 +129,21 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
         return;
     }
 
-    // ----- Update slots
-
-    if (currentSlot->isCheckpoint() && !currentSlot->isNextSlot()) {
-        return;
+    if (currentSlot->isCheckpoint()) {
+        if (currentSlot->isNextSlot()) {
+            // allowed because it's the next safe point
+        } else if (currentSlot == getUserPathSlotBefore(lastSlot)) {
+            // allowed because we're walk back
+        } else {
+            return;
+        }
+    } else {
+        if (currentSlot->isLocked() && !lastSlot->isLocked()) {
+            return;
+        }
     }
+
+    // ----- Update slots
 
     if (!lastSlot->isFree() && !currentSlot->isFree()) {
         currentSlot->setLineOut(SlotLineType::NONE);
@@ -152,8 +165,8 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
         assert(false && "this shouldn't happen at all");
     }
 
-    appendUserPath(currentSlot);
     touchIndicator->setPosition(touchPos);
+    appendUserPath(currentSlot);
 }
 
 void Board::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
@@ -304,11 +317,15 @@ void Board::clearAllSlotsAfter(Slot* slot) const
     userPath->reduceMemoryFootprint();
 }
 
-void Board::activateNextCheckpoint() const
+void Board::activateNextCheckpoint()
 {
     CCObject* it = NULL;
     Slot* slot = NULL;
     Slot* lastCheckpoint = NULL;
+
+    // pretend all checkpoints were visited. to check (and flip this flag) is
+    // the job of the following code.
+    allCheckpointVisited = true;
 
     if (userPath->count() > 1) {
         CCARRAY_FOREACH(userPath, it) {
@@ -334,6 +351,7 @@ void Board::activateNextCheckpoint() const
         if (flagNextCheckpoint) {
             slot->markAsNextSlot(true);
             flagNextCheckpoint = false;
+            allCheckpointVisited = false;
         } else {
             slot->markAsNextSlot(false);
         }
@@ -342,6 +360,16 @@ void Board::activateNextCheckpoint() const
             flagNextCheckpoint = true;
         }
     }
+
+    if (allCheckpointVisited) {
+        handleAllCheckpointsVisited();
+    }
+}
+
+void Board::handleAllCheckpointsVisited()
+{
+    removeChild(touchIndicator);
+    touchIndicator = NULL;
 }
 
 void Board::lockCompleteLines() const
@@ -371,6 +399,24 @@ Slot* Board::getLastUserPathSlot() const
     }
     
     return static_cast<Slot*>(userPath->lastObject());
+}
+
+Slot* Board::getUserPathSlotBefore(const Slot* slot) const
+{
+    CCObject* it = NULL;
+    Slot* lastSlot = NULL;
+
+    CCARRAY_FOREACH(userPath, it) {
+        Slot* compareSlot = static_cast<Slot*>(it);
+
+        if (compareSlot == slot) {
+            return lastSlot;
+        } else {
+            lastSlot = compareSlot;
+        }
+    }
+
+    return NULL;
 }
 
 #pragma mark Touch helper

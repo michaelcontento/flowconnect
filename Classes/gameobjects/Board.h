@@ -30,16 +30,19 @@ private:
     std::vector<int> directions;
     Slot* lastCheckpoint;
     cocos2d::CCSprite* touchIndicator;
+    bool allCheckpointVisited;
 
     void removeAllSlots();
     void createSlotsFromData(const char* data);
     void positionSlotsOnScreen();
     void rearrangeSlotsInArray();
     void clearAllSlotsAfter(Slot* slot) const;
-    void activateNextCheckpoint() const;
+    void activateNextCheckpoint();
     void lockCompleteLines() const;
     Slot* getLastUserPathSlot() const;
+    Slot* getUserPathSlotBefore(const Slot* slot) const;
     void appendUserPath(Slot* slot);
+    void handleAllCheckpointsVisited();
 
     bool isFirstCheckpoint(const Slot* slot) const;
     void createTouchIndicator();
