@@ -5,8 +5,9 @@
 
 #define SLOT_DEFAULT_NUMBER -1
 
-#define SLOT_ZORDER_LINE 8
-#define SLOT_ZORDER_BACKGROUND 9
+#define SLOT_ZORDER_BACKGROUND 7
+#define SLOT_ZORDER_LINE_LAYER 8
+#define SLOT_ZORDER_LABEL_BACKGROUND 9
 #define SLOT_ZORDER_LABEL 10
 
 namespace SlotLineType
@@ -56,13 +57,13 @@ private:
     bool isLocked_;
     bool isNextSlot_;
     cocos2d::CCSprite* background;
-    cocos2d::CCSprite* line;
+    cocos2d::CCLayer* lineLayer;
     cocos2d::CCLabelTTF* label;
     cocos2d::CCSprite* labelBackground;
     cocos2d::CCAction* labelPulseAction;
 
     void updateLineImage();
-    void removeLine();
+    void addLineImage(const SlotLineType::Enum type);
     void hideNumber();
     void showNumber();
 };

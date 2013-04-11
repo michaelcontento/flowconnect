@@ -15,7 +15,7 @@ Slot::Slot()
 , isLocked_(false)
 , isNextSlot_(false)
 , background(NULL)
-, line(NULL)
+, lineLayer(NULL)
 , label(NULL)
 , labelBackground(NULL)
 , labelPulseAction(NULL)
@@ -39,7 +39,14 @@ bool Slot::init()
     background = CCSprite::createWithSpriteFrameName("backgrounds/slot.png");
     background->setPositionX(getSize().width / 2);
     background->setPositionY(getSize().height / 2);
+    background->setZOrder(SLOT_ZORDER_BACKGROUND);
     addChild(background);
+
+    lineLayer = CCLayer::create();
+    lineLayer->setPositionX(getSize().width / 2);
+    lineLayer->setPositionY(getSize().height / 2);
+    lineLayer->setZOrder(SLOT_ZORDER_LINE_LAYER);
+    addChild(lineLayer);
 
     return true;
 }
@@ -101,7 +108,8 @@ bool Slot::isNextSlot() const
 
 void Slot::reset()
 {
-    removeLine();
+    lineLayer->removeAllChildren();
+    lock(false);
 
     setLineIn(SlotLineType::NONE);
     setLineOut(SlotLineType::NONE);
@@ -119,28 +127,21 @@ bool Slot::isCheckpoint() const
 
 void Slot::updateLineImage()
 {
-    std::ostringstream strIds;
-    strIds << lineIn;
+    lineLayer->removeAllChildren();
+    addLineImage(lineIn);
+    addLineImage(lineOut);
 
-    std::string name = "lines/" + strIds.str() + ".png";
-    CCLog(name.c_str());
-
-    line = CCSprite::createWithSpriteFrameName(name.c_str());
-    line->retain();
-    line->setPositionX(getSize().width / 2);
-    line->setPositionY(getSize().height / 2);
-    line->setZOrder(SLOT_ZORDER_LINE);
-    addChild(line);
+    // TODO: Fix curves
 }
 
-void Slot::removeLine()
+void Slot::addLineImage(const SlotLineType::Enum type)
 {
-    if (line) {
-        removeChild(line);
-        CC_SAFE_RELEASE_NULL(line);
-    }
+    std::ostringstream strId;
+    strId << type;
+    std::string name = "lines/" + strId.str() + ".png";
 
-    lock(false);
+    CCSprite* line = CCSprite::createWithSpriteFrameName(name.c_str());
+    lineLayer->addChild(line);
 }
 
 #pragma mark Number handling
@@ -179,7 +180,7 @@ void Slot::showNumber()
         labelBackground = CCSprite::createWithSpriteFrameName("backgrounds/slot-number.png");
         labelBackground->setPositionX(getSize().width / 2);
         labelBackground->setPositionY(getSize().height / 2);
-        labelBackground->setZOrder(SLOT_ZORDER_BACKGROUND);
+        labelBackground->setZOrder(SLOT_ZORDER_LABEL_BACKGROUND);
         addChild(labelBackground);
 
         labelPulseAction = CCRepeatForever::create(
