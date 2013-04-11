@@ -2,7 +2,10 @@
 #define __FlowConnect__Board__
 
 #include "cocos2d.h"
+#include "Slot.h"
 #include <vector>
+
+#define BOARD_TOUCH_INDICATOR_Z_INDEX 10
 
 class Board : public cocos2d::CCLayer
 {
@@ -16,13 +19,29 @@ public:
 
     CC_SYNTHESIZE_READONLY(cocos2d::CCSize, size, Size);
 
+    virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchCancelled(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+
 private:
     cocos2d::CCArray* slots;
     std::vector<int> directions;
+    Slot* lastSlot;
+    Slot* lastCheckpoint;
+    cocos2d::CCSprite* touchIndicator;
 
     void removeAllSlots();
     void createSlotsFromData(const char* data);
-    void rearrangeSlots();
+    void positionSlotsOnScreen();
+    void rearrangeSlotsInArray();
+    
+    Slot* getSlotFromPoint(const cocos2d::CCPoint point) const;
+    Slot* getNextCheckpoint(const Slot* currentSlot) const;
+    void activateNextCheckpoint(Slot* slot) const;
+    void createTouchIndicator();
+    cocos2d::CCPoint get2dIndexFromPoint(const cocos2d::CCPoint point) const;
+    int convert2dTo1dIndex(const cocos2d::CCPoint grid) const;
 };
 
 #endif /* defined(__FlowConnect__Board__) */

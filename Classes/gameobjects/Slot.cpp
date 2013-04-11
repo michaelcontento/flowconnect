@@ -11,13 +11,17 @@ CCSize Slot::getSize()
 #pragma mark Initialization
 
 Slot::Slot()
-: isFinal_(false)
+: gridIndex(-1, -1)
+, isLocked_(false)
 , isNextSlot_(false)
 , background(NULL)
 , line(NULL)
 , label(NULL)
 , labelBackground(NULL)
 , labelPulseAction(NULL)
+, number(SLOT_DEFAULT_NUMBER)
+, lineIn(SlotLineType::NONE)
+, lineOut(SlotLineType::NONE)
 {
 }
 
@@ -42,79 +46,45 @@ bool Slot::init()
 
 #pragma mark Current state
 
-void Slot::removeDirection()
+void Slot::lock(const bool flag)
 {
-    if (line) {
-        removeChild(line);
-        CC_SAFE_RELEASE_NULL(line);
+    bool changed = (isLocked_ != flag);
+    isLocked_ = flag;
+
+    if (changed) {
+        updateLineImage();
     }
-
-    markAsPending();
 }
 
-void Slot::setDirection(const int direction)
+bool Slot::isLocked() const
 {
-    removeDirection();
-    
-    switch (direction) {
-        case SLOT_DIRECTION_LEFT:
-            line = CCSprite::createWithSpriteFrameName("lines/left.png");
-            break;
+    return isLocked_;
+}
 
-        case SLOT_DIRECTION_RIGHT:
-            line = CCSprite::createWithSpriteFrameName("lines/right.png");
-            break;
+void Slot::setLineIn(const SlotLineType::Enum line)
+{
+    bool changed = (lineIn != line);
+    lineIn = line;
 
-        case SLOT_DIRECTION_UP:
-            line = CCSprite::createWithSpriteFrameName("lines/up.png");
-            break;
-
-        case SLOT_DIRECTION_DOWN:
-            line = CCSprite::createWithSpriteFrameName("lines/down.png");
-            break;
-
-        default:
-            assert(false && "unknown direction given");
-            break;
+    if (changed) {
+        updateLineImage();
     }
-
-    line->setPositionX(getSize().width / 2);
-    line->setPositionY(getSize().height / 2);
-    addChild(line);
 }
 
-void Slot::markAsFinal()
+void Slot::setLineOut(const SlotLineType::Enum line)
 {
-    if (isFinal_) {
-        return;
+    bool changed = (lineOut != line);
+    lineOut = line;
+
+    if (changed) {
+        updateLineImage();
     }
-
-    isFinal_ = true;
-}
-
-bool Slot::isFinal() const
-{
-    return isFinal_;
-}
-
-void Slot::markAsPending()
-{
-    if (!isFinal_) {
-        return;
-    }
-    
-    isFinal_ = false;
-}
-
-bool Slot::isPending() const
-{
-    return !isFinal_;
 }
 
 void Slot::markAsNextSlot(const bool flag)
 {
-    if (labelBackground) {
-        if (flag && isNextSlot_ != flag) {
+    if (labelBackground && isNextSlot_ != flag) {
+        if (flag) {
             labelBackground->runAction(labelPulseAction);
         } else {
             labelBackground->stopAllActions();
@@ -129,13 +99,57 @@ bool Slot::isNextSlot() const
     return isNextSlot_;
 }
 
-#pragma mark Number handleing
+void Slot::reset()
+{
+    removeLine();
+
+    setLineIn(SlotLineType::NONE);
+    setLineOut(SlotLineType::NONE);
+}
+
+bool Slot::isFree() const
+{
+    return (lineIn == SlotLineType::NONE && lineOut == SlotLineType::NONE);
+}
+
+bool Slot::isCheckpoint() const
+{
+    return (getNumber() != SLOT_DEFAULT_NUMBER);
+}
+
+void Slot::updateLineImage()
+{
+    std::ostringstream strIds;
+    strIds << lineIn;
+
+    std::string name = "lines/" + strIds.str() + ".png";
+    CCLog(name.c_str());
+
+    line = CCSprite::createWithSpriteFrameName(name.c_str());
+    line->retain();
+    line->setPositionX(getSize().width / 2);
+    line->setPositionY(getSize().height / 2);
+    line->setZOrder(SLOT_ZORDER_LINE);
+    addChild(line);
+}
+
+void Slot::removeLine()
+{
+    if (line) {
+        removeChild(line);
+        CC_SAFE_RELEASE_NULL(line);
+    }
+
+    lock(false);
+}
+
+#pragma mark Number handling
 
 void Slot::setNumber(const int newNumber)
 {
     number = newNumber;
 
-    if (newNumber == SLOT_NO_NUMBER) {
+    if (newNumber == SLOT_DEFAULT_NUMBER) {
         hideNumber();
     } else {
         showNumber();
@@ -165,6 +179,7 @@ void Slot::showNumber()
         labelBackground = CCSprite::createWithSpriteFrameName("backgrounds/slot-number.png");
         labelBackground->setPositionX(getSize().width / 2);
         labelBackground->setPositionY(getSize().height / 2);
+        labelBackground->setZOrder(SLOT_ZORDER_BACKGROUND);
         addChild(labelBackground);
 
         labelPulseAction = CCRepeatForever::create(
@@ -188,6 +203,7 @@ void Slot::showNumber()
         label->setPositionX(getSize().width / 2);
         label->setPositionY(getSize().height / 2);
         label->setColor(ccGREEN);
+        label->setZOrder(SLOT_ZORDER_LABEL);
         addChild(label);
     }
 }

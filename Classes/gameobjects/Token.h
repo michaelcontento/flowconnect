@@ -11,16 +11,16 @@
 
 namespace token
 {
-    const int convertTokenToSlotDirection(const char* token)
+    const SlotLineType::Enum convertTokenToSlotDirection(const char* token)
     {
         if (strcmp(token, TOKEN_DIRECTION_LEFT) == 0) {
-            return SLOT_DIRECTION_LEFT;
+            return SlotLineType::TOP;
         } else if (strcmp(token, TOKEN_DIRECTION_RIGHT) == 0) {
-            return SLOT_DIRECTION_RIGHT;
+            return SlotLineType::TOP;
         } else if (strcmp(token, TOKEN_DIRECTION_DOWN) == 0) {
-            return SLOT_DIRECTION_DOWN;
+            return SlotLineType::TOP;
         } else if (strcmp(token, TOKEN_DIRECTION_UP) == 0) {
-            return SLOT_DIRECTION_UP;
+            return SlotLineType::TOP;
         } else {
             cocos2d::CCLog(token);
             assert(false && "unable to convert given token");
