@@ -78,7 +78,7 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     }
 
     if (slot->isCheckpoint()) {
-        if (isFirstCheckpoint(slot) || !slot->isFree()) {
+        if ((isFirstCheckpoint(slot) && slot->isFree()) || !slot->isFree()) {
             lastCheckpoint = slot;
             slot->setLineOut(SlotLineType::NONE);
         } else {
@@ -452,12 +452,7 @@ bool Board::isFirstCheckpoint(const Slot* slot) const
         return false;
     }
 
-    if (userPath->count() == 0) {
-        return true;
-    }
-
-    Slot* lastSlot = static_cast<Slot*>(userPath->lastObject());
-    if (lastSlot == slot) {
+    if (slot->getNumber() == 1) {
         return true;
     }
 
