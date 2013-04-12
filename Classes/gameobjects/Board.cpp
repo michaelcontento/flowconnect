@@ -55,9 +55,9 @@ bool Board::initWithLevel(const cocos2d::CCSize newSize, const char* data)
 
     removeAllSlots();
     createSlotsFromData(data);
-    
-    positionSlotsOnScreen();
     slots->reduceMemoryFootprint();
+
+    positionSlotsOnScreen();
 
     return true;
 }
@@ -66,6 +66,10 @@ bool Board::initWithLevel(const cocos2d::CCSize newSize, const char* data)
 
 bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (isFinished()) {
+        return false;
+    }
+    
     const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
     Slot* slot = getSlotFromPoint(touchPos);
 
@@ -379,7 +383,7 @@ void Board::activateNextCheckpoint()
     // detect the game finished state and act accordingly. we don't need to
     // do anything special with all checkpoints here, because the Slot class
     // takes care of stopping all animations for us.
-    
+
     if (allCheckpointVisited) {
         handleAllCheckpointsVisited();
     }
@@ -389,6 +393,8 @@ void Board::handleAllCheckpointsVisited()
 {
     removeChild(touchIndicator);
     touchIndicator = NULL;
+
+    unschedule(schedule_selector(Board::updateDuration));
 }
 
 void Board::lockCompleteLines() const

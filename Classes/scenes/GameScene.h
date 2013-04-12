@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Board.h"
+#include "BoardStats.h"
 
 class GameScene : public cocos2d::CCLayer
 {
@@ -16,6 +17,7 @@ public:
 
 private:
     Board* board;
+    BoardStats* stats;
 };
 
 #endif /* defined(__FlowConnect__GameScene__) */

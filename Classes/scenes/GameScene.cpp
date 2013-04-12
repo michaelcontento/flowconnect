@@ -6,6 +6,7 @@ using namespace cocos2d;
 
 GameScene::GameScene()
 : board(NULL)
+, stats(NULL)
 {
 }
 
@@ -42,6 +43,11 @@ bool GameScene::init()
 
     boardContainer->setPosition(CCPoint(768 / 2, 1024 / 2));
     boardContainer->setScale(700 / board->getContentSize().width);
+
+    stats = BoardStats::createWithBoard(board);
+    stats->setAnchorPoint(CCPoint(0, 0));
+    stats->setPosition(CCPoint((768 - 700) / 2, 1024 - 162));
+    addChild(stats);
 
     return true;
 }
