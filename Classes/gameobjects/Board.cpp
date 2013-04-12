@@ -61,8 +61,8 @@ bool Board::initWithLevel(const cocos2d::CCSize newSize, const char* data)
 bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
     const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
-
     Slot* slot = getSlotFromPoint(touchPos);
+
     if (!slot){
         return false;
     }
@@ -93,15 +93,15 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 
 void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
-    // no checkpoint to reach? the user might a) proceed to the next level
+    // no checkpoint left to visit? the user might a) proceed to the next level
     // or b) restart somewhere with _a new_ touch.
     if (allCheckpointVisited) {
         return;
     }
 
     const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
-
     Slot* currentSlot = getSlotFromPoint(touchPos);
+
     if (!currentSlot) {
         return;
     }
@@ -129,9 +129,9 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
     if (currentSlot->isCheckpoint()) {
         if (currentSlot->isNextSlot()) {
-            // allowed because it's the next safe point
+            // allowed because it's the next checkpoint
         } else if (currentSlot == getUserPathSlotBefore(lastSlot)) {
-            // allowed because we're walk back
+            // allowed because we're walking backwards
         } else {
             return;
         }
@@ -190,13 +190,10 @@ void Board::appendUserPath(Slot* slot)
 
 void Board::removeAllSlots()
 {
-    if (!slots) {
-        return;
-    }
-
     CCObject* it;
     CCARRAY_FOREACH(slots, it) {
         Slot* slot = static_cast<Slot*>(it);
+
         if (slot) {
             removeChild(slot);
         }
@@ -210,41 +207,33 @@ void Board::createSlotsFromData(const char* data)
 {
     char currentToken[2] = {0};
     int len = strlen(data);
-
-    int nextNumber = 1;
-    bool nextSlotWithNumber = false;
+    int nextNumber = 0;
 
     for (int i = 0; i < len; ++i) {
         currentToken[0] = data[i];
 
-        if (strcmp(currentToken, TOKEN_FLAG_NUMBER) == 0) {
-            nextSlotWithNumber = true;
+        if (!token::isDirectionToken(currentToken)) {
+            assert(nextNumber == 0 && "two following numbers are invalid");
+            nextNumber = atoi(currentToken);
             continue;
         }
 
         Slot* nextSlot = Slot::create();
         slots->addObject(nextSlot);
-        addChild(nextSlot);
-
-        if (token::isDirectionToken(currentToken)) {
-            directions.push_back(token::convertTokenToSlotDirection(currentToken));
-        } else {
-            directions.push_back(directions.back());
-        }
-
-        if (nextSlotWithNumber) {
-            nextSlotWithNumber = false;
+        
+        if (nextNumber > 0) {
             nextSlot->setNumber(nextNumber);
-
             if (nextNumber == 1) {
                 nextSlot->markAsNextSlot(true);
             }
-            
-            ++nextNumber;
+            nextNumber = 0;
         }
+
+        addChild(nextSlot);
+        directions.push_back(token::convertTokenToSlotDirection(currentToken));
     }
 
-    assert(!nextSlotWithNumber && "nextTokenWithNumber flag still active");
+    assert(nextNumber == 0 && "all numbers must be assigned");
 }
 
 void Board::positionSlotsOnScreen()
@@ -278,8 +267,8 @@ void Board::clearAllSlotsAfter(Slot* slot) const
 {
     bool removeFollowing = false;
     CCArray* removeObjects = CCArray::create();
+    
     CCObject* it;
-
     CCARRAY_FOREACH(userPath, it) {
         Slot* compareSlot = static_cast<Slot*>(it);
 
@@ -299,26 +288,32 @@ void Board::activateNextCheckpoint()
 {
     CCObject* it = NULL;
     Slot* slot = NULL;
-    Slot* lastCheckpoint = NULL;
-
-    // pretend all checkpoints were visited. to check (and flip this flag) is
-    // the job of the following code.
+    lastCheckpoint = NULL;
     allCheckpointVisited = true;
 
+    // detect the checkpoint with the highest number on the users path.
+    // why? because we simply don't trust lastCheckpoint here. it should be
+    // safe but it's just to simple to do a "full mind reset" here :)
+
+    int lastNumber = 0;
+    
     if (userPath->count() > 1) {
         CCARRAY_FOREACH(userPath, it) {
             slot = static_cast<Slot*>(it);
-            if (slot->isCheckpoint()) {
+            if (slot->isCheckpoint() && slot->getNumber() > lastNumber) {
                 lastCheckpoint = slot;
+                lastNumber = slot->getNumber();
             }
         }
     }
 
-    bool flagNextCheckpoint = false;
-    if (!lastCheckpoint) {
-        flagNextCheckpoint = true;
-    }
-
+    // just iterate through all slots and disable all checkpoints except the
+    // one with the next number. pretty trivial but important for our
+    // "full mind reset".
+    
+    int nextNumber = lastNumber + 1;
+    bool nextCheckpointFound = false;
+    
     CCARRAY_FOREACH(slots, it) {
         slot = static_cast<Slot*>(it);
 
@@ -326,19 +321,19 @@ void Board::activateNextCheckpoint()
             continue;
         }
 
-        if (flagNextCheckpoint) {
+        if (!nextCheckpointFound && slot->getNumber() == nextNumber) {
+            nextCheckpointFound = true;
             slot->markAsNextSlot(true);
-            flagNextCheckpoint = false;
             allCheckpointVisited = false;
         } else {
             slot->markAsNextSlot(false);
         }
-
-        if (slot == lastCheckpoint) {
-            flagNextCheckpoint = true;
-        }
     }
 
+    // detect the game finished state and act accordingly. we don't need to
+    // do anything special with all checkpoints here, because the Slot class
+    // takes care of stopping all animations for us.
+    
     if (allCheckpointVisited) {
         handleAllCheckpointsVisited();
     }
@@ -352,9 +347,9 @@ void Board::handleAllCheckpointsVisited()
 
 void Board::lockCompleteLines() const
 {
-    CCObject* it = NULL;
     bool checkpointFound = false;
 
+    CCObject* it = NULL;
     CCARRAY_FOREACH_REVERSE(userPath, it) {
         Slot* slot = static_cast<Slot*>(it);
 
@@ -381,9 +376,9 @@ Slot* Board::getLastUserPathSlot() const
 
 Slot* Board::getUserPathSlotBefore(const Slot* slot) const
 {
-    CCObject* it = NULL;
     Slot* lastSlot = NULL;
 
+    CCObject* it = NULL;
     CCARRAY_FOREACH(userPath, it) {
         Slot* compareSlot = static_cast<Slot*>(it);
 
@@ -419,14 +414,16 @@ bool Board::isFirstCheckpoint(const Slot* slot) const
 
 void Board::createTouchIndicator()
 {
-    if (!touchIndicator) {
-        touchIndicator = CCSprite::createWithSpriteFrameName("touchindicator.png");
-        touchIndicator->runAction(CCRepeatForever::create(CCBlink::create(0.5, 1)));
-        touchIndicator->setZOrder(BOARD_TOUCH_INDICATOR_Z_INDEX);
-        touchIndicator->setColor(ccRED);
-
-        addChild(touchIndicator);
+    if (touchIndicator) {
+        return;
     }
+
+    touchIndicator = CCSprite::createWithSpriteFrameName("touchindicator.png");
+    touchIndicator->runAction(CCRepeatForever::create(CCBlink::create(0.5, 1)));
+    touchIndicator->setZOrder(BOARD_TOUCH_INDICATOR_Z_INDEX);
+    touchIndicator->setColor(ccRED);
+
+    addChild(touchIndicator);
 }
 
 int Board::convert2dTo1dIndex(const CCPoint grid) const

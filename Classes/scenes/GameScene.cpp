@@ -33,7 +33,7 @@ bool GameScene::init()
     board->setPosition(CCPoint(150, 250));
     addChild(board);
 
-    board->initWithLevel(CCSize(3, 3), "!rrdlldr!r!r");
+    board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
     
     return true;
 }
