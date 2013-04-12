@@ -19,6 +19,9 @@ public:
 
     CC_SYNTHESIZE_READONLY(cocos2d::CCSize, size, Size);
 
+    CC_SYNTHESIZE_READONLY(int, moves, Moves);
+    bool isFinished() const;
+
     virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
     virtual void ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
     virtual void ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
@@ -31,6 +34,7 @@ private:
     Slot* lastCheckpoint;
     cocos2d::CCSprite* touchIndicator;
     bool allCheckpointVisited;
+    int numFreeSlots;
 
     void removeAllSlots();
     void createSlotsFromData(const char* data);

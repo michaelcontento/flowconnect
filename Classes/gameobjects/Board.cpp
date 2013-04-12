@@ -13,6 +13,8 @@ Board::Board()
 , lastCheckpoint(NULL)
 , touchIndicator(NULL)
 , allCheckpointVisited(false)
+, numFreeSlots(0)
+, moves(0)
 {
 }
 
@@ -46,6 +48,7 @@ bool Board::init()
 bool Board::initWithLevel(const cocos2d::CCSize newSize, const char* data)
 {
     size = newSize;
+    numFreeSlots = size.width * size.height;
 
     removeAllSlots();
     createSlotsFromData(data);
@@ -82,8 +85,17 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         }
     }
 
+    int slotDiff = userPath->count();
+
     clearAllSlotsAfter(slot);
     appendUserPath(slot);
+
+    slotDiff -= userPath->count();
+    if (slot->getNumber() == 1) {
+        moves = 0;
+    } else {
+        moves += slotDiff;
+    }
 
     createTouchIndicator();
     touchIndicator->setPosition(touchPos);
@@ -143,6 +155,8 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
     // ----- Update slots
 
+    ++moves;
+
     if (!lastSlot->isFree() && !currentSlot->isFree()) {
         currentSlot->setLineOut(SlotLineType::NONE);
         lastSlot->reset();
@@ -176,6 +190,11 @@ void Board::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 }
 
 #pragma mark Slot handling
+
+bool Board::isFinished() const
+{
+    return (allCheckpointVisited && numFreeSlots == 0);
+}
 
 void Board::appendUserPath(Slot* slot)
 {
@@ -313,9 +332,14 @@ void Board::activateNextCheckpoint()
     
     int nextNumber = lastNumber + 1;
     bool nextCheckpointFound = false;
-    
+    numFreeSlots = 0;
+
     CCARRAY_FOREACH(slots, it) {
         slot = static_cast<Slot*>(it);
+
+        if (slot->isFree()) {
+            ++numFreeSlots;
+        }
 
         if (!slot->isCheckpoint()) {
             continue;
