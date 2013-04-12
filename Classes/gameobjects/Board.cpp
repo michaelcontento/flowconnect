@@ -15,6 +15,7 @@ Board::Board()
 , allCheckpointVisited(false)
 , numFreeSlots(0)
 , moves(0)
+, progress(0)
 {
 }
 
@@ -353,6 +354,9 @@ void Board::activateNextCheckpoint()
             slot->markAsNextSlot(false);
         }
     }
+
+    int totalSlots = size.width * size.height;
+    progress = (totalSlots - numFreeSlots) / float(totalSlots);
 
     // detect the game finished state and act accordingly. we don't need to
     // do anything special with all checkpoints here, because the Slot class
