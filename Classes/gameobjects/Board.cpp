@@ -151,7 +151,11 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
             return;
         }
     } else {
-        if (currentSlot->isLocked() && !lastSlot->isLocked()) {
+        if (currentSlot->isFree()) {
+            // we're allowed to move into free slots
+        } else if (currentSlot == getUserPathSlotBefore(lastSlot)) {
+            // alloweed bcause we're waling backwards
+        } else {
             return;
         }
     }
