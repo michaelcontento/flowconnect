@@ -420,7 +420,7 @@ void Board::createTouchIndicator()
 
     touchIndicator = CCSprite::createWithSpriteFrameName("touchindicator.png");
     touchIndicator->runAction(CCRepeatForever::create(CCBlink::create(0.5, 1)));
-    touchIndicator->setZOrder(BOARD_TOUCH_INDICATOR_Z_INDEX);
+    touchIndicator->setZOrder(BOARD_ZORDER_TOUCH_INDICATOR);
     touchIndicator->setColor(ccRED);
 
     addChild(touchIndicator);

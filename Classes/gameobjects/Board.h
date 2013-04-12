@@ -5,7 +5,7 @@
 #include "Slot.h"
 #include <vector>
 
-#define BOARD_TOUCH_INDICATOR_Z_INDEX 10
+#define BOARD_ZORDER_TOUCH_INDICATOR 10
 
 class Board : public cocos2d::CCLayer
 {
