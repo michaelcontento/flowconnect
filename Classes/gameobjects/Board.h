@@ -35,7 +35,6 @@ private:
     void removeAllSlots();
     void createSlotsFromData(const char* data);
     void positionSlotsOnScreen();
-    void rearrangeSlotsInArray();
     void clearAllSlotsAfter(Slot* slot) const;
     void activateNextCheckpoint();
     void lockCompleteLines() const;

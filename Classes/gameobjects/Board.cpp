@@ -51,8 +51,6 @@ bool Board::initWithLevel(const cocos2d::CCSize newSize, const char* data)
     createSlotsFromData(data);
     
     positionSlotsOnScreen();
-    rearrangeSlotsInArray();
-
     slots->reduceMemoryFootprint();
 
     return true;
@@ -273,26 +271,6 @@ void Board::positionSlotsOnScreen()
             slot->setPositionX(slotSize.width * x);
             slot->setPositionY(slotSize.height * (size.height - 1 - y));
         }
-    }
-}
-
-void Board::rearrangeSlotsInArray()
-{
-    CCArray* moveToBottom = CCArray::create();
-    CCObject* it;
-
-    CCARRAY_FOREACH(slots, it) {
-        Slot* slot = static_cast<Slot*>(it);
-        if (slot->isNextSlot()) {
-            break;
-        }
-
-        moveToBottom->addObject(it);
-    }
-
-    CCARRAY_FOREACH(moveToBottom, it) {
-        slots->removeObject(it);
-        slots->addObject(it);
     }
 }
 
