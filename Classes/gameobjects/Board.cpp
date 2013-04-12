@@ -16,6 +16,8 @@ Board::Board()
 , numFreeSlots(0)
 , moves(0)
 , progress(0)
+, duration(0)
+, timerStarted(false)
 {
 }
 
@@ -180,6 +182,11 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
     touchIndicator->setPosition(touchPos);
     appendUserPath(currentSlot);
+
+    if (!timerStarted) {
+        timerStarted = true;
+        schedule(schedule_selector(Board::updateDuration));
+    }
 }
 
 void Board::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
@@ -191,6 +198,11 @@ void Board::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 }
 
 #pragma mark Slot handling
+
+void Board::updateDuration(float dt)
+{
+    duration += dt;
+}
 
 bool Board::isFinished() const
 {
