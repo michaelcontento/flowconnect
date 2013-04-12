@@ -63,9 +63,7 @@ bool BoardStats::initWithBoard(Board* board)
 
 void BoardStats::updateStats(float dt)
 {
-    if (!board) {
-        return;
-    }
+    assert(board && "this should never happen");
 
     std::stringstream stream;
 

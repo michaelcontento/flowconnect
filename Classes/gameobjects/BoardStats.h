@@ -11,8 +11,6 @@ public:
     virtual ~BoardStats();
 
     static BoardStats* createWithBoard(Board* board);
-    virtual bool initWithBoard(Board* board);
-
     void updateStats(float dt);
 
 private:
@@ -20,6 +18,8 @@ private:
     cocos2d::CCLabelTTF* statsMove;
     cocos2d::CCLabelTTF* statsBest;
     cocos2d::CCLabelTTF* statsProgress;
+
+    bool initWithBoard(Board* board);
 };
 
 #endif /* defined(__FlowConnect__BoardStats__) */

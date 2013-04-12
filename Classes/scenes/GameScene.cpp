@@ -6,6 +6,7 @@ using namespace cocos2d;
 
 GameScene::GameScene()
 : board(NULL)
+, boardContainer(NULL)
 , stats(NULL)
 {
 }
@@ -34,20 +35,29 @@ bool GameScene::init()
     //board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
     board->initWithLevel(CCSize(5, 5), "3rrrrdudllldrrr4du1rd5dlll2lr6r");
 
-    CCNode* boardContainer = CCNode::create();
+    boardContainer = CCNode::create();
+    boardContainer->addChild(board);
     addChild(boardContainer);
 
-    boardContainer->addChild(board);
+    stats = BoardStats::createWithBoard(board);
+    addChild(stats);
+
+    doLayout();
+    
+    return true;
+}
+
+void GameScene::doLayout()
+{
+    assert(boardContainer && "boarContainer should be there");
+    assert(stats && "stats should there");
+
     boardContainer->setContentSize(board->getContentSize());
     boardContainer->setAnchorPoint(CCPoint(0.5, 0.5));
 
     boardContainer->setPosition(CCPoint(768 / 2, 1024 / 2));
     boardContainer->setScale(700 / board->getContentSize().width);
 
-    stats = BoardStats::createWithBoard(board);
     stats->setAnchorPoint(CCPoint(0, 0));
     stats->setPosition(CCPoint((768 - 700) / 2, 1024 - 162));
-    addChild(stats);
-
-    return true;
 }

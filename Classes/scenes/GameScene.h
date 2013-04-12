@@ -18,6 +18,9 @@ public:
 private:
     Board* board;
     BoardStats* stats;
+    cocos2d::CCNode* boardContainer;
+
+    void doLayout();
 };
 
 #endif /* defined(__FlowConnect__GameScene__) */
