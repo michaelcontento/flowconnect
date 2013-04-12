@@ -297,6 +297,8 @@ void Board::positionSlotsOnScreen()
             slot->setPositionY(slotSize.height * (size.height - 1 - y));
         }
     }
+
+    setContentSize(CCSize(slotSize.width * size.width, slotSize.height * size.height));
 }
 
 void Board::clearAllSlotsAfter(Slot* slot) const

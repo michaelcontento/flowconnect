@@ -30,10 +30,18 @@ bool GameScene::init()
         ->addSpriteFramesWithFile("assets.plist");
 
     board = Board::create();
-    board->setPosition(CCPoint(150, 250));
-    addChild(board);
+    //board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
+    board->initWithLevel(CCSize(5, 5), "3rrrrdudllldrrr4du1rd5dlll2lr6r");
 
-    board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
-    
+    CCNode* boardContainer = CCNode::create();
+    addChild(boardContainer);
+
+    boardContainer->addChild(board);
+    boardContainer->setContentSize(board->getContentSize());
+    boardContainer->setAnchorPoint(CCPoint(0.5, 0.5));
+
+    boardContainer->setPosition(CCPoint(768 / 2, 1024 / 2));
+    boardContainer->setScale(700 / board->getContentSize().width);
+
     return true;
 }
