@@ -39,6 +39,8 @@ bool GameScene::init()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
+    addChild(CCParticleSystemQuad::create("background-fx.plist"));
+
     initBoard();
     initStats();
     initTopMenu();
