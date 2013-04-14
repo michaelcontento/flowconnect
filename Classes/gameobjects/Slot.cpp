@@ -259,7 +259,7 @@ void Slot::showNumber()
 
         labelPulseAction = CCRepeatForever::create(
             CCSequence::create(
-                CCScaleTo::create(0.125, 1.05),
+                CCScaleTo::create(0.125, 1.10),
                 CCDelayTime::create(0.125),
                 CCScaleTo::create(0.125, 1),
                 CCDelayTime::create(2),
