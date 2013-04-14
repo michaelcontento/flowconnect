@@ -44,6 +44,12 @@ private:
 
     cocos2d::CCMenu* topMenu;
     cocos2d::CCSprite* btnMenu;
+
+    void initBoard();
+    void initStats();
+    void initTopMenu();
+    void initLeftMenu();
+    void initRightMenu();
 };
 
 #endif /* defined(__FlowConnect__GameScene__) */

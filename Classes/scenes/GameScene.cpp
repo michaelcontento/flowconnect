@@ -39,96 +39,11 @@ bool GameScene::init()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
-    // -- BOARD
-
-    board = Board::create();
-    //board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
-    board->initWithLevel(CCSize(5, 5), "3rrrrdudllldrrr4du1rd5dlll2lr6r");
-
-    boardContainer = CCNode::create();
-    boardContainer->addChild(board);
-    addChild(boardContainer);
-
-    boardContainer->setContentSize(board->getContentSize());
-    boardContainer->setScale(BOARD_WIDTH / board->getContentSize().width);
-    boardContainer->setAnchorPoint(CCPoint(0, 0));
-    boardContainer->setPosition(CCPoint((768 - BOARD_WIDTH) / 2, 150));
-
-    // -- STATS
-    
-    stats = BoardStats::createWithBoard(board);
-    addChild(stats);
-
-    stats->setAnchorPoint(CCPoint(0, 0));
-    stats->setPositionX(boardContainer->getPositionX());
-    stats->setPositionY(
-        boardContainer->getPositionY()
-        + boardContainer->getContentSize().height * boardContainer->getScaleY()
-    );
-    
-    // -- LEFT MENU
-
-    leftMenu = CCMenu::create();
-    addChild(leftMenu);
-
-    btnGoBack = CCSprite::createWithSpriteFrameName("buttons/go-back.png");
-    leftMenu->addChild(CCMenuItemSprite::create(
-        btnGoBack, btnGoBack, this, menu_selector(GameScene::onBtnGoBack)
-    ));
-
-    btnReset = CCSprite::createWithSpriteFrameName("buttons/reset.png");
-    leftMenu->addChild(CCMenuItemSprite::create(
-        btnReset, btnReset, this, menu_selector(GameScene::onBtnReset)
-    ));
-
-    btnGoNext = CCSprite::createWithSpriteFrameName("buttons/go-next.png");
-    leftMenu->addChild(CCMenuItemSprite::create(
-        btnGoNext, btnGoNext, this, menu_selector(GameScene::onBtnGoNext)
-    ));
-
-    leftMenu->setPosition(boardContainer->getPosition());
-    leftMenu->setPositionY(leftMenu->getPositionY() - BOARD_MARGIN);
-    leftMenu->setAnchorPoint(CCPoint(0, 1));
-    leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
-
-    // -- RIGHT MENU
-
-    rightMenu = CCMenu::create();
-    addChild(rightMenu);
-
-    btnHint = CCSprite::createWithSpriteFrameName("buttons/hint.png");
-    rightMenu->addChild(CCMenuItemSprite::create(
-        btnHint, btnHint, this, menu_selector(GameScene::onBtnHint)
-    ));
-
-    btnHelp = CCSprite::createWithSpriteFrameName("buttons/help.png");
-    rightMenu->addChild(CCMenuItemSprite::create(
-        btnHelp, btnHelp, this, menu_selector(GameScene::onBtnHelp)
-    ));
-
-    rightMenu->setPosition(boardContainer->getPosition());
-    rightMenu->setPositionY(rightMenu->getPositionY() - BOARD_MARGIN);
-    rightMenu->setPositionX(
-        rightMenu->getPositionX()
-        + boardContainer->getContentSize().width * boardContainer->getScaleX()
-    );
-    rightMenu->setAnchorPoint(CCPoint(1, 1));
-    rightMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
-
-    // -- TOP MENU
-
-    topMenu = CCMenu::create();
-    addChild(topMenu);
-
-    btnMenu = CCSprite::createWithSpriteFrameName("buttons/home.png");
-    topMenu->addChild(CCMenuItemSprite::create(
-        btnMenu, btnMenu, this, menu_selector(GameScene::onBtnMenu)
-    ));
-
-    topMenu->setPosition(CCPoint(stats->getPositionX(), 1024));
-    topMenu->setPositionY(topMenu->getPositionY() - BOARD_MARGIN);
-    topMenu->setAnchorPoint(CCPoint(0, 1));
-    topMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
+    initBoard();
+    initStats();
+    initTopMenu();
+    initLeftMenu();
+    initRightMenu();
 
     return true;
 }
@@ -161,4 +76,101 @@ void GameScene::onBtnHelp()
 void GameScene::onBtnMenu()
 {
     CCLog("MENU");
+}
+
+void GameScene::initBoard()
+{
+    board = Board::create();
+    //board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
+    board->initWithLevel(CCSize(5, 5), "3rrrrdudllldrrr4du1rd5dlll2lr6r");
+
+    boardContainer = CCNode::create();
+    boardContainer->addChild(board);
+    addChild(boardContainer);
+
+    boardContainer->setContentSize(board->getContentSize());
+    boardContainer->setScale(BOARD_WIDTH / board->getContentSize().width);
+    boardContainer->setAnchorPoint(CCPoint(0, 0));
+    boardContainer->setPosition(CCPoint((768 - BOARD_WIDTH) / 2, 150));
+}
+
+void GameScene::initStats()
+{
+    stats = BoardStats::createWithBoard(board);
+    addChild(stats);
+
+    stats->setAnchorPoint(CCPoint(0, 0));
+    stats->setPositionX(boardContainer->getPositionX());
+    stats->setPositionY(
+        boardContainer->getPositionY()
+        + boardContainer->getContentSize().height * boardContainer->getScaleY()
+    );
+}
+
+void GameScene::initLeftMenu()
+{
+    leftMenu = CCMenu::create();
+    addChild(leftMenu);
+
+    btnGoBack = CCSprite::createWithSpriteFrameName("buttons/go-back.png");
+    leftMenu->addChild(CCMenuItemSprite::create(
+        btnGoBack, btnGoBack, this, menu_selector(GameScene::onBtnGoBack)
+    ));
+
+    btnReset = CCSprite::createWithSpriteFrameName("buttons/reset.png");
+    leftMenu->addChild(CCMenuItemSprite::create(
+        btnReset, btnReset, this, menu_selector(GameScene::onBtnReset)
+    ));
+
+    btnGoNext = CCSprite::createWithSpriteFrameName("buttons/go-next.png");
+    leftMenu->addChild(CCMenuItemSprite::create(
+        btnGoNext, btnGoNext, this, menu_selector(GameScene::onBtnGoNext)
+    ));
+
+    leftMenu->setPosition(boardContainer->getPosition());
+    leftMenu->setPositionY(leftMenu->getPositionY() - BOARD_MARGIN);
+    leftMenu->setAnchorPoint(CCPoint(0, 1));
+    leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
+}
+
+
+void GameScene::initRightMenu()
+{
+    rightMenu = CCMenu::create();
+    addChild(rightMenu);
+
+    btnHint = CCSprite::createWithSpriteFrameName("buttons/hint.png");
+    rightMenu->addChild(CCMenuItemSprite::create(
+        btnHint, btnHint, this, menu_selector(GameScene::onBtnHint)
+    ));
+
+    btnHelp = CCSprite::createWithSpriteFrameName("buttons/help.png");
+    rightMenu->addChild(CCMenuItemSprite::create(
+        btnHelp, btnHelp, this, menu_selector(GameScene::onBtnHelp)
+    ));
+
+    rightMenu->setPosition(boardContainer->getPosition());
+    rightMenu->setPositionY(rightMenu->getPositionY() - BOARD_MARGIN);
+    rightMenu->setPositionX(
+        rightMenu->getPositionX()
+        + boardContainer->getContentSize().width * boardContainer->getScaleX()
+    );
+    rightMenu->setAnchorPoint(CCPoint(1, 1));
+    rightMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
+}
+
+void GameScene::initTopMenu()
+{
+    topMenu = CCMenu::create();
+    addChild(topMenu);
+
+    btnMenu = CCSprite::createWithSpriteFrameName("buttons/home.png");
+    topMenu->addChild(CCMenuItemSprite::create(
+        btnMenu, btnMenu, this, menu_selector(GameScene::onBtnMenu)
+    ));
+
+    topMenu->setPosition(CCPoint(stats->getPositionX(), 1024));
+    topMenu->setPositionY(topMenu->getPositionY() - BOARD_MARGIN);
+    topMenu->setAnchorPoint(CCPoint(0, 1));
+    topMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }
