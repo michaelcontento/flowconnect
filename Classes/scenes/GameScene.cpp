@@ -123,7 +123,7 @@ void GameScene::onBtnGoBack()
 
 void GameScene::onBtnReset()
 {
-    CCLog("RESET");
+    board->reset();
 }
 
 void GameScene::onBtnGoNext()

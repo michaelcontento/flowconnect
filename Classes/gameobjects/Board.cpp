@@ -464,6 +464,31 @@ Slot* Board::getUserPathSlotBefore(const Slot* slot) const
     return NULL;
 }
 
+void Board::reset()
+{
+    if (userPath->count() > 0) {
+        Slot* firstSlot = static_cast<Slot*>(userPath->objectAtIndex(0));
+        clearAllSlotsAfter(firstSlot);
+
+        assert(userPath->count() == 1 && "something went wrong");
+
+        userPath->removeAllObjects();
+        firstSlot->reset();
+    }
+
+    unschedule(schedule_selector(Board::updateDuration));
+    timerStarted = false;
+    duration = 0;
+    moves = 0;
+
+    if (touchIndicator) {
+        stopTouchIndicatorBlink();
+        touchIndicator->setVisible(false);
+    }
+
+    activateNextCheckpoint();
+}
+
 #pragma mark TouchIndicator
 
 void Board::startTouchIndicatorBlink()

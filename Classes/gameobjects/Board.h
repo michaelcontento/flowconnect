@@ -25,6 +25,7 @@ public:
     bool isFinished() const;
 
     void updateDuration(float dt);
+    void reset();
 
     virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
     virtual void ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
