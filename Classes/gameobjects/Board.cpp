@@ -556,7 +556,7 @@ void Board::createTouchIndicator()
     touchIndicator->setZOrder(BOARD_ZORDER_TOUCH_INDICATOR);
     touchIndicator->setColor(TOUCH_INDICATOR_COLOR);
     touchIndicator->setOpacity(TOUCH_INDICATOR_OPACITY);
-    touchIndicator->setScale(1.2);
+    touchIndicator->setScale(1.5);
 
     addChild(touchIndicator);
 }
