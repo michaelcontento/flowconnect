@@ -93,7 +93,10 @@ void GameScene::initBoard()
     boardContainer->setContentSize(board->getContentSize());
     boardContainer->setScale(BOARD_WIDTH / board->getContentSize().width);
     boardContainer->setAnchorPoint(CCPoint(0, 0));
-    boardContainer->setPosition(CCPoint((768 - BOARD_WIDTH) / 2, 150));
+    boardContainer->setPosition(CCPoint(
+        (768 - BOARD_WIDTH) / 2,
+        (1024 - BOARD_WIDTH) / 2
+    ));
 }
 
 void GameScene::initStats()
@@ -130,8 +133,8 @@ void GameScene::initLeftMenu()
     ));
 
     leftMenu->setPosition(boardContainer->getPosition());
-    leftMenu->setPositionY(leftMenu->getPositionY() - BOARD_MARGIN);
-    leftMenu->setAnchorPoint(CCPoint(0, 1));
+    leftMenu->setPositionY(leftMenu->getPositionY() - (leftMenu->getPositionY() / 2));
+    leftMenu->setAnchorPoint(CCPoint(0, 0.5));
     leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }
 
@@ -152,12 +155,12 @@ void GameScene::initRightMenu()
     ));
 
     rightMenu->setPosition(boardContainer->getPosition());
-    rightMenu->setPositionY(rightMenu->getPositionY() - BOARD_MARGIN);
+    rightMenu->setPositionY(rightMenu->getPositionY() - (rightMenu->getPositionY() / 2));
     rightMenu->setPositionX(
         rightMenu->getPositionX()
         + boardContainer->getContentSize().width * boardContainer->getScaleX()
     );
-    rightMenu->setAnchorPoint(CCPoint(1, 1));
+    rightMenu->setAnchorPoint(CCPoint(1, 0.5));
     rightMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }
 
