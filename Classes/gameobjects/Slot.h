@@ -5,8 +5,8 @@
 
 #define SLOT_DEFAULT_NUMBER -1
 
-#define SLOT_ZORDER_BACKGROUND 7
-#define SLOT_ZORDER_LINE_LAYER 8
+#define SLOT_ZORDER_LINE_LAYER 7
+#define SLOT_ZORDER_BACKGROUND 8
 #define SLOT_ZORDER_LABEL_BACKGROUND 9
 #define SLOT_ZORDER_LABEL 10
 
@@ -63,7 +63,8 @@ private:
     cocos2d::CCAction* labelPulseAction;
 
     void updateLineImage();
-    void addLineImage(const SlotLineType::Enum type);
+    bool isLineOpposite(const SlotLineType::Enum lineIn, const SlotLineType::Enum lineOut) const;
+    void addLineImage(const SlotLineType::Enum type, const char* file);
     void hideNumber();
     void showNumber();
 };

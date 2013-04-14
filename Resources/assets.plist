@@ -4,109 +4,174 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>backgrounds/slot-number.png</key>
+            <key>buttons/go-back.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{154,2},{142,142}}</string>
+                <string>{{360,231},{55,54}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{1,1},{55,54}}</string>
+                <key>sourceSize</key>
+                <string>{57,56}</string>
+            </dict>
+            <key>buttons/go-next.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{360,174},{55,54}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{1,1},{55,54}}</string>
+                <key>sourceSize</key>
+                <string>{57,56}</string>
+            </dict>
+            <key>buttons/help.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{304,344},{55,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{4,4},{142,142}}</string>
+                <string>{{1,1},{55,54}}</string>
                 <key>sourceSize</key>
-                <string>{150,150}</string>
+                <string>{57,56}</string>
             </dict>
-            <key>backgrounds/slot.png</key>
+            <key>buttons/hint-number.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{150,150}}</string>
+                <string>{{2,378},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{150,150}}</string>
+                <string>{{1,0},{34,34}}</string>
                 <key>sourceSize</key>
-                <string>{150,150}</string>
+                <string>{36,34}</string>
             </dict>
-            <key>lines/0.png</key>
+            <key>buttons/hint.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{298,2},{66,66}}</string>
-                <key>offset</key>
-                <string>{-1,1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{41,41},{66,66}}</string>
-                <key>sourceSize</key>
-                <string>{150,150}</string>
-            </dict>
-            <key>lines/1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{354,70},{54,76}}</string>
-                <key>offset</key>
-                <string>{0,37}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{48,0},{54,76}}</string>
-                <key>sourceSize</key>
-                <string>{150,150}</string>
-            </dict>
-            <key>lines/2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{410,58},{76,54}}</string>
-                <key>offset</key>
-                <string>{37,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{74,48},{76,54}}</string>
-                <key>sourceSize</key>
-                <string>{150,150}</string>
-            </dict>
-            <key>lines/3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{298,70},{54,76}}</string>
-                <key>offset</key>
-                <string>{0,-37}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{48,74},{54,76}}</string>
-                <key>sourceSize</key>
-                <string>{150,150}</string>
-            </dict>
-            <key>lines/4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{366,2},{76,54}}</string>
-                <key>offset</key>
-                <string>{-37,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,48},{76,54}}</string>
-                <key>sourceSize</key>
-                <string>{150,150}</string>
-            </dict>
-            <key>touchindicator.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{444,2},{46,46}}</string>
+                <string>{{247,344},{55,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,2},{46,46}}</string>
+                <string>{{1,1},{55,54}}</string>
                 <key>sourceSize</key>
-                <string>{50,50}</string>
+                <string>{57,56}</string>
+            </dict>
+            <key>buttons/home.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{128,348},{55,54}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{2,2},{55,54}}</string>
+                <key>sourceSize</key>
+                <string>{59,58}</string>
+            </dict>
+            <key>buttons/reset.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{190,344},{55,54}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,1},{55,54}}</string>
+                <key>sourceSize</key>
+                <string>{57,56}</string>
+            </dict>
+            <key>slot/background.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{186,186}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{186,186}}</string>
+                <key>sourceSize</key>
+                <string>{186,186}</string>
+            </dict>
+            <key>slot/lines/center.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{128,252},{60,94}}</string>
+                <key>offset</key>
+                <string>{0,46}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{63,0},{60,94}}</string>
+                <key>sourceSize</key>
+                <string>{186,186}</string>
+            </dict>
+            <key>slot/lines/curve.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,252},{124,124}}</string>
+                <key>offset</key>
+                <string>{31,31}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{62,0},{124,124}}</string>
+                <key>sourceSize</key>
+                <string>{186,186}</string>
+            </dict>
+            <key>slot/lines/straight.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,190},{60,186}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{63,0},{60,186}}</string>
+                <key>sourceSize</key>
+                <string>{186,186}</string>
+            </dict>
+            <key>slot/ring.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{190,174},{168,168}}</string>
+                <key>offset</key>
+                <string>{-2,3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{7,6},{168,168}}</string>
+                <key>sourceSize</key>
+                <string>{186,186}</string>
+            </dict>
+            <key>slot/touchindicator.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{190,2},{170,170}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,8},{170,170}}</string>
+                <key>sourceSize</key>
+                <string>{186,186}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -116,9 +181,9 @@
             <key>realTextureFileName</key>
             <string>assets.png</string>
             <key>size</key>
-            <string>{492,154}</string>
+            <string>{416,416}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:82fbfd2f3eaab4f0706edbcf21bd37df$</string>
+            <string>$TexturePacker:SmartUpdate:a5d9d1b34ad811d799e1c8288c4f39d1$</string>
             <key>textureFileName</key>
             <string>assets.png</string>
         </dict>

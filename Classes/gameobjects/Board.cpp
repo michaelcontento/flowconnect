@@ -1,6 +1,7 @@
 #include "Board.h"
 
 #include "Token.h"
+#include "Colors.h"
 
 using namespace cocos2d;
 
@@ -105,6 +106,7 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     }
 
     createTouchIndicator();
+    stopTouchIndicatorBlink();
     touchIndicator->setPosition(touchPos);
 
     return true;
@@ -199,10 +201,12 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
 void Board::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    startTouchIndicatorBlink();
 }
 
 void Board::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
+    startTouchIndicatorBlink();
 }
 
 #pragma mark Slot handling
@@ -444,6 +448,43 @@ Slot* Board::getUserPathSlotBefore(const Slot* slot) const
     return NULL;
 }
 
+#pragma mark TouchIndicator
+
+void Board::startTouchIndicatorBlink()
+{
+    if (!touchIndicator) {
+        return;
+    }
+
+    touchIndicator->runAction(
+        CCRepeatForever::create(CCBlink::create(0.5, 1))
+    );
+}
+
+void Board::stopTouchIndicatorBlink()
+{
+    if (!touchIndicator) {
+        return;
+    }
+    
+    touchIndicator->stopAllActions();
+    touchIndicator->setVisible(true);
+}
+
+void Board::createTouchIndicator()
+{
+    if (touchIndicator) {
+        return;
+    }
+
+    touchIndicator = CCSprite::createWithSpriteFrameName("slot/touchindicator.png");
+    touchIndicator->setZOrder(BOARD_ZORDER_TOUCH_INDICATOR);
+    touchIndicator->setColor(TOUCH_INDICATOR_COLOR);
+    touchIndicator->setOpacity(TOUCH_INDICATOR_OPACITY);
+
+    addChild(touchIndicator);
+}
+
 #pragma mark Touch helper
 
 bool Board::isFirstCheckpoint(const Slot* slot) const
@@ -457,20 +498,6 @@ bool Board::isFirstCheckpoint(const Slot* slot) const
     }
 
     return false;
-}
-
-void Board::createTouchIndicator()
-{
-    if (touchIndicator) {
-        return;
-    }
-
-    touchIndicator = CCSprite::createWithSpriteFrameName("touchindicator.png");
-    touchIndicator->runAction(CCRepeatForever::create(CCBlink::create(0.5, 1)));
-    touchIndicator->setZOrder(BOARD_ZORDER_TOUCH_INDICATOR);
-    touchIndicator->setColor(ccRED);
-
-    addChild(touchIndicator);
 }
 
 int Board::convert2dTo1dIndex(const CCPoint grid) const

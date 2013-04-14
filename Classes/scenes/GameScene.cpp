@@ -56,8 +56,8 @@ void GameScene::doLayout()
     boardContainer->setAnchorPoint(CCPoint(0.5, 0.5));
 
     boardContainer->setPosition(CCPoint(768 / 2, 1024 / 2));
-    boardContainer->setScale(700 / board->getContentSize().width);
+    boardContainer->setScale(740 / board->getContentSize().width);
 
     stats->setAnchorPoint(CCPoint(0, 0));
-    stats->setPosition(CCPoint((768 - 700) / 2, 1024 - 162));
+    stats->setPosition(CCPoint((768 - 740) / 2, 1024 - 162));
 }

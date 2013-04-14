@@ -43,12 +43,12 @@ bool BoardStats::initWithBoard(Board* board)
 
     statsBest = CCLabelTTF::create("", "Markler Fett", 24);
     statsBest->setAnchorPoint(CCPoint(0.5, 0));
-    statsBest->setPositionX(700 / 2);
+    statsBest->setPositionX(740 / 2);
     addChild(statsBest);
 
     statsProgress = CCLabelTTF::create("", "Markler Fett", 24);
     statsProgress->setAnchorPoint(CCPoint(1, 0));
-    statsProgress->setPositionX(700);
+    statsProgress->setPositionX(740);
     addChild(statsProgress);
 
     schedule(schedule_selector(BoardStats::updateStats));

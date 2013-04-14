@@ -1,11 +1,13 @@
 #include "Slot.h"
 
+#include "Colors.h"
+
 using namespace cocos2d;
 
 CCSize Slot::getSize()
 {
     // TODO: use the size from spriteChild
-    return CCSize(150, 150);
+    return CCSize(185, 185);
 }
 
 #pragma mark Initialization
@@ -36,7 +38,7 @@ bool Slot::init()
         return false;
     }
 
-    background = CCSprite::createWithSpriteFrameName("backgrounds/slot.png");
+    background = CCSprite::createWithSpriteFrameName("slot/background.png");
     background->setPositionX(getSize().width / 2);
     background->setPositionY(getSize().height / 2);
     background->setZOrder(SLOT_ZORDER_BACKGROUND);
@@ -124,30 +126,50 @@ bool Slot::isFree() const
 void Slot::updateLineImage()
 {
     lineLayer->removeAllChildren();
-    
+
     if (lineIn == SlotLineType::NONE && lineOut == SlotLineType::NONE) {
         return;
     }
 
-    addLineImage(lineIn);
-    addLineImage(lineOut);
-
-    if (lineIn != SlotLineType::NONE && lineOut != SlotLineType::NONE) {
-        addLineImage(SlotLineType::NONE);
+    if (lineOut == SlotLineType::NONE) {
+        addLineImage(lineIn, "slot/lines/center.png");
+    } else if (lineIn == SlotLineType::NONE) {
+        addLineImage(lineOut, "slot/lines/center.png");
+    } else {
+        if (isLineOpposite(lineIn, lineOut)) {
+            addLineImage(lineIn, "slot/lines/straight.png");
+        } else {
+            if ((lineIn - lineOut) == 1 || (lineIn - lineOut) == -3) {
+                addLineImage(lineOut, "slot/lines/curve.png");
+            } else {
+                addLineImage(lineIn, "slot/lines/curve.png");
+            }
+        }
     }
 }
 
-void Slot::addLineImage(const SlotLineType::Enum type)
+bool Slot::isLineOpposite(const SlotLineType::Enum lineIn, const SlotLineType::Enum lineOut) const
 {
-    std::ostringstream strId;
-    strId << type;
-    std::string name = "lines/" + strId.str() + ".png";
+    return ((lineIn % 2) == (lineOut % 2));
+}
 
-    CCSprite* line = CCSprite::createWithSpriteFrameName(name.c_str());
+void Slot::addLineImage(const SlotLineType::Enum type, const char* file)
+{
+    CCSprite* line = CCSprite::createWithSpriteFrameName(file);
     lineLayer->addChild(line);
 
+    if (type == SlotLineType::RIGHT) {
+        line->setRotation(90);
+    } else if (type == SlotLineType::BOTTOM) {
+        line->setRotation(180);
+    } else if (type == SlotLineType::LEFT) {
+        line->setRotation(270);
+    }
+
     if (isLocked()) {
-        line->setColor(ccGRAY);
+        line->setOpacity(ENABLED_OPACITY);
+    } else {
+        line->setOpacity(DISABLED_OPACITY);
     }
 }
 
@@ -189,7 +211,7 @@ void Slot::showNumber()
     if (labelBackground) {
         labelBackground->setVisible(true);
     } else {
-        labelBackground = CCSprite::createWithSpriteFrameName("backgrounds/slot-number.png");
+        labelBackground = CCSprite::createWithSpriteFrameName("slot/ring.png");
         labelBackground->setPositionX(getSize().width / 2);
         labelBackground->setPositionY(getSize().height / 2);
         labelBackground->setZOrder(SLOT_ZORDER_LABEL_BACKGROUND);
@@ -215,7 +237,8 @@ void Slot::showNumber()
         label = CCLabelTTF::create("", "Markler Fett", 48);
         label->setPositionX(getSize().width / 2);
         label->setPositionY(getSize().height / 2);
-        label->setColor(ccGREEN);
+        label->setColor(SLOT_NUMBER_COLOR);
+        label->setOpacity(SLOT_NUMBER_OPACITY);
         label->setZOrder(SLOT_ZORDER_LABEL);
         addChild(label);
     }

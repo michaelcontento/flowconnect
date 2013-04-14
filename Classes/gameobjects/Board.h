@@ -52,6 +52,8 @@ private:
     void appendUserPath(Slot* slot);
     void handleAllCheckpointsVisited();
 
+    void startTouchIndicatorBlink();
+    void stopTouchIndicatorBlink();
     bool isFirstCheckpoint(const Slot* slot) const;
     void createTouchIndicator();
     int convert2dTo1dIndex(const cocos2d::CCPoint grid) const;
