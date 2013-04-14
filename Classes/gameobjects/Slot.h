@@ -6,7 +6,6 @@
 #define SLOT_DEFAULT_NUMBER -1
 
 #define SLOT_ZORDER_LINE_LAYER 7
-#define SLOT_ZORDER_BACKGROUND 8
 #define SLOT_ZORDER_LABEL_BACKGROUND 9
 #define SLOT_ZORDER_LABEL 10
 
@@ -61,7 +60,6 @@ private:
     bool lineInLocked;
     bool lineOutLocked;
     bool isNextSlot_;
-    cocos2d::CCSprite* background;
     cocos2d::CCLayer* lineLayer;
     cocos2d::CCLabelTTF* label;
     cocos2d::CCSprite* labelBackground;

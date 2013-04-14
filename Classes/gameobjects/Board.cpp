@@ -41,7 +41,7 @@ bool Board::init()
 
     userPath = CCArray::create();
     CC_SAFE_RETAIN(userPath);
-    
+
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
         ->addTargetedDelegate(this, 0, true);
@@ -213,6 +213,34 @@ void Board::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 void Board::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
     startTouchIndicatorBlink();
+}
+
+void Board::draw()
+{
+    // use the first object to determie the size we use to calculate the
+    // positions on the screen. This is fine as all slots have the same size.
+    CCObject* tmpObj = slots->objectAtIndex(0);
+    Slot* slot = static_cast<Slot*>(tmpObj);
+    if (!slot) {
+        return;
+    }
+    CCSize slotSize = slot->getSize();
+
+    for (int i = 0; i <= size.height; ++i) {
+        // horizontal
+        ccDrawSolidRect(
+            CCPoint(-1, (slotSize.height * i) - 1),
+            CCPoint(getContentSize().width, (slotSize.height * i) + 1),
+            ccc4FFromccc3B(ccWHITE)
+        );
+
+        // vertical
+        ccDrawSolidRect(
+            CCPoint((slotSize.width * i) - 1, 0),
+            CCPoint((slotSize.width * i) + 1, getContentSize().height),
+            ccc4FFromccc3B(ccWHITE)
+        );
+    }
 }
 
 #pragma mark Slot handling
@@ -528,6 +556,7 @@ void Board::createTouchIndicator()
     touchIndicator->setZOrder(BOARD_ZORDER_TOUCH_INDICATOR);
     touchIndicator->setColor(TOUCH_INDICATOR_COLOR);
     touchIndicator->setOpacity(TOUCH_INDICATOR_OPACITY);
+    touchIndicator->setScale(1.2);
 
     addChild(touchIndicator);
 }
