@@ -143,6 +143,10 @@ void Slot::updateLineImage()
         return;
     }
 
+    // TODO: Refactor this mess .. hihi :D
+    // Hint: The magic "== 1 || == -3" is used to detect if the image needs
+    //       to be rotated counter- or clockwise
+    
     if (lineOut == SlotLineType::NONE) {
         addLineImage(lineIn, "slot/lines/center.png", lineInLocked);
     } else if (lineIn == SlotLineType::NONE) {
