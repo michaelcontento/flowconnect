@@ -14,7 +14,8 @@ CCSize Slot::getSize()
 
 Slot::Slot()
 : gridIndex(-1, -1)
-, isLocked_(false)
+, lineInLocked(false)
+, lineOutLocked(false)
 , isNextSlot_(false)
 , background(NULL)
 , lineLayer(NULL)
@@ -55,10 +56,20 @@ bool Slot::init()
 
 #pragma mark Current state
 
-void Slot::lock(const bool flag)
+void Slot::lockLineIn(const bool flag)
 {
-    bool changed = (isLocked_ != flag);
-    isLocked_ = flag;
+    bool changed = (lineInLocked != flag);
+    lineInLocked = flag;
+
+    if (changed) {
+        updateLineImage();
+    }
+}
+
+void Slot::lockLineOut(const bool flag)
+{
+    bool changed = (lineOutLocked != flag);
+    lineOutLocked = flag;
 
     if (changed) {
         updateLineImage();
@@ -67,7 +78,7 @@ void Slot::lock(const bool flag)
 
 bool Slot::isLocked() const
 {
-    return isLocked_;
+    return lineOutLocked;
 }
 
 void Slot::setLineIn(const SlotLineType::Enum line)
@@ -112,7 +123,8 @@ bool Slot::isNextSlot() const
 void Slot::reset()
 {
     lineLayer->removeAllChildren();
-    lock(false);
+    lockLineIn(false);
+    lockLineOut(false);
 
     setLineIn(SlotLineType::NONE);
     setLineOut(SlotLineType::NONE);
@@ -132,17 +144,32 @@ void Slot::updateLineImage()
     }
 
     if (lineOut == SlotLineType::NONE) {
-        addLineImage(lineIn, "slot/lines/center.png");
+        addLineImage(lineIn, "slot/lines/center.png", lineInLocked);
     } else if (lineIn == SlotLineType::NONE) {
-        addLineImage(lineOut, "slot/lines/center.png");
+        addLineImage(lineOut, "slot/lines/center.png", lineOutLocked);
     } else {
         if (isLineOpposite(lineIn, lineOut)) {
-            addLineImage(lineIn, "slot/lines/straight.png");
+            if (isCheckpoint()) {
+                addLineImage(lineIn, "slot/lines/straight-0.png", lineInLocked);
+                addLineImage(lineIn, "slot/lines/straight-1.png", lineOutLocked);
+            } else {
+                addLineImage(lineIn, "slot/lines/straight.png", lineInLocked);
+            }
         } else {
             if ((lineIn - lineOut) == 1 || (lineIn - lineOut) == -3) {
-                addLineImage(lineOut, "slot/lines/curve.png");
+                if (isCheckpoint()) {
+                    addLineImage(lineOut, "slot/lines/curve-0.png", lineOutLocked);
+                    addLineImage(lineOut, "slot/lines/curve-1.png", lineInLocked);
+                } else {
+                    addLineImage(lineOut, "slot/lines/curve.png", lineOutLocked);
+                }
             } else {
-                addLineImage(lineIn, "slot/lines/curve.png");
+                if (isCheckpoint()) {
+                    addLineImage(lineIn, "slot/lines/curve-0.png", lineInLocked);
+                    addLineImage(lineIn, "slot/lines/curve-1.png", lineOutLocked);
+                } else {
+                    addLineImage(lineIn, "slot/lines/curve.png", lineInLocked);
+                }
             }
         }
     }
@@ -153,7 +180,7 @@ bool Slot::isLineOpposite(const SlotLineType::Enum lineIn, const SlotLineType::E
     return ((lineIn % 2) == (lineOut % 2));
 }
 
-void Slot::addLineImage(const SlotLineType::Enum type, const char* file)
+void Slot::addLineImage(const SlotLineType::Enum type, const char* file, const bool locked)
 {
     CCSprite* line = CCSprite::createWithSpriteFrameName(file);
     lineLayer->addChild(line);
@@ -166,7 +193,7 @@ void Slot::addLineImage(const SlotLineType::Enum type, const char* file)
         line->setRotation(270);
     }
 
-    if (isLocked()) {
+    if (locked) {
         line->setOpacity(ENABLED_OPACITY);
     } else {
         line->setOpacity(DISABLED_OPACITY);

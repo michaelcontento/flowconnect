@@ -42,7 +42,8 @@ public:
     CC_SYNTHESIZE_READONLY(SlotLineType::Enum, lineOut, LineOut);
     void setLineOut(const SlotLineType::Enum line);
 
-    void lock(const bool flag);
+    void lockLineIn(const bool flag);
+    void lockLineOut(const bool flag);
     bool isLocked() const;
 
     void markAsNextSlot(const bool flag);
@@ -54,7 +55,8 @@ public:
     cocos2d::CCSize getSize();
 
 private:
-    bool isLocked_;
+    bool lineInLocked;
+    bool lineOutLocked;
     bool isNextSlot_;
     cocos2d::CCSprite* background;
     cocos2d::CCLayer* lineLayer;
@@ -64,7 +66,7 @@ private:
 
     void updateLineImage();
     bool isLineOpposite(const SlotLineType::Enum lineIn, const SlotLineType::Enum lineOut) const;
-    void addLineImage(const SlotLineType::Enum type, const char* file);
+    void addLineImage(const SlotLineType::Enum type, const char* file, const bool locked);
     void hideNumber();
     void showNumber();
 };

@@ -403,20 +403,26 @@ void Board::handleAllCheckpointsVisited()
 
 void Board::lockCompleteLines() const
 {
-    bool checkpointFound = false;
+    int checkpointCounter = 0;
 
     CCObject* it = NULL;
     CCARRAY_FOREACH_REVERSE(userPath, it) {
         Slot* slot = static_cast<Slot*>(it);
 
-        if (!checkpointFound && slot->isCheckpoint()) {
-            checkpointFound = true;
+        if (slot->isCheckpoint()) {
+            ++checkpointCounter;
         }
 
-        if (checkpointFound) {
-            slot->lock(true);
+        if (checkpointCounter > 0) {
+            slot->lockLineIn(true);
+            slot->lockLineOut(true);
+
+            if (checkpointCounter == 1 && slot->isCheckpoint()) {
+                slot->lockLineOut(false);
+            }
         } else {
-            slot->lock(false);
+            slot->lockLineIn(false);
+            slot->lockLineOut(false);
         }
     }
 }
