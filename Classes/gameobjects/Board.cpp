@@ -72,8 +72,11 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     }
     
     const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
-    Slot* slot = getSlotFromPoint(touchPos);
+    if (!boundingBox().containsPoint(touchPos)) {
+        return false;
+    }
 
+    Slot* slot = getSlotFromPoint(touchPos);
     if (!slot){
         return false;
     }
@@ -121,8 +124,11 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
     }
 
     const CCPoint touchPos = convertTouchToNodeSpace(pTouch);
-    Slot* currentSlot = getSlotFromPoint(touchPos);
+    if (!boundingBox().containsPoint(touchPos)) {
+        return;
+    }
 
+    Slot* currentSlot = getSlotFromPoint(touchPos);
     if (!currentSlot) {
         return;
     }
