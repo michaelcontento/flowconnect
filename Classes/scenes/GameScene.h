@@ -22,8 +22,10 @@ public:
     void onBtnHint();
     void onBtnHelp();
 
+    void onBtnMenu();
+
 private:
-    const int BOARD_MARGIN = 20;
+    const int BOARD_MARGIN = 25;
     const int BUTTON_SPACING = 30;
     const int BOARD_WIDTH = 696;
     BoardStats* stats;
@@ -39,6 +41,9 @@ private:
     cocos2d::CCMenu* rightMenu;
     cocos2d::CCSprite* btnHint;
     cocos2d::CCSprite* btnHelp;
+
+    cocos2d::CCMenu* topMenu;
+    cocos2d::CCSprite* btnMenu;
 };
 
 #endif /* defined(__FlowConnect__GameScene__) */

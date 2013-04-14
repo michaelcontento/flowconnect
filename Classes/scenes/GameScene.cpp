@@ -14,6 +14,8 @@ GameScene::GameScene()
 , btnHelp(NULL)
 , btnHint(NULL)
 , btnReset(NULL)
+, topMenu(NULL)
+, btnMenu(NULL)
 {
 }
 
@@ -113,6 +115,21 @@ bool GameScene::init()
     rightMenu->setAnchorPoint(CCPoint(1, 1));
     rightMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 
+    // -- TOP MENU
+
+    topMenu = CCMenu::create();
+    addChild(topMenu);
+
+    btnMenu = CCSprite::createWithSpriteFrameName("buttons/home.png");
+    topMenu->addChild(CCMenuItemSprite::create(
+        btnMenu, btnMenu, this, menu_selector(GameScene::onBtnMenu)
+    ));
+
+    topMenu->setPosition(CCPoint(stats->getPositionX(), 1024));
+    topMenu->setPositionY(topMenu->getPositionY() - BOARD_MARGIN);
+    topMenu->setAnchorPoint(CCPoint(0, 1));
+    topMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
+
     return true;
 }
 
@@ -139,4 +156,9 @@ void GameScene::onBtnHint()
 void GameScene::onBtnHelp()
 {
     CCLog("HELP");
+}
+
+void GameScene::onBtnMenu()
+{
+    CCLog("MENU");
 }
