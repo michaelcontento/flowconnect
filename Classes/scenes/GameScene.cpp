@@ -6,8 +6,14 @@ using namespace cocos2d;
 
 GameScene::GameScene()
 : board(NULL)
-, boardContainer(NULL)
+, leftMenu(NULL)
+, rightMenu(NULL)
 , stats(NULL)
+, btnGoBack(NULL)
+, btnGoNext(NULL)
+, btnHelp(NULL)
+, btnHint(NULL)
+, btnReset(NULL)
 {
 }
 
@@ -31,6 +37,8 @@ bool GameScene::init()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
+    // -- BOARD
+
     board = Board::create();
     //board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
     board->initWithLevel(CCSize(5, 5), "3rrrrdudllldrrr4du1rd5dlll2lr6r");
@@ -39,25 +47,96 @@ bool GameScene::init()
     boardContainer->addChild(board);
     addChild(boardContainer);
 
+    boardContainer->setContentSize(board->getContentSize());
+    boardContainer->setScale(740 / board->getContentSize().width);
+    boardContainer->setAnchorPoint(CCPoint(0, 0));
+    boardContainer->setPosition(CCPoint((768 - 740) / 2, 150));
+
+    // -- STATS
+    
     stats = BoardStats::createWithBoard(board);
     addChild(stats);
 
-    doLayout();
+    stats->setAnchorPoint(CCPoint(0, 0));
+    stats->setPositionX(boardContainer->getPositionX());
+    stats->setPositionY(
+        boardContainer->getPositionY()
+        + boardContainer->getContentSize().height * boardContainer->getScaleY()
+    );
     
+    // -- LEFT MENU
+
+    leftMenu = CCMenu::create();
+    addChild(leftMenu);
+
+    btnGoBack = CCSprite::createWithSpriteFrameName("buttons/go-back.png");
+    leftMenu->addChild(CCMenuItemSprite::create(
+        btnGoBack, btnGoBack, this, menu_selector(GameScene::onBtnGoBack)
+    ));
+
+    btnReset = CCSprite::createWithSpriteFrameName("buttons/reset.png");
+    leftMenu->addChild(CCMenuItemSprite::create(
+        btnReset, btnReset, this, menu_selector(GameScene::onBtnReset)
+    ));
+
+    btnGoNext = CCSprite::createWithSpriteFrameName("buttons/go-next.png");
+    leftMenu->addChild(CCMenuItemSprite::create(
+        btnGoNext, btnGoNext, this, menu_selector(GameScene::onBtnGoNext)
+    ));
+
+    leftMenu->setPosition(boardContainer->getPosition());
+    leftMenu->setPositionY(leftMenu->getPositionY() - BOARD_MARGIN);
+    leftMenu->setAnchorPoint(CCPoint(0, 1));
+    leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
+
+    // -- RIGHT MENU
+
+    rightMenu = CCMenu::create();
+    addChild(rightMenu);
+
+    btnHint = CCSprite::createWithSpriteFrameName("buttons/hint.png");
+    rightMenu->addChild(CCMenuItemSprite::create(
+        btnHint, btnHint, this, menu_selector(GameScene::onBtnHint)
+    ));
+
+    btnHelp = CCSprite::createWithSpriteFrameName("buttons/help.png");
+    rightMenu->addChild(CCMenuItemSprite::create(
+        btnHelp, btnHelp, this, menu_selector(GameScene::onBtnHelp)
+    ));
+
+    rightMenu->setPosition(boardContainer->getPosition());
+    rightMenu->setPositionY(rightMenu->getPositionY() - BOARD_MARGIN);
+    rightMenu->setPositionX(
+        rightMenu->getPositionX()
+        + boardContainer->getContentSize().width * boardContainer->getScaleX()
+    );
+    rightMenu->setAnchorPoint(CCPoint(1, 1));
+    rightMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
+
     return true;
 }
 
-void GameScene::doLayout()
+void GameScene::onBtnGoBack()
 {
-    assert(boardContainer && "boarContainer should be there");
-    assert(stats && "stats should there");
+    CCLog("GO BACK");
+}
 
-    boardContainer->setContentSize(board->getContentSize());
-    boardContainer->setAnchorPoint(CCPoint(0.5, 0.5));
+void GameScene::onBtnReset()
+{
+    CCLog("RESET");
+}
 
-    boardContainer->setPosition(CCPoint(768 / 2, 1024 / 2));
-    boardContainer->setScale(740 / board->getContentSize().width);
+void GameScene::onBtnGoNext()
+{
+    CCLog("GO NEXT");
+}
 
-    stats->setAnchorPoint(CCPoint(0, 0));
-    stats->setPosition(CCPoint((768 - 740) / 2, 1024 - 162));
+void GameScene::onBtnHint()
+{
+    CCLog("HINT");
+}
+
+void GameScene::onBtnHelp()
+{
+    CCLog("HELP");
 }
