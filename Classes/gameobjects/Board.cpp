@@ -225,9 +225,17 @@ void Board::appendUserPath(Slot* slot)
 {
     Slot* lastSlot = getLastUserPathSlot();
     if (lastSlot != slot) {
+        if (lastCheckpoint) {
+            slot->setColor(LINE_COLORS[lastCheckpoint->getNumber() - 1]);
+        } else if (lastSlot && lastSlot->isCheckpoint()) {
+            slot->setColor(LINE_COLORS[lastSlot->getNumber() - 1]);
+        } else {
+            assert(false && "there must always be one checkpoint");
+        }
+
         userPath->addObject(slot);
     }
-    
+
     activateNextCheckpoint();
     lockCompleteLines();
 }
@@ -264,7 +272,7 @@ void Board::createSlotsFromData(const char* data)
 
         Slot* nextSlot = Slot::create();
         slots->addObject(nextSlot);
-        
+
         if (nextNumber > 0) {
             nextSlot->setNumber(nextNumber);
             if (nextNumber == 1) {
@@ -346,6 +354,7 @@ void Board::activateNextCheckpoint()
     if (userPath->count() > 1) {
         CCARRAY_FOREACH(userPath, it) {
             slot = static_cast<Slot*>(it);
+
             if (slot->isCheckpoint() && slot->getNumber() > lastNumber) {
                 lastCheckpoint = slot;
                 lastNumber = slot->getNumber();

@@ -56,6 +56,16 @@ bool Slot::init()
 
 #pragma mark Current state
 
+void Slot::setColor(const cocos2d::ccColor3B newColor)
+{
+    bool changed = (color.r != newColor.r || color.g != newColor.g || color.b != newColor.b);
+    color = newColor;
+
+    if (changed) {
+        updateLineImage();
+    }
+}
+
 void Slot::lockLineIn(const bool flag)
 {
     bool changed = (lineInLocked != flag);
@@ -148,31 +158,35 @@ void Slot::updateLineImage()
     //       to be rotated counter- or clockwise
     
     if (lineOut == SlotLineType::NONE) {
-        addLineImage(lineIn, "slot/lines/center.png", lineInLocked);
+        addLineImage(lineIn, "slot/lines/center.png", lineInLocked, getColor());
     } else if (lineIn == SlotLineType::NONE) {
-        addLineImage(lineOut, "slot/lines/center.png", lineOutLocked);
+        if (isCheckpoint()) {
+            addLineImage(lineOut, "slot/lines/center.png", lineOutLocked, labelBackground->getColor());
+        } else {
+            addLineImage(lineOut, "slot/lines/center.png", lineOutLocked, getColor());
+        }
     } else {
         if (isLineOpposite(lineIn, lineOut)) {
             if (isCheckpoint()) {
-                addLineImage(lineIn, "slot/lines/straight-0.png", lineInLocked);
-                addLineImage(lineIn, "slot/lines/straight-1.png", lineOutLocked);
+                addLineImage(lineIn, "slot/lines/straight-0.png", lineInLocked, getColor());
+                addLineImage(lineIn, "slot/lines/straight-1.png", lineOutLocked, labelBackground->getColor());
             } else {
-                addLineImage(lineIn, "slot/lines/straight.png", lineInLocked);
+                addLineImage(lineIn, "slot/lines/straight.png", lineInLocked, getColor());
             }
         } else {
             if ((lineIn - lineOut) == 1 || (lineIn - lineOut) == -3) {
                 if (isCheckpoint()) {
-                    addLineImage(lineOut, "slot/lines/curve-0.png", lineOutLocked);
-                    addLineImage(lineOut, "slot/lines/curve-1.png", lineInLocked);
+                    addLineImage(lineOut, "slot/lines/curve-0.png", lineOutLocked, labelBackground->getColor());
+                    addLineImage(lineOut, "slot/lines/curve-1.png", lineInLocked, getColor());
                 } else {
-                    addLineImage(lineOut, "slot/lines/curve.png", lineOutLocked);
+                    addLineImage(lineOut, "slot/lines/curve.png", lineOutLocked, getColor());
                 }
             } else {
                 if (isCheckpoint()) {
-                    addLineImage(lineIn, "slot/lines/curve-0.png", lineInLocked);
-                    addLineImage(lineIn, "slot/lines/curve-1.png", lineOutLocked);
+                    addLineImage(lineIn, "slot/lines/curve-0.png", lineInLocked, getColor());
+                    addLineImage(lineIn, "slot/lines/curve-1.png", lineOutLocked, labelBackground->getColor());
                 } else {
-                    addLineImage(lineIn, "slot/lines/curve.png", lineInLocked);
+                    addLineImage(lineIn, "slot/lines/curve.png", lineInLocked, getColor());
                 }
             }
         }
@@ -184,9 +198,10 @@ bool Slot::isLineOpposite(const SlotLineType::Enum lineIn, const SlotLineType::E
     return ((lineIn % 2) == (lineOut % 2));
 }
 
-void Slot::addLineImage(const SlotLineType::Enum type, const char* file, const bool locked)
+void Slot::addLineImage(const SlotLineType::Enum type, const char* file, const bool locked, const ccColor3B color)
 {
     CCSprite* line = CCSprite::createWithSpriteFrameName(file);
+    line->setColor(color);
     lineLayer->addChild(line);
 
     if (type == SlotLineType::RIGHT) {
@@ -214,6 +229,7 @@ void Slot::setNumber(const int newNumber)
         hideNumber();
     } else {
         showNumber();
+        labelBackground->setColor(LINE_COLORS[newNumber - 1]);
 
         char buf[5] = {0};
         snprintf(buf, sizeof(buf), "%d", newNumber);

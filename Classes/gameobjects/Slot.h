@@ -42,6 +42,9 @@ public:
     CC_SYNTHESIZE_READONLY(SlotLineType::Enum, lineOut, LineOut);
     void setLineOut(const SlotLineType::Enum line);
 
+    CC_SYNTHESIZE_READONLY(cocos2d::ccColor3B, color, Color);
+    void setColor(const cocos2d::ccColor3B color);
+
     void lockLineIn(const bool flag);
     void lockLineOut(const bool flag);
     bool isLocked() const;
@@ -66,7 +69,7 @@ private:
 
     void updateLineImage();
     bool isLineOpposite(const SlotLineType::Enum lineIn, const SlotLineType::Enum lineOut) const;
-    void addLineImage(const SlotLineType::Enum type, const char* file, const bool locked);
+    void addLineImage(const SlotLineType::Enum type, const char* file, const bool locked, const cocos2d::ccColor3B color);
     void hideNumber();
     void showNumber();
 };
