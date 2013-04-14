@@ -519,6 +519,7 @@ void Board::createTouchIndicator()
     }
 
     touchIndicator = CCSprite::createWithSpriteFrameName("slot/touchindicator.png");
+    touchIndicator->setScale(1.7);
     touchIndicator->setZOrder(BOARD_ZORDER_TOUCH_INDICATOR);
     touchIndicator->setColor(TOUCH_INDICATOR_COLOR);
     touchIndicator->setOpacity(TOUCH_INDICATOR_OPACITY);
