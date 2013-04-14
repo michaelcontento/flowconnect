@@ -309,6 +309,7 @@ void Board::positionSlotsOnScreen()
             slot = static_cast<Slot*>(tmpObj);
 
             slot->gridIndex = CCPoint(x, y);
+            slot->setZOrder(-convert2dTo1dIndex(slot->gridIndex));
             slot->setPositionX(slotSize.width * x);
             slot->setPositionY(slotSize.height * (size.height - 1 - y));
         }
