@@ -48,9 +48,9 @@ bool GameScene::init()
     addChild(boardContainer);
 
     boardContainer->setContentSize(board->getContentSize());
-    boardContainer->setScale(740 / board->getContentSize().width);
+    boardContainer->setScale(BOARD_WIDTH / board->getContentSize().width);
     boardContainer->setAnchorPoint(CCPoint(0, 0));
-    boardContainer->setPosition(CCPoint((768 - 740) / 2, 150));
+    boardContainer->setPosition(CCPoint((768 - BOARD_WIDTH) / 2, 150));
 
     // -- STATS
     

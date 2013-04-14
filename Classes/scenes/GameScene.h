@@ -25,6 +25,7 @@ public:
 private:
     const int BOARD_MARGIN = 20;
     const int BUTTON_SPACING = 30;
+    const int BOARD_WIDTH = 700;
     BoardStats* stats;
 
     cocos2d::CCNode* boardContainer;
