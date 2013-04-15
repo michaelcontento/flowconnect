@@ -54,12 +54,10 @@ bool GameScene::init()
 
 void GameScene::onBtnGoBack()
 {
+    globalLevel = globalLevel->page->levels.front();
+
     fadeOutAndRemoveContainer(boardContainer, false);
-
-    board = Board::create();
-    board->initWithLevel(CCSize(5, 5), "3rrrrdudllldrrr4du1rd5dlll2lr6r");
-
-    addBoardWithinContainer(board);
+    initBoard();
     fadeInContainer(boardContainer, false);
 }
 
@@ -70,12 +68,10 @@ void GameScene::onBtnReset()
 
 void GameScene::onBtnGoNext()
 {
+    globalLevel = globalLevel->page->levels.back();
+
     fadeOutAndRemoveContainer(boardContainer, true);
-
-    board = Board::create();
-    board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
-
-    addBoardWithinContainer(board);
+    initBoard();
     fadeInContainer(boardContainer, true);
 }
 
@@ -141,7 +137,7 @@ void GameScene::fadeInContainer(CCNode* container, const bool fromRight)
 void GameScene::initBoard()
 {
     board = Board::create();
-    board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
+    board->initWithLevel(globalLevel);
 
     addBoardWithinContainer(board);
 }

@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "Slot.h"
-#include <vector>
+#include "../LevelLoader.h"
 
 #define BOARD_ZORDER_TOUCH_INDICATOR 10
 
@@ -15,7 +15,7 @@ public:
 
     CREATE_FUNC(Board);
     virtual bool init();
-    bool initWithLevel(const cocos2d::CCSize newSize, const char* data);
+    bool initWithLevel(const LoaderLevel* level);
 
     CC_SYNTHESIZE_READONLY(cocos2d::CCSize, size, Size);
 

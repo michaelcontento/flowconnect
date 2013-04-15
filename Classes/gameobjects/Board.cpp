@@ -49,14 +49,19 @@ bool Board::init()
     return true;
 }
 
-bool Board::initWithLevel(const cocos2d::CCSize newSize, const char* data)
+bool Board::initWithLevel(const LoaderLevel* level)
 {
-    size = newSize;
-    numFreeSlots = size.width * size.height;
+    assert(level && "null pointer");
 
     removeAllSlots();
-    createSlotsFromData(data);
+    createSlotsFromData(level->data);
     slots->reduceMemoryFootprint();
+
+    float sqrtSize = sqrtf(slots->count());
+    assert((float)(int)sqrtSize == sqrtSize && "grid must be quadratic");
+
+    size = CCSize(sqrtSize, sqrtSize);
+    numFreeSlots = slots->count();
 
     positionSlotsOnScreen();
 

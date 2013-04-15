@@ -4,6 +4,6 @@
 #include "LevelLoader.h"
 
 LevelLoader globalLevelLoader = LevelLoader("levels");
-LoaderLevel* globalLastLevel = NULL;
+LoaderLevel* globalLevel = globalLevelLoader.getCategories().front()->pages.front()->levels.front();
 
 #endif
