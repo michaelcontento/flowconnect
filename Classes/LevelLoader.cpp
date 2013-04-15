@@ -99,10 +99,19 @@ LevelLoader::~LevelLoader()
     for (auto category : categories) {
         for (auto page : category->pages) {
             for (auto level : page->levels) {
+                level->page = NULL;
+                free((char*)level->data);
                 delete level;
             }
+
+            page->levels.clear();
+            page->category = NULL;
+            free((char*)page->name);
             delete page;
         }
+
+        category->pages.clear();
+        free((char*)category->name);
         delete category;
     }
 }
