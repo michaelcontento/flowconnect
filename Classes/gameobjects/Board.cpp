@@ -138,6 +138,11 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
     // ----- Validate movement
 
+    if (currentSlot == lastSlot) {
+        touchIndicator->setPosition(touchPos);
+        return;
+    }
+
     CCPoint lastGridIdx = lastSlot->gridIndex;
     CCPoint currentGridIdx = get2dIndexFromPoint(touchPos);
 
