@@ -154,6 +154,7 @@
 		C8CA622F1714268F005660B3 /* Slot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622D1714268F005660B3 /* Slot.cpp */; };
 		C8CA62351714517E005660B3 /* assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8CA62321714517E005660B3 /* assets.plist */; };
 		C8CA62361714517E005660B3 /* assets.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CA62331714517E005660B3 /* assets.png */; };
+		C8DBAB92171C5EAA009849B4 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C8DBAB91171C5EAA009849B4 /* levels */; };
 		C8E19D0717184F9400949285 /* BoardStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E19D0517184F9400949285 /* BoardStats.cpp */; };
 		D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41A0AD0160F154A004552AE /* Default-568h@2x.png */; };
 		D446FD6E16102124000ADA7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FD6D16102124000ADA7B /* Default@2x.png */; };
@@ -478,6 +479,7 @@
 		C8CA62321714517E005660B3 /* assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = assets.plist; sourceTree = "<group>"; };
 		C8CA62331714517E005660B3 /* assets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets.png; sourceTree = "<group>"; };
 		C8DBAB8E171C4BE1009849B4 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colors.h; path = ../Classes/Colors.h; sourceTree = "<group>"; };
+		C8DBAB91171C5EAA009849B4 /* levels */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = levels; sourceTree = "<group>"; };
 		C8E19D0517184F9400949285 /* BoardStats.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoardStats.cpp; path = ../Classes/gameobjects/BoardStats.cpp; sourceTree = "<group>"; };
 		C8E19D0617184F9400949285 /* BoardStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardStats.h; path = ../Classes/gameobjects/BoardStats.h; sourceTree = "<group>"; };
 		D41A0AD0160F154A004552AE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../proj.ios/Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -1061,6 +1063,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C8DBAB91171C5EAA009849B4 /* levels */,
 				C85D5274171B6A850076A88B /* background-fx.plist */,
 				C8CA62321714517E005660B3 /* assets.plist */,
 				C8CA62331714517E005660B3 /* assets.png */,
@@ -1179,6 +1182,7 @@
 				C8CA62351714517E005660B3 /* assets.plist in Resources */,
 				C8CA62361714517E005660B3 /* assets.png in Resources */,
 				C85D5275171B6A850076A88B /* background-fx.plist in Resources */,
+				C8DBAB92171C5EAA009849B4 /* levels in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
