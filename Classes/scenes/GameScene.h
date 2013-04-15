@@ -46,6 +46,10 @@ private:
     cocos2d::CCSprite* btnMenu;
 
     void initBoard();
+    void addBoardWithinContainer(Board* board);
+    void fadeOutAndRemoveContainer(cocos2d::CCNode* container, const bool toLeft);
+    void fadeInContainer(cocos2d::CCNode* container, const bool fromRight);
+    
     void initStats();
     void initTopMenu();
     void initLeftMenu();

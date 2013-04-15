@@ -1,5 +1,7 @@
 #include "GameScene.h"
 
+#include "../Globals.h"
+
 using namespace cocos2d;
 
 #pragma mark Initialization
@@ -52,7 +54,13 @@ bool GameScene::init()
 
 void GameScene::onBtnGoBack()
 {
-    CCLog("GO BACK");
+    fadeOutAndRemoveContainer(boardContainer, false);
+
+    board = Board::create();
+    board->initWithLevel(CCSize(5, 5), "3rrrrdudllldrrr4du1rd5dlll2lr6r");
+
+    addBoardWithinContainer(board);
+    fadeInContainer(boardContainer, false);
 }
 
 void GameScene::onBtnReset()
@@ -62,7 +70,13 @@ void GameScene::onBtnReset()
 
 void GameScene::onBtnGoNext()
 {
-    CCLog("GO NEXT");
+    fadeOutAndRemoveContainer(boardContainer, true);
+
+    board = Board::create();
+    board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
+
+    addBoardWithinContainer(board);
+    fadeInContainer(boardContainer, true);
 }
 
 void GameScene::onBtnHint()
@@ -80,11 +94,63 @@ void GameScene::onBtnMenu()
     CCLog("MENU");
 }
 
+void GameScene::fadeOutAndRemoveContainer(CCNode* container, const bool toLeft)
+{
+    auto newPosX = 0 - (BOARD_WIDTH / 2);
+    if (!toLeft) {
+        newPosX = 768 + (BOARD_WIDTH / 2);
+    }
+
+    auto action = CCSequence::create(
+        CCEaseIn::create(
+            CCScaleTo::create(0.25, container->getScale() * 0.8),
+            3
+        ),
+        CCMoveTo::create(0.8, CCPoint(newPosX, container->getPositionY())),
+        CCCallFuncN::create(this, callfuncN_selector(GameScene::removeChild)),
+        NULL
+    );
+    
+    container->runAction(action);
+}
+
+void GameScene::fadeInContainer(CCNode* container, const bool fromRight)
+{
+    auto oldPos = container->getPosition();
+    auto oldScale = container->getScale();
+
+    container->setScale(oldScale * 0.8);
+    container->setPositionX(768 + (BOARD_WIDTH / 2));
+    if (!fromRight) {
+        container->setPositionX(0 - (BOARD_WIDTH / 2));
+    }
+
+    auto action = CCSequence::create(
+        CCDelayTime::create(0.25),
+        CCMoveTo::create(0.8, oldPos),
+        CCEaseIn::create(
+            CCScaleTo::create(0.25, oldScale),
+            3
+        ),
+        NULL
+    );
+    
+    container->runAction(action);
+}
+
 void GameScene::initBoard()
 {
     board = Board::create();
-    //board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
-    board->initWithLevel(CCSize(5, 5), "3rrrrdudllldrrr4du1rd5dlll2lr6r");
+    board->initWithLevel(CCSize(4, 4), "ll4lldu1l3udrdurur2u");
+
+    addBoardWithinContainer(board);
+}
+
+void GameScene::addBoardWithinContainer(Board* board)
+{
+    if (stats) {
+        stats->setBoard(board);
+    }
 
     boardContainer = CCNode::create();
     boardContainer->addChild(board);
@@ -92,11 +158,9 @@ void GameScene::initBoard()
 
     boardContainer->setContentSize(board->getContentSize());
     boardContainer->setScale(BOARD_WIDTH / board->getContentSize().width);
-    boardContainer->setAnchorPoint(CCPoint(0, 0));
-    boardContainer->setPosition(CCPoint(
-        (768 - BOARD_WIDTH) / 2,
-        (1024 - BOARD_WIDTH) / 2
-    ));
+
+    boardContainer->setAnchorPoint(CCPoint(0.5, 0.5));
+    boardContainer->setPosition(CCPoint(384, 512));
 }
 
 void GameScene::initStats()
@@ -105,10 +169,10 @@ void GameScene::initStats()
     addChild(stats);
 
     stats->setAnchorPoint(CCPoint(0, 0));
-    stats->setPositionX(boardContainer->getPositionX());
+    stats->setPositionX((768 - BOARD_WIDTH) / 2);
     stats->setPositionY(
         boardContainer->getPositionY()
-        + boardContainer->getContentSize().height * boardContainer->getScaleY()
+        + boardContainer->getContentSize().height * boardContainer->getScaleY() * 0.5
     );
 }
 
@@ -132,9 +196,10 @@ void GameScene::initLeftMenu()
         btnGoNext, btnGoNext, this, menu_selector(GameScene::onBtnGoNext)
     ));
 
-    leftMenu->setPosition(boardContainer->getPosition());
-    leftMenu->setPositionY(leftMenu->getPositionY() - (leftMenu->getPositionY() / 2));
+    leftMenu->setPositionX((768 - BOARD_WIDTH) / 2);
+    leftMenu->setPositionY((1024 - BOARD_WIDTH) / 4);
     leftMenu->setAnchorPoint(CCPoint(0, 0.5));
+
     leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }
 
@@ -154,13 +219,10 @@ void GameScene::initRightMenu()
         btnHelp, btnHelp, this, menu_selector(GameScene::onBtnHelp)
     ));
 
-    rightMenu->setPosition(boardContainer->getPosition());
-    rightMenu->setPositionY(rightMenu->getPositionY() - (rightMenu->getPositionY() / 2));
-    rightMenu->setPositionX(
-        rightMenu->getPositionX()
-        + boardContainer->getContentSize().width * boardContainer->getScaleX()
-    );
+    rightMenu->setPositionX((768 - BOARD_WIDTH) / 2 + BOARD_WIDTH);
+    rightMenu->setPositionY((1024 - BOARD_WIDTH) / 4);
     rightMenu->setAnchorPoint(CCPoint(1, 0.5));
+    
     rightMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }
 
@@ -174,8 +236,9 @@ void GameScene::initTopMenu()
         btnMenu, btnMenu, this, menu_selector(GameScene::onBtnMenu)
     ));
 
-    topMenu->setPosition(CCPoint(stats->getPositionX(), 1024));
-    topMenu->setPositionY(topMenu->getPositionY() - BOARD_MARGIN);
-    topMenu->setAnchorPoint(CCPoint(0, 1));
+    topMenu->setPositionX((768 - BOARD_WIDTH) / 2);
+    topMenu->setPositionY((1024 - BOARD_WIDTH) / 4 * 3 + BOARD_WIDTH);
+    topMenu->setAnchorPoint(CCPoint(0, 0.5));
+
     topMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }

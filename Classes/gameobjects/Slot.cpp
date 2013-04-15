@@ -1,6 +1,6 @@
 #include "Slot.h"
 
-#include "Colors.h"
+#include "../Colors.h"
 
 using namespace cocos2d;
 

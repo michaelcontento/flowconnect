@@ -34,9 +34,6 @@ bool BoardStats::initWithBoard(Board* board)
         return false;
     }
 
-    this->board = board;
-    CC_SAFE_RETAIN(board);
-
     statsMove = CCLabelTTF::create("", "Markler Fett", 24);
     statsMove->setAnchorPoint(CCPoint(0, 0));
     addChild(statsMove);
@@ -51,14 +48,23 @@ bool BoardStats::initWithBoard(Board* board)
     statsProgress->setPositionX(696);
     addChild(statsProgress);
 
+    setBoard(board);
     schedule(schedule_selector(BoardStats::updateStats));
+
+    return true;
+}
+
+void BoardStats::setBoard(Board* board)
+{
+    CC_SAFE_RELEASE_NULL(this->board);
+
+    this->board = board;
+    this->board->retain();
 
     setContentSize(CCSize(
         board->getContentSize().width,
         statsMove->getContentSize().height
     ));
-
-    return true;
 }
 
 void BoardStats::updateStats(float dt)

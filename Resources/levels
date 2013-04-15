@@ -1,0 +1,17 @@
+# data schema:
+#   ^<type>!<data>\n$
+#
+# supported types:
+#   cat => creates a new category
+#   pag => creates a new page
+#   lvl => data for one level
+#
+# relationship:
+#   +----------+           +------+           +-------+
+#   | CATEGORY | 1 ----> n | PAGE | 1 ----> n | LEVEL |
+#   +----------+           +------+           +-------+
+
+cat!basic package
+pag!tolle wurst
+lvl!ll4lldu1l3udrdurur2u
+lvl!3rrrrdudllldrrr4du1rd5dlll2lr6r

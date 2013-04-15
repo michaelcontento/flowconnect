@@ -11,6 +11,7 @@ public:
     virtual ~BoardStats();
 
     static BoardStats* createWithBoard(Board* board);
+    void setBoard(Board* board);
     void updateStats(float dt);
 
 private:
