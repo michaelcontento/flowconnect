@@ -314,8 +314,7 @@ void Board::createSlotsFromData(const char* data)
         currentToken[0] = data[i];
 
         if (!token::isDirectionToken(currentToken)) {
-            assert(nextNumber == 0 && "two following numbers are invalid");
-            nextNumber = atoi(currentToken);
+            nextNumber = (nextNumber * 10) + atoi(currentToken);
             continue;
         }
 
