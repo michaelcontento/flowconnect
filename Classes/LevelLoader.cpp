@@ -7,6 +7,7 @@ using namespace cocos2d;
 LevelLoader::LevelLoader(const char* filename)
 : categories()
 , idCounter(0)
+, pageLocalCounter(0)
 , currentCategory(NULL)
 , currentPage(NULL)
 {
@@ -216,6 +217,8 @@ void LevelLoader::addPage(const std::string& data)
     currentPage->uid = ++idCounter;
     currentPage->name = strdup(data.c_str());
     currentPage->category = currentCategory;
+
+    pageLocalCounter = 0;
 }
 
 void LevelLoader::addLevel(const std::string& data)
@@ -226,6 +229,7 @@ void LevelLoader::addLevel(const std::string& data)
     currentPage->levels.push_back(level);
 
     level->uid = ++idCounter;
+    level->localid = ++pageLocalCounter;
     level->data = strdup(data.c_str());
     level->page = currentPage;
 }

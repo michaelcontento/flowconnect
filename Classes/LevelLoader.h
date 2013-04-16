@@ -21,6 +21,7 @@ struct LoaderPage {
 
 struct LoaderLevel {
     unsigned int uid;
+    unsigned int localid;
     const char* data;
     LoaderPage* page;
 };
@@ -51,6 +52,7 @@ public:
 private:
     std::string getFileContent(const char* filename);
     unsigned int idCounter;
+    unsigned int pageLocalCounter;
     LoaderCategory* currentCategory;
     LoaderPage* currentPage;
 
