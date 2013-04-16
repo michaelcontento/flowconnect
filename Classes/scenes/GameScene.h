@@ -37,6 +37,9 @@ private:
     Board* board;
     BoardStats* stats;
 
+    cocos2d::CCLabelTTF* sizeLabel;
+    cocos2d::CCLabelTTF* headlineLabel;
+
     cocos2d::CCMenu* leftMenu;
     cocos2d::CCMenu* rightMenu;
     cocos2d::CCMenu* topMenu;
@@ -47,7 +50,8 @@ private:
     void addBoardWithinContainer(Board* board);
     void fadeOutAndRemoveContainer(cocos2d::CCNode* container, const bool toLeft);
     void fadeInContainer(cocos2d::CCNode* container, const bool fromRight);
-    
+
+    void initLabels();
     void initTopMenu();
     void initLeftMenu();
     void initRightMenu();
