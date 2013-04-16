@@ -62,7 +62,7 @@ void BoardStats::setBoard(Board* board)
     this->board->retain();
 
     setContentSize(CCSize(
-        board->getContentSize().width,
+        statsProgress->getPositionX(),
         statsMove->getContentSize().height
     ));
 }

@@ -38,7 +38,6 @@ bool GameScene::init()
     addChild(CCParticleSystemQuad::create("background-fx.plist"));
 
     initBoard();
-    initStats();
     initTopMenu();
     initLeftMenu();
     initRightMenu();
@@ -184,32 +183,22 @@ void GameScene::initBoard()
 
 void GameScene::addBoardWithinContainer(Board* board)
 {
-    if (stats) {
-        stats->setBoard(board);
-    }
+    auto boardContainerInner = CCNode::create();
+    boardContainerInner->setContentSize(board->getContentSize());
+    boardContainerInner->setScale(BOARD_WIDTH / board->getContentSize().width);
+    boardContainerInner->setAnchorPoint(CCPoint(0.5, 0.5));
+    boardContainerInner->addChild(board);
+
+    stats = BoardStats::createWithBoard(board);
+    stats->setAnchorPoint(CCPoint(0.5, 0));
+    stats->setPositionY(BOARD_WIDTH / 2);
 
     boardContainer = CCNode::create();
-    boardContainer->addChild(board);
-    addChild(boardContainer);
-
-    boardContainer->setContentSize(board->getContentSize());
-    boardContainer->setScale(BOARD_WIDTH / board->getContentSize().width);
-
     boardContainer->setAnchorPoint(CCPoint(0.5, 0.5));
     boardContainer->setPosition(CCPoint(384, 512));
-}
-
-void GameScene::initStats()
-{
-    stats = BoardStats::createWithBoard(board);
-    addChild(stats);
-
-    stats->setAnchorPoint(CCPoint(0, 0));
-    stats->setPositionX((768 - BOARD_WIDTH) / 2);
-    stats->setPositionY(
-        boardContainer->getPositionY()
-        + boardContainer->getContentSize().height * boardContainer->getScaleY() * 0.5
-    );
+    boardContainer->addChild(boardContainerInner);
+    boardContainer->addChild(stats);
+    addChild(boardContainer);
 }
 
 void GameScene::createMenuitem(const char* imagename, CCMenu* menu, SEL_MenuHandler selector)

@@ -32,10 +32,10 @@ private:
     const int BOARD_MARGIN = 25;
     const int BUTTON_SPACING = 30;
     const int BOARD_WIDTH = 696;
-    BoardStats* stats;
 
     cocos2d::CCNode* boardContainer;
     Board* board;
+    BoardStats* stats;
 
     cocos2d::CCMenu* leftMenu;
     cocos2d::CCMenu* rightMenu;
@@ -48,7 +48,6 @@ private:
     void fadeOutAndRemoveContainer(cocos2d::CCNode* container, const bool toLeft);
     void fadeInContainer(cocos2d::CCNode* container, const bool fromRight);
     
-    void initStats();
     void initTopMenu();
     void initLeftMenu();
     void initRightMenu();
