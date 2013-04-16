@@ -49,7 +49,7 @@ bool BoardStats::initWithBoard(Board* board)
     addChild(statsProgress);
 
     setBoard(board);
-    schedule(schedule_selector(BoardStats::updateStats));
+    schedule(schedule_selector(BoardStats::updateStats), 0.1);
 
     return true;
 }
@@ -78,10 +78,14 @@ void BoardStats::updateStats(float dt)
     statsMove->setString(stream.str().c_str());
 
     stream.str("");
-    stream << "time: " << round(board->getDuration() * 100) / 100;
+    float time = floor(board->getDuration() * 10) / 10;
+    stream << "time: " << time;
+    if (time - floor(time) == 0) {
+        stream << ".0";
+    }
     statsBest->setString(stream.str().c_str());
 
     stream.str("");
-    stream << "solved: " << (board->getProgress() * 100) << "%";
+    stream << "solved: " << floor(board->getProgress() * 100) << "%";
     statsProgress->setString(stream.str().c_str());
 }
