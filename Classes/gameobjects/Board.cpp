@@ -217,12 +217,17 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
 void Board::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (userPath->count() <= 1) {
+        userPath->removeAllObjects();
+        activateNextCheckpoint();
+    }
+
     startTouchIndicatorBlink();
 }
 
 void Board::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
-    startTouchIndicatorBlink();
+    ccTouchEnded(pTouch, pEvent);
 }
 
 void Board::draw()
@@ -396,14 +401,12 @@ void Board::activateNextCheckpoint()
 
     int lastNumber = 0;
     
-    if (userPath->count() > 1) {
-        CCARRAY_FOREACH(userPath, it) {
-            slot = static_cast<Slot*>(it);
+    CCARRAY_FOREACH(userPath, it) {
+        slot = static_cast<Slot*>(it);
 
-            if (slot->isCheckpoint() && slot->getNumber() > lastNumber) {
-                lastCheckpoint = slot;
-                lastNumber = slot->getNumber();
-            }
+        if (slot->isCheckpoint() && slot->getNumber() > lastNumber) {
+            lastCheckpoint = slot;
+            lastNumber = slot->getNumber();
         }
     }
 
