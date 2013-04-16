@@ -11,6 +11,7 @@ Board::Board()
 : directions()
 , slots(NULL)
 , userPath(NULL)
+, level(NULL)
 , lastCheckpoint(NULL)
 , touchIndicator(NULL)
 , allCheckpointVisited(false)
@@ -61,6 +62,7 @@ bool Board::initWithLevel(const LoaderLevel* level)
     assert((float)(int)sqrtSize == sqrtSize && "grid must be quadratic");
 
     size = CCSize(sqrtSize, sqrtSize);
+    this->level = level;
     numFreeSlots = slots->count();
 
     positionSlotsOnScreen();

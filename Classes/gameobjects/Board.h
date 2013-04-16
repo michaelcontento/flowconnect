@@ -18,6 +18,7 @@ public:
     bool initWithLevel(const LoaderLevel* level);
 
     CC_SYNTHESIZE_READONLY(cocos2d::CCSize, size, Size);
+    CC_SYNTHESIZE_READONLY(const LoaderLevel*, level, Level);
 
     CC_SYNTHESIZE_READONLY(float, progress, Progress);
     CC_SYNTHESIZE_READONLY(int, moves, Moves);
