@@ -11,13 +11,7 @@ GameScene::GameScene()
 , leftMenu(NULL)
 , rightMenu(NULL)
 , stats(NULL)
-, btnGoBack(NULL)
-, btnGoNext(NULL)
-, btnHelp(NULL)
-, btnHint(NULL)
-, btnReset(NULL)
 , topMenu(NULL)
-, btnMenu(NULL)
 {
 }
 
@@ -141,6 +135,7 @@ void GameScene::fadeInContainer(CCNode* container, const bool fromRight)
         container->setPositionX(0 - (BOARD_WIDTH / 2));
     }
 
+    enableMenus(false);
     auto action = CCSequence::create(
         CCDelayTime::create(0.25),
         CCMoveTo::create(0.8, oldPos),
@@ -148,10 +143,35 @@ void GameScene::fadeInContainer(CCNode* container, const bool fromRight)
             CCScaleTo::create(0.25, oldScale),
             3
         ),
+        CCCallFunc::create(this, callfunc_selector(GameScene::enableMenus)),
         NULL
     );
     
     container->runAction(action);
+}
+
+void GameScene::enableMenus()
+{
+    enableMenus(true);
+}
+
+void GameScene::enableMenus(const bool flag)
+{
+    auto menus = CCArray::create();
+    menus->addObject(topMenu);
+    menus->addObject(leftMenu);
+    menus->addObject(rightMenu);
+
+    CCObject* menuIt;
+    CCARRAY_FOREACH(menus, menuIt) {
+        auto menu = static_cast<CCMenu*>(menuIt);
+        
+        CCObject* itemIt;
+        CCARRAY_FOREACH(menu->getChildren(), itemIt) {
+            auto item = static_cast<CCMenuItemSprite*>(itemIt);
+            item->setEnabled(flag);
+        }
+    }
 }
 
 void GameScene::initBoard()
@@ -192,25 +212,24 @@ void GameScene::initStats()
     );
 }
 
+void GameScene::createMenuitem(const char* imagename, CCMenu* menu, SEL_MenuHandler selector)
+{
+    auto normal = CCSprite::createWithSpriteFrameName(imagename);
+
+    auto disabled = CCSprite::createWithSpriteFrameName(imagename);
+    disabled->setOpacity(DISABLED_OPACITY);
+    
+    menu->addChild(CCMenuItemSprite::create(normal, normal, disabled, this, selector));
+}
+
 void GameScene::initLeftMenu()
 {
     leftMenu = CCMenu::create();
     addChild(leftMenu);
 
-    btnGoBack = CCSprite::createWithSpriteFrameName("buttons/go-back.png");
-    leftMenu->addChild(CCMenuItemSprite::create(
-        btnGoBack, btnGoBack, this, menu_selector(GameScene::onBtnGoBack)
-    ));
-
-    btnReset = CCSprite::createWithSpriteFrameName("buttons/reset.png");
-    leftMenu->addChild(CCMenuItemSprite::create(
-        btnReset, btnReset, this, menu_selector(GameScene::onBtnReset)
-    ));
-
-    btnGoNext = CCSprite::createWithSpriteFrameName("buttons/go-next.png");
-    leftMenu->addChild(CCMenuItemSprite::create(
-        btnGoNext, btnGoNext, this, menu_selector(GameScene::onBtnGoNext)
-    ));
+    createMenuitem("buttons/go-back.png", leftMenu, menu_selector(GameScene::onBtnGoBack));
+    createMenuitem("buttons/reset.png", leftMenu, menu_selector(GameScene::onBtnReset));
+    createMenuitem("buttons/go-next.png", leftMenu, menu_selector(GameScene::onBtnGoNext));
 
     leftMenu->setPositionX((768 - BOARD_WIDTH) / 2);
     leftMenu->setPositionY((1024 - BOARD_WIDTH) / 4);
@@ -225,15 +244,8 @@ void GameScene::initRightMenu()
     rightMenu = CCMenu::create();
     addChild(rightMenu);
 
-    btnHint = CCSprite::createWithSpriteFrameName("buttons/hint.png");
-    rightMenu->addChild(CCMenuItemSprite::create(
-        btnHint, btnHint, this, menu_selector(GameScene::onBtnHint)
-    ));
-
-    btnHelp = CCSprite::createWithSpriteFrameName("buttons/help.png");
-    rightMenu->addChild(CCMenuItemSprite::create(
-        btnHelp, btnHelp, this, menu_selector(GameScene::onBtnHelp)
-    ));
+    createMenuitem("buttons/hint.png", rightMenu, menu_selector(GameScene::onBtnHint));
+    createMenuitem("buttons/help.png", rightMenu, menu_selector(GameScene::onBtnHelp));
 
     rightMenu->setPositionX((768 - BOARD_WIDTH) / 2 + BOARD_WIDTH);
     rightMenu->setPositionY((1024 - BOARD_WIDTH) / 4);
@@ -247,10 +259,7 @@ void GameScene::initTopMenu()
     topMenu = CCMenu::create();
     addChild(topMenu);
 
-    btnMenu = CCSprite::createWithSpriteFrameName("buttons/home.png");
-    topMenu->addChild(CCMenuItemSprite::create(
-        btnMenu, btnMenu, this, menu_selector(GameScene::onBtnMenu)
-    ));
+    createMenuitem("buttons/home.png", topMenu, menu_selector(GameScene::onBtnMenu));
 
     topMenu->setPositionX((768 - BOARD_WIDTH) / 2);
     topMenu->setPositionY((1024 - BOARD_WIDTH) / 4 * 3 + BOARD_WIDTH);

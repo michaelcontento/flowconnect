@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "Board.h"
 #include "BoardStats.h"
+#include "../Colors.h"
 
 class GameScene : public cocos2d::CCLayer
 {
@@ -24,6 +25,9 @@ public:
 
     void onBtnMenu();
 
+    void enableMenus();
+    void enableMenus(const bool flag);
+
 private:
     const int BOARD_MARGIN = 25;
     const int BUTTON_SPACING = 30;
@@ -34,16 +38,10 @@ private:
     Board* board;
 
     cocos2d::CCMenu* leftMenu;
-    cocos2d::CCSprite* btnGoBack;
-    cocos2d::CCSprite* btnReset;
-    cocos2d::CCSprite* btnGoNext;
-
     cocos2d::CCMenu* rightMenu;
-    cocos2d::CCSprite* btnHint;
-    cocos2d::CCSprite* btnHelp;
-
     cocos2d::CCMenu* topMenu;
-    cocos2d::CCSprite* btnMenu;
+
+    void createMenuitem(const char* imagename, cocos2d::CCMenu* menu, cocos2d::SEL_MenuHandler selector);
 
     void initBoard();
     void addBoardWithinContainer(Board* board);
