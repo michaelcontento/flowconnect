@@ -101,6 +101,16 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         }
     }
 
+    createTouchIndicator();
+    stopTouchIndicatorBlink();
+
+    if (slot->isCheckpoint()) {
+        touchIndicator->setColor(LINE_COLORS[slot->getNumber() - 1]);
+    } else {
+        touchIndicator->setColor(slot->getColor());
+    }
+    touchIndicator->setPosition(touchPos);
+
     int slotDiff = userPath->count();
 
     clearAllSlotsAfter(slot);
@@ -112,10 +122,6 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     } else {
         moves += slotDiff;
     }
-
-    createTouchIndicator();
-    stopTouchIndicatorBlink();
-    touchIndicator->setPosition(touchPos);
 
     return true;
 }
@@ -283,6 +289,12 @@ void Board::appendUserPath(Slot* slot)
         }
 
         userPath->addObject(slot);
+    }
+
+    if (slot->isCheckpoint()) {
+        touchIndicator->setColor(LINE_COLORS[slot->getNumber() - 1]);
+    } else {
+        touchIndicator->setColor(slot->getColor());
     }
 
     activateNextCheckpoint();
@@ -566,7 +578,6 @@ void Board::createTouchIndicator()
 
     touchIndicator = CCSprite::createWithSpriteFrameName("slot/touchindicator.png");
     touchIndicator->setZOrder(BOARD_ZORDER_TOUCH_INDICATOR);
-    touchIndicator->setColor(TOUCH_INDICATOR_COLOR);
     touchIndicator->setOpacity(TOUCH_INDICATOR_OPACITY);
     touchIndicator->setScale(1.5);
 
