@@ -54,8 +54,16 @@ bool GameScene::init()
 
 void GameScene::onBtnGoBack()
 {
-    if (globalLevelLoader.hasPrevious(globalLevel)) {
-        globalLevel = globalLevelLoader.getPrevious(globalLevel);
+    LoaderLevel* prevLevel = globalLevelLoader.getPrevious(globalLevel);
+    if (!prevLevel) {
+        LoaderPage* prePage = globalLevelLoader.getPrevious(globalLevel->page);
+        if (prePage) {
+            prevLevel = prePage->levels.back();
+        }
+    }
+
+    if (prevLevel) {
+        globalLevel = prevLevel;
 
         fadeOutAndRemoveContainer(boardContainer, false);
         initBoard();
@@ -70,8 +78,16 @@ void GameScene::onBtnReset()
 
 void GameScene::onBtnGoNext()
 {
-    if (globalLevelLoader.hasNext(globalLevel)) {
-        globalLevel = globalLevelLoader.getNext(globalLevel);
+    LoaderLevel* nextLevel = globalLevelLoader.getNext(globalLevel);
+    if (!nextLevel) {
+        LoaderPage* nextPage = globalLevelLoader.getNext(globalLevel->page);
+        if (nextPage) {
+            nextLevel = nextPage->levels.front();
+        }
+    }
+
+    if (nextLevel) {
+        globalLevel = nextLevel;
 
         fadeOutAndRemoveContainer(boardContainer, true);
         initBoard();

@@ -33,10 +33,19 @@ public:
 
     CC_SYNTHESIZE_READONLY(std::vector<LoaderCategory*>, categories, Categories);
 
-    bool hasNext(const LoaderLevel* level) const;
-    LoaderLevel* getNext(const LoaderLevel* level) const;
+    bool hasNext(const LoaderCategory* category) const;
+    bool hasPrevious(const LoaderCategory* category) const;
+    LoaderCategory* getNext(const LoaderCategory* category) const;
+    LoaderCategory* getPrevious(const LoaderCategory* category) const;
 
+    bool hasNext(const LoaderPage* page) const;
+    bool hasPrevious(const LoaderPage* page) const;
+    LoaderPage* getNext(const LoaderPage* page) const;
+    LoaderPage* getPrevious(const LoaderPage* page) const;
+    
+    bool hasNext(const LoaderLevel* level) const;
     bool hasPrevious(const LoaderLevel* level) const;
+    LoaderLevel* getNext(const LoaderLevel* level) const;
     LoaderLevel* getPrevious(const LoaderLevel* level) const;
 
 private:

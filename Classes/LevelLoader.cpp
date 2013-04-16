@@ -35,7 +35,91 @@ LevelLoader::~LevelLoader()
     }
 }
 
-#pragma mark Public interface
+#pragma mark Category API
+
+bool LevelLoader::hasNext(const LoaderCategory* category) const
+{
+    return (getNext(category) != NULL);
+}
+
+LoaderCategory* LevelLoader::getNext(const LoaderCategory* category) const
+{
+    bool returnNext = false;
+    for (auto checkCategory : categories) {
+        if (returnNext) {
+            return checkCategory;
+        }
+
+        if (category->uid == checkCategory->uid) {
+            returnNext = true;
+        }
+    }
+
+    return NULL;
+}
+
+bool LevelLoader::hasPrevious(const LoaderCategory* category) const
+{
+    return (getPrevious(category) != NULL);
+}
+
+LoaderCategory* LevelLoader::getPrevious(const LoaderCategory* category) const
+{
+    LoaderCategory* lastCategory = NULL;
+    for (auto checkCategory : categories) {
+        if (category->uid == checkCategory->uid) {
+            return lastCategory;
+        }
+
+        lastCategory = checkCategory;
+    }
+
+    return NULL;
+}
+
+#pragma mark Page API
+
+bool LevelLoader::hasNext(const LoaderPage* page) const
+{
+    return (getNext(page) != NULL);
+}
+
+LoaderPage* LevelLoader::getNext(const LoaderPage* page) const
+{
+    bool returnNext = false;
+    for (auto checkPage : page->category->pages) {
+        if (returnNext) {
+            return checkPage;
+        }
+
+        if (page->uid == checkPage->uid) {
+            returnNext = true;
+        }
+    }
+
+    return NULL;
+}
+
+bool LevelLoader::hasPrevious(const LoaderPage* page) const
+{
+    return (getPrevious(page) != NULL);
+}
+
+LoaderPage* LevelLoader::getPrevious(const LoaderPage* page) const
+{
+    LoaderPage* lastPage = NULL;
+    for (auto checkPage : page->category->pages) {
+        if (page->uid == checkPage->uid) {
+            return lastPage;
+        }
+
+        lastPage = checkPage;
+    }
+    
+    return NULL;
+}
+
+#pragma mark Level API
 
 bool LevelLoader::hasNext(const LoaderLevel* level) const
 {
