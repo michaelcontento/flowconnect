@@ -2,11 +2,84 @@
 
 using namespace cocos2d;
 
+#pragma mark Initialisation
+
 LevelLoader::LevelLoader(const char* filename)
 : categories()
 , idCounter(0)
 , currentCategory(NULL)
 , currentPage(NULL)
+{
+    loadLevel(filename);
+}
+
+LevelLoader::~LevelLoader()
+{
+    for (auto category : categories) {
+        for (auto page : category->pages) {
+            for (auto level : page->levels) {
+                level->page = NULL;
+                free((char*)level->data);
+                delete level;
+            }
+
+            page->levels.clear();
+            page->category = NULL;
+            free((char*)page->name);
+            delete page;
+        }
+
+        category->pages.clear();
+        free((char*)category->name);
+        delete category;
+    }
+}
+
+#pragma mark Public interface
+
+bool LevelLoader::hasNext(const LoaderLevel* level) const
+{
+    return (getNext(level) != NULL);
+}
+
+LoaderLevel* LevelLoader::getNext(const LoaderLevel* level) const
+{
+    bool returnNext = false;
+    for (auto checkLevel : level->page->levels) {
+        if (returnNext) {
+            return checkLevel;
+        }
+
+        if (level->uid == checkLevel->uid) {
+            returnNext = true;
+        }
+    }
+
+    return NULL;
+}
+
+bool LevelLoader::hasPrevious(const LoaderLevel* level) const
+{
+    return (getPrevious(level) != NULL);
+}
+
+LoaderLevel* LevelLoader::getPrevious(const LoaderLevel* level) const
+{
+    LoaderLevel* lastLevel = NULL;
+    for (auto checkLevel : level->page->levels) {
+        if (level->uid == checkLevel->uid) {
+            return lastLevel;
+        }
+
+        lastLevel = checkLevel;
+    }
+
+    return NULL;
+}
+
+#pragma mark Loading
+
+void LevelLoader::loadLevel(const char* filename)
 {
     std::istringstream stream(getFileContent(filename));
     std::string line;
@@ -92,26 +165,4 @@ std::string LevelLoader::getFileContent(const char* filename)
     content.assign(tmpContent, tmpContent + size - 1);
 
     return content;
-}
-
-LevelLoader::~LevelLoader()
-{
-    for (auto category : categories) {
-        for (auto page : category->pages) {
-            for (auto level : page->levels) {
-                level->page = NULL;
-                free((char*)level->data);
-                delete level;
-            }
-
-            page->levels.clear();
-            page->category = NULL;
-            free((char*)page->name);
-            delete page;
-        }
-
-        category->pages.clear();
-        free((char*)category->name);
-        delete category;
-    }
 }

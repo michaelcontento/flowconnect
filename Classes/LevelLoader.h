@@ -33,12 +33,19 @@ public:
 
     CC_SYNTHESIZE_READONLY(std::vector<LoaderCategory*>, categories, Categories);
 
+    bool hasNext(const LoaderLevel* level) const;
+    LoaderLevel* getNext(const LoaderLevel* level) const;
+
+    bool hasPrevious(const LoaderLevel* level) const;
+    LoaderLevel* getPrevious(const LoaderLevel* level) const;
+
 private:
     std::string getFileContent(const char* filename);
     unsigned int idCounter;
     LoaderCategory* currentCategory;
     LoaderPage* currentPage;
 
+    void loadLevel(const char* filename);
     void addCategory(const std::string& data);
     void addPage(const std::string& data);
     void addLevel(const std::string& data);
