@@ -1,5 +1,7 @@
 #include "AppDelegate.h"
-#include "GameScene.h"
+
+#include "SceneManager.h"
+#include "MenuScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
@@ -24,8 +26,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setOpenGLView(pEGLView);
     pEGLView->setDesignResolutionSize(768, 1024, kResolutionExactFit);
 
-    CCScene *pScene = GameScene::scene();
-    pDirector->runWithScene(pScene);
+    CCSpriteFrameCache::sharedSpriteFrameCache()
+        ->addSpriteFramesWithFile("assets.plist");
+
+    SceneManager::getInstance().gotoScene(MenuScene::scene());
 
     return true;
 }

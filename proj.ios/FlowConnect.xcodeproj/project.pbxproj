@@ -154,6 +154,8 @@
 		C8CA622F1714268F005660B3 /* Slot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622D1714268F005660B3 /* Slot.cpp */; };
 		C8CA62351714517E005660B3 /* assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8CA62321714517E005660B3 /* assets.plist */; };
 		C8CA62361714517E005660B3 /* assets.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CA62331714517E005660B3 /* assets.png */; };
+		C8D628CE171EB34300631416 /* MenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8D628CC171EB34300631416 /* MenuScene.cpp */; };
+		C8D628D1171EE84300631416 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8D628CF171EE84300631416 /* SceneManager.cpp */; };
 		C8DBAB92171C5EAA009849B4 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C8DBAB91171C5EAA009849B4 /* levels */; };
 		C8E19D0717184F9400949285 /* BoardStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E19D0517184F9400949285 /* BoardStats.cpp */; };
 		D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41A0AD0160F154A004552AE /* Default-568h@2x.png */; };
@@ -478,6 +480,11 @@
 		C8CA623117144C39005660B3 /* Token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Token.h; path = ../Classes/gameobjects/Token.h; sourceTree = "<group>"; };
 		C8CA62321714517E005660B3 /* assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = assets.plist; sourceTree = "<group>"; };
 		C8CA62331714517E005660B3 /* assets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets.png; sourceTree = "<group>"; };
+		C8D628CC171EB34300631416 /* MenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuScene.cpp; path = ../Classes/scenes/MenuScene.cpp; sourceTree = "<group>"; };
+		C8D628CD171EB34300631416 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuScene.h; path = ../Classes/scenes/MenuScene.h; sourceTree = "<group>"; };
+		C8D628CF171EE84300631416 /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneManager.cpp; path = ../Classes/SceneManager.cpp; sourceTree = "<group>"; };
+		C8D628D0171EE84300631416 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneManager.h; path = ../Classes/SceneManager.h; sourceTree = "<group>"; };
+		C8D628D2171EE87A00631416 /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Singleton.h; path = ../Classes/Singleton.h; sourceTree = "<group>"; };
 		C8DBAB8E171C4BE1009849B4 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colors.h; path = ../Classes/Colors.h; sourceTree = "<group>"; };
 		C8DBAB91171C5EAA009849B4 /* levels */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = levels; sourceTree = "<group>"; };
 		C8E19D0517184F9400949285 /* BoardStats.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoardStats.cpp; path = ../Classes/gameobjects/BoardStats.cpp; sourceTree = "<group>"; };
@@ -1012,6 +1019,7 @@
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				C85D5276171C10C50076A88B /* LevelLoader.cpp */,
 				C85D5277171C10C50076A88B /* LevelLoader.h */,
+				C8D628D2171EE87A00631416 /* Singleton.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1084,6 +1092,10 @@
 			children = (
 				C8CA622617141A32005660B3 /* GameScene.cpp */,
 				C8CA622717141A32005660B3 /* GameScene.h */,
+				C8D628CC171EB34300631416 /* MenuScene.cpp */,
+				C8D628CD171EB34300631416 /* MenuScene.h */,
+				C8D628CF171EE84300631416 /* SceneManager.cpp */,
+				C8D628D0171EE84300631416 /* SceneManager.h */,
 			);
 			name = scenes;
 			sourceTree = "<group>";
@@ -1327,6 +1339,8 @@
 				C8CA622F1714268F005660B3 /* Slot.cpp in Sources */,
 				C8E19D0717184F9400949285 /* BoardStats.cpp in Sources */,
 				C85D5278171C10C50076A88B /* LevelLoader.cpp in Sources */,
+				C8D628CE171EB34300631416 /* MenuScene.cpp in Sources */,
+				C8D628D1171EE84300631416 /* SceneManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,7 +4,6 @@
 #include "cocos2d.h"
 #include "Board.h"
 #include "BoardStats.h"
-#include "../Colors.h"
 
 class GameScene : public cocos2d::CCLayer
 {
@@ -47,9 +46,8 @@ private:
     void createMenuitem(const char* imagename, cocos2d::CCMenu* menu, cocos2d::SEL_MenuHandler selector);
 
     void initBoard();
+    void initBoardAndFade();
     void addBoardWithinContainer(Board* board);
-    void fadeOutAndRemoveContainer(cocos2d::CCNode* container, const bool toLeft);
-    void fadeInContainer(cocos2d::CCNode* container, const bool fromRight);
 
     void initLabels();
     void initTopMenu();

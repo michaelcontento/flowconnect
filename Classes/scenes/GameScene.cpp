@@ -1,6 +1,8 @@
 #include "GameScene.h"
 
+#include "SceneManager.h"
 #include "../Globals.h"
+#include "../Colors.h"
 
 using namespace cocos2d;
 
@@ -34,11 +36,6 @@ bool GameScene::init()
         return false;
     }
 
-    CCSpriteFrameCache::sharedSpriteFrameCache()
-        ->addSpriteFramesWithFile("assets.plist");
-
-    addChild(CCParticleSystemQuad::create("background-fx.plist"));
-
     initTopMenu();
     initLeftMenu();
     initRightMenu();
@@ -61,10 +58,7 @@ void GameScene::onBtnGoBack()
 
     if (prevLevel) {
         globalLevel = prevLevel;
-
-        fadeOutAndRemoveContainer(boardContainer, false);
-        initBoard();
-        fadeInContainer(boardContainer, false);
+        initBoardAndFade();
     }
 }
 
@@ -85,10 +79,7 @@ void GameScene::onBtnGoNext()
 
     if (nextLevel) {
         globalLevel = nextLevel;
-
-        fadeOutAndRemoveContainer(boardContainer, true);
-        initBoard();
-        fadeInContainer(boardContainer, true);
+        initBoardAndFade();
     }
 }
 
@@ -104,53 +95,25 @@ void GameScene::onBtnHelp()
 
 void GameScene::onBtnMenu()
 {
-    CCLog("MENU");
+    SceneManager::getInstance().gotoPreviousScene();
 }
 
-void GameScene::fadeOutAndRemoveContainer(CCNode* container, const bool toLeft)
+void GameScene::initBoardAndFade()
 {
-    auto newPosX = 0 - (BOARD_WIDTH / 2);
-    if (!toLeft) {
-        newPosX = 768 + (BOARD_WIDTH / 2);
-    }
+    removeChild(boardContainer);
+    initBoard();
+
+    auto oldScale = boardContainer->getScale();
+    boardContainer->setScale(boardContainer->getScale() * 0.5);
 
     auto action = CCSequence::create(
-        CCEaseIn::create(
-            CCScaleTo::create(0.25, container->getScale() * 0.8),
-            3
-        ),
-        CCMoveTo::create(0.8, CCPoint(newPosX, container->getPositionY())),
-        CCCallFuncN::create(this, callfuncN_selector(GameScene::removeChild)),
-        NULL
-    );
-    
-    container->runAction(action);
-}
-
-void GameScene::fadeInContainer(CCNode* container, const bool fromRight)
-{
-    auto oldPos = container->getPosition();
-    auto oldScale = container->getScale();
-
-    container->setScale(oldScale * 0.8);
-    container->setPositionX(768 + (BOARD_WIDTH / 2));
-    if (!fromRight) {
-        container->setPositionX(0 - (BOARD_WIDTH / 2));
-    }
-
-    enableMenus(false);
-    auto action = CCSequence::create(
-        CCDelayTime::create(0.25),
-        CCMoveTo::create(0.8, oldPos),
-        CCEaseIn::create(
-            CCScaleTo::create(0.25, oldScale),
-            3
-        ),
+        CCEaseOut::create(CCScaleTo::create(0.2, oldScale), 1),
         CCCallFunc::create(this, callfunc_selector(GameScene::enableMenus)),
         NULL
     );
-    
-    container->runAction(action);
+
+    enableMenus(false);
+    boardContainer->runAction(action);
 }
 
 void GameScene::enableMenus()
