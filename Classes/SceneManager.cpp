@@ -27,7 +27,7 @@ CCScene* SceneManager::gotoScene(CCScene* nextScene)
         CC_SAFE_RETAIN(previousScene);
 
         currentScene->removeChild(backgroundLayer, false);
-        nextScene->addChild(backgroundLayer);
+        nextScene->addChild(backgroundLayer, -INFINITY);
 
         auto transition = CCTransitionFade::create(0.2, nextScene, ccBLACK);
         CCDirector::sharedDirector()->replaceScene(transition);
