@@ -4,16 +4,17 @@
 #include "cocos2d.h"
 #include "Singleton.h"
 
-class SceneManager : public Singleton<SceneManager>
+class SceneManager : public cocos2d::CCObject, public Singleton<SceneManager>
 {
     friend class Singleton<SceneManager>;
 
 public:
     cocos2d::CCScene* gotoScene(cocos2d::CCScene* s);
-    void gotoPreviousScene();
+    cocos2d::CCScene* gotoScene(cocos2d::CCScene* s, const bool storePrevious);
+    cocos2d::CCScene* popScene();
 
 private:
-    cocos2d::CCScene* previousScene;
+    cocos2d::CCArray* sceneStack;
     cocos2d::CCLayer* backgroundLayer;
 
     SceneManager();

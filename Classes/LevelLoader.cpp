@@ -36,132 +36,6 @@ LevelLoader::~LevelLoader()
     }
 }
 
-#pragma mark Category API
-
-bool LevelLoader::hasNext(const LoaderCategory* category) const
-{
-    return (getNext(category) != NULL);
-}
-
-LoaderCategory* LevelLoader::getNext(const LoaderCategory* category) const
-{
-    bool returnNext = false;
-    for (auto checkCategory : categories) {
-        if (returnNext) {
-            return checkCategory;
-        }
-
-        if (category->uid == checkCategory->uid) {
-            returnNext = true;
-        }
-    }
-
-    return NULL;
-}
-
-bool LevelLoader::hasPrevious(const LoaderCategory* category) const
-{
-    return (getPrevious(category) != NULL);
-}
-
-LoaderCategory* LevelLoader::getPrevious(const LoaderCategory* category) const
-{
-    LoaderCategory* lastCategory = NULL;
-    for (auto checkCategory : categories) {
-        if (category->uid == checkCategory->uid) {
-            return lastCategory;
-        }
-
-        lastCategory = checkCategory;
-    }
-
-    return NULL;
-}
-
-#pragma mark Page API
-
-bool LevelLoader::hasNext(const LoaderPage* page) const
-{
-    return (getNext(page) != NULL);
-}
-
-LoaderPage* LevelLoader::getNext(const LoaderPage* page) const
-{
-    bool returnNext = false;
-    for (auto checkPage : page->category->pages) {
-        if (returnNext) {
-            return checkPage;
-        }
-
-        if (page->uid == checkPage->uid) {
-            returnNext = true;
-        }
-    }
-
-    return NULL;
-}
-
-bool LevelLoader::hasPrevious(const LoaderPage* page) const
-{
-    return (getPrevious(page) != NULL);
-}
-
-LoaderPage* LevelLoader::getPrevious(const LoaderPage* page) const
-{
-    LoaderPage* lastPage = NULL;
-    for (auto checkPage : page->category->pages) {
-        if (page->uid == checkPage->uid) {
-            return lastPage;
-        }
-
-        lastPage = checkPage;
-    }
-    
-    return NULL;
-}
-
-#pragma mark Level API
-
-bool LevelLoader::hasNext(const LoaderLevel* level) const
-{
-    return (getNext(level) != NULL);
-}
-
-LoaderLevel* LevelLoader::getNext(const LoaderLevel* level) const
-{
-    bool returnNext = false;
-    for (auto checkLevel : level->page->levels) {
-        if (returnNext) {
-            return checkLevel;
-        }
-
-        if (level->uid == checkLevel->uid) {
-            returnNext = true;
-        }
-    }
-
-    return NULL;
-}
-
-bool LevelLoader::hasPrevious(const LoaderLevel* level) const
-{
-    return (getPrevious(level) != NULL);
-}
-
-LoaderLevel* LevelLoader::getPrevious(const LoaderLevel* level) const
-{
-    LoaderLevel* lastLevel = NULL;
-    for (auto checkLevel : level->page->levels) {
-        if (level->uid == checkLevel->uid) {
-            return lastLevel;
-        }
-
-        lastLevel = checkLevel;
-    }
-
-    return NULL;
-}
-
 #pragma mark Loading
 
 void LevelLoader::loadLevel(const char* filename)
@@ -201,10 +75,18 @@ void LevelLoader::loadLevel(const char* filename)
 void LevelLoader::addCategory(const std::string& data)
 {
     currentCategory = new LoaderCategory();
-    categories.push_back(currentCategory);
-
     currentCategory->uid = ++idCounter;
+    currentCategory->prev = NULL;
+    currentCategory->next = NULL;
     currentCategory->name = strdup(data.c_str());
+
+    if (categories.size() > 0) {
+        auto lastCategory = categories.back();
+        currentCategory->prev = lastCategory;
+        lastCategory->next = currentCategory;
+    }
+    
+    categories.push_back(currentCategory);
 }
 
 void LevelLoader::addPage(const std::string& data)
@@ -212,12 +94,19 @@ void LevelLoader::addPage(const std::string& data)
     assert(currentCategory && "category record must come first");
 
     currentPage = new LoaderPage();
-    currentCategory->pages.push_back(currentPage);
-
     currentPage->uid = ++idCounter;
+    currentPage->prev = NULL;
+    currentPage->next = NULL;
     currentPage->name = strdup(data.c_str());
     currentPage->category = currentCategory;
 
+    if (currentCategory->pages.size() > 0) {
+        auto lastPage = currentCategory->pages.back();
+        currentPage->prev = lastPage;
+        lastPage->next = currentPage;
+    }
+
+    currentCategory->pages.push_back(currentPage);
     pageLocalCounter = 0;
 }
 
@@ -225,13 +114,21 @@ void LevelLoader::addLevel(const std::string& data)
 {
     assert(currentPage && "page record must come first");
 
-    LoaderLevel* level = new LoaderLevel();
-    currentPage->levels.push_back(level);
+    LoaderLevel* currentLevel = new LoaderLevel();
+    currentLevel->uid = ++idCounter;
+    currentLevel->prev = NULL;
+    currentLevel->next = NULL;
+    currentLevel->localid = ++pageLocalCounter;
+    currentLevel->data = strdup(data.c_str());
+    currentLevel->page = currentPage;
 
-    level->uid = ++idCounter;
-    level->localid = ++pageLocalCounter;
-    level->data = strdup(data.c_str());
-    level->page = currentPage;
+    if (currentPage->levels.size() > 0) {
+        auto lastLevel = currentPage->levels.back();
+        currentLevel->prev = lastLevel;
+        lastLevel->next = currentLevel;
+    }
+    
+    currentPage->levels.push_back(currentLevel);
 }
 
 std::string LevelLoader::getFileContent(const char* filename)

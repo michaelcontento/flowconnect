@@ -1,10 +1,11 @@
 #include "GameScene.h"
 
 #include "SceneManager.h"
-#include "../Globals.h"
 #include "../Colors.h"
 
 using namespace cocos2d;
+
+extern LoaderLevel* globalLevel;
 
 #pragma mark Initialization
 
@@ -48,9 +49,9 @@ bool GameScene::init()
 
 void GameScene::onBtnGoBack()
 {
-    LoaderLevel* prevLevel = globalLevelLoader.getPrevious(globalLevel);
+    LoaderLevel* prevLevel = globalLevel->prev;
     if (!prevLevel) {
-        LoaderPage* prePage = globalLevelLoader.getPrevious(globalLevel->page);
+        LoaderPage* prePage = globalLevel->page->prev;
         if (prePage) {
             prevLevel = prePage->levels.back();
         }
@@ -69,9 +70,9 @@ void GameScene::onBtnReset()
 
 void GameScene::onBtnGoNext()
 {
-    LoaderLevel* nextLevel = globalLevelLoader.getNext(globalLevel);
+    LoaderLevel* nextLevel = globalLevel->next;
     if (!nextLevel) {
-        LoaderPage* nextPage = globalLevelLoader.getNext(globalLevel->page);
+        LoaderPage* nextPage = globalLevel->page->next;
         if (nextPage) {
             nextLevel = nextPage->levels.front();
         }
@@ -95,7 +96,7 @@ void GameScene::onBtnHelp()
 
 void GameScene::onBtnMenu()
 {
-    SceneManager::getInstance().gotoPreviousScene();
+    SceneManager::getInstance().popScene();
 }
 
 void GameScene::initBoardAndFade()

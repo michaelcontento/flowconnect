@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "MenuScene.h"
 #include "SimpleAudioEngine.h"
+#include "Globals.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;

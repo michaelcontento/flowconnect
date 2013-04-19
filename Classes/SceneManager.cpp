@@ -4,8 +4,11 @@ using namespace cocos2d;
 
 SceneManager::SceneManager()
 : backgroundLayer(NULL)
-, previousScene(NULL)
+, sceneStack(NULL)
 {
+    sceneStack = CCArray::create();
+    sceneStack->retain();
+
     backgroundLayer = CCLayer::create();
     backgroundLayer->retain();
     backgroundLayer->addChild(CCParticleSystemQuad::create("background-fx.plist"));
@@ -13,35 +16,48 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
+    CC_SAFE_RELEASE_NULL(sceneStack);
     CC_SAFE_RELEASE_NULL(backgroundLayer);
-    CC_SAFE_RELEASE_NULL(previousScene);
 }
 
 CCScene* SceneManager::gotoScene(CCScene* nextScene)
 {
+    return gotoScene(nextScene, true);
+}
+
+CCScene* SceneManager::gotoScene(CCScene* nextScene, const bool storePrevious)
+{
     assert(nextScene != NULL && "Scene cannot be null");
 
-    auto currentScene = CCDirector::sharedDirector()->getRunningScene();
-    if (currentScene) {
-        previousScene = currentScene;
-        CC_SAFE_RETAIN(previousScene);
+    auto previousScene = CCDirector::sharedDirector()->getRunningScene();
+    if (previousScene) {
+        previousScene->removeChild(backgroundLayer, false);
 
-        currentScene->removeChild(backgroundLayer, false);
-        nextScene->addChild(backgroundLayer, -INFINITY);
+        if (storePrevious) {
+            sceneStack->addObject(previousScene);
+        }
+    }
 
-        auto transition = CCTransitionFade::create(0.2, nextScene, ccBLACK);
-        CCDirector::sharedDirector()->replaceScene(transition);
+    nextScene->addChild(backgroundLayer, -INFINITY);
+
+    if (previousScene) {
+        CCDirector::sharedDirector()->replaceScene(nextScene);
     } else {
-        nextScene->addChild(backgroundLayer);
         CCDirector::sharedDirector()->runWithScene(nextScene);
     }
 
     return nextScene;
 }
 
-void SceneManager::gotoPreviousScene()
+CCScene* SceneManager::popScene()
 {
-    if (previousScene) {
-        gotoScene(previousScene);
+    if (sceneStack->count() == 0) {
+        return NULL;
     }
+
+    auto previousScene = static_cast<CCScene*>(sceneStack->lastObject());
+    previousScene->retain();
+    sceneStack->removeLastObject();
+    
+    return gotoScene(previousScene, false);
 }

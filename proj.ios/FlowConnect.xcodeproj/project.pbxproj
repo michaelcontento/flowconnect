@@ -149,6 +149,9 @@
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
 		C85D5275171B6A850076A88B /* background-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C85D5274171B6A850076A88B /* background-fx.plist */; };
 		C85D5278171C10C50076A88B /* LevelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C85D5276171C10C50076A88B /* LevelLoader.cpp */; };
+		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
+		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
+		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
 		C8CA622817141A32005660B3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622617141A32005660B3 /* GameScene.cpp */; };
 		C8CA622C17142683005660B3 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622A17142683005660B3 /* Board.cpp */; };
 		C8CA622F1714268F005660B3 /* Slot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622D1714268F005660B3 /* Slot.cpp */; };
@@ -470,7 +473,13 @@
 		C85D5274171B6A850076A88B /* background-fx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background-fx.plist"; sourceTree = "<group>"; };
 		C85D5276171C10C50076A88B /* LevelLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelLoader.cpp; path = ../Classes/LevelLoader.cpp; sourceTree = "<group>"; };
 		C85D5277171C10C50076A88B /* LevelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelLoader.h; path = ../Classes/LevelLoader.h; sourceTree = "<group>"; };
-		C85D5279171C2B8D0076A88B /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = ../Classes/Globals.h; sourceTree = "<group>"; };
+		C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CategoryMenuScene.cpp; path = ../Classes/scenes/CategoryMenuScene.cpp; sourceTree = "<group>"; };
+		C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryMenuScene.h; path = ../Classes/scenes/CategoryMenuScene.h; sourceTree = "<group>"; };
+		C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelMenuScene.cpp; path = ../Classes/LevelMenuScene.cpp; sourceTree = "<group>"; };
+		C8A0C2AB171F62B50094DDBB /* LevelMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelMenuScene.h; path = ../Classes/LevelMenuScene.h; sourceTree = "<group>"; };
+		C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ButtonFactory.cpp; path = ../Classes/ButtonFactory.cpp; sourceTree = "<group>"; };
+		C8A0C2B5171FD47E0094DDBB /* ButtonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonFactory.h; path = ../Classes/ButtonFactory.h; sourceTree = "<group>"; };
+		C8A0C2B7172134BD0094DDBB /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = ../Classes/Globals.h; sourceTree = "<group>"; };
 		C8CA622617141A32005660B3 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/scenes/GameScene.cpp; sourceTree = "<group>"; };
 		C8CA622717141A32005660B3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/scenes/GameScene.h; sourceTree = "<group>"; };
 		C8CA622A17142683005660B3 /* Board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Board.cpp; path = ../Classes/gameobjects/Board.cpp; sourceTree = "<group>"; };
@@ -1014,12 +1023,14 @@
 				C8CA622917142672005660B3 /* gameobjects */,
 				C8CA622517141A21005660B3 /* scenes */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
-				C85D5279171C2B8D0076A88B /* Globals.h */,
 				C8DBAB8E171C4BE1009849B4 /* Colors.h */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				C85D5276171C10C50076A88B /* LevelLoader.cpp */,
 				C85D5277171C10C50076A88B /* LevelLoader.h */,
 				C8D628D2171EE87A00631416 /* Singleton.h */,
+				C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */,
+				C8A0C2B5171FD47E0094DDBB /* ButtonFactory.h */,
+				C8A0C2B7172134BD0094DDBB /* Globals.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1096,6 +1107,10 @@
 				C8D628CD171EB34300631416 /* MenuScene.h */,
 				C8D628CF171EE84300631416 /* SceneManager.cpp */,
 				C8D628D0171EE84300631416 /* SceneManager.h */,
+				C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */,
+				C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */,
+				C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */,
+				C8A0C2AB171F62B50094DDBB /* LevelMenuScene.h */,
 			);
 			name = scenes;
 			sourceTree = "<group>";
@@ -1341,6 +1356,9 @@
 				C85D5278171C10C50076A88B /* LevelLoader.cpp in Sources */,
 				C8D628CE171EB34300631416 /* MenuScene.cpp in Sources */,
 				C8D628D1171EE84300631416 /* SceneManager.cpp in Sources */,
+				C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */,
+				C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */,
+				C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

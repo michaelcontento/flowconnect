@@ -1,7 +1,8 @@
 #include "MenuScene.h"
 
 #include "SceneManager.h"
-#include "GameScene.h"
+#include "CategoryMenuScene.h"
+#include "ButtonFactory.h"
 
 using namespace cocos2d;
 
@@ -28,17 +29,42 @@ bool MenuScene::init()
         return false;
     }
 
-    auto game = CCLabelTTF::create("game", "Markler Fett", 24);
-    auto gameMenu = CCMenuItemSprite::create(game, game, this, menu_selector(MenuScene::btnGame));
-
     auto menu = CCMenu::create();
-    menu->addChild(gameMenu);
     addChild(menu);
+
+    menu->addChild(ButtonFactory::create("Play", this, menu_selector(MenuScene::btnPlay)));
+    menu->addChild(ButtonFactory::create("Time Attack", this, menu_selector(MenuScene::btnPLayTimeAttack)));
+    menu->addChild(ButtonFactory::create("Leaderboard", this, menu_selector(MenuScene::btnLeaderboard)));
+    menu->addChild(ButtonFactory::create("Achievements", this, menu_selector(MenuScene::btnAchievements)));
+    menu->addChild(ButtonFactory::create("Shop", this, menu_selector(MenuScene::btnShop)));
+    menu->addChild(ButtonFactory::create("Settings", this, menu_selector(MenuScene::btnSettings)));
+    menu->alignItemsVertically();
 
     return true;
 }
 
-void MenuScene::btnGame()
+void MenuScene::btnPlay()
 {
-    SceneManager::getInstance().gotoScene(GameScene::scene());
+    SceneManager::getInstance().gotoScene(CategoryMenuScene::scene());
 }
+
+void MenuScene::btnPLayTimeAttack()
+{
+}
+
+void MenuScene::btnLeaderboard()
+{
+}
+
+void MenuScene::btnAchievements()
+{
+}
+
+void MenuScene::btnShop()
+{
+}
+
+void MenuScene::btnSettings()
+{
+}
+

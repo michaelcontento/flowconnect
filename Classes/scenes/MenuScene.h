@@ -13,8 +13,12 @@ public:
     CREATE_FUNC(MenuScene);
     virtual bool init();
 
-    void btnGame();
+    void btnPlay();
+    void btnPLayTimeAttack();
+    void btnLeaderboard();
+    void btnAchievements();
+    void btnShop();
+    void btnSettings();
 };
-
 
 #endif /* defined(__FlowConnect__MenuScene__) */
