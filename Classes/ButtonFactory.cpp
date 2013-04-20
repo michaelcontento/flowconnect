@@ -41,3 +41,10 @@ GameButton* ButtonFactory::createLevelButton(LoaderLevel* level)
 {
     return GameButton::createWithLevel(level);
 }
+
+CCMenuItem* ButtonFactory::createEmptyButton()
+{
+    auto result = CCMenuItem::create();
+    result->setContentSize(CCSize(0, 20));
+    return result;
+}

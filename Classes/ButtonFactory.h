@@ -11,6 +11,7 @@ public:
     static cocos2d::CCMenuItemFont* create(const char* text, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector);
     static cocos2d::CCMenu* createSceneBackButton();
     static GameButton* createLevelButton(LoaderLevel* level);
+    static cocos2d::CCMenuItem* createEmptyButton();
 
 private:
     ButtonFactory() {}
