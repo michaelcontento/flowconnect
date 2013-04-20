@@ -2,6 +2,9 @@
 #define __FlowConnect__LevelMenuScene__
 
 #include "cocos2d.h"
+#include "cocos-ext.h"
+
+class LoaderPage;
 
 class LevelMenuScene : public cocos2d::CCLayer
 {
@@ -14,11 +17,27 @@ public:
     virtual bool init();
 
     void btnGame(void* sender) const;
-    cocos2d::CCNode* createMenuContainer();
-    void alignMenu(cocos2d::CCMenu* menu) const;
+
+    virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchCancelled(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 
 private:
     const unsigned int ITEMS_PER_ROW = 6;
+    const unsigned int ITEM_PADDING = 15;
+    const unsigned int INDICATOR_SPACING = 10;
+    cocos2d::CCArray* pageIndicator;
+    unsigned int totalPages;
+    cocos2d::extension::CCScrollView* scrollView;
+
+    cocos2d::CCNode* createMenuContainer();
+    cocos2d::CCNode* createPageMenu(const LoaderPage* page) const;
+    void alignMenu(cocos2d::CCMenu* menu) const;
+    void adjustScrollView();
+
+    cocos2d::CCNode* createPageIndicatorContainer();
+    void setPageIndicatorPage(const unsigned int page);
 };
 
 #endif /* defined(__FlowConnect__LevelMenuScene__) */

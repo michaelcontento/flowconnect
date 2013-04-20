@@ -161,6 +161,7 @@
 		C8D628D1171EE84300631416 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8D628CF171EE84300631416 /* SceneManager.cpp */; };
 		C8DBAB92171C5EAA009849B4 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C8DBAB91171C5EAA009849B4 /* levels */; };
 		C8E19D0717184F9400949285 /* BoardStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E19D0517184F9400949285 /* BoardStats.cpp */; };
+		C8E40550172195E700F6599D /* GameButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E4054E172195E700F6599D /* GameButton.cpp */; };
 		D41A0AD1160F154A004552AE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41A0AD0160F154A004552AE /* Default-568h@2x.png */; };
 		D446FD6E16102124000ADA7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FD6D16102124000ADA7B /* Default@2x.png */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
@@ -498,6 +499,8 @@
 		C8DBAB91171C5EAA009849B4 /* levels */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = levels; sourceTree = "<group>"; };
 		C8E19D0517184F9400949285 /* BoardStats.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoardStats.cpp; path = ../Classes/gameobjects/BoardStats.cpp; sourceTree = "<group>"; };
 		C8E19D0617184F9400949285 /* BoardStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardStats.h; path = ../Classes/gameobjects/BoardStats.h; sourceTree = "<group>"; };
+		C8E4054E172195E700F6599D /* GameButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameButton.cpp; path = ../Classes/GameButton.cpp; sourceTree = "<group>"; };
+		C8E4054F172195E700F6599D /* GameButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameButton.h; path = ../Classes/GameButton.h; sourceTree = "<group>"; };
 		D41A0AD0160F154A004552AE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../proj.ios/Default-568h@2x.png"; sourceTree = "<group>"; };
 		D446FD6D16102124000ADA7B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../proj.ios/Default@2x.png"; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1031,6 +1034,8 @@
 				C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */,
 				C8A0C2B5171FD47E0094DDBB /* ButtonFactory.h */,
 				C8A0C2B7172134BD0094DDBB /* Globals.h */,
+				C8E4054E172195E700F6599D /* GameButton.cpp */,
+				C8E4054F172195E700F6599D /* GameButton.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1359,6 +1364,7 @@
 				C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */,
 				C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */,
 				C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */,
+				C8E40550172195E700F6599D /* GameButton.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

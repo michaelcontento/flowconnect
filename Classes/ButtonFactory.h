@@ -3,13 +3,14 @@
 
 #include "cocos2d.h"
 #include "LevelLoader.h"
+#include "GameButton.h"
 
 class ButtonFactory
 {
 public:
     static cocos2d::CCMenuItemFont* create(const char* text, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector);
     static cocos2d::CCMenu* createSceneBackButton();
-    static cocos2d::CCMenuItemFont* createLevelButton(LoaderLevel* level, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector);
+    static GameButton* createLevelButton(LoaderLevel* level);
 
 private:
     ButtonFactory() {}

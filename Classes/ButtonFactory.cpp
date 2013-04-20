@@ -37,13 +37,7 @@ CCMenu* ButtonFactory::createSceneBackButton()
     return menu;
 }
 
-CCMenuItemFont* ButtonFactory::createLevelButton(LoaderLevel* level, CCObject* target, SEL_MenuHandler selector)
+GameButton* ButtonFactory::createLevelButton(LoaderLevel* level)
 {
-    char text[5] = {0};
-    snprintf(text, 5, "%d", level->localid);
-    
-    auto button = ButtonFactory::create(text, target, selector);
-    button->setUserData(level);
-
-    return button;
+    return GameButton::createWithLevel(level);
 }

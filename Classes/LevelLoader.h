@@ -8,6 +8,7 @@ struct LoaderLevel;
 
 struct LoaderCategory {
     unsigned int uid;
+    unsigned int localid;
     LoaderCategory* prev;
     LoaderCategory* next;
 
@@ -17,6 +18,7 @@ struct LoaderCategory {
 
 struct LoaderPage {
     unsigned int uid;
+    unsigned int localid;
     LoaderPage* prev;
     LoaderPage* next;
 
@@ -27,10 +29,10 @@ struct LoaderPage {
 
 struct LoaderLevel {
     unsigned int uid;
+    unsigned int localid;
     LoaderLevel* prev;
     LoaderLevel* next;
     
-    unsigned int localid;
     const char* data;
     LoaderPage* page;
 };
@@ -45,7 +47,9 @@ public:
 
 private:
     unsigned int idCounter;
+    unsigned int categoryLocalCounter;
     unsigned int pageLocalCounter;
+    unsigned int levelLocalCounter;
     LoaderCategory* currentCategory;
     LoaderPage* currentPage;
 
