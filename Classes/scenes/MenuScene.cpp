@@ -40,7 +40,7 @@ bool MenuScene::init()
     menu->addChild(ButtonFactory::createEmptyButton());
     menu->addChild(ButtonFactory::create("Shop", this, menu_selector(MenuScene::btnShop)));
     menu->addChild(ButtonFactory::create("Settings", this, menu_selector(MenuScene::btnSettings)));
-    menu->alignItemsVertically();
+    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
     return true;
 }

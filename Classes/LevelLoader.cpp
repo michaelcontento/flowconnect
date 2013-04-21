@@ -12,6 +12,7 @@ LevelLoader::LevelLoader(const char* filename)
 , levelLocalCounter(0)
 , currentCategory(NULL)
 , currentPage(NULL)
+, lastRecord(NULL)
 {
     loadLevel(filename);
 }
@@ -23,17 +24,20 @@ LevelLoader::~LevelLoader()
             for (auto level : page->levels) {
                 level->page = NULL;
                 free((char*)level->data);
+                free((char*)level->description);
                 delete level;
             }
 
             page->levels.clear();
             page->category = NULL;
             free((char*)page->name);
+            free((char*)page->description);
             delete page;
         }
 
         category->pages.clear();
         free((char*)category->name);
+        free((char*)category->description);
         delete category;
     }
 }
@@ -68,6 +72,8 @@ void LevelLoader::loadLevel(const char* filename)
             addPage(data);
         } else if (type.compare("lvl") == 0) {
             addLevel(data);
+        } else if (type.compare("des") == 0) {
+            addDescription(data);
         } else {
             CCLog("LevelLoader: Invalid type: %s", line.c_str());
         }
@@ -81,6 +87,7 @@ void LevelLoader::addCategory(const std::string& data)
     currentCategory->localid = ++categoryLocalCounter;
     currentCategory->prev = NULL;
     currentCategory->next = NULL;
+    currentCategory->description = NULL;
     currentCategory->name = strdup(data.c_str());
 
     if (categories.size() > 0) {
@@ -90,6 +97,8 @@ void LevelLoader::addCategory(const std::string& data)
     }
     
     categories.push_back(currentCategory);
+    lastRecord = currentCategory;
+    pageLocalCounter = 0;
 }
 
 void LevelLoader::addPage(const std::string& data)
@@ -101,6 +110,7 @@ void LevelLoader::addPage(const std::string& data)
     currentPage->localid = ++pageLocalCounter;
     currentPage->prev = NULL;
     currentPage->next = NULL;
+    currentPage->description = NULL;
     currentPage->name = strdup(data.c_str());
     currentPage->category = currentCategory;
 
@@ -111,6 +121,7 @@ void LevelLoader::addPage(const std::string& data)
     }
 
     currentCategory->pages.push_back(currentPage);
+    lastRecord = currentPage;
     levelLocalCounter = 0;
 }
 
@@ -122,6 +133,7 @@ void LevelLoader::addLevel(const std::string& data)
     currentLevel->uid = ++idCounter;
     currentLevel->prev = NULL;
     currentLevel->next = NULL;
+    currentLevel->description = NULL;
     currentLevel->localid = ++levelLocalCounter;
     currentLevel->data = strdup(data.c_str());
     currentLevel->page = currentPage;
@@ -133,6 +145,14 @@ void LevelLoader::addLevel(const std::string& data)
     }
     
     currentPage->levels.push_back(currentLevel);
+    lastRecord = currentLevel;
+}
+
+void LevelLoader::addDescription(const std::string& data)
+{
+    assert(lastRecord && "one record must come first");
+
+    lastRecord->description = strdup(data.c_str());
 }
 
 std::string LevelLoader::getFileContent(const char* filename)

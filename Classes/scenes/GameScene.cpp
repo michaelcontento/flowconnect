@@ -1,6 +1,7 @@
 #include "GameScene.h"
 
 #include "SceneManager.h"
+#include "ButtonFactory.h"
 #include "../Colors.h"
 
 using namespace cocos2d;
@@ -15,7 +16,6 @@ GameScene::GameScene()
 , rightMenu(NULL)
 , stats(NULL)
 , topMenu(NULL)
-, sizeLabel(NULL)
 , headlineLabel(NULL)
 {
 }
@@ -40,7 +40,6 @@ bool GameScene::init()
     initTopMenu();
     initLeftMenu();
     initRightMenu();
-    initLabels();
     
     initBoard();
 
@@ -147,16 +146,17 @@ void GameScene::initBoard()
     board->initWithLevel(globalLevel);
     addBoardWithinContainer(board);
 
-    headlineLabel->setString(globalLevel->page->name);
-
+    if (headlineLabel) {
+        removeChild(headlineLabel);
+    }
     char buf[50] = {0};
     snprintf(
-        buf, 50, "%.0fx%.0f #%d",
-        board->getSize().width,
-        board->getSize().height,
+        buf, 50, "%s Level %d",
+        globalLevel->page->name,
         globalLevel->localid
     );
-    sizeLabel->setString(buf);
+    headlineLabel = ButtonFactory::createHeadline(buf);
+    addChild(headlineLabel);
 }
 
 void GameScene::addBoardWithinContainer(Board* board)
@@ -187,26 +187,6 @@ void GameScene::createMenuitem(const char* imagename, CCMenu* menu, SEL_MenuHand
     disabled->setOpacity(DISABLED_OPACITY);
     
     menu->addChild(CCMenuItemSprite::create(normal, normal, disabled, this, selector));
-}
-
-void GameScene::initLabels()
-{
-    auto container = CCNode::create();
-    container->setPositionX(768 / 2);
-    container->setPositionY(topMenu->getPositionY());
-    container->setAnchorPoint(CCPoint(0.5, 0.5));
-    addChild(container);
-
-    headlineLabel = CCLabelTTF::create("", "Markler Fett", 58);
-    headlineLabel->setAnchorPoint(CCPoint(0.5, 0));
-    headlineLabel->setPositionY(-5);
-    container->addChild(headlineLabel);
-
-    sizeLabel = CCLabelTTF::create("", "Markler Fett", 28);
-    sizeLabel->setOpacity(DISABLED_OPACITY);
-    sizeLabel->setAnchorPoint(CCPoint(0.5, 1));
-    sizeLabel->setPositionY(5);
-    container->addChild(sizeLabel);
 }
 
 void GameScene::initLeftMenu()

@@ -1,5 +1,7 @@
 #include "SceneManager.h"
 
+#include "ButtonFactory.h"
+
 using namespace cocos2d;
 
 SceneManager::SceneManager()
@@ -40,6 +42,7 @@ CCScene* SceneManager::gotoScene(CCScene* nextScene, const bool storePrevious)
 
     nextScene->addChild(backgroundLayer, -INFINITY);
 
+    ButtonFactory::resetColorCounter();
     if (previousScene) {
         CCDirector::sharedDirector()->replaceScene(nextScene);
     } else {

@@ -37,11 +37,11 @@ bool CategoryMenuScene::init()
     addChild(menu);
 
     for (auto category : globalLevelLoader.getCategories()) {
-        auto button = ButtonFactory::create(category->name, this, menu_selector(CategoryMenuScene::btnGame));
+        auto button = ButtonFactory::createCategory(category, this, menu_selector(CategoryMenuScene::btnGame));
         button->setUserData(category);
         menu->addChild(button);
     }
-    menu->alignItemsVertically();
+    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
     addChild(ButtonFactory::createSceneBackButton());
 

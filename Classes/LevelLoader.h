@@ -6,9 +6,13 @@
 struct LoaderPage;
 struct LoaderLevel;
 
-struct LoaderCategory {
+struct LoaderRecord {
     unsigned int uid;
     unsigned int localid;
+    const char* description;
+};
+
+struct LoaderCategory : LoaderRecord {
     LoaderCategory* prev;
     LoaderCategory* next;
 
@@ -16,25 +20,21 @@ struct LoaderCategory {
     std::vector<LoaderPage*> pages;
 };
 
-struct LoaderPage {
-    unsigned int uid;
-    unsigned int localid;
+struct LoaderPage : LoaderRecord {
     LoaderPage* prev;
     LoaderPage* next;
+    LoaderCategory* category;
 
     const char* name;
     std::vector<LoaderLevel*> levels;
-    LoaderCategory* category;
 };
 
-struct LoaderLevel {
-    unsigned int uid;
-    unsigned int localid;
+struct LoaderLevel : LoaderRecord {
     LoaderLevel* prev;
     LoaderLevel* next;
-    
-    const char* data;
     LoaderPage* page;
+
+    const char* data;
 };
 
 class LevelLoader
@@ -52,6 +52,7 @@ private:
     unsigned int levelLocalCounter;
     LoaderCategory* currentCategory;
     LoaderPage* currentPage;
+    LoaderRecord* lastRecord;
 
     std::string getFileContent(const char* filename);
     
@@ -59,6 +60,7 @@ private:
     void addCategory(const std::string& data);
     void addPage(const std::string& data);
     void addLevel(const std::string& data);
+    void addDescription(const std::string& data);
 };
 
 #endif /* defined(__FlowConnect__LevelLoader__) */

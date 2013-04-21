@@ -36,7 +36,6 @@ private:
     Board* board;
     BoardStats* stats;
 
-    cocos2d::CCLabelTTF* sizeLabel;
     cocos2d::CCLabelTTF* headlineLabel;
 
     cocos2d::CCMenu* leftMenu;

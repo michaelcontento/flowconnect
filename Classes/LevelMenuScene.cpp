@@ -55,12 +55,6 @@ bool LevelMenuScene::init()
     auto backButton = ButtonFactory::createSceneBackButton();
     addChild(backButton);
 
-    auto headline = CCLabelTTF::create(globalLevel->page->category->name, "Markler Fett", 56);
-    headline->setAnchorPoint(CCPoint(0.5, 0.5));
-    headline->setPositionX(768 / 2);
-    headline->setPositionY(backButton->getPositionY());
-    addChild(headline);
-
     return true;
 }
 
@@ -141,8 +135,7 @@ CCNode* LevelMenuScene::createMenuContainer()
     totalPages = 0;
     for (auto page : globalLevel->page->category->pages) {
         auto pageMenu  = createPageMenu(page);
-        pageMenu->setPosition(768 * totalPages++, 0);
-        
+        pageMenu->setPositionX(pageMenu->getPositionX()+ (768 * totalPages++));
         container->addChild(pageMenu);
     }
 
@@ -153,16 +146,6 @@ CCNode* LevelMenuScene::createMenuContainer()
         totalPages * 768,
         firstPage->getContentSize().height
     ));
-
-    // positioning
-    container->setPositionX(
-        container->getPositionX()
-        + (768 - firstPage->getContentSize().width) / 2
-    );
-    container->setPositionY(
-        container->getPositionY()
-        + (1024 - firstPage->getContentSize().height) / 2
-    );
 
     // we need to wrap the container again or the positioning
     // we've done before would be removed by CCScrollView :/
@@ -176,9 +159,6 @@ CCNode* LevelMenuScene::createMenuContainer()
 CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
 {
     auto menu = CCMenu::create();
-    menu->setAnchorPoint(CCPointZero);
-    menu->setPosition(CCPointZero);
-
     for (auto level : page->levels) {
         auto button = ButtonFactory::createLevelButton(level);
         button->setBorderColor(LINE_COLORS[page->localid]);
@@ -186,17 +166,19 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
     }
 
     alignMenu(menu);
+    menu->setAnchorPoint(CCPointZero);
+    menu->setPosition(
+        (768 - menu->getContentSize().width) / 2,
+        (1024 - menu->getContentSize().height) / 2
+    );
+
 
     auto container = CCNode::create();
     container->setAnchorPoint(CCPointZero);
     container->setPosition(CCPointZero);
-    container->addChild(menu);
     container->setContentSize(menu->getContentSize());
-
-    auto headline = CCLabelTTF::create(page->name, "Markler Fett", 24);
-    headline->setAnchorPoint(CCPoint(0, 0));
-    headline->setPosition(CCPoint(0, menu->getContentSize().height));
-    container->addChild(headline);
+    container->addChild(menu);
+    container->addChild(ButtonFactory::createHeadline(page->name));
 
     return container;
 }

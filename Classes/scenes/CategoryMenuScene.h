@@ -14,6 +14,9 @@ public:
     virtual bool init();
 
     void btnGame(void* sender);
+
+private:
+    const unsigned int MENU_PADDING = 25;
 };
 
 #endif /* defined(__FlowConnect__CategoryMenuScene__) */
