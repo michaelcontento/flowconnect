@@ -1,5 +1,6 @@
 #include "GameButton.h"
 
+#include "Globals.h"
 #include "userstate.h"
 #include "HowToPlayScene.h"
 #include "SceneManager.h"
@@ -92,7 +93,7 @@ void GameButton::addLabel()
     static char text[5] = {0};
     snprintf(text, sizeof(text), "%d", level->localid);
 
-    auto label = CCLabelTTF::create(text, "Markler Fett", 48);
+    auto label = CCLabelTTF::create(text, DEFAULT_FONT_NAME, 48);
     label->setAnchorPoint(CCPoint(0.5, 0.5));
     label->setPosition(CCPoint(getContentSize().width / 2, getContentSize().height / 2));
 

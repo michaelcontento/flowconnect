@@ -155,6 +155,8 @@
 		C88AF0F01725739A004697BE /* ShopScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0EE17257399004697BE /* ShopScene.cpp */; };
 		C88AF0F217257C4D004697BE /* Globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0F117257C4D004697BE /* Globals.cpp */; };
 		C88AF0F517258242004697BE /* HowToPlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0F317258241004697BE /* HowToPlayScene.cpp */; };
+		C88AF11D1725DD65004697BE /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C88AF10E1725DD64004697BE /* RobotoCondensed-Bold.ttf */; };
+		C88AF1221725DD65004697BE /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C88AF1131725DD64004697BE /* RobotoCondensed-Regular.ttf */; };
 		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
 		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
 		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
@@ -491,6 +493,8 @@
 		C88AF0F117257C4D004697BE /* Globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Globals.cpp; path = ../Classes/Globals.cpp; sourceTree = "<group>"; };
 		C88AF0F317258241004697BE /* HowToPlayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HowToPlayScene.cpp; path = ../Classes/HowToPlayScene.cpp; sourceTree = "<group>"; };
 		C88AF0F417258241004697BE /* HowToPlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HowToPlayScene.h; path = ../Classes/HowToPlayScene.h; sourceTree = "<group>"; };
+		C88AF10E1725DD64004697BE /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoCondensed-Bold.ttf"; path = "fonts/RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
+		C88AF1131725DD64004697BE /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoCondensed-Regular.ttf"; path = "fonts/RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CategoryMenuScene.cpp; path = ../Classes/scenes/CategoryMenuScene.cpp; sourceTree = "<group>"; };
 		C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryMenuScene.h; path = ../Classes/scenes/CategoryMenuScene.h; sourceTree = "<group>"; };
 		C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelMenuScene.cpp; path = ../Classes/LevelMenuScene.cpp; sourceTree = "<group>"; };
@@ -1104,6 +1108,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C88AF10E1725DD64004697BE /* RobotoCondensed-Bold.ttf */,
+				C88AF1131725DD64004697BE /* RobotoCondensed-Regular.ttf */,
 				C8DBAB91171C5EAA009849B4 /* levels */,
 				C85D5274171B6A850076A88B /* background-fx.plist */,
 				C8CA62321714517E005660B3 /* assets.plist */,
@@ -1251,6 +1257,8 @@
 				C8CA62361714517E005660B3 /* assets.png in Resources */,
 				C85D5275171B6A850076A88B /* background-fx.plist in Resources */,
 				C8DBAB92171C5EAA009849B4 /* levels in Resources */,
+				C88AF11D1725DD65004697BE /* RobotoCondensed-Bold.ttf in Resources */,
+				C88AF1221725DD65004697BE /* RobotoCondensed-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

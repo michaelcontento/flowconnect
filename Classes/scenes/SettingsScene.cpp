@@ -44,8 +44,11 @@ bool SettingsScene::init()
     menu->addChild(ButtonFactory::create("How to play", this, menu_selector(SettingsScene::btnHowToPlay)));
     menu->addChild(ButtonFactory::createEmptyButton());
 
+    menu->addChild(ButtonFactory::create("Change Mode", this, menu_selector(SettingsScene::btnHowToPlay)));
+    menu->addChild(ButtonFactory::create("Remove Ads", this, menu_selector(SettingsScene::btnHowToPlay)));
     resetBtn = ButtonFactory::create("Reset Game", this, menu_selector(SettingsScene::btnReset));
     menu->addChild(resetBtn);
+
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
     addChild(ButtonFactory::createHeadline("Settings"));

@@ -27,7 +27,7 @@ bool StarButton::init()
         ->getTouchDispatcher()
         ->addTargetedDelegate(this, 1, true);
 
-    counter = CCLabelTTF::create("", "Markler Fett", 36);
+    counter = CCLabelTTF::create("", DEFAULT_FONT_NAME, 36);
     counter->setOpacity(DISABLED_OPACITY);
     counter->setAnchorPoint(CCPoint(1, 0.5));
     counter->setPosition(CCPoint(-5, getContentSize().height / 2));

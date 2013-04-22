@@ -1,5 +1,6 @@
 #include "ButtonFactory.h"
 
+#include "Globals.h"
 #include "SceneManager.h"
 #include "Colors.h"
 #include "StarButton.h"
@@ -23,7 +24,7 @@ CCMenuItemSprite* ButtonFactory::create(const char* text, CCObject* target, SEL_
     auto button = CCMenuItemSprite::create(sprite, sprite);
     button->setTarget(target, selector);
 
-    auto label = CCLabelTTF::create(text, "Markler Fett", 48);
+    auto label = CCLabelTTF::create(text, DEFAULT_FONT_NAME, 48);
     label->setAnchorPoint(CCPoint(0.5, 0.5));
     label->setPosition(ccpMult(ccpFromSize(button->getContentSize()), 0.5));
     label->setColor(LINE_COLORS[ButtonFactory::colorCounter++]);
@@ -34,7 +35,7 @@ CCMenuItemSprite* ButtonFactory::create(const char* text, CCObject* target, SEL_
 
 CCLabelTTF* ButtonFactory::createHeadline(const char* text)
 {
-    auto label = CCLabelTTF::create(text, "Markler Fett", 36);
+    auto label = CCLabelTTF::create(text, DEFAULT_FONT_NAME, 36);
     label->setAnchorPoint(CCPoint(0, 0.5));
     label->setPositionX(SIDE_MARGIN + 75);
     label->setPositionY(TOP_MARGIN);
@@ -49,14 +50,14 @@ CCMenuItemSprite* ButtonFactory::createCategory(LoaderCategory* category, CCObje
     auto button = CCMenuItemSprite::create(sprite, sprite);
     button->setTarget(target, selector);
 
-    auto name = CCLabelTTF::create(category->name, "Markler Fett", 36);
+    auto name = CCLabelTTF::create(category->name, DEFAULT_FONT_NAME, 36);
     name->setAnchorPoint(CCPoint(0, 1));
     name->setPosition(CCPoint(35, button->getContentSize().height - 7));
     name->setColor(LINE_COLORS[ButtonFactory::colorCounter++]);
     button->addChild(name);
 
     if (category->description) {
-        auto desc = CCLabelTTF::create(category->description, "Markler Fett", 28);
+        auto desc = CCLabelTTF::create(category->description, SMALL_FONT_NAME, 28);
         desc->setAnchorPoint(CCPoint(0, 0));
         desc->setPosition(CCPoint(35, 7));
         desc->setOpacity(DISABLED_OPACITY);
@@ -75,7 +76,7 @@ CCMenuItemSprite* ButtonFactory::createCategory(LoaderCategory* category, CCObje
             category->countLevels()
         );
 
-        auto solved = CCLabelTTF::create(buf, "Markler Fett", 36);
+        auto solved = CCLabelTTF::create(buf, SMALL_FONT_NAME, 36);
         solved->setOpacity(DISABLED_OPACITY);
         solved->setAnchorPoint(CCPoint(1, 0.5));
         solved->setPosition(CCPoint(

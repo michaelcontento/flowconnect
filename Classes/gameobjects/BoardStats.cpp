@@ -1,5 +1,7 @@
 #include "BoardStats.h"
 
+#include "Globals.h"
+
 using namespace cocos2d;
 
 BoardStats::BoardStats()
@@ -34,16 +36,16 @@ bool BoardStats::initWithBoard(Board* board)
         return false;
     }
 
-    statsMove = CCLabelTTF::create("", "Markler Fett", 24);
+    statsMove = CCLabelTTF::create("", SMALL_FONT_NAME, 24);
     statsMove->setAnchorPoint(CCPoint(0, 0));
     addChild(statsMove);
 
-    statsBest = CCLabelTTF::create("", "Markler Fett", 24);
+    statsBest = CCLabelTTF::create("", SMALL_FONT_NAME, 24);
     statsBest->setAnchorPoint(CCPoint(0.5, 0));
     statsBest->setPositionX(696 / 2);
     addChild(statsBest);
 
-    statsProgress = CCLabelTTF::create("", "Markler Fett", 24);
+    statsProgress = CCLabelTTF::create("", SMALL_FONT_NAME, 24);
     statsProgress->setAnchorPoint(CCPoint(1, 0));
     statsProgress->setPositionX(696);
     addChild(statsProgress);
