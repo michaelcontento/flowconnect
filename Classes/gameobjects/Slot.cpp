@@ -275,9 +275,9 @@ void Slot::showNumber()
     if (label) {
         label->setVisible(true);
     } else {
-        label = CCLabelTTF::create("", DEFAULT_FONT_NAME, 72);
+        label = CCLabelTTF::create("", DEFAULT_FONT_NAME, 82);
         label->setPositionX(getSize().width / 2);
-        label->setPositionY(getSize().height / 2 + 2);
+        label->setPositionY(getSize().height / 2 + 3);
         label->setColor(SLOT_NUMBER_COLOR);
         label->setOpacity(SLOT_NUMBER_OPACITY);
         label->setZOrder(SLOT_ZORDER_LABEL);
