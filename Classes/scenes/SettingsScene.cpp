@@ -41,11 +41,13 @@ bool SettingsScene::init()
 
     menu->addChild(ButtonFactory::create("Music", this, menu_selector(SettingsScene::btnMusicToggle)));
     menu->addChild(ButtonFactory::create("Sound", this, menu_selector(SettingsScene::btnSoundToggle)));
-    menu->addChild(ButtonFactory::create("How to play", this, menu_selector(SettingsScene::btnHowToPlay)));
-    menu->addChild(ButtonFactory::createEmptyButton());
-
     menu->addChild(ButtonFactory::create("Change Mode", this, menu_selector(SettingsScene::btnHowToPlay)));
+
+    menu->addChild(ButtonFactory::createEmptyButton());
     menu->addChild(ButtonFactory::create("Remove Ads", this, menu_selector(SettingsScene::btnHowToPlay)));
+    menu->addChild(ButtonFactory::create("How to play", this, menu_selector(SettingsScene::btnHowToPlay)));
+
+    menu->addChild(ButtonFactory::createEmptyButton());
     resetBtn = ButtonFactory::create("Reset Game", this, menu_selector(SettingsScene::btnReset));
     menu->addChild(resetBtn);
 

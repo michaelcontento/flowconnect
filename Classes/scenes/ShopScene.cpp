@@ -42,7 +42,10 @@ bool ShopScene::init()
 
     addChild(ButtonFactory::createHeadline("Shop"));
     addChild(ButtonFactory::createSceneBackButton());
-    addChild(ButtonFactory::createStar());
+
+    auto star = ButtonFactory::createStar();
+    star->enabled = false;
+    addChild(star);
 
     return true;
 }

@@ -6,6 +6,8 @@
 class StarButton : public cocos2d::CCSprite, public cocos2d::CCTouchDelegate
 {
 public:
+    bool enabled;
+    
     StarButton();
     virtual ~StarButton();
     CREATE_FUNC(StarButton);

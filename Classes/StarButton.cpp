@@ -3,11 +3,14 @@
 #include "Colors.h"
 #include "Globals.h"
 #include "userstate.h"
+#include "SceneManager.h"
+#include "ShopScene.h"
 
 using namespace cocos2d;
 
 StarButton::StarButton()
 : counter(NULL)
+, enabled(true)
 {
     
 }
@@ -59,5 +62,7 @@ void StarButton::ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)
 
 void StarButton::onClick()
 {
-    CCLog("PAYMENT!");
+    if (enabled) {
+        SceneManager::getInstance().gotoScene(ShopScene::scene());
+    }
 }

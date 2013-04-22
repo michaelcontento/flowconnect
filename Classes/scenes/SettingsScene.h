@@ -22,7 +22,7 @@ public:
     void btnSoundToggle();
 
 private:
-    const unsigned int MENU_PADDING = 50;
+    const unsigned int MENU_PADDING = 25;
     cocos2d::CCMenuItemSprite* resetBtn;
     const LoaderLevel* oldGlobalLevel;
 };
