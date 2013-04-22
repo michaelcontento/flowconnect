@@ -13,10 +13,16 @@ public:
     CREATE_FUNC(CategoryMenuScene);
     virtual bool init();
 
+    virtual void onEnter();
+
     void btnGame(void* sender);
 
 private:
     const unsigned int MENU_PADDING = 25;
+    cocos2d::CCMenu* menu;
+    int lastStars;
+
+    void fillMenu();
 };
 
 #endif /* defined(__FlowConnect__CategoryMenuScene__) */

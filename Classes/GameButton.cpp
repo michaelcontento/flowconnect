@@ -1,5 +1,7 @@
 #include "GameButton.h"
 
+#include "userstate.h"
+#include "HowToPlayScene.h"
 #include "SceneManager.h"
 #include "GameScene.h"
 
@@ -87,7 +89,7 @@ void GameButton::updateStateIndicator()
 
 void GameButton::addLabel()
 {
-    char text[5] = {0};
+    static char text[5] = {0};
     snprintf(text, sizeof(text), "%d", level->localid);
 
     auto label = CCLabelTTF::create(text, "Markler Fett", 48);
@@ -105,5 +107,12 @@ void GameButton::setBorderColor(const ccColor3B color)
 void GameButton::onClick()
 {
     globalLevel = level;
-    SceneManager::getInstance().gotoScene(GameScene::scene());
+
+    if (userstate::showHowToPlay()) {
+        userstate::setShowHowToPlay(false);
+        SceneManager::getInstance().gotoScene(HowToPlayScene::scene());
+    } else {
+        SceneManager::getInstance().gotoScene(GameScene::scene());
+    }
+
 }

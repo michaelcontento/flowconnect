@@ -54,13 +54,18 @@ CCScene* SceneManager::gotoScene(CCScene* nextScene, const bool storePrevious)
 
 CCScene* SceneManager::popScene()
 {
-    if (sceneStack->count() == 0) {
-        return NULL;
-    }
-
-    auto previousScene = static_cast<CCScene*>(sceneStack->lastObject());
+    auto previousScene = getLastScene();
     previousScene->retain();
     sceneStack->removeLastObject();
     
     return gotoScene(previousScene, false);
+}
+
+CCScene* SceneManager::getLastScene()
+{
+    if (sceneStack->count() == 0) {
+        return NULL;
+    }
+
+    return static_cast<CCScene*>(sceneStack->lastObject());
 }

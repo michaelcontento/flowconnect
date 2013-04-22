@@ -138,7 +138,8 @@ void GameScene::initBoard()
     }
     char buf[50] = {0};
     snprintf(
-        buf, 50, "%s Level %d",
+        buf, 50, "%s %s #%d",
+        globalLevel->page->category->name,
         globalLevel->page->name,
         globalLevel->localid
     );

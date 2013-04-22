@@ -2,7 +2,9 @@
 
 #include "SceneManager.h"
 #include "CategoryMenuScene.h"
+#include "ShopScene.h"
 #include "ButtonFactory.h"
+#include "SettingsScene.h"
 
 using namespace cocos2d;
 
@@ -33,7 +35,7 @@ bool MenuScene::init()
     addChild(menu);
 
     menu->addChild(ButtonFactory::create("Play", this, menu_selector(MenuScene::btnPlay)));
-    menu->addChild(ButtonFactory::create("Time Attack", this, menu_selector(MenuScene::btnPLayTimeAttack)));
+    //menu->addChild(ButtonFactory::create("Time Attack", this, menu_selector(MenuScene::btnPLayTimeAttack)));
     menu->addChild(ButtonFactory::createEmptyButton());
     menu->addChild(ButtonFactory::create("Leaderboard", this, menu_selector(MenuScene::btnLeaderboard)));
     menu->addChild(ButtonFactory::create("Achievements", this, menu_selector(MenuScene::btnAchievements)));
@@ -54,21 +56,26 @@ void MenuScene::btnPlay()
 
 void MenuScene::btnPLayTimeAttack()
 {
+    assert(false && "Not yet implemented");
 }
 
 void MenuScene::btnLeaderboard()
 {
+    CCLog("LEADERBOARD");
 }
 
 void MenuScene::btnAchievements()
 {
+    CCLog("ACHIEVEMENTS");
 }
 
 void MenuScene::btnShop()
 {
+    SceneManager::getInstance().gotoScene(ShopScene::scene());
 }
 
 void MenuScene::btnSettings()
 {
+    SceneManager::getInstance().gotoScene(SettingsScene::scene());
 }
 

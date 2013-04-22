@@ -2,8 +2,10 @@
 #define FlowConnect_Globals_h
 
 #include "LevelLoader.h"
+#include "StarButton.h"
 
-LevelLoader globalLevelLoader = LevelLoader("levels");
-const LoaderLevel* globalLevel = globalLevelLoader.getCategories().front()->pages.front()->levels.front();
+extern LevelLoader globalLevelLoader;
+extern const LoaderLevel* globalLevel;
+extern StarButton* globalLastStarButton;
 
 #endif

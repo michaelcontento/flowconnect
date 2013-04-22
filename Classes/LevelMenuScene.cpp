@@ -189,7 +189,7 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
         auto button = ButtonFactory::createLevelButton(level);
         button->setBorderColor(LINE_COLORS[page->localid]);
         button->setTag(page->localid - 1);
-        
+
         menu->addChild(button);
         buttons->addObject(button);
     }
@@ -207,7 +207,10 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
     container->setPosition(CCPointZero);
     container->setContentSize(menu->getContentSize());
     container->addChild(menu);
-    container->addChild(ButtonFactory::createHeadline(page->name));
+
+    static char headline[50] = {0};
+    snprintf(headline, sizeof(headline), "%s %s", page->category->name, page->name);
+    container->addChild(ButtonFactory::createHeadline(headline));
 
     return container;
 }

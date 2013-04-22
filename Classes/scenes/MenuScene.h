@@ -21,7 +21,7 @@ public:
     void btnSettings();
 
 private:
-    const unsigned int MENU_PADDING = 25;
+    const unsigned int MENU_PADDING = 30;
 };
 
 #endif /* defined(__FlowConnect__MenuScene__) */

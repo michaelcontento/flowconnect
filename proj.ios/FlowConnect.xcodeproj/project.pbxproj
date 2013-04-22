@@ -151,6 +151,10 @@
 		C85D5278171C10C50076A88B /* LevelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C85D5276171C10C50076A88B /* LevelLoader.cpp */; };
 		C88AF0E01723EC45004697BE /* StarButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0DE1723EC45004697BE /* StarButton.cpp */; };
 		C88AF0E717246A63004697BE /* userstate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E517246A62004697BE /* userstate.cpp */; };
+		C88AF0EA17256800004697BE /* SettingsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E817256800004697BE /* SettingsScene.cpp */; };
+		C88AF0F01725739A004697BE /* ShopScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0EE17257399004697BE /* ShopScene.cpp */; };
+		C88AF0F217257C4D004697BE /* Globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0F117257C4D004697BE /* Globals.cpp */; };
+		C88AF0F517258242004697BE /* HowToPlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0F317258241004697BE /* HowToPlayScene.cpp */; };
 		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
 		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
 		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
@@ -480,6 +484,13 @@
 		C88AF0DF1723EC45004697BE /* StarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StarButton.h; path = ../Classes/StarButton.h; sourceTree = "<group>"; };
 		C88AF0E517246A62004697BE /* userstate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = userstate.cpp; path = ../Classes/userstate.cpp; sourceTree = "<group>"; };
 		C88AF0E617246A63004697BE /* userstate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = userstate.h; path = ../Classes/userstate.h; sourceTree = "<group>"; };
+		C88AF0E817256800004697BE /* SettingsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SettingsScene.cpp; path = ../Classes/scenes/SettingsScene.cpp; sourceTree = "<group>"; };
+		C88AF0E917256800004697BE /* SettingsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsScene.h; path = ../Classes/scenes/SettingsScene.h; sourceTree = "<group>"; };
+		C88AF0EE17257399004697BE /* ShopScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShopScene.cpp; path = ../Classes/scenes/ShopScene.cpp; sourceTree = "<group>"; };
+		C88AF0EF1725739A004697BE /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopScene.h; path = ../Classes/scenes/ShopScene.h; sourceTree = "<group>"; };
+		C88AF0F117257C4D004697BE /* Globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Globals.cpp; path = ../Classes/Globals.cpp; sourceTree = "<group>"; };
+		C88AF0F317258241004697BE /* HowToPlayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HowToPlayScene.cpp; path = ../Classes/HowToPlayScene.cpp; sourceTree = "<group>"; };
+		C88AF0F417258241004697BE /* HowToPlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HowToPlayScene.h; path = ../Classes/HowToPlayScene.h; sourceTree = "<group>"; };
 		C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CategoryMenuScene.cpp; path = ../Classes/scenes/CategoryMenuScene.cpp; sourceTree = "<group>"; };
 		C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryMenuScene.h; path = ../Classes/scenes/CategoryMenuScene.h; sourceTree = "<group>"; };
 		C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelMenuScene.cpp; path = ../Classes/LevelMenuScene.cpp; sourceTree = "<group>"; };
@@ -1038,6 +1049,7 @@
 				C85D5277171C10C50076A88B /* LevelLoader.h */,
 				C8D628D2171EE87A00631416 /* Singleton.h */,
 				C8A0C2B7172134BD0094DDBB /* Globals.h */,
+				C88AF0F117257C4D004697BE /* Globals.cpp */,
 				C8DBAB8E171C4BE1009849B4 /* Colors.h */,
 				C88AF0E517246A62004697BE /* userstate.cpp */,
 				C88AF0E617246A63004697BE /* userstate.h */,
@@ -1134,6 +1146,12 @@
 				C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */,
 				C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */,
 				C8A0C2AB171F62B50094DDBB /* LevelMenuScene.h */,
+				C88AF0E817256800004697BE /* SettingsScene.cpp */,
+				C88AF0E917256800004697BE /* SettingsScene.h */,
+				C88AF0EE17257399004697BE /* ShopScene.cpp */,
+				C88AF0EF1725739A004697BE /* ShopScene.h */,
+				C88AF0F317258241004697BE /* HowToPlayScene.cpp */,
+				C88AF0F417258241004697BE /* HowToPlayScene.h */,
 			);
 			name = scenes;
 			sourceTree = "<group>";
@@ -1385,6 +1403,10 @@
 				C8E40550172195E700F6599D /* GameButton.cpp in Sources */,
 				C88AF0E01723EC45004697BE /* StarButton.cpp in Sources */,
 				C88AF0E717246A63004697BE /* userstate.cpp in Sources */,
+				C88AF0EA17256800004697BE /* SettingsScene.cpp in Sources */,
+				C88AF0F01725739A004697BE /* ShopScene.cpp in Sources */,
+				C88AF0F217257C4D004697BE /* Globals.cpp in Sources */,
+				C88AF0F517258242004697BE /* HowToPlayScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

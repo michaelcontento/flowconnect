@@ -12,6 +12,7 @@ public:
     cocos2d::CCScene* gotoScene(cocos2d::CCScene* s);
     cocos2d::CCScene* gotoScene(cocos2d::CCScene* s, const bool storePrevious);
     cocos2d::CCScene* popScene();
+    cocos2d::CCScene* getLastScene();
 
 private:
     cocos2d::CCArray* sceneStack;

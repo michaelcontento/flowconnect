@@ -61,24 +61,29 @@ CCMenuItemSprite* ButtonFactory::createCategory(LoaderCategory* category, CCObje
         desc->setPosition(CCPoint(35, 7));
         desc->setOpacity(DISABLED_OPACITY);
         button->addChild(desc);
+    } else {
+        name->setAnchorPoint(CCPoint(0, 0.5));
+        name->setPositionY(button->getContentSize().height / 2);
     }
 
-    char buf[10] = {0};
-    snprintf(
-        buf, sizeof(buf),
-        "%d / %d",
-        category->countLevelsSolved(),
-        category->countLevels()
-    );
+    if (category->pages.size() > 0) {
+        char buf[10] = {0};
+        snprintf(
+            buf, sizeof(buf),
+            "%d / %d",
+            category->countLevelsSolved(),
+            category->countLevels()
+        );
 
-    auto solved = CCLabelTTF::create(buf, "Markler Fett", 36);
-    solved->setOpacity(DISABLED_OPACITY);
-    solved->setAnchorPoint(CCPoint(1, 0.5));
-    solved->setPosition(CCPoint(
-        button->getContentSize().width - 30,
-        button->getContentSize().height / 2
-    ));
-    button->addChild(solved);
+        auto solved = CCLabelTTF::create(buf, "Markler Fett", 36);
+        solved->setOpacity(DISABLED_OPACITY);
+        solved->setAnchorPoint(CCPoint(1, 0.5));
+        solved->setPosition(CCPoint(
+            button->getContentSize().width - 30,
+            button->getContentSize().height / 2
+        ));
+        button->addChild(solved);
+    }
 
     return button;
 }

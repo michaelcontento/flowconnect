@@ -17,7 +17,7 @@ public:
     static cocos2d::CCMenuItemSprite* createCategory(LoaderCategory* category, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector);
     static cocos2d::CCLabelTTF* createHeadline(const char* text);
     static StarButton* createStar();
-
+    
 private:
     static unsigned int colorCounter;
     

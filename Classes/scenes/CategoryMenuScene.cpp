@@ -13,6 +13,8 @@ extern LoaderLevel* globalLevel;
 #pragma mark Initialization
 
 CategoryMenuScene::CategoryMenuScene()
+: menu(NULL)
+, lastStars(-1)
 {
 }
 
@@ -27,26 +29,43 @@ CCScene* CategoryMenuScene::scene()
     return scene;
 }
 
+void CategoryMenuScene::onEnter()
+{
+    CCLayer::onEnter();
+
+    auto stars = userstate::getStarsForCategory(globalLevel->page->category);
+    if (stars != lastStars) {
+        fillMenu();
+    }
+}
+
 bool CategoryMenuScene::init()
 {
     if (!CCLayer::init()) {
         return false;
     }
 
-    auto menu = CCMenu::create();
+    menu = CCMenu::create();
     addChild(menu);
+
+    addChild(ButtonFactory::createSceneBackButton());
+    addChild(ButtonFactory::createStar());
+    addChild(ButtonFactory::createHeadline("Play"));
+
+    return true;
+}
+
+void CategoryMenuScene::fillMenu()
+{
+    menu->removeAllChildren();
 
     for (auto category : globalLevelLoader.getCategories()) {
         auto button = ButtonFactory::createCategory(category, this, menu_selector(CategoryMenuScene::btnGame));
         button->setUserData(category);
         menu->addChild(button);
     }
+    
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
-
-    addChild(ButtonFactory::createSceneBackButton());
-    addChild(ButtonFactory::createStar());
-
-    return true;
 }
 
 void CategoryMenuScene::btnGame(void* sender)
@@ -61,6 +80,11 @@ void CategoryMenuScene::btnGame(void* sender)
         return;
     }
 
+    if (category->pages.size() == 0) {
+        return;
+    }
+
+    lastStars = userstate::getStarsForCategory(category);
     globalLevel = category->pages.front()->levels.front();
     SceneManager::getInstance().gotoScene(LevelMenuScene::scene());
 }

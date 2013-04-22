@@ -1,6 +1,7 @@
 #include "StarButton.h"
 
 #include "Colors.h"
+#include "Globals.h"
 #include "userstate.h"
 
 using namespace cocos2d;
@@ -8,10 +9,12 @@ using namespace cocos2d;
 StarButton::StarButton()
 : counter(NULL)
 {
+    
 }
 
 StarButton::~StarButton()
 {
+    globalLastStarButton = NULL;
 }
 
 bool StarButton::init()
@@ -23,7 +26,6 @@ bool StarButton::init()
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
         ->addTargetedDelegate(this, 1, true);
-
 
     counter = CCLabelTTF::create("", "Markler Fett", 36);
     counter->setOpacity(DISABLED_OPACITY);
@@ -40,6 +42,7 @@ void StarButton::onEnter()
     snprintf(buf, sizeof(buf), "%d", userstate::getStarsForUser());
     
     counter->setString(buf);
+    globalLastStarButton = this;
 }
 
 bool StarButton::ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)
