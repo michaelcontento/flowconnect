@@ -15,6 +15,7 @@ using namespace cocos2d;
 GameButton::GameButton()
 : border(NULL)
 , star(NULL)
+, label(NULL)
 , lastState(userstate::Mode::NONE)
 {
 }
@@ -74,18 +75,19 @@ void GameButton::updateStateIndicator()
         removeChild(star);
     }
 
-    if (state == userstate::Mode::SOLVED) {
-        star = CCSprite::createWithSpriteFrameName("buttons/borders/star-empty.png");
-    } else if (state == userstate::Mode::PERFECT) {
-        star = CCSprite::createWithSpriteFrameName("buttons/borders/star-full.png");
-    }
-
+    star = CCSprite::createWithSpriteFrameName("buttons/borders/star-full.png");
     star->setAnchorPoint(CCPoint(0.5, 0.5));
-    star->setOpacity(255 * 0.3);
     star->setPosition(ccpMult(ccpFromSize(getContentSize()), 0.5));
-    star->setPositionX(star->getPositionX() + 1);
-    star->setZOrder(ZORDER_STAR);
+    star->setPositionX(star->getPositionX());
+    star->setPositionY(star->getPositionY() + 3);
+    star->setZOrder(label->getZOrder() - 1);
     addChild(star);
+
+    if (state == userstate::Mode::SOLVED) {
+        star->setOpacity(255 * 0.3);
+    } else if (state == userstate::Mode::PERFECT) {
+        label->setColor(ccBLACK);
+    }
 }
 
 void GameButton::addLabel()
@@ -93,10 +95,9 @@ void GameButton::addLabel()
     static char text[5] = {0};
     snprintf(text, sizeof(text), "%d", level->localid);
 
-    auto label = CCLabelTTF::create(text, DEFAULT_FONT_NAME, 48);
+    label = CCLabelTTF::create(text, DEFAULT_FONT_NAME, 48);
     label->setAnchorPoint(CCPoint(0.5, 0.5));
     label->setPosition(CCPoint(getContentSize().width / 2, getContentSize().height / 2));
-
     addChild(label);
 }
 
