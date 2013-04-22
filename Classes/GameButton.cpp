@@ -3,12 +3,16 @@
 #include "SceneManager.h"
 #include "GameScene.h"
 
-extern LoaderLevel* globalLevel;
+#define ZORDER_STAR -1
+
+extern const LoaderLevel* globalLevel;
 
 using namespace cocos2d;
 
 GameButton::GameButton()
 : border(NULL)
+, star(NULL)
+, lastState(userstate::Mode::NONE)
 {
 }
 
@@ -16,7 +20,7 @@ GameButton::~GameButton()
 {
 }
 
-GameButton* GameButton::createWithLevel(LoaderLevel* level)
+GameButton* GameButton::createWithLevel(const LoaderLevel* level)
 {
     auto result = new GameButton();
     if (result && result->initWithLevel(level)) {
@@ -29,7 +33,7 @@ GameButton* GameButton::createWithLevel(LoaderLevel* level)
     }
 }
 
-bool GameButton::initWithLevel(LoaderLevel* level)
+bool GameButton::initWithLevel(const LoaderLevel* level)
 {
     this->level = level;
     if (!level) {
@@ -42,6 +46,7 @@ bool GameButton::initWithLevel(LoaderLevel* level)
 
     addBackground();
     addLabel();
+    updateStateIndicator();
 
     return true;
 }
@@ -53,6 +58,31 @@ void GameButton::addBackground()
 
     addChild(border);
     setContentSize(border->getContentSize());
+}
+
+void GameButton::updateStateIndicator()
+{
+    auto state = userstate::getModeForLevel(level);
+    if (lastState == state) {
+        return;
+    }
+
+    if (star) {
+        removeChild(star);
+    }
+
+    if (state == userstate::Mode::SOLVED) {
+        star = CCSprite::createWithSpriteFrameName("buttons/borders/star-empty.png");
+    } else if (state == userstate::Mode::PERFECT) {
+        star = CCSprite::createWithSpriteFrameName("buttons/borders/star-full.png");
+    }
+
+    star->setAnchorPoint(CCPoint(0.5, 0.5));
+    star->setOpacity(255 * 0.3);
+    star->setPosition(ccpMult(ccpFromSize(getContentSize()), 0.5));
+    star->setPositionX(star->getPositionX() + 1);
+    star->setZOrder(ZORDER_STAR);
+    addChild(star);
 }
 
 void GameButton::addLabel()

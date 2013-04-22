@@ -42,6 +42,8 @@ bool MenuScene::init()
     menu->addChild(ButtonFactory::create("Settings", this, menu_selector(MenuScene::btnSettings)));
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
+    addChild(ButtonFactory::createStar());
+
     return true;
 }
 

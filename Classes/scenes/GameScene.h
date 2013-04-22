@@ -40,7 +40,6 @@ private:
 
     cocos2d::CCMenu* leftMenu;
     cocos2d::CCMenu* rightMenu;
-    cocos2d::CCMenu* topMenu;
 
     void createMenuitem(const char* imagename, cocos2d::CCMenu* menu, cocos2d::SEL_MenuHandler selector);
 
@@ -49,7 +48,6 @@ private:
     void addBoardWithinContainer(Board* board);
 
     void initLabels();
-    void initTopMenu();
     void initLeftMenu();
     void initRightMenu();
 };

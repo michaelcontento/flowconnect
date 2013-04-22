@@ -2,6 +2,7 @@
 
 #include "Token.h"
 #include "../Colors.h"
+#include "userstate.h"
 
 using namespace cocos2d;
 
@@ -467,6 +468,14 @@ void Board::handleAllCheckpointsVisited()
 {
     removeChild(touchIndicator);
     touchIndicator = NULL;
+
+    auto lastState = userstate::getModeForLevel(level);
+    auto perfectMoves = (size.width * size.height) - 1;
+    if (moves == perfectMoves || lastState == userstate::Mode::PERFECT) {
+        userstate::setModeForLevel(level, userstate::Mode::PERFECT);
+    } else {
+        userstate::setModeForLevel(level, userstate::Mode::SOLVED);
+    }
 
     unschedule(schedule_selector(Board::updateDuration));
 }

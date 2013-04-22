@@ -14,12 +14,18 @@ LevelMenuScene::LevelMenuScene()
 : scrollView(NULL)
 , pageIndicator(NULL)
 , totalPages(0)
+, currentPage(0)
+, isFirstEnter(true)
+, buttons(NULL)
 {
+    buttons = CCArray::create();
+    buttons->retain();
 }
 
 LevelMenuScene::~LevelMenuScene()
 {
     CC_SAFE_RELEASE_NULL(pageIndicator);
+    CC_SAFE_RELEASE_NULL(buttons);
 }
 
 CCScene* LevelMenuScene::scene()
@@ -28,6 +34,25 @@ CCScene* LevelMenuScene::scene()
     scene->addChild(LevelMenuScene::create());
     return scene;
 }
+
+void LevelMenuScene::onEnter()
+{
+    CCLayer::onEnter();
+
+    if (isFirstEnter) {
+        isFirstEnter = false;
+        return;
+    }
+
+    CCObject* it = NULL;
+    CCARRAY_FOREACH(buttons, it) {
+        auto button = static_cast<GameButton*>(it);
+        if (button->getTag() == currentPage) {
+            button->updateStateIndicator();
+        }
+    }
+}
+
 
 bool LevelMenuScene::init()
 {
@@ -52,8 +77,8 @@ bool LevelMenuScene::init()
     indicator->setPosition(CCPoint(384, 120));
     addChild(indicator);
 
-    auto backButton = ButtonFactory::createSceneBackButton();
-    addChild(backButton);
+    addChild(ButtonFactory::createSceneBackButton());
+    addChild(ButtonFactory::createStar());
 
     return true;
 }
@@ -83,12 +108,12 @@ CCNode* LevelMenuScene::createPageIndicatorContainer()
     size.width -= INDICATOR_SPACING;
     container->setContentSize(size);
 
-    setPageIndicatorPage(0);
+    setPageIndicatorPage();
 
     return container;
 }
 
-void LevelMenuScene::setPageIndicatorPage(const unsigned int page)
+void LevelMenuScene::setPageIndicatorPage()
 {
     CCObject* it = NULL;
     int iterPage = -1;
@@ -97,7 +122,7 @@ void LevelMenuScene::setPageIndicatorPage(const unsigned int page)
         auto indicator = static_cast<CCSprite*>(it);
         ++iterPage;
 
-        if (page == iterPage) {
+        if (currentPage == iterPage) {
             indicator->setOpacity(255 * 0.9);
         } else {
             indicator->setOpacity(255 * 0.4);
@@ -111,17 +136,18 @@ void LevelMenuScene::adjustScrollView()
 
     auto offset = scrollView->getContentOffset();
     int pageOffset = (int)offset.x % 768;
-    auto page = abs(offset.x) / 768;
+    currentPage = abs(offset.x) / 768;
 
     if (pageOffset <= -384) {
-        ++page;
+        ++currentPage;
     }
 
     auto maxOffset = (scrollView->getContentSize().width - 768) * -1;
-    auto newOffset = CCPoint(page * 768 * -1, offset.y);
+    auto newOffset = CCPoint(currentPage * 768 * -1, offset.y);
     newOffset.x = fmax(newOffset.x, maxOffset);
 
-    setPageIndicatorPage(MIN(page, totalPages - 1));
+    currentPage = MIN(currentPage, totalPages - 1);
+    setPageIndicatorPage();
     
     scrollView->unscheduleAllSelectors();
     scrollView->setContentOffset(newOffset, true);
@@ -135,7 +161,7 @@ CCNode* LevelMenuScene::createMenuContainer()
     totalPages = 0;
     for (auto page : globalLevel->page->category->pages) {
         auto pageMenu  = createPageMenu(page);
-        pageMenu->setPositionX(pageMenu->getPositionX()+ (768 * totalPages++));
+        pageMenu->setPositionX(pageMenu->getPositionX() + (768 * totalPages++));
         container->addChild(pageMenu);
     }
 
@@ -162,7 +188,10 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
     for (auto level : page->levels) {
         auto button = ButtonFactory::createLevelButton(level);
         button->setBorderColor(LINE_COLORS[page->localid]);
+        button->setTag(page->localid - 1);
+        
         menu->addChild(button);
+        buttons->addObject(button);
     }
 
     alignMenu(menu);

@@ -15,7 +15,6 @@ GameScene::GameScene()
 , leftMenu(NULL)
 , rightMenu(NULL)
 , stats(NULL)
-, topMenu(NULL)
 , headlineLabel(NULL)
 {
 }
@@ -37,7 +36,8 @@ bool GameScene::init()
         return false;
     }
 
-    initTopMenu();
+    addChild(ButtonFactory::createSceneBackButton());
+    addChild(ButtonFactory::createStar());
     initLeftMenu();
     initRightMenu();
     
@@ -123,21 +123,8 @@ void GameScene::enableMenus()
 
 void GameScene::enableMenus(const bool flag)
 {
-    auto menus = CCArray::create();
-    menus->addObject(topMenu);
-    menus->addObject(leftMenu);
-    menus->addObject(rightMenu);
-
-    CCObject* menuIt;
-    CCARRAY_FOREACH(menus, menuIt) {
-        auto menu = static_cast<CCMenu*>(menuIt);
-        
-        CCObject* itemIt;
-        CCARRAY_FOREACH(menu->getChildren(), itemIt) {
-            auto item = static_cast<CCMenuItemSprite*>(itemIt);
-            item->setEnabled(flag);
-        }
-    }
+    leftMenu->setEnabled(flag);
+    rightMenu->setEnabled(flag);
 }
 
 void GameScene::initBoard()
@@ -182,11 +169,7 @@ void GameScene::addBoardWithinContainer(Board* board)
 void GameScene::createMenuitem(const char* imagename, CCMenu* menu, SEL_MenuHandler selector)
 {
     auto normal = CCSprite::createWithSpriteFrameName(imagename);
-
-    auto disabled = CCSprite::createWithSpriteFrameName(imagename);
-    disabled->setOpacity(DISABLED_OPACITY);
-    
-    menu->addChild(CCMenuItemSprite::create(normal, normal, disabled, this, selector));
+    menu->addChild(CCMenuItemSprite::create(normal, normal, normal, this, selector));
 }
 
 void GameScene::initLeftMenu()
@@ -219,18 +202,4 @@ void GameScene::initRightMenu()
     rightMenu->setAnchorPoint(CCPoint(1, 0.5));
     
     rightMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
-}
-
-void GameScene::initTopMenu()
-{
-    topMenu = CCMenu::create();
-    addChild(topMenu);
-
-    createMenuitem("buttons/home.png", topMenu, menu_selector(GameScene::onBtnMenu));
-
-    topMenu->setPositionX((768 - BOARD_WIDTH) / 2);
-    topMenu->setPositionY((1024 - BOARD_WIDTH) / 4 * 3 + BOARD_WIDTH);
-    topMenu->setAnchorPoint(CCPoint(0, 0.5));
-
-    topMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }

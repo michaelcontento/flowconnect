@@ -44,6 +44,7 @@ bool CategoryMenuScene::init()
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
     addChild(ButtonFactory::createSceneBackButton());
+    addChild(ButtonFactory::createStar());
 
     return true;
 }

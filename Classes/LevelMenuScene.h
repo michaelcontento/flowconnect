@@ -17,6 +17,8 @@ public:
     virtual bool init();
 
     void btnGame(void* sender) const;
+    
+    virtual void onEnter();
 
     virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
     virtual void ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
@@ -27,8 +29,12 @@ private:
     const unsigned int ITEMS_PER_ROW = 6;
     const unsigned int ITEM_PADDING = 15;
     const unsigned int INDICATOR_SPACING = 10;
+
+    bool isFirstEnter;
     cocos2d::CCArray* pageIndicator;
+    cocos2d::CCArray* buttons;
     unsigned int totalPages;
+    int currentPage;
     cocos2d::extension::CCScrollView* scrollView;
 
     cocos2d::CCNode* createMenuContainer();
@@ -37,7 +43,7 @@ private:
     void adjustScrollView();
 
     cocos2d::CCNode* createPageIndicatorContainer();
-    void setPageIndicatorPage(const unsigned int page);
+    void setPageIndicatorPage();
 };
 
 #endif /* defined(__FlowConnect__LevelMenuScene__) */

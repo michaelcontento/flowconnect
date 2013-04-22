@@ -18,6 +18,9 @@ struct LoaderCategory : LoaderRecord {
 
     const char* name;
     std::vector<LoaderPage*> pages;
+
+    unsigned int countLevels();
+    unsigned int countLevelsSolved();
 };
 
 struct LoaderPage : LoaderRecord {

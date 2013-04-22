@@ -2,8 +2,11 @@
 
 #include "SceneManager.h"
 #include "Colors.h"
+#include "StarButton.h"
 
 #define BOARD_WIDTH 696
+#define TOP_MARGIN (1024 - 50)
+#define SIDE_MARGIN ((768 - BOARD_WIDTH) / 2)
 
 using namespace cocos2d;
 
@@ -33,8 +36,8 @@ CCLabelTTF* ButtonFactory::createHeadline(const char* text)
 {
     auto label = CCLabelTTF::create(text, "Markler Fett", 36);
     label->setAnchorPoint(CCPoint(0, 0.5));
-    label->setPositionX(((768 - BOARD_WIDTH) / 2) + 75);
-    label->setPositionY((1024 - BOARD_WIDTH) / 4 * 3 + BOARD_WIDTH);
+    label->setPositionX(SIDE_MARGIN + 75);
+    label->setPositionY(TOP_MARGIN);
     label->setOpacity(DISABLED_OPACITY);
 
     return label;
@@ -48,17 +51,34 @@ CCMenuItemSprite* ButtonFactory::createCategory(LoaderCategory* category, CCObje
 
     auto name = CCLabelTTF::create(category->name, "Markler Fett", 36);
     name->setAnchorPoint(CCPoint(0, 1));
-    name->setPosition(CCPoint(15, button->getContentSize().height - 7));
+    name->setPosition(CCPoint(35, button->getContentSize().height - 7));
     name->setColor(LINE_COLORS[ButtonFactory::colorCounter++]);
     button->addChild(name);
 
     if (category->description) {
         auto desc = CCLabelTTF::create(category->description, "Markler Fett", 28);
         desc->setAnchorPoint(CCPoint(0, 0));
-        desc->setPosition(CCPoint(15, 7));
+        desc->setPosition(CCPoint(35, 7));
         desc->setOpacity(DISABLED_OPACITY);
         button->addChild(desc);
     }
+
+    char buf[10] = {0};
+    snprintf(
+        buf, sizeof(buf),
+        "%d / %d",
+        category->countLevelsSolved(),
+        category->countLevels()
+    );
+
+    auto solved = CCLabelTTF::create(buf, "Markler Fett", 36);
+    solved->setOpacity(DISABLED_OPACITY);
+    solved->setAnchorPoint(CCPoint(1, 0.5));
+    solved->setPosition(CCPoint(
+        button->getContentSize().width - 30,
+        button->getContentSize().height / 2
+    ));
+    button->addChild(solved);
 
     return button;
 }
@@ -68,27 +88,20 @@ CCMenu* ButtonFactory::createSceneBackButton()
     auto menu = CCMenu::create();
 
     auto normal = CCSprite::createWithSpriteFrameName("buttons/home.png");
-
-    auto selected = CCSprite::createWithSpriteFrameName("buttons/home.png");
-    selected->setColor(ccRED);
-
-    auto disabled = CCSprite::createWithSpriteFrameName("buttons/home.png");
-    disabled->setOpacity(DISABLED_OPACITY);
-
     menu->addChild(CCMenuItemSprite::create(
-        normal, selected, disabled,
+        normal, normal, normal,
         &SceneManager::getInstance(), menu_selector(SceneManager::popScene)
     ));
 
-    menu->setPositionX((768 - BOARD_WIDTH) / 2);
-    menu->setPositionY((1024 - BOARD_WIDTH) / 4 * 3 + BOARD_WIDTH);
+    menu->setPositionX(SIDE_MARGIN);
+    menu->setPositionY(TOP_MARGIN);
     menu->setAnchorPoint(CCPoint(0, 0.5));
     menu->alignItemsHorizontally();
 
     return menu;
 }
 
-GameButton* ButtonFactory::createLevelButton(LoaderLevel* level)
+GameButton* ButtonFactory::createLevelButton(const LoaderLevel* level)
 {
     return GameButton::createWithLevel(level);
 }
@@ -98,4 +111,14 @@ CCMenuItem* ButtonFactory::createEmptyButton()
     auto result = CCMenuItem::create();
     result->setContentSize(CCSize(0, 0));
     return result;
+}
+
+StarButton* ButtonFactory::createStar()
+{
+    auto star = StarButton::create();
+    star->setPositionX(768 - SIDE_MARGIN);
+    star->setPositionY(TOP_MARGIN);
+    star->setAnchorPoint(CCPoint(1, 0.5));
+
+    return star;
 }

@@ -1,5 +1,7 @@
 #include "LevelLoader.h"
 
+#include "userstate.h"
+
 using namespace cocos2d;
 
 #pragma mark Initialisation
@@ -174,4 +176,18 @@ std::string LevelLoader::getFileContent(const char* filename)
     content.assign(tmpContent, tmpContent + size - 1);
 
     return content;
+}
+
+unsigned int LoaderCategory::countLevels()
+{
+    unsigned int sum = 0;
+    for (auto page : pages) {
+        sum += page->levels.size();
+    }
+    return sum;
+}
+
+unsigned int LoaderCategory::countLevelsSolved()
+{
+    return userstate::getStarsForCategory(this);
 }
