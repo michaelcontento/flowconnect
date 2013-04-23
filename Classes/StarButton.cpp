@@ -12,7 +12,6 @@ StarButton::StarButton()
 : counter(NULL)
 , enabled(true)
 {
-    
 }
 
 StarButton::~StarButton()
@@ -26,10 +25,6 @@ bool StarButton::init()
         return false;
     }
 
-    CCDirector::sharedDirector()
-        ->getTouchDispatcher()
-        ->addTargetedDelegate(this, 1, true);
-
     counter = CCLabelTTF::create("", DEFAULT_FONT_NAME, 36);
     counter->setOpacity(DISABLED_OPACITY);
     counter->setAnchorPoint(CCPoint(1, 0.5));
@@ -41,11 +36,26 @@ bool StarButton::init()
 
 void StarButton::onEnter()
 {
+    CCSprite::onEnter();
+
     char buf[10] = {0};
     snprintf(buf, sizeof(buf), "%d", userstate::getStarsForUser());
     
     counter->setString(buf);
     globalLastStarButton = this;
+
+    CCDirector::sharedDirector()
+        ->getTouchDispatcher()
+        ->addTargetedDelegate(this, 1, true);
+}
+
+void StarButton::onExit()
+{
+    CCSprite::onExit();
+    
+    CCDirector::sharedDirector()
+        ->getTouchDispatcher()
+        ->removeDelegate(this);
 }
 
 bool StarButton::ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)

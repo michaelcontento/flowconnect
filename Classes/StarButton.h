@@ -16,6 +16,8 @@ public:
     void onClick();
 
     virtual void onEnter();
+    virtual void onExit();
+
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
 

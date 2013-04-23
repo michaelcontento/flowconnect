@@ -44,10 +44,6 @@ bool Board::init()
     userPath = CCArray::create();
     CC_SAFE_RETAIN(userPath);
 
-    CCDirector::sharedDirector()
-        ->getTouchDispatcher()
-        ->addTargetedDelegate(this, 0, true);
-
     return true;
 }
 
@@ -69,6 +65,24 @@ bool Board::initWithLevel(const LoaderLevel* level)
     positionSlotsOnScreen();
 
     return true;
+}
+
+void Board::onEnter()
+{
+    CCLayer::onEnter();
+    
+    CCDirector::sharedDirector()
+        ->getTouchDispatcher()
+        ->addTargetedDelegate(this, 0, true);
+}
+
+void Board::onExit()
+{
+    CCLayer::onExit();
+
+    CCDirector::sharedDirector()
+        ->getTouchDispatcher()
+        ->removeDelegate(this);
 }
 
 #pragma mark Touch handling

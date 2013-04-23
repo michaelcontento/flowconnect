@@ -19,6 +19,7 @@ public:
     void btnGame(void* sender) const;
     
     virtual void onEnter();
+    virtual void onExit();
 
     virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
     virtual void ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);

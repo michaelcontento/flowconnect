@@ -39,6 +39,10 @@ void LevelMenuScene::onEnter()
 {
     CCLayer::onEnter();
 
+    CCDirector::sharedDirector()
+        ->getTouchDispatcher()
+        ->addTargetedDelegate(this, 1, false);
+
     if (isFirstEnter) {
         isFirstEnter = false;
         return;
@@ -53,16 +57,20 @@ void LevelMenuScene::onEnter()
     }
 }
 
+void LevelMenuScene::onExit()
+{
+    CCLayer::onExit();
+
+    CCDirector::sharedDirector()
+        ->getTouchDispatcher()
+        ->removeDelegate(this);
+}
 
 bool LevelMenuScene::init()
 {
     if (!CCLayer::init()) {
         return false;
     }
-
-    CCDirector::sharedDirector()
-        ->getTouchDispatcher()
-        ->addTargetedDelegate(this, 1, false);
 
     scrollView = CCScrollViewWithMenu::create();
     scrollView->initWithViewSize(CCSize(768, 1024));
