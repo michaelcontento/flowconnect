@@ -28,6 +28,7 @@ public:
     virtual void draw();
     void updateDuration(float dt);
     void reset();
+    bool finishTillNextCheckpoint();
 
     virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
     virtual void ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);

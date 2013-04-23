@@ -85,7 +85,28 @@ void GameScene::onBtnGoNext()
 
 void GameScene::onBtnHint()
 {
-    CCLog("HINT");
+    auto freeHints = userstate::getFreeHints();
+    auto stars = userstate::getStarsForUser();
+    auto showWarning = userstate::showHintWarning();
+
+    if (freeHints == 0 && showWarning) {
+        CCLog("WARNING!");
+        userstate::setHintWarning(false);
+        return;
+    }
+
+    if (freeHints == 0 && stars == 0) {
+        CCLog("NOT ENOUGH STARS");
+        return;
+    }
+
+    if (board->finishTillNextCheckpoint()) {
+        if (freeHints > 0) {
+            userstate::addFreeHint(-1);
+        } else {
+            userstate::addStarsToUser(-1);
+        }
+    }
 }
 
 void GameScene::onBtnHelp()

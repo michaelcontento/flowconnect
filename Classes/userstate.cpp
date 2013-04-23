@@ -2,15 +2,77 @@
 
 #include "Globals.h"
 #include "StarButton.h"
+#include <ctime>
 
 #define PREFIX_LEVEL_MODE "lvl"
 #define PREFIX_CATEGORY_STARS "cat"
-#define KEY_USER_STARS "usr"
-#define STARS_STAR_AMOUNT 15
+
+#define KEY_USER_STARS "stars"
+#define START_STARS_AMOUNT 0
+
+#define KEY_SHOW_HINT_WARNING "hint_warning"
+#define KEY_HINT_AMOUNT "hints"
+#define START_HINTS_AMOUNT 5
+
+#define KEY_FREE_HINT_COOLDOWN "hint_cooldown"
+#define FREE_HINTS_AFTER_COOLDOWN START_HINTS_AMOUNT
+#define FREE_HINTS_COOLDOWN_IN_SEC (24 * 60 * 60)
 
 using namespace userstate;
 using namespace cocos2d;
 
+
+int userstate::getFreeHints()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getIntegerForKey(KEY_HINT_AMOUNT, START_HINTS_AMOUNT);
+}
+
+void userstate::addFreeHint(const int amount)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->setIntegerForKey(KEY_HINT_AMOUNT, getFreeHints() + amount);
+    settings->flush();
+}
+
+void userstate::refreshFreeHints()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    auto lastRefresh = settings->getIntegerForKey(KEY_FREE_HINT_COOLDOWN, -1);
+    auto nowTs = std::time(0);
+
+    // first app start should NOT add additional free hints.
+    // see START_HINTS_AMOUNT for this.
+    if (lastRefresh == -1) {
+        settings->setIntegerForKey(KEY_FREE_HINT_COOLDOWN, nowTs);
+        settings->flush();
+        return;
+    }
+
+    // cooldown still active
+    if (lastRefresh + FREE_HINTS_COOLDOWN_IN_SEC > nowTs) {
+        return;
+    }
+
+    settings->setIntegerForKey(KEY_FREE_HINT_COOLDOWN, nowTs);
+    // not required as flush is done in addFreeHint() and setHintWarning()
+    // settings->flush();
+    addFreeHint(FREE_HINTS_AFTER_COOLDOWN);
+    setHintWarning(true);
+}
+
+bool userstate::showHintWarning()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey(KEY_SHOW_HINT_WARNING, true);
+}
+
+void userstate::setHintWarning(const bool flag)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    settings->setBoolForKey(KEY_SHOW_HINT_WARNING, flag);
+    settings->flush();
+}
 
 void userstate::addStarsToUser(const unsigned int amount)
 {
@@ -26,7 +88,7 @@ void userstate::addStarsToUser(const unsigned int amount)
 int userstate::getStarsForUser()
 {
     auto settings = CCUserDefault::sharedUserDefault();
-    return settings->getIntegerForKey(KEY_USER_STARS, STARS_STAR_AMOUNT);
+    return settings->getIntegerForKey(KEY_USER_STARS, START_STARS_AMOUNT);
 }
 
 Mode::Enum userstate::getModeForLevel(const LoaderLevel* level)

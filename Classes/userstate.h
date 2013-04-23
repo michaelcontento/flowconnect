@@ -15,6 +15,13 @@ namespace userstate
         };
     }
 
+    int getFreeHints();
+    void addFreeHint(const int amount);
+    void refreshFreeHints();
+
+    bool showHintWarning();
+    void setHintWarning(const bool flag);
+
     bool showHowToPlay();
     void setShowHowToPlay(const bool flag);
 

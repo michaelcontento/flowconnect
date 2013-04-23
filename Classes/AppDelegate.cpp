@@ -4,6 +4,7 @@
 #include "MenuScene.h"
 #include "SimpleAudioEngine.h"
 #include "Globals.h"
+#include "userstate.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -30,6 +31,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
+    userstate::refreshFreeHints();
     SceneManager::getInstance().gotoScene(MenuScene::scene());
 
     return true;
@@ -49,4 +51,6 @@ void AppDelegate::applicationWillEnterForeground()
 
     SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
     SimpleAudioEngine::sharedEngine()->resumeAllEffects();
+
+    userstate::refreshFreeHints();
 }

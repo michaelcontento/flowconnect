@@ -637,3 +637,9 @@ Slot* Board::getSlotFromPoint(const CCPoint point) const
 
     return static_cast<Slot*>(slots->objectAtIndex(idx));
 }
+
+bool Board::finishTillNextCheckpoint()
+{
+    CCLog("HINT DONE");
+    return true;
+}
