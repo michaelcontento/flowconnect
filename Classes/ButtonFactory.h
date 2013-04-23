@@ -20,11 +20,10 @@ public:
     
 private:
     static unsigned int colorCounter;
-    
+
     ButtonFactory() {}
     virtual ~ButtonFactory() {}
-    ButtonFactory(const ButtonFactory&);
-    ButtonFactory& operator=(const ButtonFactory&) { return *this; };
+    DISALLOW_COPY_AND_ASSIGN(ButtonFactory);
 };
 
 #endif /* defined(__FlowConnect__ButtonFactory__) */
