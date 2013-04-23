@@ -7,7 +7,6 @@
 using namespace userstate;
 using namespace cocos2d;
 
-
 int userstate::getFreeHints()
 {
     auto settings = CCUserDefault::sharedUserDefault();
@@ -40,11 +39,24 @@ void userstate::refreshFreeHints()
         return;
     }
 
+    // it's important to set and flush this here, as it could be that
+    // the user already has enough free hints. but with this we disable this
+    // check for the next FREE_HINTS_COOLDOWN_IN_SEC
     settings->setIntegerForKey(KEY_FREE_HINT_COOLDOWN, nowTs);
-    // not required as flush is done in addFreeHint() and setHintWarning()
-    // settings->flush();
-    addFreeHint(FREE_HINTS_AFTER_COOLDOWN);
+    settings->flush();
+
+    // yup .. user is full of free hints
+    auto hintsToAdd = FREE_HINTS_AFTER_COOLDOWN - getFreeHints();
+    if (hintsToAdd == 0) {
+        return;
+    }
+
+    addFreeHint(hintsToAdd);
     setHintWarning(true);
+
+    char buf[100] = {0};
+    snprintf(buf, sizeof(buf), "du hast %d free hints bekommen!", hintsToAdd);
+    CCMessageBox(buf, "welcome back");
 }
 
 bool userstate::showHintWarning()
