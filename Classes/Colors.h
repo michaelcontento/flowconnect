@@ -12,27 +12,6 @@ static const GLubyte SLOT_NUMBER_OPACITY = ENABLED_OPACITY;
 
 static const GLubyte TOUCH_INDICATOR_OPACITY = 255 * 0.3;
 
-static const cocos2d::ccColor3B LINE_COLORS[] = {
-    cocos2d::ccRED,
-    cocos2d::ccYELLOW,
-    cocos2d::ccBLUE,
-    cocos2d::ccMAGENTA,
-    cocos2d::ccORANGE,
-    cocos2d::ccGREEN,
-    cocos2d::ccGRAY,
-    cocos2d::ccWHITE,
-    cocos2d::ccRED,
-    cocos2d::ccYELLOW,
-    cocos2d::ccBLUE,
-    cocos2d::ccMAGENTA,
-    cocos2d::ccORANGE,
-    cocos2d::ccGREEN,
-    cocos2d::ccGRAY,
-    cocos2d::ccWHITE,
-    cocos2d::ccRED,
-    cocos2d::ccYELLOW,
-    cocos2d::ccBLUE,
-    cocos2d::ccMAGENTA
-};
+extern const cocos2d::ccColor3B LINE_COLORS[];
 
 #endif /* defined(__FlowConnect__Colors__) */

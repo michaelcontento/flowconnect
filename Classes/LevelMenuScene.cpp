@@ -187,7 +187,7 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
     auto menu = CCMenu::create();
     for (auto level : page->levels) {
         auto button = ButtonFactory::createLevelButton(level);
-        button->setBorderColor(LINE_COLORS[page->localid]);
+        button->setBorderColor(LINE_COLORS[page->localid + page->category->localid - 2]);
         button->setTag(page->localid - 1);
 
         menu->addChild(button);
