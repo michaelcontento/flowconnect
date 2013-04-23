@@ -3,10 +3,9 @@
 #include "SceneManager.h"
 #include "ButtonFactory.h"
 #include "../Colors.h"
+#include "Globals.h"
 
 using namespace cocos2d;
-
-extern LoaderLevel* globalLevel;
 
 #pragma mark Initialization
 
@@ -16,6 +15,8 @@ GameScene::GameScene()
 , rightMenu(NULL)
 , stats(NULL)
 , headlineLabel(NULL)
+, hintLabel(NULL)
+, hintNumber(NULL)
 {
 }
 
@@ -90,19 +91,20 @@ void GameScene::onBtnHint()
     auto showWarning = userstate::showHintWarning();
 
     if (freeHints == 0 && showWarning) {
-        CCLog("WARNING!");
+        CCMessageBox("ab jetzt kostet es sterne", "achtung achtung");
         userstate::setHintWarning(false);
         return;
     }
 
     if (freeHints == 0 && stars == 0) {
-        CCLog("NOT ENOUGH STARS");
+        CCMessageBox("nicht genug sterne", "Alert mit store-btn!");
         return;
     }
 
     if (board->finishTillNextCheckpoint()) {
         if (freeHints > 0) {
             userstate::addFreeHint(-1);
+            updateHintLabel();
         } else {
             userstate::addStarsToUser(-1);
         }
@@ -188,10 +190,13 @@ void GameScene::addBoardWithinContainer(Board* board)
     addChild(boardContainer);
 }
 
-void GameScene::createMenuitem(const char* imagename, CCMenu* menu, SEL_MenuHandler selector)
+CCMenuItemSprite* GameScene::createMenuitem(const char* imagename, CCMenu* menu, SEL_MenuHandler selector)
 {
     auto normal = CCSprite::createWithSpriteFrameName(imagename);
-    menu->addChild(CCMenuItemSprite::create(normal, normal, normal, this, selector));
+    auto child = CCMenuItemSprite::create(normal, normal, normal, this, selector);
+
+    menu->addChild(child);
+    return child;
 }
 
 void GameScene::initLeftMenu()
@@ -210,13 +215,47 @@ void GameScene::initLeftMenu()
     leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }
 
+void GameScene::updateHintLabel()
+{
+    auto hints = userstate::getFreeHints();
+
+    if (hints == 0) {
+        hintNumber->setVisible(false);
+    } else {
+        hintNumber->setVisible(true);
+
+        char buf[10] = {0};
+        snprintf(buf, sizeof(buf), "%d", hints);
+        hintLabel->setString(buf);
+    }
+}
 
 void GameScene::initRightMenu()
 {
     rightMenu = CCMenu::create();
     addChild(rightMenu);
 
-    createMenuitem("buttons/hint.png", rightMenu, menu_selector(GameScene::onBtnHint));
+    auto bg = CCSprite::createWithSpriteFrameName("buttons/hint-number.png");
+    bg->setAnchorPoint(CCPointZero);
+
+    hintLabel = CCLabelTTF::create("0", DEFAULT_FONT_NAME, 24);
+    hintLabel->setPosition(ccpMult(ccpFromSize(bg->getContentSize()), 0.5));
+    hintLabel->setAnchorPoint(CCPoint(0.5, 0.5));
+    hintLabel->setPositionY(hintLabel->getPositionY() + 1);
+
+    auto hint = createMenuitem("buttons/hint.png", rightMenu, menu_selector(GameScene::onBtnHint));
+    hintNumber = CCNode::create();
+    hintNumber->addChild(bg);
+    hintNumber->addChild(hintLabel);
+    hintNumber->setContentSize(bg->getContentSize());
+    hintNumber->setAnchorPoint(CCPoint(0.5, 0.5));
+    hintNumber->setPosition(
+        hint->getContentSize().width - 5,
+        hint->getContentSize().height - 5
+    );
+    hint->addChild(hintNumber);
+    updateHintLabel();
+
     createMenuitem("buttons/help.png", rightMenu, menu_selector(GameScene::onBtnHelp));
 
     rightMenu->setPositionX((768 - BOARD_WIDTH) / 2 + BOARD_WIDTH);

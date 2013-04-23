@@ -4,6 +4,20 @@
 #include "cocos2d.h"
 #include "LevelLoader.h"
 
+#define PREFIX_LEVEL_MODE "lvl"
+#define PREFIX_CATEGORY_STARS "cat"
+
+#define KEY_USER_STARS "stars"
+#define START_STARS_AMOUNT 0
+
+#define KEY_SHOW_HINT_WARNING "hint_warning"
+#define KEY_HINT_AMOUNT "hints"
+#define START_HINTS_AMOUNT 5
+
+#define KEY_FREE_HINT_COOLDOWN "hint_cooldown"
+#define FREE_HINTS_AFTER_COOLDOWN START_HINTS_AMOUNT
+#define FREE_HINTS_COOLDOWN_IN_SEC (24 * 60 * 60)
+
 namespace userstate
 {
     namespace Mode

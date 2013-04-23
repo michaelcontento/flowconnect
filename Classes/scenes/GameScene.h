@@ -36,12 +36,14 @@ private:
     Board* board;
     BoardStats* stats;
 
+    cocos2d::CCLabelTTF* hintLabel;
+    cocos2d::CCNode* hintNumber;
     cocos2d::CCLabelTTF* headlineLabel;
 
     cocos2d::CCMenu* leftMenu;
     cocos2d::CCMenu* rightMenu;
 
-    void createMenuitem(const char* imagename, cocos2d::CCMenu* menu, cocos2d::SEL_MenuHandler selector);
+    cocos2d::CCMenuItemSprite* createMenuitem(const char* imagename, cocos2d::CCMenu* menu, cocos2d::SEL_MenuHandler selector);
 
     void initBoard();
     void initBoardAndFade();
@@ -50,6 +52,7 @@ private:
     void initLabels();
     void initLeftMenu();
     void initRightMenu();
+    void updateHintLabel();
 };
 
 #endif /* defined(__FlowConnect__GameScene__) */
