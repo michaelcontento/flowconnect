@@ -13,7 +13,14 @@ SceneManager::SceneManager()
 
     backgroundLayer = CCLayer::create();
     backgroundLayer->retain();
-    backgroundLayer->addChild(CCParticleSystemQuad::create("background-fx.plist"));
+
+    auto bg = CCParticleSystemQuad::create("background-fx.plist");
+    backgroundLayer->addChild(bg);
+
+    // fast forward some frames
+    for (int i = 0; i < 25; ++i) {
+        bg->update(0.16);
+    }
 }
 
 SceneManager::~SceneManager()
