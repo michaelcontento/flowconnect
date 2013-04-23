@@ -64,7 +64,8 @@ bool LevelMenuScene::init()
         ->getTouchDispatcher()
         ->addTargetedDelegate(this, 1, false);
 
-    scrollView = CCScrollView::create(CCSize(768, 1024));
+    scrollView = CCScrollViewWithMenu::create();
+    scrollView->initWithViewSize(CCSize(768, 1024));
     scrollView->setDirection(kCCScrollViewDirectionHorizontal);
     scrollView->setPosition(CCPointZero);
     scrollView->setContentOffset(CCPointZero);
@@ -184,7 +185,7 @@ CCNode* LevelMenuScene::createMenuContainer()
 
 CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
 {
-    auto menu = CCMenu::create();
+    auto menu = CCScrollMenu::create();
     for (auto level : page->levels) {
         auto button = ButtonFactory::createLevelButton(level);
         button->setBorderColor(LINE_COLORS[page->localid + page->category->localid - 2]);

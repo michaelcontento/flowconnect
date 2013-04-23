@@ -35,7 +35,7 @@ private:
     cocos2d::CCArray* buttons;
     unsigned int totalPages;
     int currentPage;
-    cocos2d::extension::CCScrollView* scrollView;
+    cocos2d::extension::CCScrollViewWithMenu* scrollView;
 
     cocos2d::CCNode* createMenuContainer();
     cocos2d::CCNode* createPageMenu(const LoaderPage* page) const;

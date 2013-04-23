@@ -158,6 +158,8 @@
 		C88AF11D1725DD65004697BE /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C88AF10E1725DD64004697BE /* RobotoCondensed-Bold.ttf */; };
 		C88AF1221725DD65004697BE /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C88AF1131725DD64004697BE /* RobotoCondensed-Regular.ttf */; };
 		C88AF12C1726A218004697BE /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF12B1726A218004697BE /* Colors.cpp */; };
+		C88AF1311726B069004697BE /* CCScrollMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF12D1726B069004697BE /* CCScrollMenu.cpp */; };
+		C88AF1321726B069004697BE /* CCScrollViewWithMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF12F1726B069004697BE /* CCScrollViewWithMenu.cpp */; };
 		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
 		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
 		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
@@ -497,6 +499,10 @@
 		C88AF10E1725DD64004697BE /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoCondensed-Bold.ttf"; path = "fonts/RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 		C88AF1131725DD64004697BE /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoCondensed-Regular.ttf"; path = "fonts/RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		C88AF12B1726A218004697BE /* Colors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Colors.cpp; path = ../Classes/Colors.cpp; sourceTree = "<group>"; };
+		C88AF12D1726B069004697BE /* CCScrollMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCScrollMenu.cpp; sourceTree = "<group>"; };
+		C88AF12E1726B069004697BE /* CCScrollMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollMenu.h; sourceTree = "<group>"; };
+		C88AF12F1726B069004697BE /* CCScrollViewWithMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCScrollViewWithMenu.cpp; sourceTree = "<group>"; };
+		C88AF1301726B069004697BE /* CCScrollViewWithMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollViewWithMenu.h; sourceTree = "<group>"; };
 		C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CategoryMenuScene.cpp; path = ../Classes/scenes/CategoryMenuScene.cpp; sourceTree = "<group>"; };
 		C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryMenuScene.h; path = ../Classes/scenes/CategoryMenuScene.h; sourceTree = "<group>"; };
 		C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelMenuScene.cpp; path = ../Classes/LevelMenuScene.cpp; sourceTree = "<group>"; };
@@ -973,6 +979,10 @@
 		15A3DA111682F826002FB0C5 /* CCScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				C88AF12D1726B069004697BE /* CCScrollMenu.cpp */,
+				C88AF12E1726B069004697BE /* CCScrollMenu.h */,
+				C88AF12F1726B069004697BE /* CCScrollViewWithMenu.cpp */,
+				C88AF1301726B069004697BE /* CCScrollViewWithMenu.h */,
 				15A3DA121682F826002FB0C5 /* CCScrollView.cpp */,
 				15A3DA131682F826002FB0C5 /* CCScrollView.h */,
 				15A3DA141682F826002FB0C5 /* CCSorting.cpp */,
@@ -1419,6 +1429,8 @@
 				C88AF0F217257C4D004697BE /* Globals.cpp in Sources */,
 				C88AF0F517258242004697BE /* HowToPlayScene.cpp in Sources */,
 				C88AF12C1726A218004697BE /* Colors.cpp in Sources */,
+				C88AF1311726B069004697BE /* CCScrollMenu.cpp in Sources */,
+				C88AF1321726B069004697BE /* CCScrollViewWithMenu.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
