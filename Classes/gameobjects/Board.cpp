@@ -308,10 +308,12 @@ void Board::appendUserPath(Slot* slot)
         userPath->addObject(slot);
     }
 
-    if (slot->isCheckpoint()) {
-        touchIndicator->setColor(LINE_COLORS[slot->getNumber() - 1]);
-    } else {
-        touchIndicator->setColor(slot->getColor());
+    if (touchIndicator) {
+        if (slot->isCheckpoint()) {
+            touchIndicator->setColor(LINE_COLORS[slot->getNumber() - 1]);
+        } else {
+            touchIndicator->setColor(slot->getColor());
+        }
     }
 
     activateNextCheckpoint();
@@ -342,7 +344,7 @@ void Board::createSlotsFromData(const char* data)
     for (int i = 0; i < len; ++i) {
         currentToken[0] = data[i];
 
-        if (!token::isDirectionToken(currentToken)) {
+        if (!token::isDirectionToken(currentToken[0])) {
             nextNumber = (nextNumber * 10) + atoi(currentToken);
             continue;
         }
@@ -359,7 +361,7 @@ void Board::createSlotsFromData(const char* data)
         }
 
         addChild(nextSlot);
-        directions.push_back(token::convertTokenToSlotDirection(currentToken));
+        directions.push_back(data[i]);
     }
 
     assert(nextNumber == 0 && "all numbers must be assigned");
@@ -416,7 +418,7 @@ void Board::clearAllSlotsAfter(Slot* slot) const
     userPath->reduceMemoryFootprint();
 }
 
-void Board::activateNextCheckpoint()
+Slot* Board::activateNextCheckpoint()
 {
     CCObject* it = NULL;
     Slot* slot = NULL;
@@ -443,7 +445,7 @@ void Board::activateNextCheckpoint()
     // "full mind reset".
     
     int nextNumber = lastNumber + 1;
-    bool nextCheckpointFound = false;
+    Slot* nextCheckpoint = NULL;
     numFreeSlots = 0;
 
     CCARRAY_FOREACH(slots, it) {
@@ -457,8 +459,8 @@ void Board::activateNextCheckpoint()
             continue;
         }
 
-        if (!nextCheckpointFound && slot->getNumber() == nextNumber) {
-            nextCheckpointFound = true;
+        if (!nextCheckpoint && slot->getNumber() == nextNumber) {
+            nextCheckpoint = slot;
             slot->markAsNextSlot(true);
             allCheckpointVisited = false;
         } else {
@@ -476,6 +478,8 @@ void Board::activateNextCheckpoint()
     if (allCheckpointVisited) {
         handleAllCheckpointsVisited();
     }
+
+    return nextCheckpoint;
 }
 
 void Board::handleAllCheckpointsVisited()
@@ -654,6 +658,105 @@ Slot* Board::getSlotFromPoint(const CCPoint point) const
 
 bool Board::finishTillNextCheckpoint()
 {
-    CCLog("HINT DONE");
+    // nothing to do here
+    if (allCheckpointVisited) {
+        return false;
+    }
+    
+    // detect the first checkpoint
+    Slot* firstCheckpoint = NULL;
+    if (userPath->count() > 0) {
+        firstCheckpoint = dynamic_cast<Slot*>(userPath->objectAtIndex(0));
+    } else if (!firstCheckpoint) {
+        firstCheckpoint = activateNextCheckpoint();
+    }
+    assert(firstCheckpoint && "unable to detect first checkpoint");
+    assert(isFirstCheckpoint(firstCheckpoint) && "we need to start at the first checkpoint");
+
+    // detect the checkpoint we should end at
+    int endCheckpointNumber = 0;
+    if (lastCheckpoint) {
+        endCheckpointNumber = lastCheckpoint->getNumber() + 1;
+    } else {
+        endCheckpointNumber = firstCheckpoint->getNumber() + 1;
+    }
+    assert(endCheckpointNumber > 1 && "we should - at least - start with the second checkpoint");
+
+    // store which slots are used -- important to detect the right amount
+    // of moves later!
+    auto usedSlots = std::set<int>();
+    CCObject* it = NULL;
+    Slot* itSlot = NULL;
+    CCARRAY_FOREACH(userPath, it) {
+        itSlot = static_cast<Slot*>(it);
+        if (!itSlot->isFree()) {
+            usedSlots.insert(convert2dTo1dIndex(itSlot->gridIndex));
+        }
+    }
+
+    // clear the old path
+    lastCheckpoint = firstCheckpoint;
+    clearAllSlotsAfter(firstCheckpoint);
+
+    // disable the touch indicator -- it would be at the wrong position ...
+    if (touchIndicator) {
+        stopTouchIndicatorBlink();
+        touchIndicator->setVisible(false);
+    }
+
+    // some vars we need for the next loop. the following code should be
+    // refactored to .. :)
+    Slot* currentSlot = firstCheckpoint;
+    int nextSlotIndex = convert2dTo1dIndex(currentSlot->gridIndex);
+    Slot* nextSlot = NULL;
+    CCPoint nextGridIndex;
+    SlotLineType::Enum lineOut;
+    SlotLineType::Enum lineIn;
+
+    while (true) {
+        // detect the next position in the grid
+        nextGridIndex = currentSlot->gridIndex;
+        if (directions.at(nextSlotIndex) == TOKEN_DIRECTION_LEFT) {
+            nextGridIndex.x -= 1;
+            lineOut = SlotLineType::LEFT;
+            lineIn = SlotLineType::RIGHT;
+        } else if (directions.at(nextSlotIndex) == TOKEN_DIRECTION_RIGHT) {
+            nextGridIndex.x += 1;
+            lineOut = SlotLineType::RIGHT;
+            lineIn = SlotLineType::LEFT;
+        } else if (directions.at(nextSlotIndex) == TOKEN_DIRECTION_UP) {
+            nextGridIndex.y -= 1;
+            lineOut = SlotLineType::TOP;
+            lineIn = SlotLineType::BOTTOM;
+        } else if (directions.at(nextSlotIndex) == TOKEN_DIRECTION_DOWN) {
+            nextGridIndex.y += 1;
+            lineOut = SlotLineType::BOTTOM;
+            lineIn = SlotLineType::TOP;
+        }
+
+        // convert the grid position to the slot
+        nextSlotIndex = convert2dTo1dIndex(nextGridIndex);
+        nextSlot = dynamic_cast<Slot*>(slots->objectAtIndex(nextSlotIndex));
+        assert(nextSlot && "sould not be null");
+
+        // update the lines on both slots
+        if (!usedSlots.count(nextSlotIndex)) {
+            ++moves;
+        }
+        currentSlot->setLineOut(lineOut);
+        nextSlot->setLineIn(lineIn);
+
+        // update the user path
+        appendUserPath(currentSlot);
+        if (nextSlot->isCheckpoint() && nextSlot->getNumber() == endCheckpointNumber) {
+            appendUserPath(nextSlot);
+            break;
+        }
+
+        // advance our slot pointers
+        currentSlot = nextSlot;
+        nextSlot = NULL;
+    }
+
     return true;
 }

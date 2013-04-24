@@ -41,7 +41,7 @@ public:
 private:
     cocos2d::CCArray* slots;
     cocos2d::CCArray* userPath;
-    std::vector<int> directions;
+    std::vector<char> directions;
     Slot* lastCheckpoint;
     cocos2d::CCSprite* touchIndicator;
     bool allCheckpointVisited;
@@ -52,7 +52,7 @@ private:
     void createSlotsFromData(const char* data);
     void positionSlotsOnScreen();
     void clearAllSlotsAfter(Slot* slot) const;
-    void activateNextCheckpoint();
+    Slot* activateNextCheckpoint();
     void lockCompleteLines() const;
     Slot* getLastUserPathSlot() const;
     Slot* getUserPathSlotBefore(const Slot* slot) const;
