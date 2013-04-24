@@ -7,6 +7,9 @@
 #define DEFAULT_FONT_NAME "RobotoCondensed-Bold"
 #define SMALL_FONT_NAME "RobotoCondensed-Regular"
 
+#define PRICE_REMOVE_ADS 50
+#define PRICE_HINT 1
+
 extern LevelLoader globalLevelLoader;
 extern const LoaderLevel* globalLevel;
 extern StarButton* globalLastStarButton;

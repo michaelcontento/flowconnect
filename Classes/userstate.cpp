@@ -5,9 +5,24 @@
 #include <ctime>
 #include "Localization.h"
 #include "LanguageKey.h"
+#include "AlertView.h"
+#include "SceneManager.h"
+#include "ShopScene.h"
 
 using namespace userstate;
 using namespace cocos2d;
+
+class AlertDelegateNotEnoughStars : public AlertViewDelegate
+{
+public:
+    virtual void alertViewClickedButtonAtIndex(int buttonIndex)
+    {
+        if (buttonIndex == 0) {
+            return;
+        }
+        SceneManager::getInstance().gotoScene(ShopScene::scene());
+    }
+};
 
 bool userstate::showAds()
 {
@@ -80,7 +95,6 @@ void userstate::refreshFreeHints()
     // yup .. user is full of free hints
     auto hintsToAdd = FREE_HINTS_AFTER_COOLDOWN - getFreeHints();
     if (hintsToAdd == 0) {
-        CCLog("#3");
         return;
     }
 
@@ -105,15 +119,31 @@ void userstate::setHintWarning(const bool flag)
     settings->flush();
 }
 
-void userstate::addStarsToUser(const unsigned int amount)
+bool userstate::addStarsToUser(const unsigned int amount)
 {
+    static auto alertDelegateNotEnoughStars = new AlertDelegateNotEnoughStars();
+
+    int newAmount = getStarsForUser() + amount;
+    if (newAmount < 0) {
+        AlertView::createAlert(
+            _("alert.notenoughstars", "headline")->getCString(),
+            _("alert.notenoughstars", "body")->getCString(),
+            _("alert.notenoughstars", "btn.cancel")->getCString()
+        );
+        AlertView::addAlertButton(_("alert.notenoughstars", "btn.ok")->getCString());
+        AlertView::showAlert(alertDelegateNotEnoughStars);
+        return false;
+    }
+
     auto settings = CCUserDefault::sharedUserDefault();
-    settings->setIntegerForKey(KEY_USER_STARS, getStarsForUser() + amount);
+    settings->setIntegerForKey(KEY_USER_STARS, newAmount);
     settings->flush();
 
     if (globalLastStarButton) {
         globalLastStarButton->refreshCounter();
     }
+
+    return true;
 }
 
 int userstate::getStarsForUser()

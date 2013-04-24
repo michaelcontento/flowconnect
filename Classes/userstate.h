@@ -50,7 +50,7 @@ namespace userstate
     bool showHowToPlay();
     void setShowHowToPlay(const bool flag);
 
-    void addStarsToUser(const unsigned int amount);
+    bool addStarsToUser(const unsigned int amount);
     void resetAllLevelModes();
 
     int getStarsForUser();

@@ -167,6 +167,8 @@
 		C88AF14917280859004697BE /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF14717280859004697BE /* StringHelper.cpp */; };
 		C88AF14C172808B0004697BE /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF14A172808AF004697BE /* Helpers.cpp */; };
 		C88AF14F17280A30004697BE /* de.ini in Resources */ = {isa = PBXBuildFile; fileRef = C88AF14E17280A30004697BE /* de.ini */; };
+		C88AF15A17288A21004697BE /* AlertView.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88AF15617288A21004697BE /* AlertView.mm */; };
+		C88AF15B17288A21004697BE /* AlertViewIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88AF15917288A21004697BE /* AlertViewIOS.mm */; };
 		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
 		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
 		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
@@ -523,6 +525,11 @@
 		C88AF14A172808AF004697BE /* Helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helpers.cpp; sourceTree = "<group>"; };
 		C88AF14B172808AF004697BE /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
 		C88AF14E17280A30004697BE /* de.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = de.ini; sourceTree = "<group>"; };
+		C88AF15517288A21004697BE /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		C88AF15617288A21004697BE /* AlertView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertView.mm; sourceTree = "<group>"; };
+		C88AF15717288A21004697BE /* AlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewDelegate.h; sourceTree = "<group>"; };
+		C88AF15817288A21004697BE /* AlertViewIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewIOS.h; sourceTree = "<group>"; };
+		C88AF15917288A21004697BE /* AlertViewIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertViewIOS.mm; sourceTree = "<group>"; };
 		C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CategoryMenuScene.cpp; path = ../Classes/scenes/CategoryMenuScene.cpp; sourceTree = "<group>"; };
 		C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryMenuScene.h; path = ../Classes/scenes/CategoryMenuScene.h; sourceTree = "<group>"; };
 		C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelMenuScene.cpp; path = ../Classes/LevelMenuScene.cpp; sourceTree = "<group>"; };
@@ -1177,6 +1184,7 @@
 		C88AF13717280744004697BE /* joeka */ = {
 			isa = PBXGroup;
 			children = (
+				C88AF15417288934004697BE /* alert */,
 				C88AF14617280859004697BE /* utils */,
 				C88AF13817280746004697BE /* i18n */,
 				C88AF13F17280746004697BE /* io */,
@@ -1224,6 +1232,18 @@
 				C88AF14E17280A30004697BE /* de.ini */,
 			);
 			path = lang;
+			sourceTree = "<group>";
+		};
+		C88AF15417288934004697BE /* alert */ = {
+			isa = PBXGroup;
+			children = (
+				C88AF15517288A21004697BE /* AlertView.h */,
+				C88AF15617288A21004697BE /* AlertView.mm */,
+				C88AF15717288A21004697BE /* AlertViewDelegate.h */,
+				C88AF15817288A21004697BE /* AlertViewIOS.h */,
+				C88AF15917288A21004697BE /* AlertViewIOS.mm */,
+			);
+			path = alert;
 			sourceTree = "<group>";
 		};
 		C8CA622517141A21005660B3 /* scenes */ = {
@@ -1512,6 +1532,8 @@
 				C88AF14517280746004697BE /* IniReader.cpp in Sources */,
 				C88AF14917280859004697BE /* StringHelper.cpp in Sources */,
 				C88AF14C172808B0004697BE /* Helpers.cpp in Sources */,
+				C88AF15A17288A21004697BE /* AlertView.mm in Sources */,
+				C88AF15B17288A21004697BE /* AlertViewIOS.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

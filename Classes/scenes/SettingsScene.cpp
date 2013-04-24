@@ -13,11 +13,19 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+#define MODE_NONE 0
+#define MODE_RESET_GAME 1
+#define MODE_REMOVE_ADS 2
+
+#define TAG_RESET_BUTTON 10
+#define TAG_REMOVE_ADS 11
+
 #pragma mark Initialization
 
 SettingsScene::SettingsScene()
 : oldGlobalLevel(NULL)
 , menu(NULL)
+, mode(MODE_NONE)
 {
 }
 
@@ -58,10 +66,14 @@ bool SettingsScene::init()
         menu->addChild(ButtonFactory::createEmptyButton());
     }
     if (showAds) {
-        menu->addChild(ButtonFactory::create(_("menu.settings", "removeads")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
+        auto btn = ButtonFactory::create(_("menu.settings", "removeads")->getCString(), this, menu_selector(SettingsScene::btnRemoveAds));
+        btn->setTag(TAG_REMOVE_ADS);
+        menu->addChild(btn);
     }
     if (resetable) {
-        menu->addChild(ButtonFactory::create(_("menu.settings", "resetgame")->getCString(), this, menu_selector(SettingsScene::btnReset)));
+        auto btn = ButtonFactory::create(_("menu.settings", "resetgame")->getCString(), this, menu_selector(SettingsScene::btnReset));
+        btn->setTag(TAG_RESET_BUTTON);
+        menu->addChild(btn);
     }
 
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
@@ -71,6 +83,33 @@ bool SettingsScene::init()
     addChild(ButtonFactory::createStar());
 
     return true;
+}
+
+void SettingsScene::alertViewClickedButtonAtIndex(int buttonIndex)
+{
+    if (buttonIndex == 0) {
+        return;
+    }
+
+    if (mode == MODE_RESET_GAME) {
+        userstate::forceRefillFreeHints();
+        userstate::setHintWarning(true);
+        userstate::resetAllLevelModes();
+
+        menu->removeChildByTag(TAG_RESET_BUTTON, true);
+        menu->setPositionY(512);
+        menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+    } else if (mode == MODE_REMOVE_ADS) {
+        if (userstate::addStarsToUser(PRICE_REMOVE_ADS * -1)) {
+            userstate::setShowAds(false);
+            
+            menu->removeChildByTag(TAG_REMOVE_ADS, true);
+            menu->setPositionY(512);
+            menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+        }
+    }
+
+    mode = MODE_NONE;
 }
 
 void SettingsScene::onEnter()
@@ -83,15 +122,31 @@ void SettingsScene::onEnter()
     }
 }
 
-void SettingsScene::btnReset(CCObject* sender)
+void SettingsScene::btnRemoveAds()
 {
-    userstate::forceRefillFreeHints();
-    userstate::setHintWarning(true);
-    userstate::resetAllLevelModes();
+    char buf[250] = {0};
+    snprintf(buf, sizeof(buf), _("alert.removeads", "body")->getCString(), PRICE_REMOVE_ADS);
 
-    menu->removeChild(dynamic_cast<CCNode*>(sender), true);
-    menu->setPositionY(512);
-    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+    mode = MODE_REMOVE_ADS;
+    AlertView::createAlert(
+        _("alert.removeads", "headline")->getCString(),
+        buf,
+        _("alert.removeads", "btn.cancel")->getCString()
+    );
+    AlertView::addAlertButton(_("alert.removeads", "btn.ok")->getCString());
+    AlertView::showAlert(this);
+}
+
+void SettingsScene::btnReset()
+{
+    mode = MODE_RESET_GAME;
+    AlertView::createAlert(
+        _("alert.resetgame", "headline")->getCString(),
+        _("alert.resetgame", "body")->getCString(),
+        _("alert.resetgame", "btn.cancel")->getCString()
+    );
+    AlertView::addAlertButton(_("alert.resetgame", "btn.ok")->getCString());
+    AlertView::showAlert(this);
 }
 
 void SettingsScene::btnHowToPlay()

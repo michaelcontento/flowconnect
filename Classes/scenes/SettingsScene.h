@@ -3,8 +3,9 @@
 
 #include "cocos2d.h"
 #include "LevelLoader.h"
+#include "AlertView.h"
 
-class SettingsScene : public cocos2d::CCLayer
+class SettingsScene : public cocos2d::CCLayer, public AlertViewDelegate
 {
 public:
     SettingsScene();
@@ -15,8 +16,10 @@ public:
     virtual bool init() override;
 
     virtual void onEnter() override;
+    virtual void alertViewClickedButtonAtIndex(int buttonIndex) override;
 
-    void btnReset(CCObject* sender);
+    void btnReset();
+    void btnRemoveAds();
     void btnHowToPlay();
     void btnMusicToggle();
     void btnSoundToggle();
@@ -25,6 +28,7 @@ private:
     const unsigned int MENU_PADDING = 25;
     const LoaderLevel* oldGlobalLevel;
     cocos2d::CCMenu* menu;
+    unsigned int mode;
 };
 
 #endif /* defined(__FlowConnect__SettingsScene__) */

@@ -88,8 +88,11 @@ void GameScene::onBtnGoNext()
 
 void GameScene::onBtnHint()
 {
+    if (board->isFinished()) {
+        return;
+    }
+    
     auto freeHints = userstate::getFreeHints();
-    auto stars = userstate::getStarsForUser();
     auto showWarning = userstate::showHintWarning();
 
     if (freeHints == 0 && showWarning) {
@@ -101,22 +104,13 @@ void GameScene::onBtnHint()
         return;
     }
 
-    if (freeHints == 0 && stars == 0) {
-        CCMessageBox(
-            _("alert.notenoughstars", "body")->getCString(),
-            _("alert.notenoughstars", "headline")->getCString());
-        //    _("alert.notenoughstars", "btn.ok")->getCString(),
-        //    _("alert.notenoughstars", "btn.cancel")->getCString());
+    if (freeHints == 0 && !userstate::addStarsToUser(PRICE_HINT * -1)) {
         return;
     }
 
-    if (board->finishTillNextCheckpoint()) {
-        if (freeHints > 0) {
-            userstate::addFreeHint(-1);
-            updateHintLabel();
-        } else {
-            userstate::addStarsToUser(-1);
-        }
+    if (board->finishTillNextCheckpoint() && freeHints > 0) {
+        userstate::addFreeHint(-1);
+        updateHintLabel();
     }
 }
 
