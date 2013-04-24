@@ -74,6 +74,10 @@ void Board::onEnter()
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
         ->addTargetedDelegate(this, 0, true);
+
+    if (timerStarted) {
+        schedule(schedule_selector(Board::updateDuration));
+    }
 }
 
 void Board::onExit()
@@ -83,6 +87,10 @@ void Board::onExit()
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
         ->removeDelegate(this);
+
+    if (timerStarted) {
+        unschedule(schedule_selector(Board::updateDuration));
+    }
 }
 
 #pragma mark Touch handling

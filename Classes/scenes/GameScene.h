@@ -21,7 +21,6 @@ public:
 
     void onBtnHint();
     void onBtnHelp();
-
     void onBtnMenu();
 
     void enableMenus();

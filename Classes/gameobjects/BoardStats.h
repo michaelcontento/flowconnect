@@ -14,6 +14,9 @@ public:
     void setBoard(Board* board);
     void updateStats(float dt);
 
+    virtual void onEnter() override;
+    virtual void onExit() override;
+
 private:
     Board* board;
     cocos2d::CCLabelTTF* statsMove;

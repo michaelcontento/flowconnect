@@ -53,9 +53,22 @@ bool BoardStats::initWithBoard(Board* board)
     addChild(statsProgress);
 
     setBoard(board);
-    schedule(schedule_selector(BoardStats::updateStats), 0.1);
 
     return true;
+}
+
+void BoardStats::onEnter()
+{
+    CCNode::onEnter();
+
+    schedule(schedule_selector(BoardStats::updateStats), 0.1);
+}
+
+void BoardStats::onExit()
+{
+    unschedule(schedule_selector(BoardStats::updateStats));
+
+    CCNode::onExit();
 }
 
 void BoardStats::setBoard(Board* board)
