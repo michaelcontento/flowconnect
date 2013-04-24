@@ -18,6 +18,9 @@
 #define FREE_HINTS_AFTER_COOLDOWN START_HINTS_AMOUNT
 #define FREE_HINTS_COOLDOWN_IN_SEC (24 * 60 * 60)
 
+#define KEY_DIRTY "dirty"
+#define KEY_SHOW_HOWTO "show_how_to_play"
+
 namespace userstate
 {
     namespace Mode
@@ -28,6 +31,9 @@ namespace userstate
             PERFECT
         };
     }
+
+    bool resetable();
+    void forceRefillFreeHints();
 
     int getFreeHints();
     void addFreeHint(const int amount);

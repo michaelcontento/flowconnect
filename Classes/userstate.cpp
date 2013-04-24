@@ -7,6 +7,12 @@
 using namespace userstate;
 using namespace cocos2d;
 
+bool userstate::resetable()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey(KEY_DIRTY, false);
+}
+
 int userstate::getFreeHints()
 {
     auto settings = CCUserDefault::sharedUserDefault();
@@ -18,6 +24,17 @@ void userstate::addFreeHint(const int amount)
     auto settings = CCUserDefault::sharedUserDefault();
     return settings->setIntegerForKey(KEY_HINT_AMOUNT, getFreeHints() + amount);
     settings->flush();
+}
+
+void userstate::forceRefillFreeHints()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    
+    auto nowTs = std::time(0);
+    settings->setIntegerForKey(KEY_FREE_HINT_COOLDOWN, nowTs);
+
+    auto hintsToAdd = FREE_HINTS_AFTER_COOLDOWN - getFreeHints();
+    addFreeHint(hintsToAdd);
 }
 
 void userstate::refreshFreeHints()
@@ -123,6 +140,11 @@ void userstate::resetAllLevelModes()
     // not required as flush is done in setShowHowToPlay()
     // settings->flush();
     setShowHowToPlay(true);
+
+    // it's important to do this after setShowHowToPlay() because it
+    // will change the dirty flag!
+    settings->setBoolForKey(KEY_DIRTY, false);
+    settings->flush();
 }
 
 void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
@@ -138,6 +160,7 @@ void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
     }
     
     settings->setIntegerForKey(getLevelKey(level), mode);
+    settings->setBoolForKey(KEY_DIRTY, true);
     settings->flush();
 }
 
@@ -182,12 +205,13 @@ char* userstate::getCategoryKey(const LoaderCategory* category)
 bool userstate::showHowToPlay()
 {
     auto settings = CCUserDefault::sharedUserDefault();
-    return settings->getBoolForKey("show_how_to_play", true);
+    return settings->getBoolForKey(KEY_SHOW_HOWTO, true);
 }
 
 void userstate::setShowHowToPlay(const bool flag)
 {
     auto settings = CCUserDefault::sharedUserDefault();
-    settings->setBoolForKey("show_how_to_play", flag);
+    settings->setBoolForKey(KEY_SHOW_HOWTO, flag);
+    settings->setBoolForKey(KEY_DIRTY, true);
     settings->flush();
 }

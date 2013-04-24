@@ -16,6 +16,7 @@ using namespace CocosDenshion;
 SettingsScene::SettingsScene()
 : resetBtn(NULL)
 , oldGlobalLevel(NULL)
+, menu(NULL)
 {
 }
 
@@ -36,7 +37,7 @@ bool SettingsScene::init()
         return false;
     }
 
-    auto menu = CCMenu::create();
+    menu = CCMenu::create();
     addChild(menu);
 
     menu->addChild(ButtonFactory::create("Music", this, menu_selector(SettingsScene::btnMusicToggle)));
@@ -47,9 +48,11 @@ bool SettingsScene::init()
     menu->addChild(ButtonFactory::create("Remove Ads", this, menu_selector(SettingsScene::btnHowToPlay)));
     menu->addChild(ButtonFactory::create("How to play", this, menu_selector(SettingsScene::btnHowToPlay)));
 
-    menu->addChild(ButtonFactory::createEmptyButton());
-    resetBtn = ButtonFactory::create("Reset Game", this, menu_selector(SettingsScene::btnReset));
-    menu->addChild(resetBtn);
+    if (userstate::resetable()) {
+        menu->addChild(ButtonFactory::createEmptyButton());
+        resetBtn = ButtonFactory::create("Reset Game", this, menu_selector(SettingsScene::btnReset));
+        menu->addChild(resetBtn);
+    }
 
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
@@ -72,16 +75,12 @@ void SettingsScene::onEnter()
 
 void SettingsScene::btnReset(CCObject* sender)
 {
+    userstate::forceRefillFreeHints();
     userstate::resetAllLevelModes();
-    resetBtn->setEnabled(false);
 
-    CCObject* it = NULL;
-    CCARRAY_FOREACH(resetBtn->getChildren(), it) {
-        auto rgbaChild = static_cast<CCNodeRGBA*>(it);
-        if (rgbaChild) {
-            rgbaChild->setOpacity(DISABLED_OPACITY);
-        }
-    }
+    menu->removeChild(resetBtn, true);
+    resetBtn = NULL;
+    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 }
 
 void SettingsScene::btnHowToPlay()
