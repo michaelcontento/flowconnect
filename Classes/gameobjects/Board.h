@@ -58,6 +58,7 @@ private:
     Slot* getUserPathSlotBefore(const Slot* slot) const;
     void appendUserPath(Slot* slot);
     void handleAllCheckpointsVisited();
+    void startGameTimer();
 
     void startTouchIndicatorBlink();
     void stopTouchIndicatorBlink();

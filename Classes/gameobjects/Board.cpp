@@ -232,10 +232,7 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
     touchIndicator->setPosition(touchPos);
     appendUserPath(currentSlot);
 
-    if (!timerStarted) {
-        timerStarted = true;
-        schedule(schedule_selector(Board::updateDuration));
-    }
+    startGameTimer();
 }
 
 void Board::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
@@ -758,5 +755,15 @@ bool Board::finishTillNextCheckpoint()
         nextSlot = NULL;
     }
 
+    startGameTimer();
+
     return true;
+}
+
+void Board::startGameTimer()
+{
+    if (!timerStarted) {
+        timerStarted = true;
+        schedule(schedule_selector(Board::updateDuration));
+    }
 }
