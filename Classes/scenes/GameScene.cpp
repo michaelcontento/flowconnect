@@ -4,6 +4,8 @@
 #include "ButtonFactory.h"
 #include "../Colors.h"
 #include "Globals.h"
+#include "Localization.h"
+#include "LanguageKey.h"
 
 using namespace cocos2d;
 
@@ -91,13 +93,20 @@ void GameScene::onBtnHint()
     auto showWarning = userstate::showHintWarning();
 
     if (freeHints == 0 && showWarning) {
-        CCMessageBox("ab jetzt kostet es sterne", "achtung achtung");
+        CCMessageBox(
+            _("dialog.hintwarning", "body")->getCString(),
+            _("dialog.hintwarning", "headline")->getCString()
+        );
         userstate::setHintWarning(false);
         return;
     }
 
     if (freeHints == 0 && stars == 0) {
-        CCMessageBox("nicht genug sterne", "Alert mit store-btn!");
+        CCMessageBox(
+            _("alert.notenoughstars", "body")->getCString(),
+            _("alert.notenoughstars", "headline")->getCString());
+        //    _("alert.notenoughstars", "btn.ok")->getCString(),
+        //    _("alert.notenoughstars", "btn.cancel")->getCString());
         return;
     }
 
@@ -159,14 +168,8 @@ void GameScene::initBoard()
     if (headlineLabel) {
         removeChild(headlineLabel);
     }
-    char buf[50] = {0};
-    snprintf(
-        buf, 50, "%s %s #%d",
-        globalLevel->page->category->name,
-        globalLevel->page->name,
-        globalLevel->localid
-    );
-    headlineLabel = ButtonFactory::createHeadline(buf);
+    
+    headlineLabel = ButtonFactory::createHeadline(globalLevel->getLocalizedName());
     addChild(headlineLabel);
 }
 

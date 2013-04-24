@@ -4,6 +4,8 @@
 #include "GameScene.h"
 #include "ButtonFactory.h"
 #include "SceneManager.h"
+#include "Localization.h"
+#include "LanguageKey.h"
 
 using namespace cocos2d;
 
@@ -31,10 +33,10 @@ bool HowToPlayScene::init()
     }
 
     auto menu = CCMenu::create();
-    menu->addChild(ButtonFactory::create("Ok", this, menu_selector(HowToPlayScene::btnPlay)));
+    menu->addChild(ButtonFactory::create(_("menu.howto", "done")->getCString(), this, menu_selector(HowToPlayScene::btnPlay)));
     addChild(menu);
 
-    addChild(ButtonFactory::createHeadline("How to play"));
+    addChild(ButtonFactory::createHeadline(_("menu.howto", "headline")->getCString()));
     addChild(ButtonFactory::createSceneBackButton());
     addChild(ButtonFactory::createStar());
 

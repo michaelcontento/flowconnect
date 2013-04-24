@@ -21,6 +21,8 @@ struct LoaderCategory : LoaderRecord {
 
     unsigned int countLevels();
     unsigned int countLevelsSolved();
+    const char* getLocalizedName() const;
+    const char* getLocalizedDescription() const;
 };
 
 struct LoaderPage : LoaderRecord {
@@ -30,6 +32,8 @@ struct LoaderPage : LoaderRecord {
 
     const char* name;
     std::vector<LoaderLevel*> levels;
+
+    const char* getLocalizedName() const;
 };
 
 struct LoaderLevel : LoaderRecord {
@@ -38,6 +42,8 @@ struct LoaderLevel : LoaderRecord {
     LoaderPage* page;
 
     const char* data;
+    
+    const char* getLocalizedName() const;
 };
 
 class LevelLoader

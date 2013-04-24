@@ -1,6 +1,8 @@
 #include "BoardStats.h"
 
 #include "Globals.h"
+#include "Localization.h"
+#include "LanguageKey.h"
 
 using namespace cocos2d;
 
@@ -72,22 +74,26 @@ void BoardStats::setBoard(Board* board)
 void BoardStats::updateStats(float dt)
 {
     assert(board && "this should never happen");
+    static char tmp[25] = {0};
+    
+    snprintf(
+        tmp, sizeof(tmp),
+        _("game.stats", "moves")->getCString(),
+        board->getMoves()
+    );
+    statsMove->setString(tmp);
 
-    std::stringstream stream;
+    snprintf(
+        tmp, sizeof(tmp),
+        _("game.stats", "time")->getCString(),
+        board->getDuration()
+    );
+    statsBest->setString(tmp);
 
-    stream.str("");
-    stream << "moves: " << board->getMoves();
-    statsMove->setString(stream.str().c_str());
-
-    stream.str("");
-    float time = floor(board->getDuration() * 10) / 10;
-    stream << "time: " << time;
-    if (time - floor(time) == 0) {
-        stream << ".0";
-    }
-    statsBest->setString(stream.str().c_str());
-
-    stream.str("");
-    stream << "solved: " << floor(board->getProgress() * 100) << "%";
-    statsProgress->setString(stream.str().c_str());
+    snprintf(
+        tmp, sizeof(tmp),
+        _("game.stats", "solved")->getCString(),
+        board->getProgress() * 100
+    );
+    statsProgress->setString(tmp);
 }

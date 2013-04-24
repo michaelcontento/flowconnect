@@ -3,6 +3,8 @@
 #include "Globals.h"
 #include "StarButton.h"
 #include <ctime>
+#include "Localization.h"
+#include "LanguageKey.h"
 
 using namespace userstate;
 using namespace cocos2d;
@@ -35,7 +37,7 @@ int userstate::getFreeHints()
 void userstate::addFreeHint(const int amount)
 {
     auto settings = CCUserDefault::sharedUserDefault();
-    return settings->setIntegerForKey(KEY_HINT_AMOUNT, getFreeHints() + amount);
+    settings->setIntegerForKey(KEY_HINT_AMOUNT, getFreeHints() + amount);
     settings->flush();
 }
 
@@ -78,6 +80,7 @@ void userstate::refreshFreeHints()
     // yup .. user is full of free hints
     auto hintsToAdd = FREE_HINTS_AFTER_COOLDOWN - getFreeHints();
     if (hintsToAdd == 0) {
+        CCLog("#3");
         return;
     }
 
@@ -85,8 +88,8 @@ void userstate::refreshFreeHints()
     setHintWarning(true);
 
     char buf[100] = {0};
-    snprintf(buf, sizeof(buf), "du hast %d free hints bekommen!", hintsToAdd);
-    CCMessageBox(buf, "welcome back");
+    snprintf(buf, sizeof(buf), _("dialog.freehints", "body")->getCString(), hintsToAdd);
+    CCMessageBox(buf, _("dialog.freehints", "headline")->getCString());
 }
 
 bool userstate::showHintWarning()

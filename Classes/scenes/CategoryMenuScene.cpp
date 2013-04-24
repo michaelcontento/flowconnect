@@ -4,6 +4,8 @@
 #include "LevelMenuScene.h"
 #include "LevelLoader.h"
 #include "ButtonFactory.h"
+#include "Localization.h"
+#include "LanguageKey.h"
 
 using namespace cocos2d;
 
@@ -50,7 +52,7 @@ bool CategoryMenuScene::init()
 
     addChild(ButtonFactory::createSceneBackButton());
     addChild(ButtonFactory::createStar());
-    addChild(ButtonFactory::createHeadline("Play"));
+    addChild(ButtonFactory::createHeadline(_("menu.category", "headline")->getCString()));
 
     return true;
 }

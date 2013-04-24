@@ -160,6 +160,13 @@
 		C88AF12C1726A218004697BE /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF12B1726A218004697BE /* Colors.cpp */; };
 		C88AF1311726B069004697BE /* CCScrollMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF12D1726B069004697BE /* CCScrollMenu.cpp */; };
 		C88AF1321726B069004697BE /* CCScrollViewWithMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF12F1726B069004697BE /* CCScrollViewWithMenu.cpp */; };
+		C88AF14217280746004697BE /* Language.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF13917280746004697BE /* Language.cpp */; };
+		C88AF14317280746004697BE /* LanguageKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF13B17280746004697BE /* LanguageKey.cpp */; };
+		C88AF14417280746004697BE /* Localization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF13D17280746004697BE /* Localization.cpp */; };
+		C88AF14517280746004697BE /* IniReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF14017280746004697BE /* IniReader.cpp */; };
+		C88AF14917280859004697BE /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF14717280859004697BE /* StringHelper.cpp */; };
+		C88AF14C172808B0004697BE /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF14A172808AF004697BE /* Helpers.cpp */; };
+		C88AF14F17280A30004697BE /* de.ini in Resources */ = {isa = PBXBuildFile; fileRef = C88AF14E17280A30004697BE /* de.ini */; };
 		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
 		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
 		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
@@ -503,6 +510,19 @@
 		C88AF12E1726B069004697BE /* CCScrollMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollMenu.h; sourceTree = "<group>"; };
 		C88AF12F1726B069004697BE /* CCScrollViewWithMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCScrollViewWithMenu.cpp; sourceTree = "<group>"; };
 		C88AF1301726B069004697BE /* CCScrollViewWithMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollViewWithMenu.h; sourceTree = "<group>"; };
+		C88AF13917280746004697BE /* Language.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Language.cpp; sourceTree = "<group>"; };
+		C88AF13A17280746004697BE /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
+		C88AF13B17280746004697BE /* LanguageKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanguageKey.cpp; sourceTree = "<group>"; };
+		C88AF13C17280746004697BE /* LanguageKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageKey.h; sourceTree = "<group>"; };
+		C88AF13D17280746004697BE /* Localization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Localization.cpp; sourceTree = "<group>"; };
+		C88AF13E17280746004697BE /* Localization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localization.h; sourceTree = "<group>"; };
+		C88AF14017280746004697BE /* IniReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IniReader.cpp; sourceTree = "<group>"; };
+		C88AF14117280746004697BE /* IniReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IniReader.h; sourceTree = "<group>"; };
+		C88AF14717280859004697BE /* StringHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringHelper.cpp; sourceTree = "<group>"; };
+		C88AF14817280859004697BE /* StringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
+		C88AF14A172808AF004697BE /* Helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helpers.cpp; sourceTree = "<group>"; };
+		C88AF14B172808AF004697BE /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
+		C88AF14E17280A30004697BE /* de.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = de.ini; sourceTree = "<group>"; };
 		C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CategoryMenuScene.cpp; path = ../Classes/scenes/CategoryMenuScene.cpp; sourceTree = "<group>"; };
 		C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryMenuScene.h; path = ../Classes/scenes/CategoryMenuScene.h; sourceTree = "<group>"; };
 		C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelMenuScene.cpp; path = ../Classes/LevelMenuScene.cpp; sourceTree = "<group>"; };
@@ -1056,6 +1076,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C88AF13717280744004697BE /* joeka */,
 				C88AF0DD1723EC06004697BE /* buttons */,
 				C8CA622917142672005660B3 /* gameobjects */,
 				C8CA622517141A21005660B3 /* scenes */,
@@ -1121,6 +1142,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C88AF14D17280A30004697BE /* lang */,
 				C88AF10E1725DD64004697BE /* RobotoCondensed-Bold.ttf */,
 				C88AF1131725DD64004697BE /* RobotoCondensed-Regular.ttf */,
 				C8DBAB91171C5EAA009849B4 /* levels */,
@@ -1150,6 +1172,58 @@
 				C88AF0DF1723EC45004697BE /* StarButton.h */,
 			);
 			name = buttons;
+			sourceTree = "<group>";
+		};
+		C88AF13717280744004697BE /* joeka */ = {
+			isa = PBXGroup;
+			children = (
+				C88AF14617280859004697BE /* utils */,
+				C88AF13817280746004697BE /* i18n */,
+				C88AF13F17280746004697BE /* io */,
+			);
+			name = joeka;
+			path = ../Classes/joeka;
+			sourceTree = "<group>";
+		};
+		C88AF13817280746004697BE /* i18n */ = {
+			isa = PBXGroup;
+			children = (
+				C88AF13917280746004697BE /* Language.cpp */,
+				C88AF13A17280746004697BE /* Language.h */,
+				C88AF13B17280746004697BE /* LanguageKey.cpp */,
+				C88AF13C17280746004697BE /* LanguageKey.h */,
+				C88AF13D17280746004697BE /* Localization.cpp */,
+				C88AF13E17280746004697BE /* Localization.h */,
+			);
+			path = i18n;
+			sourceTree = "<group>";
+		};
+		C88AF13F17280746004697BE /* io */ = {
+			isa = PBXGroup;
+			children = (
+				C88AF14017280746004697BE /* IniReader.cpp */,
+				C88AF14117280746004697BE /* IniReader.h */,
+			);
+			path = io;
+			sourceTree = "<group>";
+		};
+		C88AF14617280859004697BE /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				C88AF14A172808AF004697BE /* Helpers.cpp */,
+				C88AF14B172808AF004697BE /* Helpers.h */,
+				C88AF14717280859004697BE /* StringHelper.cpp */,
+				C88AF14817280859004697BE /* StringHelper.h */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		C88AF14D17280A30004697BE /* lang */ = {
+			isa = PBXGroup;
+			children = (
+				C88AF14E17280A30004697BE /* de.ini */,
+			);
+			path = lang;
 			sourceTree = "<group>";
 		};
 		C8CA622517141A21005660B3 /* scenes */ = {
@@ -1272,6 +1346,7 @@
 				C8DBAB92171C5EAA009849B4 /* levels in Resources */,
 				C88AF11D1725DD65004697BE /* RobotoCondensed-Bold.ttf in Resources */,
 				C88AF1221725DD65004697BE /* RobotoCondensed-Regular.ttf in Resources */,
+				C88AF14F17280A30004697BE /* de.ini in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1431,6 +1506,12 @@
 				C88AF12C1726A218004697BE /* Colors.cpp in Sources */,
 				C88AF1311726B069004697BE /* CCScrollMenu.cpp in Sources */,
 				C88AF1321726B069004697BE /* CCScrollViewWithMenu.cpp in Sources */,
+				C88AF14217280746004697BE /* Language.cpp in Sources */,
+				C88AF14317280746004697BE /* LanguageKey.cpp in Sources */,
+				C88AF14417280746004697BE /* Localization.cpp in Sources */,
+				C88AF14517280746004697BE /* IniReader.cpp in Sources */,
+				C88AF14917280859004697BE /* StringHelper.cpp in Sources */,
+				C88AF14C172808B0004697BE /* Helpers.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

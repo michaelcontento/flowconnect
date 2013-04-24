@@ -5,6 +5,7 @@
 #include "SimpleAudioEngine.h"
 #include "Globals.h"
 #include "userstate.h"
+#include "Localization.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -30,6 +31,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
+
+    Localization::getInstance().addLanguage("de.ini");
+    Localization::getInstance().setDefaultLanguage("de.ini");
 
     userstate::refreshFreeHints();
     SceneManager::getInstance().gotoScene(MenuScene::scene());

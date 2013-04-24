@@ -1,6 +1,8 @@
 #include "LevelLoader.h"
 
 #include "userstate.h"
+#include "Localization.h"
+#include "LanguageKey.h"
 
 using namespace cocos2d;
 
@@ -190,4 +192,51 @@ unsigned int LoaderCategory::countLevels()
 unsigned int LoaderCategory::countLevelsSolved()
 {
     return userstate::getStarsForCategory(this);
+}
+
+const char* LoaderCategory::getLocalizedName() const
+{
+    static char key[10] = {0};
+    snprintf(key, sizeof(key), "%d.name", localid);
+    return _("level.category", key)->getCString();
+}
+
+const char* LoaderCategory::getLocalizedDescription() const
+{
+    static char key[10] = {0};
+    snprintf(key, sizeof(key), "%d.desc", localid);
+    return _("level.category", key)->getCString();
+}
+
+const char* LoaderPage::getLocalizedName() const
+{
+    static char key[10] = {0};
+    snprintf(
+        key, sizeof(key),
+        "%d.%d",
+        category->localid,
+        localid
+    );
+
+    static char result[100] = {0};
+    snprintf(
+        result, sizeof(result),
+        _("level.pages", key)->getCString(),
+        category->getLocalizedName()
+    );
+
+    return result;
+}
+
+const char* LoaderLevel::getLocalizedName() const
+{
+    static char result[100] = {0};
+    snprintf(
+        result, sizeof(result),
+        "%s #%d",
+        page->getLocalizedName(),
+        localid
+    );
+
+    return result;
 }

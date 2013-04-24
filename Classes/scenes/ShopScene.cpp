@@ -2,6 +2,8 @@
 
 #include "ButtonFactory.h"
 #include "userstate.h"
+#include "Localization.h"
+#include "LanguageKey.h"
 
 using namespace cocos2d;
 
@@ -40,7 +42,7 @@ bool ShopScene::init()
     menu->addChild(ButtonFactory::create("Facebook like - 10", this, menu_selector(ShopScene::btnPurchase)));
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
-    addChild(ButtonFactory::createHeadline("Shop"));
+    addChild(ButtonFactory::createHeadline(_("menu.shop", "headline")->getCString()));
     addChild(ButtonFactory::createSceneBackButton());
 
     auto star = ButtonFactory::createStar();

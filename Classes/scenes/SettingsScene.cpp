@@ -7,6 +7,8 @@
 #include "CategoryMenuScene.h"
 #include "ButtonFactory.h"
 #include "SimpleAudioEngine.h"
+#include "Localization.h"
+#include "LanguageKey.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -39,13 +41,13 @@ bool SettingsScene::init()
     menu = CCMenu::create();
     addChild(menu);
 
-    menu->addChild(ButtonFactory::create("Music", this, menu_selector(SettingsScene::btnMusicToggle)));
-    menu->addChild(ButtonFactory::create("Sound", this, menu_selector(SettingsScene::btnSoundToggle)));
-    menu->addChild(ButtonFactory::create("Change Mode", this, menu_selector(SettingsScene::btnHowToPlay)));
+    menu->addChild(ButtonFactory::create(_("menu.settings", "music")->getCString(), this, menu_selector(SettingsScene::btnMusicToggle)));
+    menu->addChild(ButtonFactory::create(_("menu.settings", "sound")->getCString(), this, menu_selector(SettingsScene::btnSoundToggle)));
+    menu->addChild(ButtonFactory::create(_("menu.settings", "changemode")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
     
     menu->addChild(ButtonFactory::createEmptyButton());
-    menu->addChild(ButtonFactory::create("How to play", this, menu_selector(SettingsScene::btnHowToPlay)));
-    menu->addChild(ButtonFactory::create("More games", this, menu_selector(SettingsScene::btnHowToPlay)));
+    menu->addChild(ButtonFactory::create(_("menu.settings", "howto")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
+    menu->addChild(ButtonFactory::create(_("menu.settings", "moregames")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
 
     auto showAds = userstate::showAds();
     auto resetable = userstate::resetable();
@@ -56,15 +58,15 @@ bool SettingsScene::init()
         menu->addChild(ButtonFactory::createEmptyButton());
     }
     if (showAds) {
-        menu->addChild(ButtonFactory::create("Remove Ads", this, menu_selector(SettingsScene::btnHowToPlay)));
+        menu->addChild(ButtonFactory::create(_("menu.settings", "removeads")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
     }
     if (resetable) {
-        menu->addChild(ButtonFactory::create("Reset Game", this, menu_selector(SettingsScene::btnReset)));
+        menu->addChild(ButtonFactory::create(_("menu.settings", "resetgame")->getCString(), this, menu_selector(SettingsScene::btnReset)));
     }
 
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
-    addChild(ButtonFactory::createHeadline("Settings"));
+    addChild(ButtonFactory::createHeadline(_("menu.settings", "headline")->getCString()));
     addChild(ButtonFactory::createSceneBackButton());
     addChild(ButtonFactory::createStar());
 

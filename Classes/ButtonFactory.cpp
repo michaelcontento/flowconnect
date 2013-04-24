@@ -50,18 +50,19 @@ CCMenuItemSprite* ButtonFactory::createCategory(LoaderCategory* category, CCObje
     auto button = CCMenuItemSprite::create(sprite, sprite);
     button->setTarget(target, selector);
 
-    auto name = CCLabelTTF::create(category->name, DEFAULT_FONT_NAME, 36);
+    auto name = CCLabelTTF::create(category->getLocalizedName(), DEFAULT_FONT_NAME, 36);
     name->setAnchorPoint(CCPoint(0, 1));
     name->setPosition(CCPoint(35, button->getContentSize().height - 7));
     name->setColor(LINE_COLORS[ButtonFactory::colorCounter++]);
     button->addChild(name);
 
-    if (category->description) {
-        auto desc = CCLabelTTF::create(category->description, SMALL_FONT_NAME, 28);
-        desc->setAnchorPoint(CCPoint(0, 0));
-        desc->setPosition(CCPoint(35, 7));
-        desc->setOpacity(DISABLED_OPACITY);
-        button->addChild(desc);
+    auto desc = category->getLocalizedDescription();
+    if (strlen(desc) > 0) {
+        auto descLabel = CCLabelTTF::create(desc, SMALL_FONT_NAME, 28);
+        descLabel->setAnchorPoint(CCPoint(0, 0));
+        descLabel->setPosition(CCPoint(35, 7));
+        descLabel->setOpacity(DISABLED_OPACITY);
+        button->addChild(descLabel);
     } else {
         name->setAnchorPoint(CCPoint(0, 0.5));
         name->setPositionY(button->getContentSize().height / 2);

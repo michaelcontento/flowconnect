@@ -217,9 +217,9 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
     container->setContentSize(menu->getContentSize());
     container->addChild(menu);
 
-    static char headline[50] = {0};
-    snprintf(headline, sizeof(headline), "%s %s", page->category->name, page->name);
-    container->addChild(ButtonFactory::createHeadline(headline));
+    container->addChild(ButtonFactory::createHeadline(
+        page->getLocalizedName()
+    ));
 
     return container;
 }
