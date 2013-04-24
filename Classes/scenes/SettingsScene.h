@@ -21,6 +21,7 @@ public:
     void btnReset();
     void btnRemoveAds();
     void btnHowToPlay();
+    void btnMoreGames();
     void btnMusicToggle();
     void btnSoundToggle();
 

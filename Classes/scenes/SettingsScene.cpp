@@ -55,7 +55,7 @@ bool SettingsScene::init()
     
     menu->addChild(ButtonFactory::createEmptyButton());
     menu->addChild(ButtonFactory::create(_("menu.settings", "howto")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
-    menu->addChild(ButtonFactory::create(_("menu.settings", "moregames")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
+    menu->addChild(ButtonFactory::create(_("menu.settings", "moregames")->getCString(), this, menu_selector(SettingsScene::btnMoreGames)));
 
     auto showAds = userstate::showAds();
     auto resetable = userstate::resetable();
@@ -120,6 +120,12 @@ void SettingsScene::onEnter()
         globalLevel = oldGlobalLevel;
         oldGlobalLevel = NULL;
     }
+}
+
+void SettingsScene::btnMoreGames()
+{
+    CCApplication::sharedApplication()
+        ->openURL("itms-apps://itunes.com/apps/coragames");
 }
 
 void SettingsScene::btnRemoveAds()
