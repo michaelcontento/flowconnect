@@ -37,25 +37,29 @@ bool StarButton::init()
 void StarButton::onEnter()
 {
     CCSprite::onEnter();
-
-    char buf[10] = {0};
-    snprintf(buf, sizeof(buf), "%d", userstate::getStarsForUser());
-    
-    counter->setString(buf);
     globalLastStarButton = this;
+
+    refreshCounter();
 
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
         ->addTargetedDelegate(this, 1, true);
 }
 
+void StarButton::refreshCounter()
+{
+    char buf[10] = {0};
+    snprintf(buf, sizeof(buf), "%d", userstate::getStarsForUser());
+    counter->setString(buf);
+}
+
 void StarButton::onExit()
 {
-    CCSprite::onExit();
-    
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
         ->removeDelegate(this);
+
+    CCSprite::onExit();
 }
 
 bool StarButton::ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)

@@ -17,6 +17,7 @@ public:
 
     virtual void onEnter() override;
     virtual void onExit() override;
+    void refreshCounter();
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) override;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) override;

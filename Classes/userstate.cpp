@@ -109,7 +109,7 @@ void userstate::addStarsToUser(const unsigned int amount)
     settings->flush();
 
     if (globalLastStarButton) {
-        globalLastStarButton->onEnter();
+        globalLastStarButton->refreshCounter();
     }
 }
 
