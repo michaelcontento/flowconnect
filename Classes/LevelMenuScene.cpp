@@ -51,9 +51,7 @@ void LevelMenuScene::onEnter()
     CCObject* it = NULL;
     CCARRAY_FOREACH(buttons, it) {
         auto button = static_cast<GameButton*>(it);
-        if (button->getTag() == currentPage) {
-            button->updateStateIndicator();
-        }
+        button->updateStateIndicator();
     }
 }
 
