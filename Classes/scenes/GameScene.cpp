@@ -196,20 +196,20 @@ CCMenuItemSprite* GameScene::createMenuitem(const char* imagename, CCMenu* menu,
     return child;
 }
 
-void GameScene::initLeftMenu()
+void GameScene::initRightMenu()
 {
-    leftMenu = CCMenu::create();
-    addChild(leftMenu);
+    rightMenu = CCMenu::create();
+    addChild(rightMenu);
 
-    createMenuitem("buttons/go-back.png", leftMenu, menu_selector(GameScene::onBtnGoBack));
-    createMenuitem("buttons/reset.png", leftMenu, menu_selector(GameScene::onBtnReset));
-    createMenuitem("buttons/go-next.png", leftMenu, menu_selector(GameScene::onBtnGoNext));
+    createMenuitem("buttons/go-back.png", rightMenu, menu_selector(GameScene::onBtnGoBack));
+    createMenuitem("buttons/reset.png", rightMenu, menu_selector(GameScene::onBtnReset));
+    createMenuitem("buttons/go-next.png", rightMenu, menu_selector(GameScene::onBtnGoNext));
 
-    leftMenu->setPositionX((768 - BOARD_WIDTH) / 2);
-    leftMenu->setPositionY((1024 - BOARD_WIDTH) / 4);
-    leftMenu->setAnchorPoint(CCPoint(0, 0.5));
+    rightMenu->setPositionX((768 - BOARD_WIDTH) / 2 + BOARD_WIDTH);
+    rightMenu->setPositionY((1024 - BOARD_WIDTH) / 4);
+    rightMenu->setAnchorPoint(CCPoint(1, 0.5));
 
-    leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
+    rightMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }
 
 void GameScene::updateHintLabel()
@@ -227,10 +227,10 @@ void GameScene::updateHintLabel()
     }
 }
 
-void GameScene::initRightMenu()
+void GameScene::initLeftMenu()
 {
-    rightMenu = CCMenu::create();
-    addChild(rightMenu);
+    leftMenu = CCMenu::create();
+    addChild(leftMenu);
 
     auto bg = CCSprite::createWithSpriteFrameName("buttons/hint-number.png");
     bg->setAnchorPoint(CCPointZero);
@@ -240,7 +240,9 @@ void GameScene::initRightMenu()
     hintLabel->setAnchorPoint(CCPoint(0.5, 0.5));
     hintLabel->setPositionY(hintLabel->getPositionY() + 1);
 
-    auto hint = createMenuitem("buttons/hint.png", rightMenu, menu_selector(GameScene::onBtnHint));
+    createMenuitem("buttons/help.png", leftMenu, menu_selector(GameScene::onBtnHelp));
+
+    auto hint = createMenuitem("buttons/hint.png", leftMenu, menu_selector(GameScene::onBtnHint));
     hintNumber = CCNode::create();
     hintNumber->addChild(bg);
     hintNumber->addChild(hintLabel);
@@ -253,11 +255,9 @@ void GameScene::initRightMenu()
     hint->addChild(hintNumber);
     updateHintLabel();
 
-    createMenuitem("buttons/help.png", rightMenu, menu_selector(GameScene::onBtnHelp));
+    leftMenu->setPositionX((768 - BOARD_WIDTH) / 2);
+    leftMenu->setPositionY((1024 - BOARD_WIDTH) / 4);
+    leftMenu->setAnchorPoint(CCPoint(0, 0.5));
 
-    rightMenu->setPositionX((768 - BOARD_WIDTH) / 2 + BOARD_WIDTH);
-    rightMenu->setPositionY((1024 - BOARD_WIDTH) / 4);
-    rightMenu->setAnchorPoint(CCPoint(1, 0.5));
-    
-    rightMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
+    leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }
