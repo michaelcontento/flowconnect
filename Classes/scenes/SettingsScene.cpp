@@ -84,6 +84,7 @@ void SettingsScene::onEnter()
 void SettingsScene::btnReset(CCObject* sender)
 {
     userstate::forceRefillFreeHints();
+    userstate::setHintWarning(true);
     userstate::resetAllLevelModes();
 
     menu->removeChild(dynamic_cast<CCNode*>(sender), true);
