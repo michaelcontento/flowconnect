@@ -149,6 +149,7 @@
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
 		C85D5275171B6A850076A88B /* background-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C85D5274171B6A850076A88B /* background-fx.plist */; };
 		C85D5278171C10C50076A88B /* LevelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C85D5276171C10C50076A88B /* LevelLoader.cpp */; };
+		C88324381728A18B000E93ED /* UrlOpener.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88324371728A18B000E93ED /* UrlOpener.mm */; };
 		C88AF0E01723EC45004697BE /* StarButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0DE1723EC45004697BE /* StarButton.cpp */; };
 		C88AF0E717246A63004697BE /* userstate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E517246A62004697BE /* userstate.cpp */; };
 		C88AF0EA17256800004697BE /* SettingsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E817256800004697BE /* SettingsScene.cpp */; };
@@ -494,6 +495,8 @@
 		C85D5274171B6A850076A88B /* background-fx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background-fx.plist"; sourceTree = "<group>"; };
 		C85D5276171C10C50076A88B /* LevelLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelLoader.cpp; path = ../Classes/LevelLoader.cpp; sourceTree = "<group>"; };
 		C85D5277171C10C50076A88B /* LevelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelLoader.h; path = ../Classes/LevelLoader.h; sourceTree = "<group>"; };
+		C88324361728A18B000E93ED /* UrlOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlOpener.h; sourceTree = "<group>"; };
+		C88324371728A18B000E93ED /* UrlOpener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UrlOpener.mm; sourceTree = "<group>"; };
 		C88AF0DE1723EC45004697BE /* StarButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StarButton.cpp; path = ../Classes/StarButton.cpp; sourceTree = "<group>"; };
 		C88AF0DF1723EC45004697BE /* StarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StarButton.h; path = ../Classes/StarButton.h; sourceTree = "<group>"; };
 		C88AF0E517246A62004697BE /* userstate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = userstate.cpp; path = ../Classes/userstate.cpp; sourceTree = "<group>"; };
@@ -1218,6 +1221,8 @@
 		C88AF14617280859004697BE /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				C88324361728A18B000E93ED /* UrlOpener.h */,
+				C88324371728A18B000E93ED /* UrlOpener.mm */,
 				C88AF14A172808AF004697BE /* Helpers.cpp */,
 				C88AF14B172808AF004697BE /* Helpers.h */,
 				C88AF14717280859004697BE /* StringHelper.cpp */,
@@ -1534,6 +1539,7 @@
 				C88AF14C172808B0004697BE /* Helpers.cpp in Sources */,
 				C88AF15A17288A21004697BE /* AlertView.mm in Sources */,
 				C88AF15B17288A21004697BE /* AlertViewIOS.mm in Sources */,
+				C88324381728A18B000E93ED /* UrlOpener.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

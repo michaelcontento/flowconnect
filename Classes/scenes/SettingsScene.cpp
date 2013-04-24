@@ -9,6 +9,7 @@
 #include "SimpleAudioEngine.h"
 #include "Localization.h"
 #include "LanguageKey.h"
+#include "UrlOpener.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -124,8 +125,7 @@ void SettingsScene::onEnter()
 
 void SettingsScene::btnMoreGames()
 {
-    CCApplication::sharedApplication()
-        ->openURL("itms-apps://itunes.com/apps/coragames");
+    UrlOpener::open("itms-apps://itunes.com/apps/coragames");
 }
 
 void SettingsScene::btnRemoveAds()
