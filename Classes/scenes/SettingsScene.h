@@ -23,7 +23,6 @@ public:
 
 private:
     const unsigned int MENU_PADDING = 25;
-    cocos2d::CCMenuItemSprite* resetBtn;
     const LoaderLevel* oldGlobalLevel;
     cocos2d::CCMenu* menu;
 };

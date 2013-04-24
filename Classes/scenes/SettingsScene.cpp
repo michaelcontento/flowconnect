@@ -14,8 +14,7 @@ using namespace CocosDenshion;
 #pragma mark Initialization
 
 SettingsScene::SettingsScene()
-: resetBtn(NULL)
-, oldGlobalLevel(NULL)
+: oldGlobalLevel(NULL)
 , menu(NULL)
 {
 }
@@ -43,15 +42,24 @@ bool SettingsScene::init()
     menu->addChild(ButtonFactory::create("Music", this, menu_selector(SettingsScene::btnMusicToggle)));
     menu->addChild(ButtonFactory::create("Sound", this, menu_selector(SettingsScene::btnSoundToggle)));
     menu->addChild(ButtonFactory::create("Change Mode", this, menu_selector(SettingsScene::btnHowToPlay)));
-
+    
     menu->addChild(ButtonFactory::createEmptyButton());
-    menu->addChild(ButtonFactory::create("Remove Ads", this, menu_selector(SettingsScene::btnHowToPlay)));
     menu->addChild(ButtonFactory::create("How to play", this, menu_selector(SettingsScene::btnHowToPlay)));
+    menu->addChild(ButtonFactory::create("More games", this, menu_selector(SettingsScene::btnHowToPlay)));
 
-    if (userstate::resetable()) {
+    auto showAds = userstate::showAds();
+    auto resetable = userstate::resetable();
+    if (showAds && resetable) {
+        menu->setPositionY(menu->getPositionY() - 30);
+    }
+    if (showAds || resetable) {
         menu->addChild(ButtonFactory::createEmptyButton());
-        resetBtn = ButtonFactory::create("Reset Game", this, menu_selector(SettingsScene::btnReset));
-        menu->addChild(resetBtn);
+    }
+    if (showAds) {
+        menu->addChild(ButtonFactory::create("Remove Ads", this, menu_selector(SettingsScene::btnHowToPlay)));
+    }
+    if (resetable) {
+        menu->addChild(ButtonFactory::create("Reset Game", this, menu_selector(SettingsScene::btnReset)));
     }
 
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
@@ -78,8 +86,8 @@ void SettingsScene::btnReset(CCObject* sender)
     userstate::forceRefillFreeHints();
     userstate::resetAllLevelModes();
 
-    menu->removeChild(resetBtn, true);
-    resetBtn = NULL;
+    menu->removeChild(dynamic_cast<CCNode*>(sender), true);
+    menu->setPositionY(512);
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 }
 

@@ -7,10 +7,23 @@
 using namespace userstate;
 using namespace cocos2d;
 
+bool userstate::showAds()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey(KEY_SHOW_ADS, true);
+}
+
+void userstate::setShowAds(const bool flag)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    settings->setBoolForKey(KEY_SHOW_ADS, flag);
+    settings->flush();
+}
+
 bool userstate::resetable()
 {
     auto settings = CCUserDefault::sharedUserDefault();
-    return settings->getBoolForKey(KEY_DIRTY, false);
+    return settings->getBoolForKey(KEY_DIRTY);
 }
 
 int userstate::getFreeHints()

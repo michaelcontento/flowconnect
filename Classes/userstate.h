@@ -21,6 +21,8 @@
 #define KEY_DIRTY "dirty"
 #define KEY_SHOW_HOWTO "show_how_to_play"
 
+#define KEY_SHOW_ADS "show_ads"
+
 namespace userstate
 {
     namespace Mode
@@ -31,6 +33,9 @@ namespace userstate
             PERFECT
         };
     }
+
+    bool showAds();
+    void setShowAds(const bool flag);
 
     bool resetable();
     void forceRefillFreeHints();
