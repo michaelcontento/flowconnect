@@ -11,15 +11,15 @@ public:
     StarButton();
     virtual ~StarButton();
     CREATE_FUNC(StarButton);
-    bool init();
+    bool init() override;
 
     void onClick();
 
-    virtual void onEnter();
-    virtual void onExit();
+    virtual void onEnter() override;
+    virtual void onExit() override;
 
-    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
-    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) override;
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) override;
 
 private:
     cocos2d::CCLabelTTF* counter;

@@ -11,9 +11,9 @@ public:
 
     static cocos2d::CCScene* scene();
     CREATE_FUNC(CategoryMenuScene);
-    virtual bool init();
+    virtual bool init() override;
 
-    virtual void onEnter();
+    virtual void onEnter() override;
 
     void btnGame(void* sender);
 

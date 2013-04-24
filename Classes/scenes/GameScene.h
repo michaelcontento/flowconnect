@@ -13,7 +13,7 @@ public:
 
     static cocos2d::CCScene* scene();
     CREATE_FUNC(GameScene);
-    virtual bool init();
+    virtual bool init() override;
 
     void onBtnGoBack();
     void onBtnReset();

@@ -12,9 +12,9 @@ public:
 
     static cocos2d::CCScene* scene();
     CREATE_FUNC(SettingsScene);
-    virtual bool init();
+    virtual bool init() override;
 
-    virtual void onEnter();
+    virtual void onEnter() override;
 
     void btnReset(CCObject* sender);
     void btnHowToPlay();

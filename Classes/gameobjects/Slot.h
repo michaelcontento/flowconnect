@@ -29,7 +29,7 @@ public:
     virtual ~Slot();
 
     CREATE_FUNC(Slot);
-    virtual bool init();
+    virtual bool init() override;
 
     CC_SYNTHESIZE_READONLY(int, number, Number)
     void setNumber(const int newNumber);
@@ -54,7 +54,7 @@ public:
     void reset();
     bool isFree() const;
 
-    cocos2d::CCSize getSize();
+    cocos2d::CCSize getSize() const;
 
 private:
     bool lineInLocked;

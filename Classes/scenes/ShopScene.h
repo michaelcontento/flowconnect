@@ -11,7 +11,7 @@ public:
 
     static cocos2d::CCScene* scene();
     CREATE_FUNC(ShopScene);
-    virtual bool init();
+    virtual bool init() override;
 
     void btnPurchase();
 

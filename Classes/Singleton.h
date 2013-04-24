@@ -1,6 +1,8 @@
 #ifndef FlowConnect_Singleton_h
 #define FlowConnect_Singleton_h
 
+#include "cocos2d.h"
+
 template <typename T>
 class Singleton
 {
@@ -16,11 +18,7 @@ protected:
     virtual ~Singleton() {}
 
 private:
-    Singleton(const Singleton&);
-    Singleton& operator=(const Singleton&)
-    {
-        return *this;
-    }
+    DISALLOW_COPY_AND_ASSIGN(Singleton);
 };
 
 #endif

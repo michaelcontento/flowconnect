@@ -5,7 +5,7 @@
 
 using namespace cocos2d;
 
-CCSize Slot::getSize()
+CCSize Slot::getSize() const
 {
     // TODO: use the size from spriteChild
     return CCSize(174, 174);
