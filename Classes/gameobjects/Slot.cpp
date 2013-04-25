@@ -2,6 +2,7 @@
 
 #include "Globals.h"
 #include "../Colors.h"
+#include "userstate.h"
 
 using namespace cocos2d;
 
@@ -225,8 +226,12 @@ void Slot::setNumber(const int newNumber)
         showNumber();
         labelBackground->setColor(LINE_COLORS[newNumber - 1]);
 
-        char buf[5] = {0};
-        snprintf(buf, sizeof(buf), "%d", newNumber);
+        static char buf[5] = {0};
+        if (userstate::isNumberMode()) {
+            snprintf(buf, sizeof(buf), "%d", newNumber);
+        } else {
+            snprintf(buf, sizeof(buf), "%c", newNumber + 64);
+        }
         label->setString(buf);
     }
 }

@@ -52,7 +52,7 @@ bool SettingsScene::init()
 
     menu->addChild(ButtonFactory::create(_("menu.settings", "music")->getCString(), this, menu_selector(SettingsScene::btnMusicToggle)));
     menu->addChild(ButtonFactory::create(_("menu.settings", "sound")->getCString(), this, menu_selector(SettingsScene::btnSoundToggle)));
-    menu->addChild(ButtonFactory::create(_("menu.settings", "changemode")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
+    menu->addChild(ButtonFactory::create(_("menu.settings", "changemode")->getCString(), this, menu_selector(SettingsScene::btnChangeMode)));
     
     menu->addChild(ButtonFactory::createEmptyButton());
     menu->addChild(ButtonFactory::create(_("menu.settings", "howto")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
@@ -171,4 +171,9 @@ void SettingsScene::btnMusicToggle()
 void SettingsScene::btnSoundToggle()
 {
     CCLog("SOUND");
+}
+
+void SettingsScene::btnChangeMode()
+{
+    userstate::setIsNumberMode(!userstate::isNumberMode());
 }

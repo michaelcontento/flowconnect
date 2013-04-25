@@ -22,6 +22,7 @@
 #define KEY_SHOW_HOWTO "show_how_to_play"
 
 #define KEY_SHOW_ADS "show_ads"
+#define KEY_NUMBER_MODE "number_mode"
 
 namespace userstate
 {
@@ -36,6 +37,9 @@ namespace userstate
 
     bool showAds();
     void setShowAds(const bool flag);
+
+    bool isNumberMode();
+    void setIsNumberMode(const bool flag);
 
     bool resetable();
     void forceRefillFreeHints();

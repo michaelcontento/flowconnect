@@ -101,5 +101,5 @@ void Localization::setDefaultLanguage(const char *languageFile)
 
 bool Localization::hastLanguage(const char *languageFile) const
 {
-    return !languages.find(languageFile)->second;
+    return !!languages.find(languageFile)->second;
 }

@@ -261,3 +261,16 @@ void userstate::setShowHowToPlay(const bool flag)
     settings->setBoolForKey(KEY_DIRTY, true);
     settings->flush();
 }
+
+bool userstate::isNumberMode()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey(KEY_NUMBER_MODE, true);
+}
+
+void userstate::setIsNumberMode(const bool flag)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    settings->setBoolForKey(KEY_NUMBER_MODE, flag);
+    settings->flush();
+}
