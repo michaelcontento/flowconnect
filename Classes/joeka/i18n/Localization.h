@@ -32,6 +32,7 @@ public:
     void addLanguage(const char *languageFile);
     void setDefaultLanguage(const char *languageFile);
     void setCurrentLanguage(const char *languageFile);
+    bool hastLanguage(const char *languageFile) const;
 
     void clear();
 };

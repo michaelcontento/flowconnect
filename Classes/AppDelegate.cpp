@@ -32,8 +32,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
-    Localization::getInstance().addLanguage("de.ini");
-    Localization::getInstance().setDefaultLanguage("de.ini");
+    initLocalization();
 
     userstate::refreshFreeHints();
     SceneManager::getInstance().gotoScene(MenuScene::scene());
@@ -57,4 +56,28 @@ void AppDelegate::applicationWillEnterForeground()
     SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 
     userstate::refreshFreeHints();
+}
+
+void AppDelegate::initLocalization()
+{
+    auto loca = &Localization::getInstance();
+    
+    loca->addLanguage("en.ini");
+    loca->setCurrentLanguage("en.ini");
+    loca->setDefaultLanguage("en.ini");
+
+    switch (CCApplication::sharedApplication()->getCurrentLanguage()) {
+        case kLanguageGerman:
+            loca->addLanguage("de.ini");
+            loca->setCurrentLanguage("de.ini");
+            break;
+
+        case kLanguageFrench:
+            loca->addLanguage("fr.ini");
+            loca->setCurrentLanguage("fr.ini");
+            break;
+
+        default:
+            break;
+    }
 }

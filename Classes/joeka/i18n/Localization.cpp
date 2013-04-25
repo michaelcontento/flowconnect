@@ -60,6 +60,10 @@ LanguageKey* _(const char *section, const char *key)
 
 void Localization::addLanguage(const char *languageFile)
 {
+    if (hastLanguage(languageFile)) {
+        return;
+    }
+    
     Language *lang = new Language();
     lang->fileName = languageFile;
 
@@ -93,4 +97,9 @@ void Localization::setDefaultLanguage(const char *languageFile)
 {
     assert(languages.find(languageFile)->second && "Language not loaded!");
     defaultLanguage = languages[languageFile];
+}
+
+bool Localization::hastLanguage(const char *languageFile) const
+{
+    return !languages.find(languageFile)->second;
 }
