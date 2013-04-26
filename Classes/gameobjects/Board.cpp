@@ -258,34 +258,6 @@ void Board::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
     ccTouchEnded(pTouch, pEvent);
 }
 
-void Board::draw()
-{
-    // use the first object to determie the size we use to calculate the
-    // positions on the screen. This is fine as all slots have the same size.
-    CCObject* tmpObj = slots->objectAtIndex(0);
-    Slot* slot = static_cast<Slot*>(tmpObj);
-    if (!slot) {
-        return;
-    }
-    CCSize slotSize = slot->getSize();
-
-    for (int i = 0; i <= size.height; ++i) {
-        // horizontal
-        ccDrawSolidRect(
-            CCPoint(-1, (slotSize.height * i) - 1),
-            CCPoint(getContentSize().width, (slotSize.height * i) + 1),
-            ccc4FFromccc3B(ccWHITE)
-        );
-
-        // vertical
-        ccDrawSolidRect(
-            CCPoint((slotSize.width * i) - 1, 0),
-            CCPoint((slotSize.width * i) + 1, getContentSize().height),
-            ccc4FFromccc3B(ccWHITE)
-        );
-    }
-}
-
 #pragma mark Slot handling
 
 void Board::updateDuration(float dt)

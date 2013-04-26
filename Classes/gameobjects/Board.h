@@ -25,7 +25,6 @@ public:
     CC_SYNTHESIZE_READONLY(float, duration, Duration);
     bool isFinished() const;
 
-    virtual void draw() override;
     void updateDuration(float dt);
     void reset();
     bool finishTillNextCheckpoint();

@@ -9,7 +9,8 @@ using namespace cocos2d;
 CCSize Slot::getSize() const
 {
     // TODO: use the size from spriteChild
-    return CCSize(174, 174);
+    static CCSize size = CCSize(174, 174);
+    return size;
 }
 
 #pragma mark Initialization
@@ -39,6 +40,13 @@ bool Slot::init()
     if (!CCNode::init()) {
         return false;
     }
+
+    auto bg = CCSprite::createWithSpriteFrameName("slot/background.png");
+    bg->setAnchorPoint(CCPoint(0.5, 0.5));
+    bg->setPositionX(getSize().width / 2);
+    bg->setPositionY(getSize().height / 2);
+    bg->setZOrder(SLOT_ZORDER_BACKGROUND);
+    addChild(bg);
 
     lineLayer = CCLayer::create();
     lineLayer->setPositionX(getSize().width / 2);
