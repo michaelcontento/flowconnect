@@ -20,7 +20,9 @@ class Localization : public Singleton<Localization>
     friend class Singleton<Localization>;
     
 private:
-    Localization() {}
+    Localization()
+    : currentLanguage(NULL)
+    , defaultLanguage(NULL) {}
     ~Localization();
 
 public:

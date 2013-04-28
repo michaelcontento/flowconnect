@@ -89,17 +89,17 @@ void Localization::addLanguage(const char *languageFile)
 }
 
 void Localization::setCurrentLanguage(const char *languageFile) {
-    assert(languages.find(languageFile)->second && "Language not loaded!");
+    assert(hastLanguage(languageFile) && "Language not loaded!");
     currentLanguage = languages[languageFile];
 }
 
 void Localization::setDefaultLanguage(const char *languageFile)
 {
-    assert(languages.find(languageFile)->second && "Language not loaded!");
+    assert(hastLanguage(languageFile) && "Language not loaded!");
     defaultLanguage = languages[languageFile];
 }
 
 bool Localization::hastLanguage(const char *languageFile) const
 {
-    return !languages.find(languageFile)->second;
+    return (languages.count(languageFile) > 0);
 }
