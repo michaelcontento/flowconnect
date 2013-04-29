@@ -22,9 +22,9 @@ public:
     void btnRemoveAds();
     void btnHowToPlay();
     void btnMoreGames();
-    void btnChangeMode();
-    void btnMusicToggle();
-    void btnSoundToggle();
+    void btnChangeMode(cocos2d::CCObject* sender);
+    void btnMusicToggle(cocos2d::CCObject* sender);
+    void btnSoundToggle(cocos2d::CCObject* sender);
 
 private:
     const unsigned int MENU_PADDING = 25;

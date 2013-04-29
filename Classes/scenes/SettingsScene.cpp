@@ -11,6 +11,7 @@
 #include "LanguageKey.h"
 #include "UrlOpener.h"
 #include "userstate.h"
+#include "ToggleButton.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -51,10 +52,34 @@ bool SettingsScene::init()
     menu = CCMenu::create();
     addChild(menu);
 
-    menu->addChild(ButtonFactory::create(_("menu.settings", "music")->getCString(), this, menu_selector(SettingsScene::btnMusicToggle)));
-    menu->addChild(ButtonFactory::create(_("menu.settings", "sound")->getCString(), this, menu_selector(SettingsScene::btnSoundToggle)));
-    menu->addChild(ButtonFactory::create(_("menu.settings", "changemode")->getCString(), this, menu_selector(SettingsScene::btnChangeMode)));
-    
+    auto musicButton = ToggleButton::create(
+        _("menu.settings", "music")->getCString(),
+        _("menu.settings", "music.on")->getCString(),
+        _("menu.settings", "music.off")->getCString(),
+        this,
+        menu_selector(SettingsScene::btnMusicToggle)
+    );
+    menu->addChild(musicButton);
+
+    auto soundButton = ToggleButton::create(
+        _("menu.settings", "sound")->getCString(),
+        _("menu.settings", "sound.on")->getCString(),
+        _("menu.settings", "sound.off")->getCString(),
+        this,
+        menu_selector(SettingsScene::btnSoundToggle)
+    );
+    menu->addChild(soundButton);
+
+    auto modeButton = ToggleButton::create(
+        _("menu.settings", "changemode")->getCString(),
+        _("menu.settings", "changemode.on")->getCString(),
+        _("menu.settings", "changemode.off")->getCString(),
+        this,
+        menu_selector(SettingsScene::btnChangeMode)
+    );
+    modeButton->setMode(userstate::isNumberMode());
+    menu->addChild(modeButton);
+
     menu->addChild(ButtonFactory::createEmptyButton());
     menu->addChild(ButtonFactory::create(_("menu.settings", "howto")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
     menu->addChild(ButtonFactory::create(_("menu.settings", "moregames")->getCString(), this, menu_selector(SettingsScene::btnMoreGames)));
@@ -164,17 +189,20 @@ void SettingsScene::btnHowToPlay()
     SceneManager::getInstance().gotoScene(HowToPlayScene::scene());
 }
 
-void SettingsScene::btnMusicToggle()
+void SettingsScene::btnMusicToggle(CCObject* sender)
 {
-    CCLog("MUSIC");
+    auto flag = static_cast<CCBool*>(sender);
+    CCLog("MUSIC %s", (flag->getValue()) ? "on" : "off");
 }
 
-void SettingsScene::btnSoundToggle()
+void SettingsScene::btnSoundToggle(CCObject* sender)
 {
-    CCLog("SOUND");
+    auto flag = static_cast<CCBool*>(sender);
+    CCLog("SOUND %s", (flag->getValue()) ? "on" : "off");
 }
 
-void SettingsScene::btnChangeMode()
+void SettingsScene::btnChangeMode(CCObject* sender)
 {
-    userstate::setIsNumberMode(!userstate::isNumberMode());
+    auto flag = static_cast<CCBool*>(sender);
+    userstate::setIsNumberMode(flag->getValue());
 }

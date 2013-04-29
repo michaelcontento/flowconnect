@@ -8,6 +8,8 @@
 class ButtonFactory
 {
 public:
+    static unsigned int colorCounter;
+
     static void resetColorCounter();
     static cocos2d::CCMenuItemSprite* create(const char* text, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector);
     static cocos2d::CCMenu* createSceneBackButton();
@@ -17,8 +19,6 @@ public:
     static StarButton* createStar();
     
 private:
-    static unsigned int colorCounter;
-
     ButtonFactory() {}
     virtual ~ButtonFactory() {}
     DISALLOW_COPY_AND_ASSIGN(ButtonFactory);
