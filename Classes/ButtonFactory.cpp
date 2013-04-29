@@ -108,11 +108,6 @@ CCMenu* ButtonFactory::createSceneBackButton()
     return menu;
 }
 
-GameButton* ButtonFactory::createLevelButton(const LoaderLevel* level)
-{
-    return GameButton::createWithLevel(level);
-}
-
 CCMenuItem* ButtonFactory::createEmptyButton()
 {
     auto result = CCMenuItem::create();

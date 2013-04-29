@@ -2,6 +2,7 @@
 
 #include "ButtonFactory.h"
 #include "Colors.h"
+#include "GameButton.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -193,7 +194,7 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
 {
     auto menu = CCScrollMenu::create();
     for (auto level : page->levels) {
-        auto button = ButtonFactory::createLevelButton(level);
+        auto button = GameButton::createWithLevel(level);
         button->setBorderColor(LINE_COLORS[page->localid + page->category->localid - 2]);
         button->setTag(page->localid - 1);
 

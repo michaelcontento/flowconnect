@@ -6,6 +6,7 @@
 #include "Globals.h"
 #include "Localization.h"
 #include "LanguageKey.h"
+#include "userstate.h"
 
 using namespace cocos2d;
 

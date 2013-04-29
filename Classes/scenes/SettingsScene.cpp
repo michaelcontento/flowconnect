@@ -10,6 +10,7 @@
 #include "Localization.h"
 #include "LanguageKey.h"
 #include "UrlOpener.h"
+#include "userstate.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
