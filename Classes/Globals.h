@@ -9,6 +9,7 @@
 
 #define PRICE_REMOVE_ADS 50
 #define PRICE_HINT 1
+#define PRICE_PAGE 30
 
 extern LevelLoader globalLevelLoader;
 extern const LoaderLevel* globalLevel;

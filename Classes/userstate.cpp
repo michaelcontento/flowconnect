@@ -24,6 +24,21 @@ public:
     }
 };
 
+
+bool userstate::isPageFree(const LoaderPage* page)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey(getPageKey(page));
+}
+
+void userstate::setIsPageFree(const LoaderPage* page, const bool flag)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    settings->setBoolForKey(getPageKey(page), flag);
+    settings->setBoolForKey(KEY_DIRTY, true);
+    settings->flush();
+}
+
 bool userstate::showAds()
 {
     auto settings = CCUserDefault::sharedUserDefault();
@@ -183,6 +198,12 @@ void userstate::resetAllLevelModes()
         }
     }
 
+    for (int catId = 1; catId <= MAX_CATEGORIES; ++catId) {
+        for (int pageId = 2; pageId <= PAGES_PER_CATEGORY; ++pageId) {
+            settings->setBoolForKey(getPageKey(catId, pageId), false);
+        }
+    }
+
     // not required as flush is done in setShowHowToPlay()
     // settings->flush();
     setShowHowToPlay(true);
@@ -218,6 +239,25 @@ int userstate::getStarsForCategory(const LoaderCategory* category)
     auto result = settings->getIntegerForKey(categoryKey);
 
     return result;
+}
+
+char* userstate::getPageKey(const unsigned int categoryId, const unsigned int pageId)
+{
+    static char tmpKey[50] = {0};
+    snprintf(
+        tmpKey, sizeof(tmpKey),
+        "%s_%d_%d",
+        PREFIX_PAGE_FREE,
+        categoryId,
+        pageId
+    );
+
+    return tmpKey;
+}
+
+char* userstate::getPageKey(const LoaderPage* page)
+{
+    return getPageKey(page->category->localid, page->localid);
 }
 
 char* userstate::getLevelKey(const LoaderLevel* level)

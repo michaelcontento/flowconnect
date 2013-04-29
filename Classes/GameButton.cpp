@@ -17,6 +17,7 @@ GameButton::GameButton()
 , star(NULL)
 , label(NULL)
 , lastState(userstate::Mode::NONE)
+, pagelock(NULL)
 {
 }
 
@@ -24,10 +25,10 @@ GameButton::~GameButton()
 {
 }
 
-GameButton* GameButton::createWithLevel(const LoaderLevel* level)
+GameButton* GameButton::createWithLevel(const LoaderLevel* level, PageLockButton* pagelock)
 {
     auto result = new GameButton();
-    if (result && result->initWithLevel(level)) {
+    if (result && result->initWithLevel(level, pagelock)) {
         result->autorelease();
         return result;
     } else {
@@ -37,8 +38,9 @@ GameButton* GameButton::createWithLevel(const LoaderLevel* level)
     }
 }
 
-bool GameButton::initWithLevel(const LoaderLevel* level)
+bool GameButton::initWithLevel(const LoaderLevel* level, PageLockButton* pagelock)
 {
+    this->pagelock = pagelock;
     this->level = level;
     if (!level) {
         return false;
@@ -108,6 +110,10 @@ void GameButton::setBorderColor(const ccColor3B color)
 
 void GameButton::onClick()
 {
+    if (pagelock && pagelock->onClick()) {
+        return;
+    }
+    
     globalLevel = level;
 
     if (userstate::showHowToPlay()) {

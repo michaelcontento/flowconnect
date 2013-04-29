@@ -3,6 +3,7 @@
 #include "ButtonFactory.h"
 #include "Colors.h"
 #include "GameButton.h"
+#include "PageLockButton.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -193,8 +194,14 @@ CCNode* LevelMenuScene::createMenuContainer()
 CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
 {
     auto menu = CCScrollMenu::create();
+
+    PageLockButton* pagelock = NULL;
+    if (page->localid > 1 && !userstate::isPageFree(page)) {
+        pagelock = PageLockButton::create(page);
+    }
+
     for (auto level : page->levels) {
-        auto button = GameButton::createWithLevel(level);
+        auto button = GameButton::createWithLevel(level, pagelock);
         button->setBorderColor(LINE_COLORS[page->localid + page->category->localid - 2]);
         button->setTag(page->localid - 1);
 
@@ -209,16 +216,19 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
         (1024 - menu->getContentSize().height) / 2
     );
 
-
     auto container = CCNode::create();
     container->setAnchorPoint(CCPointZero);
     container->setPosition(CCPointZero);
     container->setContentSize(menu->getContentSize());
     container->addChild(menu);
+    container->addChild(ButtonFactory::createHeadline(page->getLocalizedName()));
 
-    container->addChild(ButtonFactory::createHeadline(
-        page->getLocalizedName()
-    ));
+    if (pagelock) {
+        pagelock->setAnchorPoint(CCPoint(0.5, 0.5));
+        pagelock->setPosition(ccpMult(ccpFromSize(container->getContentSize()), 0.5));
+        pagelock->setPosition(ccpAdd(pagelock->getPosition(), menu->getPosition()));
+        container->addChild(pagelock);
+    }
 
     return container;
 }
@@ -232,6 +242,9 @@ void LevelMenuScene::alignMenu(CCMenu* menu) const
     CCObject* it = NULL;
     CCARRAY_FOREACH_REVERSE(menu->getChildren(), it) {
         auto button = dynamic_cast<GameButton*>(it);
+        if (!button) {
+            continue;
+        }
 
         btnSize.width = (button->getContentSize().width + ITEM_PADDING);
         btnSize.height = (button->getContentSize().height + ITEM_PADDING);

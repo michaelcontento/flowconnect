@@ -4,14 +4,15 @@
 #include "cocos2d.h"
 #include "LevelLoader.h"
 #include "userstate.h"
+#include "PageLockButton.h"
 
 class GameButton : public cocos2d::CCMenuItem
 {
 public:
     GameButton();
     virtual ~GameButton();
-    static GameButton* createWithLevel(const LoaderLevel* level);
-    bool initWithLevel(const LoaderLevel* level);
+    static GameButton* createWithLevel(const LoaderLevel* level, PageLockButton* pagelock);
+    bool initWithLevel(const LoaderLevel* level, PageLockButton* pagelock);
 
     void onClick();
     void setBorderColor(const cocos2d::ccColor3B color);
@@ -19,6 +20,7 @@ public:
 
 private:
     const LoaderLevel* level;
+    PageLockButton* pagelock;
     userstate::Mode::Enum lastState;
     cocos2d::CCSprite* star;
     cocos2d::CCSprite* border;
