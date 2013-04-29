@@ -5,10 +5,10 @@
 
 #define SLOT_DEFAULT_NUMBER -1
 
-#define SLOT_ZORDER_BACKGROUND 8
 #define SLOT_ZORDER_LINE_LAYER 7
 #define SLOT_ZORDER_LABEL_BACKGROUND 9
-#define SLOT_ZORDER_LABEL 10
+#define SLOT_ZORDER_BACKGROUND 10
+#define SLOT_ZORDER_LABEL 11
 
 namespace SlotLineType
 {
@@ -64,7 +64,7 @@ private:
     cocos2d::CCLayer* lineLayer;
     cocos2d::CCLabelTTF* label;
     cocos2d::CCSprite* labelBackground;
-    cocos2d::CCAction* labelPulseAction;
+    static cocos2d::CCAction* labelPulseAction;
 
     void updateLineImage();
     bool isLineOpposite(const SlotLineType::Enum lineIn, const SlotLineType::Enum lineOut) const;

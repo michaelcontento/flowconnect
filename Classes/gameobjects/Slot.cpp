@@ -15,6 +15,8 @@ CCSize Slot::getSize() const
 
 #pragma mark Initialization
 
+cocos2d::CCAction* Slot::labelPulseAction = NULL;
+
 Slot::Slot()
 : gridIndex(-1, -1)
 , lineInLocked(false)
@@ -23,7 +25,6 @@ Slot::Slot()
 , lineLayer(NULL)
 , label(NULL)
 , labelBackground(NULL)
-, labelPulseAction(NULL)
 , number(SLOT_DEFAULT_NUMBER)
 , lineIn(SlotLineType::NONE)
 , lineOut(SlotLineType::NONE)
@@ -32,7 +33,6 @@ Slot::Slot()
 
 Slot::~Slot()
 {
-    CC_SAFE_RELEASE_NULL(labelPulseAction);
 }
 
 bool Slot::init()
@@ -54,6 +54,27 @@ bool Slot::init()
     lineLayer->setZOrder(SLOT_ZORDER_LINE_LAYER);
     addChild(lineLayer);
 
+    if (!Slot::labelPulseAction) {
+        Slot::labelPulseAction = CCRepeatForever::create(
+            CCSequence::create(
+                CCSpawn::create(
+                    CCSequence::create(
+                        CCDelayTime::create(0.05),
+                        CCScaleTo::create(0.25, 0.8),
+                        CCDelayTime::create(0.075),
+                        CCScaleTo::create(0.25, 1.0),
+                        NULL
+                    ),
+                    CCRotateBy::create(0.625, 90),
+                    NULL
+                ),
+                CCDelayTime::create(2),
+                NULL
+            )
+        );
+        Slot::labelPulseAction->retain();
+    }
+    
     return true;
 }
 
@@ -118,10 +139,11 @@ void Slot::markAsNextSlot(const bool flag)
 {
     if (labelBackground && isNextSlot_ != flag) {
         if (flag) {
-            labelBackground->runAction(labelPulseAction);
+            labelBackground->runAction(Slot::labelPulseAction);
         } else {
             labelBackground->stopAllActions();
             labelBackground->setScale(1);
+            labelBackground->setRotation(0);
         }
     }
 
@@ -271,17 +293,6 @@ void Slot::showNumber()
         labelBackground->setZOrder(SLOT_ZORDER_LABEL_BACKGROUND);
         addChild(labelBackground);
 
-        labelPulseAction = CCRepeatForever::create(
-            CCSequence::create(
-                CCScaleTo::create(0.125, 1.10),
-                CCDelayTime::create(0.125),
-                CCScaleTo::create(0.125, 1),
-                CCDelayTime::create(2),
-                NULL
-            )
-        );
-        labelPulseAction->retain();
-        
         markAsNextSlot(isNextSlot());
     }
 

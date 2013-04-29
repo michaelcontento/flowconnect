@@ -562,7 +562,7 @@ void Board::startTouchIndicatorBlink()
     }
 
     touchIndicator->runAction(
-        CCRepeatForever::create(CCBlink::create(1, 1))
+        CCRepeatForever::create(CCBlink::create(1.5, 1))
     );
 }
 
