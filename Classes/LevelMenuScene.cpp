@@ -12,6 +12,8 @@ extern LoaderLevel* globalLevel;
 
 #pragma mark Initialization
 
+const LoaderPage* LevelMenuScene::scrollTo = NULL;
+
 LevelMenuScene::LevelMenuScene()
 : scrollView(NULL)
 , pageIndicator(NULL)
@@ -54,6 +56,11 @@ void LevelMenuScene::onEnter()
     CCARRAY_FOREACH(buttons, it) {
         auto button = static_cast<GameButton*>(it);
         button->updateStateIndicator();
+    }
+
+    if (LevelMenuScene::scrollTo) {
+        adjustScrollView(LevelMenuScene::scrollTo);
+        LevelMenuScene::scrollTo = NULL;
     }
 }
 
@@ -139,16 +146,20 @@ void LevelMenuScene::setPageIndicatorPage()
     }
 }
 
-void LevelMenuScene::adjustScrollView()
+void LevelMenuScene::adjustScrollView(const LoaderPage* page)
 {
     assert(scrollView && "scrollView is required to be set");
 
     auto offset = scrollView->getContentOffset();
-    int pageOffset = (int)offset.x % 768;
-    currentPage = abs(offset.x) / 768;
+    if (page) {
+        currentPage = page->localid - 1;
+    } else {
+        int pageOffset = (int)offset.x % 768;
+        currentPage = abs(offset.x) / 768;
 
-    if (pageOffset <= -384) {
-        ++currentPage;
+        if (pageOffset <= -384) {
+            ++currentPage;
+        }
     }
 
     auto maxOffset = (scrollView->getContentSize().width - 768) * -1;

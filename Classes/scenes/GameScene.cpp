@@ -7,6 +7,7 @@
 #include "Localization.h"
 #include "LanguageKey.h"
 #include "userstate.h"
+#include "LevelMenuScene.h"
 
 using namespace cocos2d;
 
@@ -56,7 +57,16 @@ void GameScene::onBtnGoBack()
     if (!prevLevel) {
         LoaderPage* prePage = globalLevel->page->prev;
         if (prePage) {
-            prevLevel = prePage->levels.back();
+            if (!userstate::isPageFree(prePage)) {
+                CCMessageBox(
+                    _("dialog.pagelocked", "body")->getCString(),
+                    _("dialog.pagelocked", "headline")->getCString()
+                );
+                LevelMenuScene::scrollTo = prePage;
+                SceneManager::getInstance().popScene();
+            } else {
+                prevLevel = prePage->levels.back();
+            }
         }
     }
 
@@ -77,7 +87,16 @@ void GameScene::onBtnGoNext()
     if (!nextLevel) {
         LoaderPage* nextPage = globalLevel->page->next;
         if (nextPage) {
-            nextLevel = nextPage->levels.front();
+            if (!userstate::isPageFree(nextPage)) {
+                CCMessageBox(
+                    _("dialog.pagelocked", "body")->getCString(),
+                    _("dialog.pagelocked", "headline")->getCString()
+                );
+                LevelMenuScene::scrollTo = nextPage;
+                SceneManager::getInstance().popScene();
+            } else {
+                nextLevel = nextPage->levels.front();
+            }
         }
     }
 

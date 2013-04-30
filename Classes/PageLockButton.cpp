@@ -44,24 +44,20 @@ bool PageLockButton::init(const LoaderPage* page)
 
 bool PageLockButton::onClick()
 {
-    auto result = userstate::isPageFree(page);
-    if (result) {
+    if (userstate::isPageFree(page)) {
         return false;
     }
 
     static char buf[250] = {0};
     snprintf(buf, sizeof(buf), _("alert.unlockpage", "body")->getCString(), PRICE_PAGE);
 
-    if (!userstate::isPageFree(page)) {
-        AlertView::createAlert(
-            _("alert.unlockpage", "headline")->getCString(),
-            buf,
-            _("alert.unlockpage", "btn.cancel")->getCString()
-        );
-        AlertView::addAlertButton(_("alert.unlockpage", "btn.ok")->getCString());
-        AlertView::showAlert(this);
-        return true;
-    }
+    AlertView::createAlert(
+        _("alert.unlockpage", "headline")->getCString(),
+        buf,
+        _("alert.unlockpage", "btn.cancel")->getCString()
+    );
+    AlertView::addAlertButton(_("alert.unlockpage", "btn.ok")->getCString());
+    AlertView::showAlert(this);
 
     return true;
 }

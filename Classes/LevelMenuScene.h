@@ -9,6 +9,8 @@ class LoaderPage;
 class LevelMenuScene : public cocos2d::CCLayer
 {
 public:
+    static const LoaderPage* scrollTo;
+    
     LevelMenuScene();
     virtual ~LevelMenuScene();
 
@@ -41,7 +43,7 @@ private:
     cocos2d::CCNode* createMenuContainer();
     cocos2d::CCNode* createPageMenu(const LoaderPage* page) const;
     void alignMenu(cocos2d::CCMenu* menu) const;
-    void adjustScrollView();
+    void adjustScrollView(const LoaderPage* = NULL);
 
     cocos2d::CCNode* createPageIndicatorContainer();
     void setPageIndicatorPage();
