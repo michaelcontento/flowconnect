@@ -170,7 +170,9 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
     }
 
     Slot* lastSlot = getLastUserPathSlot();
-    assert(lastSlot && "should always be there because of ccTouchBegin");
+    if (!lastSlot) {
+        return;
+    }
 
     // ----- Validate movement
 
