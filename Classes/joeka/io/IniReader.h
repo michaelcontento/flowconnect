@@ -28,6 +28,7 @@ public:
     double getValueAsDouble(const char *section, const char *key);
     float getValueAsFloat(const char *section, const char *key);
     const char * getValue(const char *section, const char *key);
+    bool doesSectionExist(const char *section);
     iniKeys* getSection(const char *section);
     iniSections* getSections();
 };

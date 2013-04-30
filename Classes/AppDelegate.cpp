@@ -6,6 +6,8 @@
 #include "Globals.h"
 #include "userstate.h"
 #include "Localization.h"
+#include "AdManager.h"
+#include "AssetsManager.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -32,6 +34,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
+    initAds();
     initLocalization();
 
     userstate::refreshFreeHints();
@@ -56,6 +59,24 @@ void AppDelegate::applicationWillEnterForeground()
     SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 
     userstate::refreshFreeHints();
+}
+
+void AppDelegate::initAds()
+{
+    if (!userstate::showAds()) {
+        Ads::AdManager::disableAds();
+        return;
+    }
+
+    auto mgr = new cocos2d::extension::AssetsManager(
+        "http://www.coragames.com/apps/dummy/package.zip",
+        "http://www.coragames.com/apps/dummy/version"
+    );
+    mgr->update();
+    
+    Ads::AdManager::initWithIniFile("ads.ini");
+    Ads::AdManager::startService();
+    Ads::AdManager::enableAds();
 }
 
 void AppDelegate::initLocalization()

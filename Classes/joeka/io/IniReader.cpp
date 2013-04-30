@@ -9,7 +9,7 @@
 #include "IniReader.h"
 
 #include <string>
-#include "cocos2d.h"
+#include "cocos2d.h";
 #include <iostream>
 #include "StringHelper.h"
 #include "Helpers.h"
@@ -106,6 +106,12 @@ IniReader::iniKeys* IniReader::getSection(const char *section)
 {
     return &(sections[section]);
 }
+
+bool IniReader::doesSectionExist(const char *section)
+{
+    return sections.find(section) != sections.end();
+}
+
 
 IniReader::iniSections* IniReader::getSections()
 {

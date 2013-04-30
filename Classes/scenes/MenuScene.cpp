@@ -7,6 +7,7 @@
 #include "SettingsScene.h"
 #include "Localization.h"
 #include "LanguageKey.h"
+#include "AdManager.h"
 
 using namespace cocos2d;
 
@@ -53,6 +54,7 @@ bool MenuScene::init()
 
 void MenuScene::btnPlay()
 {
+    Ads::AdManager::showFullscreenAd();
     SceneManager::getInstance().gotoScene(CategoryMenuScene::scene());
 }
 
