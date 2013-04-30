@@ -184,6 +184,7 @@
 		C8CA62361714517E005660B3 /* assets.png in Resources */ = {isa = PBXBuildFile; fileRef = C8CA62331714517E005660B3 /* assets.png */; };
 		C8D628CE171EB34300631416 /* MenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8D628CC171EB34300631416 /* MenuScene.cpp */; };
 		C8D628D1171EE84300631416 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8D628CF171EE84300631416 /* SceneManager.cpp */; };
+		C8D8F278173060D60073B7C8 /* AssetsManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8D8F276173060D60073B7C8 /* AssetsManager.cpp */; };
 		C8DBAB92171C5EAA009849B4 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C8DBAB91171C5EAA009849B4 /* levels */; };
 		C8E19D0717184F9400949285 /* BoardStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E19D0517184F9400949285 /* BoardStats.cpp */; };
 		C8E40550172195E700F6599D /* GameButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E4054E172195E700F6599D /* GameButton.cpp */; };
@@ -564,6 +565,8 @@
 		C8D628CF171EE84300631416 /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneManager.cpp; path = ../Classes/SceneManager.cpp; sourceTree = "<group>"; };
 		C8D628D0171EE84300631416 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneManager.h; path = ../Classes/SceneManager.h; sourceTree = "<group>"; };
 		C8D628D2171EE87A00631416 /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Singleton.h; path = ../Classes/Singleton.h; sourceTree = "<group>"; };
+		C8D8F276173060D60073B7C8 /* AssetsManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetsManager.cpp; sourceTree = "<group>"; };
+		C8D8F277173060D60073B7C8 /* AssetsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetsManager.h; sourceTree = "<group>"; };
 		C8DBAB8E171C4BE1009849B4 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colors.h; path = ../Classes/Colors.h; sourceTree = "<group>"; };
 		C8DBAB91171C5EAA009849B4 /* levels */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = levels; sourceTree = "<group>"; };
 		C8E19D0517184F9400949285 /* BoardStats.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoardStats.cpp; path = ../Classes/gameobjects/BoardStats.cpp; sourceTree = "<group>"; };
@@ -890,6 +893,7 @@
 		15A3D9B31682F826002FB0C5 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C8D8F275173060D60073B7C8 /* AssetsManager */,
 				15A3D9B51682F826002FB0C5 /* CCBReader */,
 				15A3D9EA1682F826002FB0C5 /* cocos-ext.h */,
 				15A3D9EB1682F826002FB0C5 /* ExtensionMacros.h */,
@@ -1320,6 +1324,15 @@
 			name = gameobjects;
 			sourceTree = "<group>";
 		};
+		C8D8F275173060D60073B7C8 /* AssetsManager */ = {
+			isa = PBXGroup;
+			children = (
+				C8D8F276173060D60073B7C8 /* AssetsManager.cpp */,
+				C8D8F277173060D60073B7C8 /* AssetsManager.h */,
+			);
+			path = AssetsManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1576,6 +1589,7 @@
 				C88324381728A18B000E93ED /* UrlOpener.mm in Sources */,
 				C8C6E774172EA6DD0060466D /* ToggleButton.cpp in Sources */,
 				C8C6E779172F033B0060466D /* PageLockButton.cpp in Sources */,
+				C8D8F278173060D60073B7C8 /* AssetsManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
