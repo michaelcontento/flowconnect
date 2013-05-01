@@ -33,6 +33,7 @@ public:
     */
     virtual void applicationWillEnterForeground() override;
 
+    void initPayment();
     void initAds();
     void initLocalization();
 };

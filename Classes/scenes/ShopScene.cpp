@@ -4,13 +4,19 @@
 #include "userstate.h"
 #include "Localization.h"
 #include "LanguageKey.h"
+#include "Product.h"
+#include "ProductConsumable.h"
+#include "PaymentService.h"
 
 using namespace cocos2d;
 
 #pragma mark Initialization
 
 ShopScene::ShopScene()
+: menu(NULL)
+, purchased(false)
 {
+    PaymentService::setPaymentReceiver(this);
 }
 
 ShopScene::~ShopScene()
@@ -30,16 +36,16 @@ bool ShopScene::init()
         return false;
     }
 
-    auto menu = CCMenu::create();
+    menu = CCMenu::create();
     addChild(menu);
 
-    menu->addChild(ButtonFactory::create("100 Stars 2€", this, menu_selector(ShopScene::btnPurchase)));
-    menu->addChild(ButtonFactory::create("300 Stars 5€", this, menu_selector(ShopScene::btnPurchase)));
-    menu->addChild(ButtonFactory::create("600 + 100 Stars 10€", this, menu_selector(ShopScene::btnPurchase)));
-    menu->addChild(ButtonFactory::create("1200 + 400 Stars 20€", this, menu_selector(ShopScene::btnPurchase)));
-    menu->addChild(ButtonFactory::create("1800 + 900 Stars 30€", this, menu_selector(ShopScene::btnPurchase)));
-    menu->addChild(ButtonFactory::create("Rate us - 10", this, menu_selector(ShopScene::btnPurchase)));
-    menu->addChild(ButtonFactory::create("Facebook like - 10", this, menu_selector(ShopScene::btnPurchase)));
+    menu->addChild(ButtonFactory::createPaymentButton(PaymentService::getProduct("100")));
+    menu->addChild(ButtonFactory::createPaymentButton(PaymentService::getProduct("300")));
+    menu->addChild(ButtonFactory::createPaymentButton(PaymentService::getProduct("700")));
+    menu->addChild(ButtonFactory::createPaymentButton(PaymentService::getProduct("1600")));
+    menu->addChild(ButtonFactory::createPaymentButton(PaymentService::getProduct("2700")));
+    //menu->addChild(ButtonFactory::create("Rate us - 10", this, menu_selector(ShopScene::btnPurchase)));
+    //menu->addChild(ButtonFactory::create("Facebook like - 10", this, menu_selector(ShopScene::btnPurchase)));
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
     addChild(ButtonFactory::createHeadline(_("menu.shop", "headline")->getCString()));
@@ -52,7 +58,38 @@ bool ShopScene::init()
     return true;
 }
 
-void ShopScene::btnPurchase()
+void ShopScene::onPurchaseStateChanged(Product *product)
 {
-    userstate::addStarsToUser(100);
+    purchased = true;
+    auto desc = product->nativeId;
+
+    auto pos = desc.find_last_of(".");
+    if (pos == std::string::npos) {
+        return;
+    }
+
+    auto amount = atoi(desc.substr(pos + 1, std::string::npos).c_str());
+    userstate::addStarsToUser(amount);
+}
+
+void ShopScene::onTransactionStart()
+{
+    purchased = false;
+    if (menu) {
+        menu->setEnabled(false);
+    }
+}
+
+void ShopScene::onTransactionStop()
+{
+    if (menu) {
+        menu->setEnabled(true);
+    }
+
+    if (!purchased) {
+        CCMessageBox(
+            _("dialog.shoperror", "body")->getCString(),
+            _("dialog.shoperror", "headline")->getCString()
+        );
+    }
 }

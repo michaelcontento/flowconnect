@@ -175,6 +175,14 @@
 		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
 		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
 		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
+		C8C3D610173099850039014A /* StoreManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8C3D5FF173099850039014A /* StoreManager.mm */; };
+		C8C3D613173099850039014A /* PaymentProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C3D604173099850039014A /* PaymentProvider.cpp */; };
+		C8C3D614173099850039014A /* PaymentService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C3D607173099850039014A /* PaymentService.cpp */; };
+		C8C3D615173099850039014A /* Product.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C3D609173099850039014A /* Product.cpp */; };
+		C8C3D616173099850039014A /* ProductConsumable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C3D60B173099850039014A /* ProductConsumable.cpp */; };
+		C8C3D617173099850039014A /* ProductNonConsumable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C3D60D173099850039014A /* ProductNonConsumable.cpp */; };
+		C8C3D61E17309A940039014A /* PaymentProviderIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8C3D61C17309A930039014A /* PaymentProviderIos.mm */; };
+		C8C3D61F17309A940039014A /* StoreObserver.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8C3D61D17309A940039014A /* StoreObserver.mm */; };
 		C8C6E774172EA6DD0060466D /* ToggleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C6E772172EA6DD0060466D /* ToggleButton.cpp */; };
 		C8C6E779172F033B0060466D /* PageLockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C6E777172F033A0060466D /* PageLockButton.cpp */; };
 		C8CA622817141A32005660B3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622617141A32005660B3 /* GameScene.cpp */; };
@@ -196,6 +204,7 @@
 		C8D8F29417306C730073B7C8 /* Revmob_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8D8F29217306C720073B7C8 /* Revmob_ios.mm */; };
 		C8D8F29817306D5F0073B7C8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D8F29717306D5F0073B7C8 /* SystemConfiguration.framework */; };
 		C8D8F29A17306D880073B7C8 /* ads.ini in Resources */ = {isa = PBXBuildFile; fileRef = C8D8F29917306D880073B7C8 /* ads.ini */; };
+		C8D8F2B7173091AE0073B7C8 /* payment.ini in Resources */ = {isa = PBXBuildFile; fileRef = C8D8F2B6173091AD0073B7C8 /* payment.ini */; };
 		C8DBAB92171C5EAA009849B4 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C8DBAB91171C5EAA009849B4 /* levels */; };
 		C8E19D0717184F9400949285 /* BoardStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E19D0517184F9400949285 /* BoardStats.cpp */; };
 		C8E40550172195E700F6599D /* GameButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E4054E172195E700F6599D /* GameButton.cpp */; };
@@ -558,6 +567,24 @@
 		C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ButtonFactory.cpp; path = ../Classes/ButtonFactory.cpp; sourceTree = "<group>"; };
 		C8A0C2B5171FD47E0094DDBB /* ButtonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonFactory.h; path = ../Classes/ButtonFactory.h; sourceTree = "<group>"; };
 		C8A0C2B7172134BD0094DDBB /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = ../Classes/Globals.h; sourceTree = "<group>"; };
+		C8C3D5FD173099850039014A /* StoreKitDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreKitDelegate.h; sourceTree = "<group>"; };
+		C8C3D5FE173099850039014A /* StoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreManager.h; sourceTree = "<group>"; };
+		C8C3D5FF173099850039014A /* StoreManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StoreManager.mm; sourceTree = "<group>"; };
+		C8C3D600173099850039014A /* StoreObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreObserver.h; sourceTree = "<group>"; };
+		C8C3D603173099850039014A /* PaymentListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentListener.h; sourceTree = "<group>"; };
+		C8C3D604173099850039014A /* PaymentProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PaymentProvider.cpp; sourceTree = "<group>"; };
+		C8C3D605173099850039014A /* PaymentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentProvider.h; sourceTree = "<group>"; };
+		C8C3D606173099850039014A /* PaymentProviderIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentProviderIos.h; sourceTree = "<group>"; };
+		C8C3D607173099850039014A /* PaymentService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PaymentService.cpp; sourceTree = "<group>"; };
+		C8C3D608173099850039014A /* PaymentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentService.h; sourceTree = "<group>"; };
+		C8C3D609173099850039014A /* Product.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Product.cpp; sourceTree = "<group>"; };
+		C8C3D60A173099850039014A /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		C8C3D60B173099850039014A /* ProductConsumable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProductConsumable.cpp; sourceTree = "<group>"; };
+		C8C3D60C173099850039014A /* ProductConsumable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductConsumable.h; sourceTree = "<group>"; };
+		C8C3D60D173099850039014A /* ProductNonConsumable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProductNonConsumable.cpp; sourceTree = "<group>"; };
+		C8C3D60E173099850039014A /* ProductNonConsumable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductNonConsumable.h; sourceTree = "<group>"; };
+		C8C3D61C17309A930039014A /* PaymentProviderIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaymentProviderIos.mm; sourceTree = "<group>"; };
+		C8C3D61D17309A940039014A /* StoreObserver.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StoreObserver.mm; sourceTree = "<group>"; };
 		C8C6E772172EA6DD0060466D /* ToggleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ToggleButton.cpp; path = ../Classes/ToggleButton.cpp; sourceTree = "<group>"; };
 		C8C6E773172EA6DD0060466D /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleButton.h; path = ../Classes/ToggleButton.h; sourceTree = "<group>"; };
 		C8C6E777172F033A0060466D /* PageLockButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PageLockButton.cpp; path = ../Classes/PageLockButton.cpp; sourceTree = "<group>"; };
@@ -597,6 +624,7 @@
 		C8D8F29317306C720073B7C8 /* RevmobBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevmobBridge.h; sourceTree = "<group>"; };
 		C8D8F29717306D5F0073B7C8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C8D8F29917306D880073B7C8 /* ads.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ads.ini; sourceTree = "<group>"; };
+		C8D8F2B6173091AD0073B7C8 /* payment.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = payment.ini; sourceTree = "<group>"; };
 		C8DBAB8E171C4BE1009849B4 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colors.h; path = ../Classes/Colors.h; sourceTree = "<group>"; };
 		C8DBAB91171C5EAA009849B4 /* levels */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = levels; sourceTree = "<group>"; };
 		C8E19D0517184F9400949285 /* BoardStats.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoardStats.cpp; path = ../Classes/gameobjects/BoardStats.cpp; sourceTree = "<group>"; };
@@ -1204,6 +1232,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C8D8F2B6173091AD0073B7C8 /* payment.ini */,
 				C8D8F29917306D880073B7C8 /* ads.ini */,
 				C8C6E775172F00740060466D /* fonts */,
 				C88AF14D17280A30004697BE /* lang */,
@@ -1237,6 +1266,7 @@
 		C88AF13717280744004697BE /* joeka */ = {
 			isa = PBXGroup;
 			children = (
+				C8C3D5FA173099850039014A /* payment */,
 				C8D8F2791730666B0073B7C8 /* ads */,
 				C88AF15417288934004697BE /* alert */,
 				C88AF14617280859004697BE /* utils */,
@@ -1302,6 +1332,39 @@
 				C88AF15917288A21004697BE /* AlertViewIOS.mm */,
 			);
 			path = alert;
+			sourceTree = "<group>";
+		};
+		C8C3D5FA173099850039014A /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				C8C3D5FB173099850039014A /* ios */,
+				C8C3D603173099850039014A /* PaymentListener.h */,
+				C8C3D604173099850039014A /* PaymentProvider.cpp */,
+				C8C3D605173099850039014A /* PaymentProvider.h */,
+				C8C3D606173099850039014A /* PaymentProviderIos.h */,
+				C8C3D607173099850039014A /* PaymentService.cpp */,
+				C8C3D608173099850039014A /* PaymentService.h */,
+				C8C3D609173099850039014A /* Product.cpp */,
+				C8C3D60A173099850039014A /* Product.h */,
+				C8C3D60B173099850039014A /* ProductConsumable.cpp */,
+				C8C3D60C173099850039014A /* ProductConsumable.h */,
+				C8C3D60D173099850039014A /* ProductNonConsumable.cpp */,
+				C8C3D60E173099850039014A /* ProductNonConsumable.h */,
+			);
+			path = payment;
+			sourceTree = "<group>";
+		};
+		C8C3D5FB173099850039014A /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				C8C3D61C17309A930039014A /* PaymentProviderIos.mm */,
+				C8C3D61D17309A940039014A /* StoreObserver.mm */,
+				C8C3D5FD173099850039014A /* StoreKitDelegate.h */,
+				C8C3D5FE173099850039014A /* StoreManager.h */,
+				C8C3D5FF173099850039014A /* StoreManager.mm */,
+				C8C3D600173099850039014A /* StoreObserver.h */,
+			);
+			path = ios;
 			sourceTree = "<group>";
 		};
 		C8C6E775172F00740060466D /* fonts */ = {
@@ -1491,6 +1554,7 @@
 				C8832440172924C1000E93ED /* en.ini in Resources */,
 				C88324421729266A000E93ED /* fr.ini in Resources */,
 				C8D8F29A17306D880073B7C8 /* ads.ini in Resources */,
+				C8D8F2B7173091AE0073B7C8 /* payment.ini in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1667,6 +1731,14 @@
 				C8D8F282173068BD0073B7C8 /* RevmobProvider.cpp in Sources */,
 				C8D8F28A17306B9A0073B7C8 /* ChartboostX_ios.mm in Sources */,
 				C8D8F29417306C730073B7C8 /* Revmob_ios.mm in Sources */,
+				C8C3D610173099850039014A /* StoreManager.mm in Sources */,
+				C8C3D613173099850039014A /* PaymentProvider.cpp in Sources */,
+				C8C3D614173099850039014A /* PaymentService.cpp in Sources */,
+				C8C3D615173099850039014A /* Product.cpp in Sources */,
+				C8C3D616173099850039014A /* ProductConsumable.cpp in Sources */,
+				C8C3D617173099850039014A /* ProductNonConsumable.cpp in Sources */,
+				C8C3D61E17309A940039014A /* PaymentProviderIos.mm in Sources */,
+				C8C3D61F17309A940039014A /* StoreObserver.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1788,14 +1860,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: 小明 张 (L4ZF355VQS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小明 张 (L4ZF355VQS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Contento (98HM4RQW3X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PROVISIONING_PROFILE = "0C43CFE2-55C4-429A-9A03-BFB76D31630B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C43CFE2-55C4-429A-9A03-BFB76D31630B";
+				PROVISIONING_PROFILE = "972260C7-56F2-4F2D-B593-7606FB95A2DD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv6 armv7 i386";
 			};
@@ -1805,15 +1877,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: 小明 张 (L4ZF355VQS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 小明 张 (L4ZF355VQS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Contento (98HM4RQW3X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "0C43CFE2-55C4-429A-9A03-BFB76D31630B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB6844BA-2943-44DB-B10A-3A3F0E8A52B8";
+				PROVISIONING_PROFILE = "972260C7-56F2-4F2D-B593-7606FB95A2DD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv6 armv7 i386";
 			};
