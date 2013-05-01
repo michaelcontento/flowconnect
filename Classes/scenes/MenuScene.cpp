@@ -8,6 +8,7 @@
 #include "Localization.h"
 #include "LanguageKey.h"
 #include "AdManager.h"
+#include "NativeCodeLauncher.h"
 
 using namespace cocos2d;
 
@@ -65,12 +66,16 @@ void MenuScene::btnPLayTimeAttack()
 
 void MenuScene::btnLeaderboard()
 {
-    CCLog("LEADERBOARD");
+    Cocos2dExt::NativeCodeLauncher::postAchievement("com.coragames.dtdng.ac.rank.baby", 100);
+    Cocos2dExt::NativeCodeLauncher::postAchievement("com.coragames.dtdng.ac.rank.baby.perfect", 75);
+    Cocos2dExt::NativeCodeLauncher::postHighScore("com.coragames.dtdng.lb.normal", 1234);
+
+    Cocos2dExt::NativeCodeLauncher::openRanking();
 }
 
 void MenuScene::btnAchievements()
 {
-    CCLog("ACHIEVEMENTS");
+    Cocos2dExt::NativeCodeLauncher::openAchievement();
 }
 
 void MenuScene::btnShop()

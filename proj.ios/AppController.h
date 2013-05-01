@@ -12,6 +12,8 @@
 
 @interface AppController : NSObject <UIApplicationDelegate> {
     UIWindow *window;
+    
+    @public
     RootViewController    *viewController;
 }
 
