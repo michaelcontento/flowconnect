@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
 
+// TODO: Change GameCenter code to don't rely on this
 @interface RootViewController : UIViewController<GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate> {
 
 }
