@@ -9,6 +9,7 @@
 #include "LanguageKey.h"
 #include "AdManager.h"
 #include "GameCenter.h"
+#include "PaymentService.h"
 
 using namespace cocos2d;
 
@@ -82,7 +83,15 @@ void MenuScene::btnAchievements()
 
 void MenuScene::btnShop()
 {
-    SceneManager::getInstance().gotoScene(ShopScene::scene());
+    // TODO: Use real internet connection check!?
+    if (PaymentService::getProduct("2700")->getLocalizedPrice().empty()) {
+        CCMessageBox(
+            _("dialog.shopunavailable", "body")->getCString(),
+            _("dialog.shopunavailable", "headline")->getCString()
+        );
+    } else {
+        SceneManager::getInstance().gotoScene(ShopScene::scene());
+    }
 }
 
 void MenuScene::btnSettings()
