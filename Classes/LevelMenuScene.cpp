@@ -205,7 +205,7 @@ CCNode* LevelMenuScene::createMenuContainer()
 CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
 {
     auto menu = CCScrollMenu::create();
-    menu->ignoreTouchIfMovedMoreThan = 5;
+    menu->ignoreTouchIfMovedMoreThan = 10;
 
     PageLockButton* pagelock = NULL;
     if (page->localid > 1 && !userstate::isPageFree(page)) {
