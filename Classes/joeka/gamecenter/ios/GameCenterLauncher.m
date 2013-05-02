@@ -44,6 +44,7 @@
 
 +(void)postAchievement:(const char*)idName percent:(NSNumber*)percentComplete
 {
+    // TODO: Performe real connection check?
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
     if (![localPlayer isAuthenticated]) {
         NSLog(@"[GameCenter] postAchievement failed: User is not authenticated.");
@@ -81,6 +82,7 @@
 
 +(void)postScore:(const char*)idName score:(NSNumber*)score;
 {
+    // TODO: Performe real connection check?
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
     if (![localPlayer isAuthenticated]) {
         NSLog(@"[GameCenter] postScore failed: User is not authenticated.");
