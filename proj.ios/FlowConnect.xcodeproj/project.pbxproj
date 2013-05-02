@@ -147,9 +147,9 @@
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
-		C813E78F1731ABDD00F1889A /* NativeCodeLauncher.mm in Sources */ = {isa = PBXBuildFile; fileRef = C813E78B1731ABDD00F1889A /* NativeCodeLauncher.mm */; };
-		C813E7901731ABDD00F1889A /* NativeCodeLauncher_objc.m in Sources */ = {isa = PBXBuildFile; fileRef = C813E78D1731ABDD00F1889A /* NativeCodeLauncher_objc.m */; };
 		C813E7921731ADDA00F1889A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C813E7911731ADDA00F1889A /* GameKit.framework */; };
+		C813E7991732357D00F1889A /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C813E7961732357D00F1889A /* GameCenter.mm */; };
+		C813E79A1732357D00F1889A /* GameCenterLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = C813E7981732357D00F1889A /* GameCenterLauncher.m */; };
 		C85D5275171B6A850076A88B /* background-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C85D5274171B6A850076A88B /* background-fx.plist */; };
 		C85D5278171C10C50076A88B /* LevelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C85D5276171C10C50076A88B /* LevelLoader.cpp */; };
 		C88324381728A18B000E93ED /* UrlOpener.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88324371728A18B000E93ED /* UrlOpener.mm */; };
@@ -520,11 +520,11 @@
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C813E78A1731ABDD00F1889A /* NativeCodeLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeCodeLauncher.h; sourceTree = "<group>"; };
-		C813E78B1731ABDD00F1889A /* NativeCodeLauncher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NativeCodeLauncher.mm; sourceTree = "<group>"; };
-		C813E78C1731ABDD00F1889A /* NativeCodeLauncher_objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeCodeLauncher_objc.h; sourceTree = "<group>"; };
-		C813E78D1731ABDD00F1889A /* NativeCodeLauncher_objc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeCodeLauncher_objc.m; sourceTree = "<group>"; };
 		C813E7911731ADDA00F1889A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		C813E7941732357D00F1889A /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
+		C813E7961732357D00F1889A /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
+		C813E7971732357D00F1889A /* GameCenterLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterLauncher.h; sourceTree = "<group>"; };
+		C813E7981732357D00F1889A /* GameCenterLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterLauncher.m; sourceTree = "<group>"; };
 		C85D5274171B6A850076A88B /* background-fx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background-fx.plist"; sourceTree = "<group>"; };
 		C85D5276171C10C50076A88B /* LevelLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelLoader.cpp; path = ../Classes/LevelLoader.cpp; sourceTree = "<group>"; };
 		C85D5277171C10C50076A88B /* LevelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelLoader.h; path = ../Classes/LevelLoader.h; sourceTree = "<group>"; };
@@ -1256,15 +1256,23 @@
 			path = ../Resources;
 			sourceTree = "<group>";
 		};
-		C813E7881731ABDD00F1889A /* gamecenter */ = {
+		C813E7931732357D00F1889A /* gamecenter */ = {
 			isa = PBXGroup;
 			children = (
-				C813E78A1731ABDD00F1889A /* NativeCodeLauncher.h */,
-				C813E78B1731ABDD00F1889A /* NativeCodeLauncher.mm */,
-				C813E78C1731ABDD00F1889A /* NativeCodeLauncher_objc.h */,
-				C813E78D1731ABDD00F1889A /* NativeCodeLauncher_objc.m */,
+				C813E7941732357D00F1889A /* GameCenter.h */,
+				C813E7951732357D00F1889A /* ios */,
 			);
 			path = gamecenter;
+			sourceTree = "<group>";
+		};
+		C813E7951732357D00F1889A /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				C813E7961732357D00F1889A /* GameCenter.mm */,
+				C813E7971732357D00F1889A /* GameCenterLauncher.h */,
+				C813E7981732357D00F1889A /* GameCenterLauncher.m */,
+			);
+			path = ios;
 			sourceTree = "<group>";
 		};
 		C88AF0DD1723EC06004697BE /* buttons */ = {
@@ -1287,7 +1295,7 @@
 		C88AF13717280744004697BE /* joeka */ = {
 			isa = PBXGroup;
 			children = (
-				C813E7881731ABDD00F1889A /* gamecenter */,
+				C813E7931732357D00F1889A /* gamecenter */,
 				C8C3D5FA173099850039014A /* payment */,
 				C8D8F2791730666B0073B7C8 /* ads */,
 				C88AF15417288934004697BE /* alert */,
@@ -1761,8 +1769,8 @@
 				C8C3D617173099850039014A /* ProductNonConsumable.cpp in Sources */,
 				C8C3D61E17309A940039014A /* PaymentProviderIos.mm in Sources */,
 				C8C3D61F17309A940039014A /* StoreObserver.mm in Sources */,
-				C813E78F1731ABDD00F1889A /* NativeCodeLauncher.mm in Sources */,
-				C813E7901731ABDD00F1889A /* NativeCodeLauncher_objc.m in Sources */,
+				C813E7991732357D00F1889A /* GameCenter.mm in Sources */,
+				C813E79A1732357D00F1889A /* GameCenterLauncher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

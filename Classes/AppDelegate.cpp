@@ -10,7 +10,7 @@
 #include "AssetsManager.h"
 #include "PaymentService.h"
 #include "PaymentProviderIos.h"
-#include "NativeCodeLauncher.h"
+#include "GameCenter.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -40,7 +40,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     initPayment();
     initAds();
     initLocalization();
-    Cocos2dExt::NativeCodeLauncher::loginGameCenter();
+
+    auto gc = GameCenter();
+    gc.login();
 
     userstate::refreshFreeHints();
     SceneManager::getInstance().gotoScene(MenuScene::scene());
