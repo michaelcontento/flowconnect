@@ -15,4 +15,4 @@ public:
     void clearAllScores();
 };
 
-#endif
+#endif /* __AVALON_GAMECENTER__ */
