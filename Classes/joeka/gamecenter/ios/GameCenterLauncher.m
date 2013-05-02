@@ -24,7 +24,7 @@ static GameCenterLauncher* instance = nil;
         return;
     }
 
-    [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
+    [localPlayer authenticateWithCompletionHandler:^(NSError* error) {
         if (!error) {
             return;
         }
@@ -126,7 +126,7 @@ static GameCenterLauncher* instance = nil;
         return;
     }
 
-    [GKLeaderboard loadCategoriesWithCompletionHandler:^(NSArray *categories, NSArray *titles, NSError *error) {
+    [GKLeaderboard loadCategoriesWithCompletionHandler:^(NSArray* categories, NSArray* titles, NSError* error) {
         if (error) {
             NSLog(@"[GameCenter] clearAllScores failed: %@", error.localizedDescription);
             return;
