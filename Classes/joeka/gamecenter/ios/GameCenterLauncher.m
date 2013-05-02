@@ -10,6 +10,9 @@
 {
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
     [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"[GameCenter] login failed: %@", error.localizedDescription);
+        }
         // The result of this method call is simply ignored. But if your curious
         // how to use it: if (localPlayer.authenticated) { /* .. */ }
         //
@@ -43,7 +46,7 @@
 {
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
     if (![localPlayer isAuthenticated]) {
-        NSLog(@"[GameCenter] User is not authenticated.");
+        NSLog(@"[GameCenter] postAchievement failed: User is not authenticated.");
         return;
     }
 
@@ -53,7 +56,7 @@
 
     [achievement reportAchievementWithCompletionHandler:^(NSError* error) {
         if (error) {
-            NSLog(@"[GameCenter] postAchievement failed: %@", error);
+            NSLog(@"[GameCenter] postAchievement failed: %@", error.localizedDescription);
         }
     }];
 }
@@ -80,7 +83,7 @@
 {
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
     if (![localPlayer isAuthenticated]) {
-        NSLog(@"[GameCenter] User is not authenticated.");
+        NSLog(@"[GameCenter] postScore failed: User is not authenticated.");
         return;
     }
 
@@ -93,7 +96,7 @@
 
     [gkScore reportScoreWithCompletionHandler:^(NSError* error) {
         if (error) {
-            NSLog(@"[GameCenter] postScore failed: %@", error);
+            NSLog(@"[GameCenter] postScore failed: %@", error.localizedDescription);
         }
     }];
 }
@@ -109,6 +112,7 @@
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
+    [alertView autorelease];
     [alertView show];
 }
 
