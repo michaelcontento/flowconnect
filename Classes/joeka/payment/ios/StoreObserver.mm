@@ -93,7 +93,7 @@
     if ([StoreManager sharedManager].paymentListener)
     {
         const char *productId = [transaction.payment.productIdentifier UTF8String];
-        Product *p = [StoreManager sharedManager].paymentProvider->getProductByNativeId(productId);
+        Product *p = [StoreManager sharedManager]->paymentProvider->getProductByNativeId(productId);
         assert(p && "p is null");
         [StoreManager sharedManager].paymentListener->onTransactionStop();
     }
@@ -112,7 +112,7 @@
     if ([StoreManager sharedManager].paymentListener)
     {
         const char *productId = [transaction.payment.productIdentifier UTF8String];
-        [StoreManager sharedManager].paymentListener->onPurchaseStateChanged([StoreManager sharedManager].paymentProvider->getProductByNativeId(productId));
+        [StoreManager sharedManager].paymentListener->onPurchaseStateChanged([StoreManager sharedManager]->paymentProvider->getProductByNativeId(productId));
         [StoreManager sharedManager].paymentListener->onTransactionStop();
     }
 }
@@ -129,7 +129,7 @@
     if ([StoreManager sharedManager].paymentListener)
     {
         const char *productId = [transaction.originalTransaction.payment.productIdentifier UTF8String];
-        [StoreManager sharedManager].paymentListener->onPurchaseStateChanged([StoreManager sharedManager].paymentProvider->getProductByNativeId(productId));
+        [StoreManager sharedManager].paymentListener->onPurchaseStateChanged([StoreManager sharedManager]->paymentProvider->getProductByNativeId(productId));
         [StoreManager sharedManager].paymentListener->onTransactionStop();
     }
 }

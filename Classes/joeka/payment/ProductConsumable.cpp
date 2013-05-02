@@ -30,4 +30,6 @@ int ProductConsumable::getVirtualQuantity()
         assert(!"THIS IS NOT YET IMPLEMENTED!!!!");
         // TODO: Extract number from product id
     }
+
+    return 0;
 }

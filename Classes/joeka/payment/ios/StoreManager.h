@@ -34,11 +34,12 @@
 @property (readwrite, assign) BOOL wasError;
 @property (readwrite, assign) int purchaseResult;
 @property (readwrite, assign) PaymentListener *paymentListener;
-@property (readwrite, assign) PaymentProviderIos *paymentProvider;
-@property (copy) NSSet *productsList;
+//@property (readwrite, assign) PaymentProviderIos *paymentProvider;
+//@property (copy) NSSet *productsList;
 
 + (StoreManager*)sharedManager;
 + (BOOL) isFeaturePurchased:(NSString*) featureId;
++ (void) startManager;
 - (void) buyFeature:(NSString*) featureId;
 - (void) updateObjectsDescription;
 - (void) restorePreviousTransactions;
@@ -46,6 +47,8 @@
 - (BOOL) canConsumeProduct:(NSString*) productIdentifier quantity:(int) quantity;
 - (BOOL) consumeProduct:(NSString*) productIdentifier quantity:(int) quantity;
 - (int) getQuantity:(NSString*) productIdentifier;
+- (void) provideContent: (NSString*) productIdentifier forReceipt:(NSData*) receiptData;
+- (void) requestProductData;
 
 +(id)delegate;
 +(void)setDelegate:(id)newDelegate;

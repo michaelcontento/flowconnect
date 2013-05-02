@@ -45,7 +45,6 @@ LanguageKey* LanguageKey::assign(const char *varName, float value)
 
 const char * LanguageKey::getCString()
 {
-    const char *v = value.c_str();
     string str = value;
 
     for (map<string, string>::iterator it = parameters.begin(); it != parameters.end(); ++it)

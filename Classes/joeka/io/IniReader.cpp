@@ -9,7 +9,7 @@
 #include "IniReader.h"
 
 #include <string>
-#include "cocos2d.h";
+#include "cocos2d.h"
 #include <iostream>
 #include "StringHelper.h"
 #include "Helpers.h"

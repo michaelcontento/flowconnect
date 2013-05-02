@@ -52,9 +52,8 @@ void PaymentProviderIos::setListener(PaymentListener *paymentListener)
 void PaymentProviderIos::init()
 {
     [[StoreManager sharedManager] setWasError: NO];
-	[StoreManager sharedManager];
 	[[StoreManager sharedManager] setBundleID:[NSString stringWithCString:bundleId.c_str() encoding:[NSString defaultCStringEncoding]]];
-    [StoreManager sharedManager].paymentProvider = this;
+    [StoreManager sharedManager]->paymentProvider = this;
 
 	NSMutableArray *nsaProdList = [[NSMutableArray alloc] init];
 	NSString *prodID;

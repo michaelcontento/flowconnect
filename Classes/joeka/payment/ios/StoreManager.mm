@@ -20,8 +20,6 @@
 @synthesize wasError;
 @synthesize paymentListener;
 
-static NSString *ownServer = nil;
-
 static __weak id<StoreKitDelegate> _delegate;
 static StoreManager* _sharedStoreManager;
 
@@ -97,11 +95,6 @@ static StoreManager* _sharedStoreManager;
 - (unsigned)retainCount
 {
     return UINT_MAX;  //denotes an object that cannot be released
-}
-
-- (void)release
-{
-    //do nothing
 }
 
 - (id)autorelease
@@ -260,14 +253,6 @@ static StoreManager* _sharedStoreManager;
 -(void) provideContent: (NSString*) productIdentifier
             forReceipt:(NSData*) receiptData
 {
-	if(ownServer != nil && SERVER_PRODUCT_MODEL)
-	{
-		// ping server and get response before serializing the product
-		// this is a blocking call to post receipt data to your server
-		// it should normally take a couple of seconds on a good 3G connection
-		if(![self verifyReceipt:receiptData]) return;
-	}
-
 	if([_delegate respondsToSelector:@selector(productPurchased:)])
 		[_delegate productPurchased:productIdentifier];
 }
@@ -320,7 +305,6 @@ static StoreManager* _sharedStoreManager;
 
     if (self.paymentListener)
     {
-        const char *productId = [transaction.payment.productIdentifier UTF8String];
         self.paymentListener->onTransactionStop();
     }
 }
