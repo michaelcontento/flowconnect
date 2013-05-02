@@ -8,9 +8,11 @@ public:
 
     void openAchievement();
     void postAchievement(const char* idName, int percentComplete);
+    void clearAllAchievements();
 
     void openLeaderboards();
     void postScore(const char* idName, int score);
+    void clearAllScores();
 };
 
 #endif

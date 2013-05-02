@@ -1,13 +1,16 @@
-@interface GameCenterLauncher : NSObject
+@interface GameCenterLauncher : NSObject {
+}
 
-+(void)login;
++(GameCenterLauncher*)shared;
 
-+(void)openAchievement;
-+(void)postAchievement:(const char*)idName percent:(NSNumber*)percentComplete;
+-(void)login;
 
-+(void)openLeaderboard;
-+(void)postScore:(const char*)idName score:(NSNumber*)score;
+-(void)openAchievement;
+-(void)postAchievement:(const char*)idName percent:(NSNumber*)percentComplete;
+-(void)clearAllAchivements;
 
-+(void)showNotAuthenticatedDialog;
+-(void)openLeaderboard;
+-(void)postScore:(const char*)idName score:(NSNumber*)score;
+-(void)clearAllScores;
 
 @end

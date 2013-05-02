@@ -3,25 +3,41 @@
 
 void GameCenter::login()
 {
-    [GameCenterLauncher login];
+    [[GameCenterLauncher shared] login];
 }
+
+#pragma mark -
+#pragma mark Achievements
 
 void GameCenter::openAchievement()
 {
-    [GameCenterLauncher openAchievement];
+    [[GameCenterLauncher shared] openAchievement];
 }
 
 void GameCenter::postAchievement(const char* idName, int percentComplete)
 {
-    [GameCenterLauncher postAchievement:idName percent:[NSNumber numberWithInt:percentComplete]];
+    [[GameCenterLauncher shared] postAchievement:idName percent:[NSNumber numberWithInt:percentComplete]];
 }
+
+void GameCenter::clearAllAchievements()
+{
+    [[GameCenterLauncher shared] clearAllAchivements];
+}
+
+#pragma mark -
+#pragma mark Leaderboard
 
 void GameCenter::openLeaderboards()
 {
-    [GameCenterLauncher openLeaderboard];
+    [[GameCenterLauncher shared] openLeaderboard];
 }
 
 void GameCenter::postScore(const char* idName, int score)
 {
-    [GameCenterLauncher postScore:idName score:[NSNumber numberWithInt:score]];
+    [[GameCenterLauncher shared] postScore:idName score:[NSNumber numberWithInt:score]];
+}
+
+void GameCenter::clearAllScores()
+{
+    [[GameCenterLauncher shared] clearAllScores];
 }

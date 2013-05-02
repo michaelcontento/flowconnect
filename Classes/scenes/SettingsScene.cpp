@@ -12,6 +12,7 @@
 #include "UrlOpener.h"
 #include "userstate.h"
 #include "ToggleButton.h"
+#include "GameCenter.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -122,6 +123,9 @@ void SettingsScene::alertViewClickedButtonAtIndex(int buttonIndex)
         userstate::forceRefillFreeHints();
         userstate::setHintWarning(true);
         userstate::resetAllLevelModes();
+        auto gc = GameCenter();
+        gc.clearAllAchievements();
+        gc.clearAllScores();
 
         menu->removeChildByTag(TAG_RESET_BUTTON, true);
         menu->setPositionY(512);

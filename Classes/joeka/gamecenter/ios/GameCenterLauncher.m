@@ -6,31 +6,44 @@
 
 @implementation GameCenterLauncher
 
-+(void)login
+static GameCenterLauncher* instance = nil;
++(GameCenterLauncher*)shared
+{
+	@synchronized(self) {
+        if (instance == nil) {
+            instance = [[self alloc] init];
+        }
+    }
+    return instance;
+}
+
+-(void)login
 {
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
+    if (localPlayer.isAuthenticated) {
+        return;
+    }
+
     [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
-        if (error) {
+        if (!error) {
+            return;
+        }
+
+        if (error.code == GKErrorAuthenticationInProgress) {
+            // ignore this case
+        } else {
             NSLog(@"[GameCenter] login failed: %@", error.localizedDescription);
         }
-        // The result of this method call is simply ignored. But if your curious
-        // how to use it: if (localPlayer.authenticated) { /* .. */ }
-        //
-        // Why is the result ignored? Because this method will open up the
-        // register/login dialog -- OR -- authenticate the user and don't
-        // show anything.
-        //
-        // All other methods do the "is the user logged in?"-check at their own
-        // so we don't have anything left to do here.
     }];
 }
 
-+(void)openAchievement
+#pragma mark -
+#pragma mark Achievements
+
+-(void)openAchievement
 {
-    GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
-    if (!localPlayer.authenticated) {
-        [self showNotAuthenticatedDialog];
-        return;
+    if (![GKLocalPlayer localPlayer].isAuthenticated) {
+        return [self login];
     }
 
     AppController* appController = (AppController*) [UIApplication sharedApplication].delegate;
@@ -42,16 +55,14 @@
                                                      animated:YES];
 }
 
-+(void)postAchievement:(const char*)idName percent:(NSNumber*)percentComplete
+-(void)postAchievement:(const char*)idName percent:(NSNumber*)percentComplete
 {
-    // TODO: Performe real connection check?
-    GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
-    if (![localPlayer isAuthenticated]) {
-        NSLog(@"[GameCenter] postAchievement failed: User is not authenticated.");
-        return;
+    if (![GKLocalPlayer localPlayer].isAuthenticated) {
+        return [self login];
     }
 
-    GKAchievement* achievement = [[GKAchievement alloc] initWithIdentifier:[NSString stringWithUTF8String:idName]];
+    GKAchievement* achievement = [[[GKAchievement alloc] init] autorelease];
+    achievement.identifier = [NSString stringWithUTF8String:idName];
     achievement.percentComplete = [percentComplete doubleValue];
     achievement.showsCompletionBanner = YES;
 
@@ -62,12 +73,22 @@
     }];
 }
 
-+(void)openLeaderboard
+-(void)clearAllAchivements
 {
-    GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
-    if (!localPlayer.authenticated) {
-        [self showNotAuthenticatedDialog];
-        return;
+    [GKAchievement resetAchievementsWithCompletionHandler:^(NSError* error) {
+        if (error) {
+            NSLog(@"[GameCenter] clearAllAchivements failed: %@", error.localizedDescription);
+        }
+    }];
+}
+
+#pragma mark -
+#pragma mark Leaderboard
+
+-(void)openLeaderboard
+{
+    if (![GKLocalPlayer localPlayer].isAuthenticated) {
+        return [self login];
     }
 
     AppController* appController = (AppController*) [UIApplication sharedApplication].delegate;
@@ -80,21 +101,16 @@
                                                      animated:YES];
 }
 
-+(void)postScore:(const char*)idName score:(NSNumber*)score;
+-(void)postScore:(const char*)idName score:(NSNumber*)score;
 {
-    // TODO: Performe real connection check?
-    GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
-    if (![localPlayer isAuthenticated]) {
-        NSLog(@"[GameCenter] postScore failed: User is not authenticated.");
-        return;
+    if (![GKLocalPlayer localPlayer].isAuthenticated) {
+        return [self login];
     }
 
-    GKScore* gkScore = [[GKScore alloc] initWithCategory:[NSString stringWithUTF8String:idName]];
+    GKScore* gkScore = [[[GKScore alloc] init] autorelease];
+    gkScore.category = [NSString stringWithUTF8String:idName];
     gkScore.value = [score longLongValue];
     gkScore.shouldSetDefaultLeaderboard = YES;
-
-    // TODO: Can this be removed?
-    gkScore.context = 1;
 
     [gkScore reportScoreWithCompletionHandler:^(NSError* error) {
         if (error) {
@@ -103,19 +119,23 @@
     }];
 }
 
-// TODO: This method should be private
-+(void)showNotAuthenticatedDialog
+-(void)clearAllScores
 {
-    // TODO: i18n this thing!
-    NSString* alertTitle = @"";
-    NSString* alertMessage = @"You must logged in to Game Center.";
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:alertTitle
-                                                        message:alertMessage
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView autorelease];
-    [alertView show];
+    // this is important or we would later create tons of login attempts
+    if (![GKLocalPlayer localPlayer].isAuthenticated) {
+        return;
+    }
+
+    [GKLeaderboard loadCategoriesWithCompletionHandler:^(NSArray *categories, NSArray *titles, NSError *error) {
+        if (error) {
+            NSLog(@"[GameCenter] clearAllScores failed: %@", error.localizedDescription);
+            return;
+        }
+
+        for (NSString* categoryName in categories) {
+            [self postScore:[categoryName cStringUsingEncoding:NSASCIIStringEncoding] score:[NSNumber numberWithInt:0]];
+        }
+    }];
 }
 
 @end
