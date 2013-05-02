@@ -74,7 +74,9 @@ void ShopScene::onPurchaseStateChanged(Product *product)
 
 void ShopScene::onTransactionStart()
 {
+    retain();
     purchased = false;
+
     if (menu) {
         menu->setEnabled(false);
     }
@@ -92,4 +94,6 @@ void ShopScene::onTransactionStop()
             _("dialog.shoperror", "headline")->getCString()
         );
     }
+
+    release();
 }
