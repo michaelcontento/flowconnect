@@ -2,9 +2,10 @@
 #define __FlowConnect__ShopScene__
 
 #include "cocos2d.h"
-#include "PaymentListener.h"
+#include "Product.h"
+#include "ManagerDelegate.h"
 
-class ShopScene : public cocos2d::CCLayer, public PaymentListener
+class ShopScene : public cocos2d::CCLayer, public Avalon::Payment::ManagerDelegate
 {
 public:
     ShopScene();
@@ -15,14 +16,20 @@ public:
     virtual bool init() override;
 
     /* Payment Receiver Interface */
-    virtual void onPurchaseStateChanged(Product *p);
-    virtual void onTransactionStart();
-    virtual void onTransactionStop();
+    void onServiceStarted(Avalon::Payment::Manager* const manager);
 
+    void onPurchaseSucceed(Avalon::Payment::Manager* const manager, Avalon::Payment::Product* const product);
+    void onPurchaseFail(Avalon::Payment::Manager* const manager);
+
+    void onTransactionStart(Avalon::Payment::Manager* const manager);
+    void onTransactionEnd(Avalon::Payment::Manager* const manager);
+    
 private:
     const unsigned int MENU_PADDING = 25;
     cocos2d::CCMenu* menu;
-    bool purchased;
+
+    void createMenu(Avalon::Payment::Manager* manager);
+    void showSpinner(const bool flag);
 };
 
 #endif /* defined(__FlowConnect__ShopScene__) */

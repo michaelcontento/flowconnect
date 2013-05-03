@@ -18,7 +18,7 @@ public:
     static cocos2d::CCMenuItemSprite* createCategory(LoaderCategory* category, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector);
     static cocos2d::CCLabelTTF* createHeadline(const char* text);
     static StarButton* createStar();
-    static cocos2d::CCMenuItemSprite* createPaymentButton(Product* product);
+    static cocos2d::CCMenuItemSprite* createPaymentButton(Avalon::Payment::Product* product);
     
 private:
     ButtonFactory() {}

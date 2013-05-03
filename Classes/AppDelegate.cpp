@@ -8,9 +8,11 @@
 #include "Localization.h"
 #include "AdManager.h"
 #include "AssetsManager.h"
-#include "PaymentService.h"
-#include "PaymentProviderIos.h"
 #include "GameCenter.h"
+#include "Loader.h"
+#include "Manager.h"
+#include "Product.h"
+#include "ProductConsumable.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -37,7 +39,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
+
     initPayment();
+    CCLog("COUNT %d", Avalon::Payment::Loader::globalManager.use_count());
     initAds();
     initLocalization();
 
@@ -66,17 +70,13 @@ void AppDelegate::applicationWillEnterForeground()
     SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 
     userstate::refreshFreeHints();
-
-    auto provider = static_cast<PaymentProviderIos*>(PaymentService::paymentProvider);
-    if (provider) {
-        provider->requestProductData();
-    }
 }
 
 void AppDelegate::initPayment()
 {
-    PaymentService::initWithIniFile("payment.ini");
-    PaymentService::startService();
+    Avalon::Payment::Loader loader("payment.ini");
+    Avalon::Payment::Loader::globalManager = loader.getManager();
+    CCLog("COUNT %d", Avalon::Payment::Loader::globalManager.use_count());
 }
 
 void AppDelegate::initAds()
