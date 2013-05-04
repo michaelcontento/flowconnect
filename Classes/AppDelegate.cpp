@@ -16,6 +16,7 @@
 
 using namespace cocos2d;
 using namespace CocosDenshion;
+using namespace Avalon;
 
 AppDelegate::AppDelegate()
 {
@@ -40,7 +41,6 @@ bool AppDelegate::applicationDidFinishLaunching()
         ->addSpriteFramesWithFile("assets.plist");
 
     initPayment();
-    CCLog("COUNT %d", Avalon::Payment::Loader::globalManager.use_count());
     initAds();
     initLocalization();
 
@@ -73,9 +73,8 @@ void AppDelegate::applicationWillEnterForeground()
 
 void AppDelegate::initPayment()
 {
-    Avalon::Payment::Loader loader("payment.ini");
-    Avalon::Payment::Loader::globalManager = loader.getManager();
-    CCLog("COUNT %d", Avalon::Payment::Loader::globalManager.use_count());
+    Payment::Loader loader("payment.ini");
+    Payment::Loader::globalManager = loader.getManager();
 }
 
 void AppDelegate::initAds()

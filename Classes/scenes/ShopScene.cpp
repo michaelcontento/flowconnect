@@ -11,6 +11,7 @@
 #include "Manager.h"
 
 using namespace cocos2d;
+using namespace Avalon;
 using boost::polymorphic_downcast;
 
 #pragma mark Initialization
@@ -18,7 +19,7 @@ using boost::polymorphic_downcast;
 ShopScene::ShopScene()
 : menu(NULL)
 {
-    auto manager = Avalon::Payment::Loader::globalManager;
+    auto manager = Payment::Loader::globalManager;
     manager->delegate = this;
 }
 
@@ -39,7 +40,7 @@ bool ShopScene::init()
         return false;
     }
 
-    auto manager = Avalon::Payment::Loader::globalManager;
+    auto manager = Payment::Loader::globalManager;
     if (manager->isPurchaseReady()) {
         createMenu(manager.get());
     } else {
@@ -59,7 +60,7 @@ bool ShopScene::init()
     return true;
 }
 
-void ShopScene::createMenu(Avalon::Payment::Manager* manager)
+void ShopScene::createMenu(Payment::Manager* manager)
 {
     menu = CCMenu::create();
     addChild(menu);
@@ -84,21 +85,21 @@ void ShopScene::showSpinner(const bool flag)
     // TODO: Implement spinner
 }
 
-void ShopScene::onServiceStarted(Avalon::Payment::Manager* const manager)
+void ShopScene::onServiceStarted(Payment::Manager* const manager)
 {
     createMenu(manager);
     showSpinner(false);
 }
 
-void ShopScene::onPurchaseSucceed(Avalon::Payment::Manager *const manager, Avalon::Payment::Product *const product)
+void ShopScene::onPurchaseSucceed(Payment::Manager *const manager, Payment::Product *const product)
 {
-    auto consumable = boost::polymorphic_downcast<Avalon::Payment::ProductConsumable*>(product);
+    auto consumable = boost::polymorphic_downcast<Payment::ProductConsumable*>(product);
 
     userstate::addStarsToUser(consumable->getQuantity());
     consumable->consume();
 }
 
-void ShopScene::onPurchaseFail(Avalon::Payment::Manager* const manager)
+void ShopScene::onPurchaseFail(Payment::Manager* const manager)
 {
     CCMessageBox(
         _("dialog.shoperror", "body")->getCString(),
@@ -106,13 +107,13 @@ void ShopScene::onPurchaseFail(Avalon::Payment::Manager* const manager)
     );
 }
 
-void ShopScene::onTransactionStart(Avalon::Payment::Manager *const manager)
+void ShopScene::onTransactionStart(Payment::Manager *const manager)
 {
     retain();
     showSpinner(true);
 }
 
-void ShopScene::onTransactionEnd(Avalon::Payment::Manager *const manager)
+void ShopScene::onTransactionEnd(Payment::Manager *const manager)
 {
     showSpinner(false);
     release();
