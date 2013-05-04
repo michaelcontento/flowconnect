@@ -67,18 +67,18 @@ void MenuScene::btnPLayTimeAttack()
 
 void MenuScene::btnLeaderboard()
 {
-    auto gc = GameCenter();
+    auto gc = Avalon::GameCenter();
     gc.postAchievement("com.coragames.dtdng.ac.rank.baby", 100);
     gc.postAchievement("com.coragames.dtdng.ac.rank.baby.perfect", 75);
     gc.postScore("com.coragames.dtdng.lb.normal", 1234);
     gc.postScore("com.coragames.dtdng.lb.bonus", 12121212);
-    gc.openLeaderboards();
+    gc.showScores();
 }
 
 void MenuScene::btnAchievements()
 {
-    auto gc = GameCenter();
-    gc.openAchievement();
+    auto gc = Avalon::GameCenter();
+    gc.showAchievements();
 }
 
 void MenuScene::btnShop()

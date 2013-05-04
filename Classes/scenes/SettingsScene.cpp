@@ -123,7 +123,7 @@ void SettingsScene::alertViewClickedButtonAtIndex(int buttonIndex)
         userstate::forceRefillFreeHints();
         userstate::setHintWarning(true);
         userstate::resetAllLevelModes();
-        auto gc = GameCenter();
+        auto gc = Avalon::GameCenter();
         gc.clearAllAchievements();
         gc.clearAllScores();
 

@@ -1,18 +1,22 @@
-#ifndef __AVALON_GAMECENTER__
-#define __AVALON_GAMECENTER__
+#ifndef __Avalon__GameCenter__
+#define __Avalon__GameCenter__
+
+namespace Avalon {
 
 class GameCenter
 {
 public:
     void login();
 
-    void openAchievement();
+    void showAchievements();
     void postAchievement(const char* idName, int percentComplete);
     void clearAllAchievements();
 
-    void openLeaderboards();
+    void showScores();
     void postScore(const char* idName, int score);
     void clearAllScores();
 };
 
-#endif /* __AVALON_GAMECENTER__ */
+} // namespace Avalon
+
+#endif /* __Avalon__GameCenter__ */

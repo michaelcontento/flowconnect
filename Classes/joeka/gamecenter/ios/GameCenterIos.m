@@ -1,13 +1,14 @@
-#import "GameCenterLauncher.h"
+#import "GameCenterIos.h"
 
 #import <GameKit/GameKit.h>
 #import "AppController.h"
 #import "RootViewController.h"
 
-@implementation GameCenterLauncher
+@implementation GameCenterIos
 
-static GameCenterLauncher* instance = nil;
-+(GameCenterLauncher*)shared
+static GameCenterIos* instance = nil;
+
++ (GameCenterIos*)shared
 {
 	@synchronized(self) {
         if (instance == nil) {
@@ -17,7 +18,7 @@ static GameCenterLauncher* instance = nil;
     return instance;
 }
 
--(void)login
+- (void)login
 {
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
     if (localPlayer.isAuthenticated) {
@@ -40,7 +41,7 @@ static GameCenterLauncher* instance = nil;
 #pragma mark -
 #pragma mark Achievements
 
--(void)openAchievement
+- (void)showAchievements
 {
     if (![GKLocalPlayer localPlayer].isAuthenticated) {
         return [self login];
@@ -48,14 +49,13 @@ static GameCenterLauncher* instance = nil;
 
     AppController* appController = (AppController*) [UIApplication sharedApplication].delegate;
 
-    GKAchievementViewController* achievementController = [[GKAchievementViewController alloc] init];
-    achievementController.achievementDelegate = appController->viewController;
+    GKAchievementViewController* gkController = [[[GKAchievementViewController alloc] init] autorelease];
+    gkController.achievementDelegate = appController->viewController;
 
-    [appController->viewController presentModalViewController:achievementController
-                                                     animated:YES];
+    [appController->viewController presentModalViewController:gkController animated:YES];
 }
 
--(void)postAchievement:(const char*)idName percent:(NSNumber*)percentComplete
+- (void)postAchievement:(const char*)idName percent:(NSNumber*)percentComplete
 {
     if (![GKLocalPlayer localPlayer].isAuthenticated) {
         return [self login];
@@ -73,7 +73,7 @@ static GameCenterLauncher* instance = nil;
     }];
 }
 
--(void)clearAllAchivements
+- (void)clearAllAchivements
 {
     [GKAchievement resetAchievementsWithCompletionHandler:^(NSError* error) {
         if (error) {
@@ -85,7 +85,7 @@ static GameCenterLauncher* instance = nil;
 #pragma mark -
 #pragma mark Leaderboard
 
--(void)openLeaderboard
+- (void)showScores
 {
     if (![GKLocalPlayer localPlayer].isAuthenticated) {
         return [self login];
@@ -93,15 +93,14 @@ static GameCenterLauncher* instance = nil;
 
     AppController* appController = (AppController*) [UIApplication sharedApplication].delegate;
 
-    GKLeaderboardViewController* leaderboardController = [[GKLeaderboardViewController alloc] init];
-    leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
-    leaderboardController.leaderboardDelegate = appController->viewController;
+    GKLeaderboardViewController* gkController = [[[GKLeaderboardViewController alloc] init] autorelease];
+    gkController.timeScope = GKLeaderboardTimeScopeAllTime;
+    gkController.leaderboardDelegate = appController->viewController;
 
-    [appController->viewController presentModalViewController:leaderboardController
-                                                     animated:YES];
+    [appController->viewController presentModalViewController:gkController animated:YES];
 }
 
--(void)postScore:(const char*)idName score:(NSNumber*)score;
+- (void)postScore:(const char*)idName score:(NSNumber*)score;
 {
     if (![GKLocalPlayer localPlayer].isAuthenticated) {
         return [self login];
@@ -119,7 +118,7 @@ static GameCenterLauncher* instance = nil;
     }];
 }
 
--(void)clearAllScores
+- (void)clearAllScores
 {
     // this is important or we would later create tons of login attempts
     if (![GKLocalPlayer localPlayer].isAuthenticated) {

@@ -39,13 +39,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
-
     initPayment();
     CCLog("COUNT %d", Avalon::Payment::Loader::globalManager.use_count());
     initAds();
     initLocalization();
 
-    auto gc = GameCenter();
+    auto gc = Avalon::GameCenter();
     gc.login();
 
     userstate::refreshFreeHints();

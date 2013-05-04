@@ -149,7 +149,6 @@
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
 		C813E7921731ADDA00F1889A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C813E7911731ADDA00F1889A /* GameKit.framework */; };
 		C813E7991732357D00F1889A /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C813E7961732357D00F1889A /* GameCenter.mm */; };
-		C813E79A1732357D00F1889A /* GameCenterLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = C813E7981732357D00F1889A /* GameCenterLauncher.m */; };
 		C85D5275171B6A850076A88B /* background-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C85D5274171B6A850076A88B /* background-fx.plist */; };
 		C85D5278171C10C50076A88B /* LevelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C85D5276171C10C50076A88B /* LevelLoader.cpp */; };
 		C8681C71173320B30020E78B /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8681C4A173320B30020E78B /* Animation.cpp */; };
@@ -179,6 +178,7 @@
 		C8681C9A173332500020E78B /* Backend.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8681C99173332500020E78B /* Backend.mm */; };
 		C8681CAB1733D1CF0020E78B /* BackendIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8681CAA1733D1CF0020E78B /* BackendIos.mm */; };
 		C8681CAE1733F9330020E78B /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8681CAC1733F9320020E78B /* Loader.cpp */; };
+		C8681CB117352ED30020E78B /* GameCenterIos.m in Sources */ = {isa = PBXBuildFile; fileRef = C8681CB017352ED30020E78B /* GameCenterIos.m */; };
 		C88324381728A18B000E93ED /* UrlOpener.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88324371728A18B000E93ED /* UrlOpener.mm */; };
 		C8832440172924C1000E93ED /* en.ini in Resources */ = {isa = PBXBuildFile; fileRef = C883243F172924C1000E93ED /* en.ini */; };
 		C88324421729266A000E93ED /* fr.ini in Resources */ = {isa = PBXBuildFile; fileRef = C88324411729266A000E93ED /* fr.ini */; };
@@ -542,8 +542,6 @@
 		C813E7911731ADDA00F1889A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C813E7941732357D00F1889A /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
 		C813E7961732357D00F1889A /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
-		C813E7971732357D00F1889A /* GameCenterLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterLauncher.h; sourceTree = "<group>"; };
-		C813E7981732357D00F1889A /* GameCenterLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterLauncher.m; sourceTree = "<group>"; };
 		C85D5274171B6A850076A88B /* background-fx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "background-fx.plist"; sourceTree = "<group>"; };
 		C85D5276171C10C50076A88B /* LevelLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelLoader.cpp; path = ../Classes/LevelLoader.cpp; sourceTree = "<group>"; };
 		C85D5277171C10C50076A88B /* LevelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelLoader.h; path = ../Classes/LevelLoader.h; sourceTree = "<group>"; };
@@ -602,6 +600,8 @@
 		C8681CAA1733D1CF0020E78B /* BackendIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BackendIos.mm; sourceTree = "<group>"; };
 		C8681CAC1733F9320020E78B /* Loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Loader.cpp; sourceTree = "<group>"; };
 		C8681CAD1733F9320020E78B /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
+		C8681CAF17352ED30020E78B /* GameCenterIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterIos.h; sourceTree = "<group>"; };
+		C8681CB017352ED30020E78B /* GameCenterIos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterIos.m; sourceTree = "<group>"; };
 		C88324361728A18B000E93ED /* UrlOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlOpener.h; sourceTree = "<group>"; };
 		C88324371728A18B000E93ED /* UrlOpener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UrlOpener.mm; sourceTree = "<group>"; };
 		C883243F172924C1000E93ED /* en.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = en.ini; sourceTree = "<group>"; };
@@ -1329,8 +1329,8 @@
 			isa = PBXGroup;
 			children = (
 				C813E7961732357D00F1889A /* GameCenter.mm */,
-				C813E7971732357D00F1889A /* GameCenterLauncher.h */,
-				C813E7981732357D00F1889A /* GameCenterLauncher.m */,
+				C8681CAF17352ED30020E78B /* GameCenterIos.h */,
+				C8681CB017352ED30020E78B /* GameCenterIos.m */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -1872,7 +1872,6 @@
 				C8D8F28A17306B9A0073B7C8 /* ChartboostX_ios.mm in Sources */,
 				C8D8F29417306C730073B7C8 /* Revmob_ios.mm in Sources */,
 				C813E7991732357D00F1889A /* GameCenter.mm in Sources */,
-				C813E79A1732357D00F1889A /* GameCenterLauncher.m in Sources */,
 				C8681C71173320B30020E78B /* Animation.cpp in Sources */,
 				C8681C72173320B30020E78B /* AnimationState.cpp in Sources */,
 				C8681C73173320B30020E78B /* AnimationStateData.cpp in Sources */,
@@ -1899,6 +1898,7 @@
 				C8681C9A173332500020E78B /* Backend.mm in Sources */,
 				C8681CAB1733D1CF0020E78B /* BackendIos.mm in Sources */,
 				C8681CAE1733F9330020E78B /* Loader.cpp in Sources */,
+				C8681CB117352ED30020E78B /* GameCenterIos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1917,6 +1917,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1972,6 +1976,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
