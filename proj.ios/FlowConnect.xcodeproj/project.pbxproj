@@ -602,6 +602,7 @@
 		C8681CAD1733F9320020E78B /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		C8681CAF17352ED30020E78B /* GameCenterIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterIos.h; sourceTree = "<group>"; };
 		C8681CB017352ED30020E78B /* GameCenterIos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterIos.m; sourceTree = "<group>"; };
+		C8681CB317353D800020E78B /* Payment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
 		C88324361728A18B000E93ED /* UrlOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlOpener.h; sourceTree = "<group>"; };
 		C88324371728A18B000E93ED /* UrlOpener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UrlOpener.mm; sourceTree = "<group>"; };
 		C883243F172924C1000E93ED /* en.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = en.ini; sourceTree = "<group>"; };
@@ -1417,6 +1418,7 @@
 				C88AF14617280859004697BE /* utils */,
 				C88AF13817280746004697BE /* i18n */,
 				C88AF13F17280746004697BE /* io */,
+				C8681CB317353D800020E78B /* Payment.h */,
 			);
 			name = joeka;
 			path = ../Classes/joeka;

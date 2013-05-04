@@ -2,8 +2,7 @@
 #define __FlowConnect__ShopScene__
 
 #include "cocos2d.h"
-#include "Product.h"
-#include "ManagerDelegate.h"
+#include "../joeka/Payment.h"
 
 class ShopScene : public cocos2d::CCLayer, public Avalon::Payment::ManagerDelegate
 {

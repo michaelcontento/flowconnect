@@ -9,10 +9,6 @@
 #include "AdManager.h"
 #include "AssetsManager.h"
 #include "GameCenter.h"
-#include "Loader.h"
-#include "Manager.h"
-#include "Product.h"
-#include "ProductConsumable.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;

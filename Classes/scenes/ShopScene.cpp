@@ -5,10 +5,6 @@
 #include "userstate.h"
 #include "Localization.h"
 #include "LanguageKey.h"
-#include "Product.h"
-#include "ProductConsumable.h"
-#include "Loader.h"
-#include "Manager.h"
 
 using namespace cocos2d;
 using namespace Avalon;
