@@ -19,6 +19,8 @@ Alert::Alert()
 
 void Alert::onExit()
 {
+    CCNode::onExit();
+
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
         ->removeDelegate(this);

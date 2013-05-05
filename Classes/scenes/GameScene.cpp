@@ -79,13 +79,19 @@ void GameScene::onBtnGoBack()
 
 void GameScene::onBtnReset()
 {
-    removeChildByTag(tagAlert);
+    auto alert = getChildByTag(tagAlert);
+    if (alert) {
+        removeChild(alert);
+    }
     board->reset();
 }
 
 void GameScene::onBtnGoNext()
 {
-    removeChildByTag(tagAlert);
+    auto alert = getChildByTag(tagAlert);
+    if (alert) {
+        removeChild(alert);
+    }
 
     LoaderLevel* nextLevel = globalLevel->next;
     if (!nextLevel) {
