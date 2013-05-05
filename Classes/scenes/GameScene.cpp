@@ -8,6 +8,7 @@
 #include "LanguageKey.h"
 #include "userstate.h"
 #include "LevelMenuScene.h"
+#include "Alert.h"
 
 using namespace cocos2d;
 
@@ -78,11 +79,14 @@ void GameScene::onBtnGoBack()
 
 void GameScene::onBtnReset()
 {
+    removeChildByTag(tagAlert);
     board->reset();
 }
 
 void GameScene::onBtnGoNext()
 {
+    removeChildByTag(tagAlert);
+
     LoaderLevel* nextLevel = globalLevel->next;
     if (!nextLevel) {
         LoaderPage* nextPage = globalLevel->page->next;
@@ -176,7 +180,7 @@ void GameScene::enableMenus(const bool flag)
 void GameScene::initBoard()
 {
     board = Board::create();
-    board->initWithLevel(globalLevel);
+    board->initWithLevel(globalLevel, this);
     addBoardWithinContainer(board);
 
     if (headlineLabel) {
@@ -280,4 +284,43 @@ void GameScene::initLeftMenu()
     leftMenu->setAnchorPoint(CCPoint(0, 0.5));
 
     leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
+}
+
+void GameScene::onBoardFinished()
+{
+    auto lastState = userstate::getModeForLevel(board->getLevel());
+    auto moves = board->getMoves();
+    auto perfectMoves = (board->getSize().width * board->getSize().height) - 1;
+    auto headlineKey = std::string("headline");
+
+    if (moves == perfectMoves) {
+        headlineKey += ".perfect";
+        userstate::setModeForLevel(board->getLevel(), userstate::Mode::PERFECT);
+    } else if (lastState == userstate::Mode::PERFECT) {
+        userstate::setModeForLevel(board->getLevel(), userstate::Mode::PERFECT);
+    } else {
+        userstate::setModeForLevel(board->getLevel(), userstate::Mode::SOLVED);
+    }
+
+    auto alert = Alert::create();
+    alert->setTag(tagAlert);
+    addChild(alert);
+
+    alert->setHeadline(_("alert.gamesolved", headlineKey.c_str())->getCString());
+    alert->setBody(
+        _("alert.gamesolved", (lastState == userstate::Mode::NONE) ? "body.first" : "body")
+            ->assign("moves.best", moves - 1)
+            ->assign("moves", moves)
+            ->assign("time.best", 10)
+            ->assign("time", 12)
+            ->get().c_str()
+    );
+    alert->addButton(
+        _("alert.gamesolved", "btn.next")->getCString(),
+        this, menu_selector(GameScene::onBtnGoNext)
+    );
+    alert->addButton(
+        _("alert.gamesolved", "btn.again")->getCString(),
+        this, menu_selector(GameScene::onBtnReset)
+    );
 }

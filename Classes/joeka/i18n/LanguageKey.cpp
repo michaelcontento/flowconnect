@@ -15,7 +15,10 @@ using namespace Helpers;
 
 int LanguageKey::count = 0;
 
-LanguageKey::LanguageKey(const char *keyName, const char *keyValue) : name(keyName), value(keyValue)
+LanguageKey::LanguageKey(const char *keyName, const char *keyValue)
+: name(keyName)
+, value(keyValue)
+, parameters()
 {
 }
 
@@ -43,7 +46,7 @@ LanguageKey* LanguageKey::assign(const char *varName, float value)
     return this;
 }
 
-const char * LanguageKey::getCString()
+std::string LanguageKey::get()
 {
     string str = value;
 
@@ -51,6 +54,12 @@ const char * LanguageKey::getCString()
     {
         StringHelper::replace(str, string(string("{") + it->first + string("}")), string(it->second));
     }
+    parameters.clear();
+    
+    return str;
+}
 
-    return str.c_str();
+const char * LanguageKey::getCString()
+{
+    return get().c_str();
 }

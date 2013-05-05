@@ -5,6 +5,7 @@
 #include "userstate.h"
 #include "Localization.h"
 #include "LanguageKey.h"
+#include "SceneManager.h"
 
 using namespace cocos2d;
 using namespace Avalon;
@@ -78,7 +79,32 @@ void ShopScene::showSpinner(const bool flag)
         menu->setEnabled(!flag);
     }
 
-    // TODO: Implement spinner
+    if (flag) {
+        auto alert = Alert::create();
+        alert->setHeadline(_("dialog.shopaction", "headline")->getCString());
+        alert->setBody(_("dialog.shopaction", "body")->getCString());
+        alert->showSpinner();
+        alert->setTag(tagAlert);
+        alert->setTimeout(shopTimeout, this, callfuncN_selector(ShopScene::alertTimeout));
+        addChild(alert);
+    } else {
+        removeChildByTag(tagAlert);
+    }
+}
+
+void ShopScene::alertTimeout(CCObject* alert)
+{
+    showSpinner(false);    
+    CCMessageBox(
+        _("dialog.shoptimeouterror", "body")->getCString(),
+        _("dialog.shoptimeouterror", "headline")->getCString()
+    );
+
+    auto manager = Payment::Loader::globalManager;
+    if (!manager->isPurchaseReady()) {
+        manager->stopService();
+        SceneManager::getInstance().popScene();
+    }
 }
 
 void ShopScene::onServiceStarted(Payment::Manager* const manager)
@@ -98,8 +124,8 @@ void ShopScene::onPurchaseSucceed(Payment::Manager *const manager, Payment::Prod
 void ShopScene::onPurchaseFail(Payment::Manager* const manager)
 {
     CCMessageBox(
-        _("dialog.shoperror", "body")->getCString(),
-        _("dialog.shoperror", "headline")->getCString()
+        _("dialog.shoppurchaseerror", "body")->getCString(),
+        _("dialog.shoppurchaseerror", "headline")->getCString()
     );
 }
 

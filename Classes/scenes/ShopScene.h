@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "../joeka/Payment.h"
+#include "../Alert.h"
 
 class ShopScene : public cocos2d::CCLayer, public Avalon::Payment::ManagerDelegate
 {
@@ -13,6 +14,8 @@ public:
     static cocos2d::CCScene* scene();
     CREATE_FUNC(ShopScene);
     virtual bool init() override;
+
+    void alertTimeout(CCObject* alert);
 
     /* Payment Receiver Interface */
     void onServiceStarted(Avalon::Payment::Manager* const manager);
@@ -25,6 +28,8 @@ public:
     
 private:
     const unsigned int MENU_PADDING = 25;
+    const int tagAlert = 10;
+    const float shopTimeout = 15;
     cocos2d::CCMenu* menu;
 
     void createMenu(Avalon::Payment::Manager* manager);

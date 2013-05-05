@@ -3,6 +3,7 @@
 #include "Token.h"
 #include "../Colors.h"
 #include "userstate.h"
+#include "GameScene.h"
 
 using namespace cocos2d;
 
@@ -47,9 +48,11 @@ bool Board::init()
     return true;
 }
 
-bool Board::initWithLevel(const LoaderLevel* level)
+bool Board::initWithLevel(const LoaderLevel* level, GameScene* gameScene)
 {
     assert(level && "null pointer");
+    assert(gameScene && "null pointer");
+    this->gameScene = gameScene;
 
     removeAllSlots();
     createSlotsFromData(level->data);
@@ -73,7 +76,7 @@ void Board::onEnter()
     
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
-        ->addTargetedDelegate(this, 0, true);
+        ->addTargetedDelegate(this, 1, true);
 
     if (timerStarted) {
         schedule(schedule_selector(Board::updateDuration));
@@ -465,16 +468,9 @@ void Board::handleAllCheckpointsVisited()
 {
     removeChild(touchIndicator);
     touchIndicator = NULL;
-
-    auto lastState = userstate::getModeForLevel(level);
-    auto perfectMoves = (size.width * size.height) - 1;
-    if (moves == perfectMoves || lastState == userstate::Mode::PERFECT) {
-        userstate::setModeForLevel(level, userstate::Mode::PERFECT);
-    } else {
-        userstate::setModeForLevel(level, userstate::Mode::SOLVED);
-    }
-
     unschedule(schedule_selector(Board::updateDuration));
+
+    gameScene->onBoardFinished();
 }
 
 void Board::lockCompleteLines() const

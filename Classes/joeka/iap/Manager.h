@@ -37,6 +37,7 @@ public:
     void restorePurchases() const;
 
     void startService();
+    void stopService();
     bool isStarted() const;
 
 private:

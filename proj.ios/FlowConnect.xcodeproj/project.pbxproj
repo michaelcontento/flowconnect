@@ -202,6 +202,7 @@
 		C88AF14F17280A30004697BE /* de.ini in Resources */ = {isa = PBXBuildFile; fileRef = C88AF14E17280A30004697BE /* de.ini */; };
 		C88AF15A17288A21004697BE /* AlertView.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88AF15617288A21004697BE /* AlertView.mm */; };
 		C88AF15B17288A21004697BE /* AlertViewIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88AF15917288A21004697BE /* AlertViewIOS.mm */; };
+		C893181317363CB800BC9289 /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C893181117363CB800BC9289 /* Alert.cpp */; };
 		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
 		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
 		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
@@ -643,6 +644,8 @@
 		C88AF15717288A21004697BE /* AlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewDelegate.h; sourceTree = "<group>"; };
 		C88AF15817288A21004697BE /* AlertViewIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewIOS.h; sourceTree = "<group>"; };
 		C88AF15917288A21004697BE /* AlertViewIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertViewIOS.mm; sourceTree = "<group>"; };
+		C893181117363CB800BC9289 /* Alert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Alert.cpp; path = ../Classes/Alert.cpp; sourceTree = "<group>"; };
+		C893181217363CB800BC9289 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alert.h; path = ../Classes/Alert.h; sourceTree = "<group>"; };
 		C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CategoryMenuScene.cpp; path = ../Classes/scenes/CategoryMenuScene.cpp; sourceTree = "<group>"; };
 		C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryMenuScene.h; path = ../Classes/scenes/CategoryMenuScene.h; sourceTree = "<group>"; };
 		C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelMenuScene.cpp; path = ../Classes/LevelMenuScene.cpp; sourceTree = "<group>"; };
@@ -1247,6 +1250,8 @@
 				C88AF12B1726A218004697BE /* Colors.cpp */,
 				C88AF0E517246A62004697BE /* userstate.cpp */,
 				C88AF0E617246A63004697BE /* userstate.h */,
+				C893181117363CB800BC9289 /* Alert.cpp */,
+				C893181217363CB800BC9289 /* Alert.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1901,6 +1906,7 @@
 				C8681CAB1733D1CF0020E78B /* BackendIos.mm in Sources */,
 				C8681CAE1733F9330020E78B /* Loader.cpp in Sources */,
 				C8681CB117352ED30020E78B /* GameCenterIos.m in Sources */,
+				C893181317363CB800BC9289 /* Alert.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

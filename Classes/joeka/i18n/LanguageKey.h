@@ -28,6 +28,7 @@ public:
     LanguageKey* assign(const char *varName, int value);
     LanguageKey* assign(const char *varName, float value);
 
+    std::string get();
     const char* getCString();
 };
 

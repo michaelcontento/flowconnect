@@ -7,6 +7,8 @@
 
 #define BOARD_ZORDER_TOUCH_INDICATOR 10
 
+class GameScene;
+
 class Board : public cocos2d::CCLayer
 {
 public:
@@ -15,7 +17,7 @@ public:
 
     CREATE_FUNC(Board);
     virtual bool init() override;
-    bool initWithLevel(const LoaderLevel* level);
+    bool initWithLevel(const LoaderLevel* level, GameScene* gameScene);
 
     CC_SYNTHESIZE_READONLY(cocos2d::CCSize, size, Size);
     CC_SYNTHESIZE_READONLY(const LoaderLevel*, level, Level);
@@ -41,6 +43,7 @@ private:
     cocos2d::CCArray* slots;
     cocos2d::CCArray* userPath;
     std::vector<char> directions;
+    GameScene* gameScene;
     Slot* lastCheckpoint;
     cocos2d::CCSprite* touchIndicator;
     bool allCheckpointVisited;

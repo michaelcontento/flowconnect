@@ -26,10 +26,13 @@ public:
     void enableMenus();
     void enableMenus(const bool flag);
 
+    void onBoardFinished();
+
 private:
     const int BOARD_MARGIN = 25;
     const int BUTTON_SPACING = 30;
     const int BOARD_WIDTH = 696;
+    const int tagAlert = 42;
 
     cocos2d::CCNode* boardContainer;
     Board* board;
