@@ -118,7 +118,6 @@ void postAchievement(const char* mode, const LoaderCategory* category, const int
             i,
             (strcmp(mode, "perfect") == 0) ? ".perfect" : ""
         );
-        CCLog("%s %d %d %d", buf, sum, value, percent);
         gc.postAchievement(buf, percent);
     }
 }
