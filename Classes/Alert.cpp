@@ -45,7 +45,7 @@ bool Alert::init()
 
 bool Alert::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
-    if (menu) {
+    if (!menuTracked && menu) {
         menuTracked = menu->ccTouchBegan(pTouch, pEvent);
     }
     return true;
