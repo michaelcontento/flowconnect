@@ -287,7 +287,7 @@ void userstate::resetAllLevelModes()
         categoryKey = getCategoryKey(category, "perfect");
         settings->setIntegerForKey(categoryKey, 0);
         categoryKey = getCategoryKey(category, "duration");
-        settings->setFloatForKey(levelKey, 0);
+        settings->setFloatForKey(categoryKey, 0);
     }
 
     setShowHowToPlay(true);
@@ -402,8 +402,9 @@ void userstate::updateLevelDuration(const LoaderLevel* level, const float durati
     char buf[50] = {0};
     snprintf(buf, sizeof(buf), "com.coragames.dtdng.lb.%d", level->page->category->localid);
     
-    int handicap = (216 - getStarsForCategory(level->page->category)) * 1000000;
-    gc.postScore(buf, handicap + (newSum * 100));
+    int handicap = 216 - getStarsForCategory(level->page->category);
+    // value = (HOURS * 360000) + (MINUTES * 6000) + (SECONDS * 100) + CENTISECONDS;
+    gc.postScore(buf, (handicap * 360000) + (newSum * 100));
 }
 
 float userstate::getLevelDuration(const LoaderLevel* level)
