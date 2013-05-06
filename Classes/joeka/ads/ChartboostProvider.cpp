@@ -28,6 +28,7 @@ namespace Ads
         ChartboostX::sharedChartboostX()->setAppSignature(appSignature.c_str());
         ChartboostX::sharedChartboostX()->setDelegate(this);
 
+        ChartboostX::sharedChartboostX()->cacheMoreApps();
         ChartboostX::sharedChartboostX()->cacheInterstitial();
         CCLog("[Chartboost] initilized with AppId: %s | AppSig: %s |", appId.c_str(), appSignature.c_str());
     }
@@ -47,10 +48,20 @@ namespace Ads
         ChartboostX::sharedChartboostX()->cacheInterstitial();
     }
 
-    bool ChartboostProvider::shouldDisplayInterstitial(const char* location)
+    void ChartboostProvider::openAdLink()
     {
-        // we always deliever true because our AdManager will take care of it
-        return true;
+        ChartboostX::sharedChartboostX()->showMoreApps();
+    }
+
+    void ChartboostProvider::didCacheMoreApps()
+    {
+        CCLog("[Chartboost] did cache more apps");
+    }
+
+    void ChartboostProvider::didFailToLoadMoreApps()
+    {
+        ChartboostX::sharedChartboostX()->cacheMoreApps();
+        CCLog("[Chartboost] did fail to load more apps");
     }
 
     void ChartboostProvider::didCacheInterstitial(const char* location)

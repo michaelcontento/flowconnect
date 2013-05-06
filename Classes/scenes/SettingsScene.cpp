@@ -13,6 +13,8 @@
 #include "userstate.h"
 #include "ToggleButton.h"
 #include "GameCenter.h"
+#include "AdManager.h"
+#include "ChartboostProvider.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -155,6 +157,14 @@ void SettingsScene::onEnter()
 
 void SettingsScene::btnMoreGames()
 {
+    for (auto provider : Ads::AdManager::adProviders) {
+        auto cb = static_cast<Ads::ChartboostProvider*>(provider);
+        if (cb) {
+            cb->openAdLink();
+            return;
+        }
+    }
+    
     UrlOpener::open("itms-apps://itunes.com/apps/coragames");
 }
 

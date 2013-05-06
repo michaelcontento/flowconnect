@@ -15,7 +15,7 @@
 
 namespace Ads
 {
-    class ChartboostProvider : public ChartboostXDelegate, public Ads::Fullscreen, public Ads::Provider
+    class ChartboostProvider : public ChartboostXDelegate, public Ads::Fullscreen, public Ads::Provider, public Ads::Link
     {
     public:
         int weight;
@@ -32,13 +32,17 @@ namespace Ads
 
         // Ads::Fullscreen
         virtual void showFullscreenAd();
+
+        // Ads::Link
+        virtual void openAdLink();
         
         // ChartboostXDelegate method
-        virtual bool shouldDisplayInterstitial(const char* location);
         virtual void didCacheInterstitial(const char* location);
         virtual void didFailToLoadInterstitial(const char* location);
         virtual void didCloseInterstitial(const char* location);
         virtual void didClickInterstitial(const char* location);
+        virtual void didCacheMoreApps();
+        virtual void didFailToLoadMoreApps();
     };
 }
 

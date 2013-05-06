@@ -79,11 +79,6 @@ void AppDelegate::initPayment()
 
 void AppDelegate::initAds()
 {
-    if (!userstate::showAds()) {
-        Ads::AdManager::disableAds();
-        return;
-    }
-
     auto mgr = new cocos2d::extension::AssetsManager(
         "http://www.coragames.com/apps/dummy/package.zip",
         "http://www.coragames.com/apps/dummy/version"
@@ -92,7 +87,7 @@ void AppDelegate::initAds()
     
     Ads::AdManager::initWithIniFile("ads.ini");
     Ads::AdManager::startService();
-    Ads::AdManager::enableAds();
+    Ads::AdManager::enabled = userstate::showAds();
 }
 
 void AppDelegate::initLocalization()

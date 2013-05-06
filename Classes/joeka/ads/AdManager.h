@@ -47,8 +47,9 @@ namespace Ads
         
         static void enableAds();
         static void disableAds();
-        
-        template <typename T> static T* getRandomProvider(std::vector<Ads::Provider*>)
+
+        template <typename T>
+        static T* getRandomProvider(std::vector<Ads::Provider*>)
         {
             float sumWeight = 0.0;
             for (std::vector<Provider*>::iterator it = adProviders.begin(); it != adProviders.end(); ++it)
