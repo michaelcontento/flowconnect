@@ -65,6 +65,10 @@ void AppDelegate::applicationWillEnterForeground()
     SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 
     userstate::refreshFreeHints();
+
+    if (userstate::showAds()) {
+        Ads::AdManager::showFullscreenAd();
+    }
 }
 
 void AppDelegate::initPayment()

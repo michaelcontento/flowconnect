@@ -10,9 +10,6 @@
 
 #define MAX_RANK_ID 7
 
-#define MAX_CATEGORIES 6
-#define PAGES_PER_CATEGORY 6
-
 #define KEY_USER_STARS "stars"
 #define START_STARS_AMOUNT 0
 
@@ -72,10 +69,11 @@ namespace userstate
     Mode::Enum getModeForLevel(const LoaderLevel* level);
     void setModeForLevel(const LoaderLevel* level, Mode::Enum mode);
 
-    char* getPageKey(const LoaderPage* page);
-    char* getPageKey(const unsigned int categoryId, const unsigned int pageId);
-    char* getLevelKey(const LoaderLevel* level);
-    char* getCategoryKey(const LoaderCategory* category, const bool perfect);
+    void updateLevelDuration(const LoaderLevel* level, const float duration);
+    float getLevelDuration(const LoaderLevel* level);
+
+    void updateLevelMoves(const LoaderLevel* level, const int moves);
+    int getLevelMoves(const LoaderLevel* level);
 }
 
 

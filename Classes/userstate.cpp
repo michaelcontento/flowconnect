@@ -32,6 +32,55 @@ int getRankAmount(const int level)
     }
 }
 
+char* getPageKey(const unsigned int categoryId, const unsigned int pageId)
+{
+    static char tmpKey[50] = {0};
+    snprintf(
+        tmpKey, sizeof(tmpKey),
+        "%s_%d_%d",
+        PREFIX_PAGE_FREE,
+        categoryId,
+        pageId
+    );
+
+    return tmpKey;
+}
+
+char* getPageKey(const LoaderPage* page)
+{
+    return getPageKey(page->category->localid, page->localid);
+}
+
+char* getLevelKey(const LoaderLevel* level, const char* postfix)
+{
+    static char tmpKey[50] = {0};
+    snprintf(
+        tmpKey, sizeof(tmpKey),
+        "%s_%d_%d_%d_%s",
+        PREFIX_LEVEL_MODE,
+        level->page->category->localid,
+        level->page->localid,
+        level->localid,
+        postfix
+    );
+
+    return tmpKey;
+}
+
+char* getCategoryKey(const LoaderCategory* category, const char* postfix)
+{
+    static char tmpKey[50] = {0};
+    snprintf(
+        tmpKey, sizeof(tmpKey),
+        "%s_%d_%s",
+        PREFIX_CATEGORY_STARS,
+        category->localid,
+        postfix
+    );
+
+    return tmpKey;
+}
+
 class AlertDelegateNotEnoughStars : public AlertViewDelegate
 {
 public:
@@ -47,6 +96,10 @@ public:
 
 bool userstate::isPageFree(const LoaderPage* page)
 {
+    if (page->localid == 1) {
+        return true;
+    }
+    
     auto settings = CCUserDefault::sharedUserDefault();
     return settings->getBoolForKey(getPageKey(page));
 }
@@ -191,7 +244,7 @@ Mode::Enum userstate::getModeForLevel(const LoaderLevel* level)
 {
     auto settings = CCUserDefault::sharedUserDefault();
 
-    auto levelKey = getLevelKey(level);
+    auto levelKey = getLevelKey(level, "mode");
     auto state = settings->getIntegerForKey(levelKey, Mode::NONE);
 
     return static_cast<Mode::Enum>(state);
@@ -200,39 +253,45 @@ Mode::Enum userstate::getModeForLevel(const LoaderLevel* level)
 void userstate::resetAllLevelModes()
 {
     auto settings = CCUserDefault::sharedUserDefault();
+    const char* categoryKey = NULL;
+    const char* pageKey = NULL;
+    const char* levelKey = NULL;
 
     for (auto category : globalLevelLoader.getCategories()) {
-        auto categoryKey = getCategoryKey(category, false);
-        if (settings->getIntegerForKey(categoryKey) == 0) {
+        if (getStarsForCategory(category) == 0) {
             continue;
         }
 
-        // reset mode for every level in the category
         for (auto page : category->pages) {
+            if (page->localid > 1 && isPageFree(page)) {
+                pageKey = getPageKey(category->localid, page->localid);
+                settings->setBoolForKey(pageKey, false);
+            }
+            
             for (auto level : page->levels) {
-                auto levelKey = getLevelKey(level);
-                if (settings->getIntegerForKey(levelKey) > 0) {
-                    settings->setIntegerForKey(levelKey, Mode::NONE);
+                if (getModeForLevel(level) == Mode::NONE) {
+                    continue;
                 }
+                
+                levelKey = getLevelKey(level, "mode");
+                settings->setIntegerForKey(levelKey, Mode::NONE);
+                levelKey = getLevelKey(level, "moves");
+                settings->setIntegerForKey(levelKey, 0);
+                levelKey = getLevelKey(level, "duration");
+                settings->setFloatForKey(levelKey, 0);
             }
         }
 
-        // reset category star counter (total and perfect)
+        categoryKey = getCategoryKey(category, "total");
         settings->setIntegerForKey(categoryKey, 0);
-        categoryKey = getCategoryKey(category, true);
+        categoryKey = getCategoryKey(category, "perfect");
         settings->setIntegerForKey(categoryKey, 0);
+        categoryKey = getCategoryKey(category, "duration");
+        settings->setFloatForKey(levelKey, 0);
     }
 
-    for (int catId = 1; catId <= MAX_CATEGORIES; ++catId) {
-        for (int pageId = 2; pageId <= PAGES_PER_CATEGORY; ++pageId) {
-            settings->setBoolForKey(getPageKey(catId, pageId), false);
-        }
-    }
-
-    // not required as flush is done in setShowHowToPlay()
-    // settings->flush();
     setShowHowToPlay(true);
-
+    
     // it's important to do this after setShowHowToPlay() because it
     // will change the dirty flag!
     settings->setBoolForKey(KEY_DIRTY, false);
@@ -247,7 +306,7 @@ void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
     char buf[50] = {0};
 
     if (mode == Mode::PERFECT && lastMode != Mode::PERFECT) {
-        auto categoryKey = getCategoryKey(level->page->category, true);
+        auto categoryKey = getCategoryKey(level->page->category, "perfect");
         auto newValue = settings->getIntegerForKey(categoryKey) + 1;
         settings->setIntegerForKey(categoryKey, newValue);
         
@@ -265,7 +324,7 @@ void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
     }
 
     if (lastMode == Mode::NONE && mode != Mode::NONE) {
-        auto categoryKey = getCategoryKey(level->page->category, false);
+        auto categoryKey = getCategoryKey(level->page->category, "total");
         auto newValue = getStarsForCategory(level->page->category) + 1;
         settings->setIntegerForKey(categoryKey, newValue);
 
@@ -280,7 +339,7 @@ void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
         }
     }
 
-    settings->setIntegerForKey(getLevelKey(level), mode);
+    settings->setIntegerForKey(getLevelKey(level, "mode"), mode);
     settings->setBoolForKey(KEY_DIRTY, true);
     settings->flush();
 }
@@ -289,58 +348,10 @@ int userstate::getStarsForCategory(const LoaderCategory* category)
 {
     auto settings = CCUserDefault::sharedUserDefault();
 
-    auto categoryKey = getCategoryKey(category, false);
+    auto categoryKey = getCategoryKey(category, "total");
     auto result = settings->getIntegerForKey(categoryKey);
 
     return result;
-}
-
-char* userstate::getPageKey(const unsigned int categoryId, const unsigned int pageId)
-{
-    static char tmpKey[50] = {0};
-    snprintf(
-        tmpKey, sizeof(tmpKey),
-        "%s_%d_%d",
-        PREFIX_PAGE_FREE,
-        categoryId,
-        pageId
-    );
-
-    return tmpKey;
-}
-
-char* userstate::getPageKey(const LoaderPage* page)
-{
-    return getPageKey(page->category->localid, page->localid);
-}
-
-char* userstate::getLevelKey(const LoaderLevel* level)
-{
-    static char tmpKey[50] = {0};
-    snprintf(
-        tmpKey, sizeof(tmpKey),
-        "%s_%d_%d_%d",
-        PREFIX_LEVEL_MODE,
-        level->page->category->localid,
-        level->page->localid,
-        level->localid
-    );
-
-    return tmpKey;
-}
-
-char* userstate::getCategoryKey(const LoaderCategory* category, const bool perfect)
-{
-    static char tmpKey[50] = {0};
-    snprintf(
-        tmpKey, sizeof(tmpKey),
-        "%s_%d_%s",
-        PREFIX_CATEGORY_STARS,
-        category->localid,
-        perfect ? "perfect" : "total"
-    );
-
-    return tmpKey;
 }
 
 bool userstate::showHowToPlay()
@@ -368,4 +379,53 @@ void userstate::setIsNumberMode(const bool flag)
     auto settings = CCUserDefault::sharedUserDefault();
     settings->setBoolForKey(KEY_NUMBER_MODE, flag);
     settings->flush();
+}
+
+void userstate::updateLevelDuration(const LoaderLevel* level, const float duration)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    auto gc = Avalon::GameCenter();
+
+    auto lastKey = getLevelKey(level, "duration");
+    auto last = settings->getFloatForKey(lastKey);
+
+    auto lastSumKey = getCategoryKey(level->page->category, "duration");
+    auto lastSum = settings->getFloatForKey(lastSumKey);
+    auto newSum = lastSum + duration - last;
+    
+    if (last == 0 || duration < last) {
+        settings->setFloatForKey(lastKey, duration);
+        settings->setFloatForKey(lastSumKey, newSum);
+        settings->flush();
+    }
+
+    char buf[50] = {0};
+    snprintf(buf, sizeof(buf), "com.coragames.dtdng.lb.%d", level->page->category->localid);
+    
+    int handicap = (216 - getStarsForCategory(level->page->category)) * 1000000;
+    gc.postScore(buf, handicap + (newSum * 100));
+}
+
+float userstate::getLevelDuration(const LoaderLevel* level)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getFloatForKey(getLevelKey(level, "duration"));
+}
+
+void userstate::updateLevelMoves(const LoaderLevel* level, const int moves)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    auto key = getLevelKey(level, "moves");
+    auto last = settings->getIntegerForKey(key);
+
+    if (last == 0 || moves < last) {
+        settings->setIntegerForKey(key, moves);
+        settings->flush();
+    }
+}
+
+int userstate::getLevelMoves(const LoaderLevel* level)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getIntegerForKey(getLevelKey(level, "moves"));
 }

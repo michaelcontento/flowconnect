@@ -208,7 +208,7 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
     menu->ignoreTouchIfMovedMoreThan = 10;
 
     PageLockButton* pagelock = NULL;
-    if (page->localid > 1 && !userstate::isPageFree(page)) {
+    if (!userstate::isPageFree(page)) {
         pagelock = PageLockButton::create(page);
     }
 

@@ -7,7 +7,6 @@
 #include "SettingsScene.h"
 #include "Localization.h"
 #include "LanguageKey.h"
-#include "AdManager.h"
 #include "GameCenter.h"
 #include "Loader.h"
 
@@ -56,7 +55,6 @@ bool MenuScene::init()
 
 void MenuScene::btnPlay()
 {
-    Ads::AdManager::showFullscreenAd();
     SceneManager::getInstance().gotoScene(CategoryMenuScene::scene());
 }
 
@@ -68,10 +66,6 @@ void MenuScene::btnPLayTimeAttack()
 void MenuScene::btnLeaderboard()
 {
     auto gc = Avalon::GameCenter();
-    gc.postAchievement("com.coragames.dtdng.ac.rank.baby", 100);
-    gc.postAchievement("com.coragames.dtdng.ac.rank.baby.perfect", 75);
-    gc.postScore("com.coragames.dtdng.lb.normal", 1234);
-    gc.postScore("com.coragames.dtdng.lb.bonus", 12121212);
     gc.showScores();
 }
 

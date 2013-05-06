@@ -1,9 +1,11 @@
 @interface GameCenterIos : NSObject
 {
+    bool showNextError;
 }
 
 + (GameCenterIos*)shared;
 
+- (id)init;
 - (void)login;
 
 - (void)showAchievements;

@@ -18,6 +18,15 @@ static GameCenterIos* instance = nil;
     return instance;
 }
 
+- (id)init
+{
+    if ([super init]) {
+        showNextError = NO;
+    }
+
+    return self;
+}
+
 - (void)login
 {
     GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
@@ -32,8 +41,16 @@ static GameCenterIos* instance = nil;
 
         if (error.code == GKErrorAuthenticationInProgress) {
             // ignore this case
-        } else {
+        } else if (showNextError) {
+            showNextError = NO;
             NSLog(@"[GameCenter] login failed: %@", error.localizedDescription);
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Unvailable"
+                                                            message:@"Connection to the Game Center server could not be established."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles:nil];
+            [alert autorelease];
+            [alert show];
         }
     }];
 }
@@ -44,6 +61,7 @@ static GameCenterIos* instance = nil;
 - (void)showAchievements
 {
     if (![GKLocalPlayer localPlayer].isAuthenticated) {
+        showNextError = YES;
         return [self login];
     }
 
@@ -58,7 +76,7 @@ static GameCenterIos* instance = nil;
 - (void)postAchievement:(const char*)idName percent:(NSNumber*)percentComplete
 {
     if (![GKLocalPlayer localPlayer].isAuthenticated) {
-        return [self login];
+        return;
     }
 
     GKAchievement* achievement = [[[GKAchievement alloc] init] autorelease];
@@ -88,6 +106,7 @@ static GameCenterIos* instance = nil;
 - (void)showScores
 {
     if (![GKLocalPlayer localPlayer].isAuthenticated) {
+        showNextError = YES;
         return [self login];
     }
 
@@ -103,7 +122,7 @@ static GameCenterIos* instance = nil;
 - (void)postScore:(const char*)idName score:(NSNumber*)score;
 {
     if (![GKLocalPlayer localPlayer].isAuthenticated) {
-        return [self login];
+        return;
     }
 
     GKScore* gkScore = [[[GKScore alloc] init] autorelease];
@@ -120,21 +139,6 @@ static GameCenterIos* instance = nil;
 
 - (void)clearAllScores
 {
-    // this is important or we would later create tons of login attempts
-    if (![GKLocalPlayer localPlayer].isAuthenticated) {
-        return;
-    }
-
-    [GKLeaderboard loadCategoriesWithCompletionHandler:^(NSArray* categories, NSArray* titles, NSError* error) {
-        if (error) {
-            NSLog(@"[GameCenter] clearAllScores failed: %@", error.localizedDescription);
-            return;
-        }
-
-        for (NSString* categoryName in categories) {
-            [self postScore:[categoryName cStringUsingEncoding:NSASCIIStringEncoding] score:[NSNumber numberWithInt:0]];
-        }
-    }];
 }
 
 @end

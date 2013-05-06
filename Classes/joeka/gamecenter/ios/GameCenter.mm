@@ -20,7 +20,6 @@ void GameCenter::showAchievements()
 
 void GameCenter::postAchievement(const char* idName, int percentComplete)
 {
-    std::cout << "[GameCenter] postAchievement: " << idName << " " << percentComplete << "%" << std::endl;
     [[GameCenterIos shared] postAchievement:idName percent:[NSNumber numberWithInt:percentComplete]];
 }
 

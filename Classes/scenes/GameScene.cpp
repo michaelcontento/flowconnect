@@ -9,6 +9,7 @@
 #include "userstate.h"
 #include "LevelMenuScene.h"
 #include "Alert.h"
+#include "AdManager.h"
 
 using namespace cocos2d;
 
@@ -81,6 +82,9 @@ void GameScene::onBtnReset()
 {
     auto alert = getChildByTag(tagAlert);
     if (alert) {
+        if (userstate::showAds()) {
+            Ads::AdManager::showFullscreenAd();
+        }
         removeChild(alert);
     }
     board->reset();
@@ -90,6 +94,9 @@ void GameScene::onBtnGoNext()
 {
     auto alert = getChildByTag(tagAlert);
     if (alert) {
+        if (userstate::showAds()) {
+            Ads::AdManager::showFullscreenAd();
+        }
         removeChild(alert);
     }
 
@@ -299,7 +306,6 @@ void GameScene::onBoardFinished()
     auto perfectMoves = (board->getSize().width * board->getSize().height) - 1;
     auto headlineKey = std::string("headline");
 
-//    userstate::updateLevelDuration(board->getLevel(), board->getDuration());
     if (moves == perfectMoves) {
         headlineKey += ".perfect";
         userstate::setModeForLevel(board->getLevel(), userstate::Mode::PERFECT);
@@ -316,10 +322,10 @@ void GameScene::onBoardFinished()
     alert->setHeadline(_("alert.gamesolved", headlineKey.c_str())->getCString());
     alert->setBody(
         _("alert.gamesolved", (lastState == userstate::Mode::NONE) ? "body.first" : "body")
-            ->assign("moves.best", moves - 1)
+            ->assign("moves.best", userstate::getLevelMoves(board->getLevel()))
             ->assign("moves", moves)
-            ->assign("time.best", 10)
-            ->assign("time", 12)
+            ->assign("time.best", userstate::getLevelDuration(board->getLevel()))
+            ->assign("time", board->getDuration())
             ->get().c_str()
     );
     alert->addButton(
@@ -330,4 +336,7 @@ void GameScene::onBoardFinished()
         _("alert.gamesolved", "btn.again")->getCString(),
         this, menu_selector(GameScene::onBtnReset)
     );
+
+    userstate::updateLevelDuration(board->getLevel(), board->getDuration());
+    userstate::updateLevelMoves(board->getLevel(), board->getMoves());
 }
