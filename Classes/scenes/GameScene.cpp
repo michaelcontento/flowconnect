@@ -299,6 +299,7 @@ void GameScene::onBoardFinished()
     auto perfectMoves = (board->getSize().width * board->getSize().height) - 1;
     auto headlineKey = std::string("headline");
 
+//    userstate::updateLevelDuration(board->getLevel(), board->getDuration());
     if (moves == perfectMoves) {
         headlineKey += ".perfect";
         userstate::setModeForLevel(board->getLevel(), userstate::Mode::PERFECT);

@@ -8,9 +8,29 @@
 #include "AlertView.h"
 #include "SceneManager.h"
 #include "ShopScene.h"
+#include "GameCenter.h"
 
 using namespace userstate;
 using namespace cocos2d;
+
+int getRankAmount(const int level)
+{
+    if (level == 1) {
+        return 10;
+    } else if (level == 2) {
+        return 25;
+    } else if (level == 3) {
+        return 50;
+    } else if (level == 4) {
+        return 100;
+    } else if (level == 5) {
+        return 250;
+    } else if (level == 6) {
+        return 500;
+    } else {
+        return 1000;
+    }
+}
 
 class AlertDelegateNotEnoughStars : public AlertViewDelegate
 {
@@ -182,12 +202,12 @@ void userstate::resetAllLevelModes()
     auto settings = CCUserDefault::sharedUserDefault();
 
     for (auto category : globalLevelLoader.getCategories()) {
-        auto categoryKey = getCategoryKey(category);
+        auto categoryKey = getCategoryKey(category, false);
         if (settings->getIntegerForKey(categoryKey) == 0) {
             continue;
         }
-        
-        settings->setIntegerForKey(categoryKey, 0);
+
+        // reset mode for every level in the category
         for (auto page : category->pages) {
             for (auto level : page->levels) {
                 auto levelKey = getLevelKey(level);
@@ -196,6 +216,11 @@ void userstate::resetAllLevelModes()
                 }
             }
         }
+
+        // reset category star counter (total and perfect)
+        settings->setIntegerForKey(categoryKey, 0);
+        categoryKey = getCategoryKey(category, true);
+        settings->setIntegerForKey(categoryKey, 0);
     }
 
     for (int catId = 1; catId <= MAX_CATEGORIES; ++catId) {
@@ -216,16 +241,45 @@ void userstate::resetAllLevelModes()
 
 void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
 {
+    auto gc = Avalon::GameCenter();
     auto settings = CCUserDefault::sharedUserDefault();
-    
-    if (mode == Mode::PERFECT) {
-        auto categoryKey = getCategoryKey(level->page->category);
-        auto lastValue = getStarsForCategory(level->page->category);
-        settings->setIntegerForKey(categoryKey, ++lastValue);
+    auto lastMode = userstate::getModeForLevel(level);
+    char buf[50] = {0};
 
+    if (mode == Mode::PERFECT && lastMode != Mode::PERFECT) {
+        auto categoryKey = getCategoryKey(level->page->category, true);
+        auto newValue = settings->getIntegerForKey(categoryKey) + 1;
+        settings->setIntegerForKey(categoryKey, newValue);
+        
         addStarsToUser(1);
+
+        snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.cat.%d.perfect", level->page->category->localid);
+        gc.postAchievement(buf, newValue * 100 / 216);
+        for (int i = 1; i <= MAX_RANK_ID; ++i) {
+            int percent = newValue * 100 / getRankAmount(i);
+            if (percent > 0 && percent <= 100) {
+                snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.rank.%d.perfect", i);
+                gc.postAchievement(buf, percent);
+            }
+        }
     }
-    
+
+    if (lastMode == Mode::NONE && mode != Mode::NONE) {
+        auto categoryKey = getCategoryKey(level->page->category, false);
+        auto newValue = getStarsForCategory(level->page->category) + 1;
+        settings->setIntegerForKey(categoryKey, newValue);
+
+        snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.cat.%d", level->page->category->localid);
+        gc.postAchievement(buf, newValue * 100 / 216);
+        for (int i = 1; i <= MAX_RANK_ID; ++i) {
+            int percent = newValue * 100 / getRankAmount(i);
+            if (percent > 0 && percent <= 100) {
+                snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.rank.%d", i);
+                gc.postAchievement(buf, percent);
+            }
+        }
+    }
+
     settings->setIntegerForKey(getLevelKey(level), mode);
     settings->setBoolForKey(KEY_DIRTY, true);
     settings->flush();
@@ -235,7 +289,7 @@ int userstate::getStarsForCategory(const LoaderCategory* category)
 {
     auto settings = CCUserDefault::sharedUserDefault();
 
-    auto categoryKey = getCategoryKey(category);
+    auto categoryKey = getCategoryKey(category, false);
     auto result = settings->getIntegerForKey(categoryKey);
 
     return result;
@@ -275,14 +329,15 @@ char* userstate::getLevelKey(const LoaderLevel* level)
     return tmpKey;
 }
 
-char* userstate::getCategoryKey(const LoaderCategory* category)
+char* userstate::getCategoryKey(const LoaderCategory* category, const bool perfect)
 {
     static char tmpKey[50] = {0};
     snprintf(
         tmpKey, sizeof(tmpKey),
-        "%s_%d",
+        "%s_%d_%s",
         PREFIX_CATEGORY_STARS,
-        category->localid
+        category->localid,
+        perfect ? "perfect" : "total"
     );
 
     return tmpKey;

@@ -8,6 +8,8 @@
 #define PREFIX_CATEGORY_STARS "cat"
 #define PREFIX_PAGE_FREE "page_free"
 
+#define MAX_RANK_ID 7
+
 #define MAX_CATEGORIES 6
 #define PAGES_PER_CATEGORY 6
 
@@ -73,7 +75,7 @@ namespace userstate
     char* getPageKey(const LoaderPage* page);
     char* getPageKey(const unsigned int categoryId, const unsigned int pageId);
     char* getLevelKey(const LoaderLevel* level);
-    char* getCategoryKey(const LoaderCategory* category);
+    char* getCategoryKey(const LoaderCategory* category, const bool perfect);
 }
 
 
