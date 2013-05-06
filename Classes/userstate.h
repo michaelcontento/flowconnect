@@ -9,6 +9,7 @@
 #define PREFIX_PAGE_FREE "page_free"
 
 #define MAX_RANK_ID 7
+#define LEVELS_PER_CATEGORY 216
 
 #define KEY_USER_STARS "stars"
 #define START_STARS_AMOUNT 0

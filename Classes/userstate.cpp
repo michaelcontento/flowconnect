@@ -81,6 +81,48 @@ char* getCategoryKey(const LoaderCategory* category, const char* postfix)
     return tmpKey;
 }
 
+int getTotalStarsInAllOtherCategories(const LoaderCategory* category, const char* postfix)
+{
+    int sum = 0;
+    auto settings = CCUserDefault::sharedUserDefault();
+
+    for (auto iterCategory : globalLevelLoader.getCategories()) {
+        if (iterCategory->localid == category->localid) {
+            continue;
+        }
+        sum += settings->getIntegerForKey(getCategoryKey(iterCategory, postfix));
+    }
+
+    return sum;
+}
+
+void postAchievement(const char* mode, const LoaderCategory* category, const int value)
+{
+    auto gc = Avalon::GameCenter();
+    char buf[50] = {0};
+
+    snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.cat.%d", category->localid);
+    gc.postAchievement(buf, value * 100 / LEVELS_PER_CATEGORY);
+
+    for (int i = 1; i <= MAX_RANK_ID; ++i) {
+        int sum = getTotalStarsInAllOtherCategories(category, mode) + value;
+        int percent = sum * 100 / getRankAmount(i);
+        
+        if (percent == 0 || percent > 100) {
+            continue;
+        }
+
+        snprintf(
+            buf, sizeof(buf),
+            "com.coragames.dtdng.ac.rank.%d%s",
+            i,
+            (strcmp(mode, "perfect") == 0) ? ".perfect" : ""
+        );
+        CCLog("%s %d %d %d", buf, sum, value, percent);
+        gc.postAchievement(buf, percent);
+    }
+}
+
 class AlertDelegateNotEnoughStars : public AlertViewDelegate
 {
 public:
@@ -300,10 +342,8 @@ void userstate::resetAllLevelModes()
 
 void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
 {
-    auto gc = Avalon::GameCenter();
     auto settings = CCUserDefault::sharedUserDefault();
     auto lastMode = userstate::getModeForLevel(level);
-    char buf[50] = {0};
 
     if (mode == Mode::PERFECT && lastMode != Mode::PERFECT) {
         auto categoryKey = getCategoryKey(level->page->category, "perfect");
@@ -311,16 +351,7 @@ void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
         settings->setIntegerForKey(categoryKey, newValue);
         
         addStarsToUser(1);
-
-        snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.cat.%d.perfect", level->page->category->localid);
-        gc.postAchievement(buf, newValue * 100 / 216);
-        for (int i = 1; i <= MAX_RANK_ID; ++i) {
-            int percent = newValue * 100 / getRankAmount(i);
-            if (percent > 0 && percent <= 100) {
-                snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.rank.%d.perfect", i);
-                gc.postAchievement(buf, percent);
-            }
-        }
+        postAchievement("perfect", level->page->category, newValue);
     }
 
     if (lastMode == Mode::NONE && mode != Mode::NONE) {
@@ -328,15 +359,7 @@ void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
         auto newValue = getStarsForCategory(level->page->category) + 1;
         settings->setIntegerForKey(categoryKey, newValue);
 
-        snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.cat.%d", level->page->category->localid);
-        gc.postAchievement(buf, newValue * 100 / 216);
-        for (int i = 1; i <= MAX_RANK_ID; ++i) {
-            int percent = newValue * 100 / getRankAmount(i);
-            if (percent > 0 && percent <= 100) {
-                snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.rank.%d", i);
-                gc.postAchievement(buf, percent);
-            }
-        }
+        postAchievement("total", level->page->category, newValue);
     }
 
     settings->setIntegerForKey(getLevelKey(level, "mode"), mode);
@@ -402,7 +425,7 @@ void userstate::updateLevelDuration(const LoaderLevel* level, const float durati
     char buf[50] = {0};
     snprintf(buf, sizeof(buf), "com.coragames.dtdng.lb.%d", level->page->category->localid);
     
-    int handicap = 216 - getStarsForCategory(level->page->category);
+    int handicap = LEVELS_PER_CATEGORY - getStarsForCategory(level->page->category);
     // value = (HOURS * 360000) + (MINUTES * 6000) + (SECONDS * 100) + CENTISECONDS;
     gc.postScore(buf, (handicap * 360000) + (newSum * 100));
 }
