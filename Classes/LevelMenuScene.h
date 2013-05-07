@@ -32,6 +32,7 @@ private:
     const unsigned int ITEMS_PER_ROW = 6;
     const unsigned int ITEM_PADDING = 15;
     const unsigned int INDICATOR_SPACING = 10;
+    unsigned short int touchCounter;
 
     bool isFirstEnter;
     cocos2d::CCArray* pageIndicator;

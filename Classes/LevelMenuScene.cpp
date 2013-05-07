@@ -21,6 +21,7 @@ LevelMenuScene::LevelMenuScene()
 , currentPage(0)
 , isFirstEnter(true)
 , buttons(NULL)
+, touchCounter(0)
 {
     buttons = CCArray::create();
     buttons->retain();
@@ -287,6 +288,7 @@ void LevelMenuScene::alignMenu(CCMenu* menu) const
 
 bool LevelMenuScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    ++touchCounter;
     return true;
 }
 
@@ -296,10 +298,12 @@ void LevelMenuScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
 void LevelMenuScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    adjustScrollView();
+    if (--touchCounter == 0) {
+        adjustScrollView();
+    }
 }
 
 void LevelMenuScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
-    adjustScrollView();
+    ccTouchEnded(pTouch, pEvent);
 }
