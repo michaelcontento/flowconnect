@@ -170,13 +170,10 @@ void SettingsScene::btnMoreGames()
 
 void SettingsScene::btnRemoveAds()
 {
-    char buf[250] = {0};
-    snprintf(buf, sizeof(buf), _("alert.removeads", "body").get().c_str(), PRICE_REMOVE_ADS);
-
     mode = MODE_REMOVE_ADS;
     AlertView::createAlert(
         _("alert.removeads", "headline").get().c_str(),
-        buf,
+        _("alert.removeads", "body").assign("amount", PRICE_REMOVE_ADS).get().c_str(),
         _("alert.removeads", "btn.cancel").get().c_str()
     );
     AlertView::addAlertButton(_("alert.removeads", "btn.ok").get().c_str());
