@@ -23,6 +23,7 @@ Board::Board()
 , duration(0)
 , timerStarted(false)
 , touchIndicatorScale(1)
+, finishReported(false)
 {
 }
 
@@ -479,7 +480,10 @@ void Board::handleAllCheckpointsVisited()
     touchIndicator = NULL;
     unschedule(schedule_selector(Board::updateDuration));
 
-    gameScene->onBoardFinished();
+    if (!finishReported) {
+        finishReported = true;
+        gameScene->onBoardFinished();
+    }
 }
 
 void Board::lockCompleteLines() const
@@ -558,6 +562,7 @@ void Board::reset()
     }
 
     activateNextCheckpoint();
+    finishReported = false;
 }
 
 #pragma mark TouchIndicator

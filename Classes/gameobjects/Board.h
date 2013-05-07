@@ -51,6 +51,7 @@ private:
     bool allCheckpointVisited;
     bool timerStarted;
     int numFreeSlots;
+    bool finishReported;
 
     void removeAllSlots();
     void createSlotsFromData(const char* data);
