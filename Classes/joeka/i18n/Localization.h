@@ -39,6 +39,6 @@ public:
     void clear();
 };
 
-LanguageKey* _(const char *section, const char *key);
+LanguageKey& _(const char *section, const char *key);
 
 #endif /* defined(__Adventures_on_the_farm__Localization__) */

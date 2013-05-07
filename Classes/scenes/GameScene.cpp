@@ -61,8 +61,8 @@ void GameScene::onBtnGoBack()
         if (prePage) {
             if (!userstate::isPageFree(prePage)) {
                 CCMessageBox(
-                    _("dialog.pagelocked", "body")->getCString(),
-                    _("dialog.pagelocked", "headline")->getCString()
+                    _("dialog.pagelocked", "body").getCString(),
+                    _("dialog.pagelocked", "headline").getCString()
                 );
                 LevelMenuScene::scrollTo = prePage;
                 SceneManager::getInstance().popScene();
@@ -106,8 +106,8 @@ void GameScene::onBtnGoNext()
         if (nextPage) {
             if (!userstate::isPageFree(nextPage)) {
                 CCMessageBox(
-                    _("dialog.pagelocked", "body")->getCString(),
-                    _("dialog.pagelocked", "headline")->getCString()
+                    _("dialog.pagelocked", "body").getCString(),
+                    _("dialog.pagelocked", "headline").getCString()
                 );
                 LevelMenuScene::scrollTo = nextPage;
                 SceneManager::getInstance().popScene();
@@ -134,8 +134,8 @@ void GameScene::onBtnHint()
 
     if (freeHints == 0 && showWarning) {
         CCMessageBox(
-            _("dialog.hintwarning", "body")->getCString(),
-            _("dialog.hintwarning", "headline")->getCString()
+            _("dialog.hintwarning", "body").assign("amount", PRICE_HINT).getCString(),
+            _("dialog.hintwarning", "headline").getCString()
         );
         userstate::setHintWarning(false);
         return;
@@ -319,21 +319,21 @@ void GameScene::onBoardFinished()
     alert->setTag(tagAlert);
     addChild(alert);
 
-    alert->setHeadline(_("alert.gamesolved", headlineKey.c_str())->getCString());
+    alert->setHeadline(_("alert.gamesolved", headlineKey.c_str()).getCString());
     alert->setBody(
         _("alert.gamesolved", (lastState == userstate::Mode::NONE) ? "body.first" : "body")
-            ->assign("moves.best", userstate::getLevelMoves(board->getLevel()))
-            ->assign("moves", moves)
-            ->assign("time.best", userstate::getLevelDuration(board->getLevel()))
-            ->assign("time", board->getDuration())
-            ->get().c_str()
+        .assign("moves.best", userstate::getLevelMoves(board->getLevel()))
+        .assign("moves", moves)
+        .assign("time.best", userstate::getLevelDuration(board->getLevel()))
+        .assign("time", board->getDuration())
+        .get().c_str()
     );
     alert->addButton(
-        _("alert.gamesolved", "btn.next")->getCString(),
+        _("alert.gamesolved", "btn.next").getCString(),
         this, menu_selector(GameScene::onBtnGoNext)
     );
     alert->addButton(
-        _("alert.gamesolved", "btn.again")->getCString(),
+        _("alert.gamesolved", "btn.again").getCString(),
         this, menu_selector(GameScene::onBtnReset)
     );
 

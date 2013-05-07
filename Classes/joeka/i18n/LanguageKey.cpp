@@ -7,59 +7,63 @@
 //
 
 #include "LanguageKey.h"
-#include "Helpers.h"
-#include "StringHelper.h"
 
-using namespace std;
-using namespace Helpers;
+#include <boost/algorithm/string/replace.hpp>
 
 int LanguageKey::count = 0;
 
-LanguageKey::LanguageKey(const char *keyName, const char *keyValue)
+LanguageKey::LanguageKey(const char* keyName, const char* keyValue)
 : name(keyName)
 , value(keyValue)
 , parameters()
 {
+    assert(!name.empty() && "name can't be empty");
 }
 
-LanguageKey* LanguageKey::assign(const char *varName, const char *value)
+LanguageKey& LanguageKey::assign(const char* varName, const char* value)
 {
-    parameters[varName] = string(value);
-    return this;
+    parameters[std::string("{").append(varName).append("}")] = std::string(value);
+    return *this;
 }
 
-LanguageKey* LanguageKey::assign(const char *varName, int value)
+LanguageKey& LanguageKey::assign(const char* varName, int value)
 {
-    char *strValue = new char[25];
-    sprintf(strValue, "%d", value);
-    assign(varName, strValue);
-    safeDeleteArray(strValue);
-    return this;
+    char buffer[25] = {0};
+    snprintf(buffer, sizeof(buffer), "%d", value);
+    assign(varName, buffer);
+    
+    return *this;
 }
 
-LanguageKey* LanguageKey::assign(const char *varName, float value)
+LanguageKey& LanguageKey::assign(const char* varName, float value)
 {
-    char *strValue = new char[25];
-    sprintf(strValue, "%.2f", value);
-    assign(varName, strValue);
-    safeDeleteArray(strValue);
-    return this;
+    return assign(varName, value, "%.2f");
+}
+
+LanguageKey& LanguageKey::assign(const char* varName, float value, const char* format)
+{
+    assert(format && "no format given");
+    
+    char buffer[25] = {0};
+    snprintf(buffer, sizeof(buffer), format, value);
+    assign(varName, buffer);
+    
+    return *this;
 }
 
 std::string LanguageKey::get()
 {
-    string str = value;
+    std::string formatted = value;
 
-    for (map<string, string>::iterator it = parameters.begin(); it != parameters.end(); ++it)
-    {
-        StringHelper::replace(str, string(string("{") + it->first + string("}")), string(it->second));
+    for (auto row : parameters) {
+        boost::replace_all(formatted, row.first, row.second);
     }
     parameters.clear();
     
-    return str;
+    return formatted;
 }
 
-const char * LanguageKey::getCString()
+const char* LanguageKey::getCString()
 {
     return get().c_str();
 }

@@ -21,12 +21,13 @@ public:
     std::string value;
     std::map<std::string, std::string> parameters;
 
-    LanguageKey(const char *keyName, const char *keyValue);
+    LanguageKey(const char* keyName, const char* keyValue);
     ~LanguageKey() {}
 
-    LanguageKey* assign(const char *varName, const char *value);
-    LanguageKey* assign(const char *varName, int value);
-    LanguageKey* assign(const char *varName, float value);
+    LanguageKey& assign(const char* varName, const char* value);
+    LanguageKey& assign(const char* varName, int value);
+    LanguageKey& assign(const char* varName, float value);
+    LanguageKey& assign(const char* varName, float value, const char* format);
 
     std::string get();
     const char* getCString();

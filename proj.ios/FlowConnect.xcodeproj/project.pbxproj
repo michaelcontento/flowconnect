@@ -179,7 +179,6 @@
 		C8681CAB1733D1CF0020E78B /* BackendIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8681CAA1733D1CF0020E78B /* BackendIos.mm */; };
 		C8681CAE1733F9330020E78B /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8681CAC1733F9320020E78B /* Loader.cpp */; };
 		C8681CB117352ED30020E78B /* GameCenterIos.m in Sources */ = {isa = PBXBuildFile; fileRef = C8681CB017352ED30020E78B /* GameCenterIos.m */; };
-		C88324381728A18B000E93ED /* UrlOpener.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88324371728A18B000E93ED /* UrlOpener.mm */; };
 		C8832440172924C1000E93ED /* en.ini in Resources */ = {isa = PBXBuildFile; fileRef = C883243F172924C1000E93ED /* en.ini */; };
 		C88324421729266A000E93ED /* fr.ini in Resources */ = {isa = PBXBuildFile; fileRef = C88324411729266A000E93ED /* fr.ini */; };
 		C88AF0E01723EC45004697BE /* StarButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0DE1723EC45004697BE /* StarButton.cpp */; };
@@ -197,8 +196,6 @@
 		C88AF14317280746004697BE /* LanguageKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF13B17280746004697BE /* LanguageKey.cpp */; };
 		C88AF14417280746004697BE /* Localization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF13D17280746004697BE /* Localization.cpp */; };
 		C88AF14517280746004697BE /* IniReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF14017280746004697BE /* IniReader.cpp */; };
-		C88AF14917280859004697BE /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF14717280859004697BE /* StringHelper.cpp */; };
-		C88AF14C172808B0004697BE /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF14A172808AF004697BE /* Helpers.cpp */; };
 		C88AF14F17280A30004697BE /* de.ini in Resources */ = {isa = PBXBuildFile; fileRef = C88AF14E17280A30004697BE /* de.ini */; };
 		C88AF15A17288A21004697BE /* AlertView.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88AF15617288A21004697BE /* AlertView.mm */; };
 		C88AF15B17288A21004697BE /* AlertViewIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88AF15917288A21004697BE /* AlertViewIOS.mm */; };
@@ -206,6 +203,9 @@
 		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
 		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
 		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
+		C8B62FE917392F9D00D00E5B /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE317392F9D00D00E5B /* Helpers.cpp */; };
+		C8B62FEA17392F9D00D00E5B /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE517392F9D00D00E5B /* StringHelper.cpp */; };
+		C8B62FEB17392F9D00D00E5B /* UrlOpener.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE817392F9D00D00E5B /* UrlOpener.mm */; };
 		C8C6E774172EA6DD0060466D /* ToggleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C6E772172EA6DD0060466D /* ToggleButton.cpp */; };
 		C8C6E779172F033B0060466D /* PageLockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C6E777172F033A0060466D /* PageLockButton.cpp */; };
 		C8CA622817141A32005660B3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622617141A32005660B3 /* GameScene.cpp */; };
@@ -604,8 +604,6 @@
 		C8681CAF17352ED30020E78B /* GameCenterIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterIos.h; sourceTree = "<group>"; };
 		C8681CB017352ED30020E78B /* GameCenterIos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterIos.m; sourceTree = "<group>"; };
 		C8681CB317353D800020E78B /* Payment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
-		C88324361728A18B000E93ED /* UrlOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlOpener.h; sourceTree = "<group>"; };
-		C88324371728A18B000E93ED /* UrlOpener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UrlOpener.mm; sourceTree = "<group>"; };
 		C883243F172924C1000E93ED /* en.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = en.ini; sourceTree = "<group>"; };
 		C88324411729266A000E93ED /* fr.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fr.ini; sourceTree = "<group>"; };
 		C88AF0DE1723EC45004697BE /* StarButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StarButton.cpp; path = ../Classes/StarButton.cpp; sourceTree = "<group>"; };
@@ -634,10 +632,6 @@
 		C88AF13E17280746004697BE /* Localization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localization.h; sourceTree = "<group>"; };
 		C88AF14017280746004697BE /* IniReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IniReader.cpp; sourceTree = "<group>"; };
 		C88AF14117280746004697BE /* IniReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IniReader.h; sourceTree = "<group>"; };
-		C88AF14717280859004697BE /* StringHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringHelper.cpp; sourceTree = "<group>"; };
-		C88AF14817280859004697BE /* StringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
-		C88AF14A172808AF004697BE /* Helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helpers.cpp; sourceTree = "<group>"; };
-		C88AF14B172808AF004697BE /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
 		C88AF14E17280A30004697BE /* de.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = de.ini; sourceTree = "<group>"; };
 		C88AF15517288A21004697BE /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		C88AF15617288A21004697BE /* AlertView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertView.mm; sourceTree = "<group>"; };
@@ -653,6 +647,12 @@
 		C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ButtonFactory.cpp; path = ../Classes/ButtonFactory.cpp; sourceTree = "<group>"; };
 		C8A0C2B5171FD47E0094DDBB /* ButtonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonFactory.h; path = ../Classes/ButtonFactory.h; sourceTree = "<group>"; };
 		C8A0C2B7172134BD0094DDBB /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = ../Classes/Globals.h; sourceTree = "<group>"; };
+		C8B62FE317392F9D00D00E5B /* Helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helpers.cpp; sourceTree = "<group>"; };
+		C8B62FE417392F9D00D00E5B /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
+		C8B62FE517392F9D00D00E5B /* StringHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringHelper.cpp; sourceTree = "<group>"; };
+		C8B62FE617392F9D00D00E5B /* StringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
+		C8B62FE717392F9D00D00E5B /* UrlOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlOpener.h; sourceTree = "<group>"; };
+		C8B62FE817392F9D00D00E5B /* UrlOpener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UrlOpener.mm; sourceTree = "<group>"; };
 		C8C6E772172EA6DD0060466D /* ToggleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ToggleButton.cpp; path = ../Classes/ToggleButton.cpp; sourceTree = "<group>"; };
 		C8C6E773172EA6DD0060466D /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleButton.h; path = ../Classes/ToggleButton.h; sourceTree = "<group>"; };
 		C8C6E777172F033A0060466D /* PageLockButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PageLockButton.cpp; path = ../Classes/PageLockButton.cpp; sourceTree = "<group>"; };
@@ -1454,12 +1454,12 @@
 		C88AF14617280859004697BE /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				C88324361728A18B000E93ED /* UrlOpener.h */,
-				C88324371728A18B000E93ED /* UrlOpener.mm */,
-				C88AF14A172808AF004697BE /* Helpers.cpp */,
-				C88AF14B172808AF004697BE /* Helpers.h */,
-				C88AF14717280859004697BE /* StringHelper.cpp */,
-				C88AF14817280859004697BE /* StringHelper.h */,
+				C8B62FE317392F9D00D00E5B /* Helpers.cpp */,
+				C8B62FE417392F9D00D00E5B /* Helpers.h */,
+				C8B62FE517392F9D00D00E5B /* StringHelper.cpp */,
+				C8B62FE617392F9D00D00E5B /* StringHelper.h */,
+				C8B62FE717392F9D00D00E5B /* UrlOpener.h */,
+				C8B62FE817392F9D00D00E5B /* UrlOpener.mm */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1865,11 +1865,8 @@
 				C88AF14317280746004697BE /* LanguageKey.cpp in Sources */,
 				C88AF14417280746004697BE /* Localization.cpp in Sources */,
 				C88AF14517280746004697BE /* IniReader.cpp in Sources */,
-				C88AF14917280859004697BE /* StringHelper.cpp in Sources */,
-				C88AF14C172808B0004697BE /* Helpers.cpp in Sources */,
 				C88AF15A17288A21004697BE /* AlertView.mm in Sources */,
 				C88AF15B17288A21004697BE /* AlertViewIOS.mm in Sources */,
-				C88324381728A18B000E93ED /* UrlOpener.mm in Sources */,
 				C8C6E774172EA6DD0060466D /* ToggleButton.cpp in Sources */,
 				C8C6E779172F033B0060466D /* PageLockButton.cpp in Sources */,
 				C8D8F278173060D60073B7C8 /* AssetsManager.cpp in Sources */,
@@ -1907,6 +1904,9 @@
 				C8681CAE1733F9330020E78B /* Loader.cpp in Sources */,
 				C8681CB117352ED30020E78B /* GameCenterIos.m in Sources */,
 				C893181317363CB800BC9289 /* Alert.cpp in Sources */,
+				C8B62FE917392F9D00D00E5B /* Helpers.cpp in Sources */,
+				C8B62FEA17392F9D00D00E5B /* StringHelper.cpp in Sources */,
+				C8B62FEB17392F9D00D00E5B /* UrlOpener.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

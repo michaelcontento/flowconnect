@@ -87,26 +87,22 @@ void BoardStats::setBoard(Board* board)
 void BoardStats::updateStats(float dt)
 {
     assert(board && "this should never happen");
-    static char tmp[25] = {0};
-    
-    snprintf(
-        tmp, sizeof(tmp),
-        _("game.stats", "moves")->getCString(),
-        board->getMoves()
-    );
-    statsMove->setString(tmp);
 
-    snprintf(
-        tmp, sizeof(tmp),
-        _("game.stats", "time")->getCString(),
-        board->getDuration()
+    statsMove->setString(
+        _("game.stats", "moves")
+        .assign("moves", board->getMoves())
+        .getCString()
     );
-    statsBest->setString(tmp);
 
-    snprintf(
-        tmp, sizeof(tmp),
-        _("game.stats", "solved")->getCString(),
-        board->getProgress() * 100
+    statsBest->setString(
+        _("game.stats", "time")
+        .assign("time", board->getDuration(), "%.2f")
+        .getCString()
     );
-    statsProgress->setString(tmp);
+
+    statsProgress->setString(
+        _("game.stats", "solved")
+        .assign("percent", (int)(board->getProgress() * 100))
+        .getCString()
+    );
 }

@@ -23,12 +23,11 @@ namespace Ads
         assert((appId != "") && "appId is empty!");
         assert((appSignature != "") && "appSignature is empty!");
 
-        ChartboostX::sharedChartboostX()->startSession();
+        ChartboostX::sharedChartboostX()->setDelegate(this);
         ChartboostX::sharedChartboostX()->setAppId(appId.c_str());
         ChartboostX::sharedChartboostX()->setAppSignature(appSignature.c_str());
-        ChartboostX::sharedChartboostX()->setDelegate(this);
+        ChartboostX::sharedChartboostX()->startSession();
 
-        ChartboostX::sharedChartboostX()->cacheMoreApps();
         ChartboostX::sharedChartboostX()->cacheInterstitial();
         CCLog("[Chartboost] initilized with AppId: %s | AppSig: %s |", appId.c_str(), appSignature.c_str());
     }
@@ -67,6 +66,7 @@ namespace Ads
     void ChartboostProvider::didCacheInterstitial(const char* location)
     {
         CCLog("[Chartboost] did cache interstitial at location %s", location);
+        ChartboostX::sharedChartboostX()->cacheMoreApps();
     }
 
     void ChartboostProvider::didFailToLoadInterstitial(const char* location)

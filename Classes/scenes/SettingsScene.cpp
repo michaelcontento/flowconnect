@@ -56,27 +56,27 @@ bool SettingsScene::init()
     addChild(menu);
 
     auto musicButton = ToggleButton::create(
-        _("menu.settings", "music")->getCString(),
-        _("menu.settings", "music.on")->getCString(),
-        _("menu.settings", "music.off")->getCString(),
+        _("menu.settings", "music").getCString(),
+        _("menu.settings", "music.on").getCString(),
+        _("menu.settings", "music.off").getCString(),
         this,
         menu_selector(SettingsScene::btnMusicToggle)
     );
     menu->addChild(musicButton);
 
     auto soundButton = ToggleButton::create(
-        _("menu.settings", "sound")->getCString(),
-        _("menu.settings", "sound.on")->getCString(),
-        _("menu.settings", "sound.off")->getCString(),
+        _("menu.settings", "sound").getCString(),
+        _("menu.settings", "sound.on").getCString(),
+        _("menu.settings", "sound.off").getCString(),
         this,
         menu_selector(SettingsScene::btnSoundToggle)
     );
     menu->addChild(soundButton);
 
     auto modeButton = ToggleButton::create(
-        _("menu.settings", "changemode")->getCString(),
-        _("menu.settings", "changemode.on")->getCString(),
-        _("menu.settings", "changemode.off")->getCString(),
+        _("menu.settings", "changemode").getCString(),
+        _("menu.settings", "changemode.on").getCString(),
+        _("menu.settings", "changemode.off").getCString(),
         this,
         menu_selector(SettingsScene::btnChangeMode)
     );
@@ -84,8 +84,8 @@ bool SettingsScene::init()
     menu->addChild(modeButton);
 
     menu->addChild(ButtonFactory::createEmptyButton());
-    menu->addChild(ButtonFactory::create(_("menu.settings", "howto")->getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
-    menu->addChild(ButtonFactory::create(_("menu.settings", "moregames")->getCString(), this, menu_selector(SettingsScene::btnMoreGames)));
+    menu->addChild(ButtonFactory::create(_("menu.settings", "howto").getCString(), this, menu_selector(SettingsScene::btnHowToPlay)));
+    menu->addChild(ButtonFactory::create(_("menu.settings", "moregames").getCString(), this, menu_selector(SettingsScene::btnMoreGames)));
 
     auto showAds = userstate::showAds();
     auto resetable = userstate::resetable();
@@ -96,19 +96,19 @@ bool SettingsScene::init()
         menu->addChild(ButtonFactory::createEmptyButton());
     }
     if (showAds) {
-        auto btn = ButtonFactory::create(_("menu.settings", "removeads")->getCString(), this, menu_selector(SettingsScene::btnRemoveAds));
+        auto btn = ButtonFactory::create(_("menu.settings", "removeads").getCString(), this, menu_selector(SettingsScene::btnRemoveAds));
         btn->setTag(TAG_REMOVE_ADS);
         menu->addChild(btn);
     }
     if (resetable) {
-        auto btn = ButtonFactory::create(_("menu.settings", "resetgame")->getCString(), this, menu_selector(SettingsScene::btnReset));
+        auto btn = ButtonFactory::create(_("menu.settings", "resetgame").getCString(), this, menu_selector(SettingsScene::btnReset));
         btn->setTag(TAG_RESET_BUTTON);
         menu->addChild(btn);
     }
 
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
-    addChild(ButtonFactory::createHeadline(_("menu.settings", "headline")->getCString()));
+    addChild(ButtonFactory::createHeadline(_("menu.settings", "headline").getCString()));
     addChild(ButtonFactory::createSceneBackButton());
     addChild(ButtonFactory::createStar());
 
@@ -171,15 +171,15 @@ void SettingsScene::btnMoreGames()
 void SettingsScene::btnRemoveAds()
 {
     char buf[250] = {0};
-    snprintf(buf, sizeof(buf), _("alert.removeads", "body")->getCString(), PRICE_REMOVE_ADS);
+    snprintf(buf, sizeof(buf), _("alert.removeads", "body").getCString(), PRICE_REMOVE_ADS);
 
     mode = MODE_REMOVE_ADS;
     AlertView::createAlert(
-        _("alert.removeads", "headline")->getCString(),
+        _("alert.removeads", "headline").getCString(),
         buf,
-        _("alert.removeads", "btn.cancel")->getCString()
+        _("alert.removeads", "btn.cancel").getCString()
     );
-    AlertView::addAlertButton(_("alert.removeads", "btn.ok")->getCString());
+    AlertView::addAlertButton(_("alert.removeads", "btn.ok").getCString());
     AlertView::showAlert(this);
 }
 
@@ -187,11 +187,11 @@ void SettingsScene::btnReset()
 {
     mode = MODE_RESET_GAME;
     AlertView::createAlert(
-        _("alert.resetgame", "headline")->getCString(),
-        _("alert.resetgame", "body")->getCString(),
-        _("alert.resetgame", "btn.cancel")->getCString()
+        _("alert.resetgame", "headline").getCString(),
+        _("alert.resetgame", "body").getCString(),
+        _("alert.resetgame", "btn.cancel").getCString()
     );
-    AlertView::addAlertButton(_("alert.resetgame", "btn.ok")->getCString());
+    AlertView::addAlertButton(_("alert.resetgame", "btn.ok").getCString());
     AlertView::showAlert(this);
 }
 

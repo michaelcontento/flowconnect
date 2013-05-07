@@ -230,9 +230,10 @@ void userstate::refreshFreeHints()
     addFreeHint(hintsToAdd);
     setHintWarning(true);
 
-    char buf[100] = {0};
-    snprintf(buf, sizeof(buf), _("dialog.freehints", "body")->getCString(), hintsToAdd);
-    CCMessageBox(buf, _("dialog.freehints", "headline")->getCString());
+    CCMessageBox(
+        _("dialog.freehints", "body").assign("amount", hintsToAdd).getCString(),
+        _("dialog.freehints", "headline").getCString()
+    );
 }
 
 bool userstate::showHintWarning()
@@ -255,11 +256,11 @@ bool userstate::addStarsToUser(const unsigned int amount)
     int newAmount = getStarsForUser() + amount;
     if (newAmount < 0) {
         AlertView::createAlert(
-            _("alert.notenoughstars", "headline")->getCString(),
-            _("alert.notenoughstars", "body")->getCString(),
-            _("alert.notenoughstars", "btn.cancel")->getCString()
+            _("alert.notenoughstars", "headline").getCString(),
+            _("alert.notenoughstars", "body").assign("amount", newAmount * -1).getCString(),
+            _("alert.notenoughstars", "btn.cancel").getCString()
         );
-        AlertView::addAlertButton(_("alert.notenoughstars", "btn.ok")->getCString());
+        AlertView::addAlertButton(_("alert.notenoughstars", "btn.ok").getCString());
         AlertView::showAlert(alertDelegateNotEnoughStars);
         return false;
     }

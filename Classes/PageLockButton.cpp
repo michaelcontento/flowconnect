@@ -48,15 +48,12 @@ bool PageLockButton::onClick()
         return false;
     }
 
-    static char buf[250] = {0};
-    snprintf(buf, sizeof(buf), _("alert.unlockpage", "body")->getCString(), PRICE_PAGE);
-
     AlertView::createAlert(
-        _("alert.unlockpage", "headline")->getCString(),
-        buf,
-        _("alert.unlockpage", "btn.cancel")->getCString()
+        _("alert.unlockpage", "headline").getCString(),
+        _("alert.unlockpage", "body").assign("amount", PRICE_PAGE).getCString(),
+        _("alert.unlockpage", "btn.cancel").getCString()
     );
-    AlertView::addAlertButton(_("alert.unlockpage", "btn.ok")->getCString());
+    AlertView::addAlertButton(_("alert.unlockpage", "btn.ok").getCString());
     AlertView::showAlert(this);
 
     return true;

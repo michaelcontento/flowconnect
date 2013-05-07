@@ -36,7 +36,7 @@ void Localization::clear()
     defaultLanguage = NULL;
 }
 
-LanguageKey* _(const char *section, const char *key)
+LanguageKey& _(const char *section, const char *key)
 {
     assert(Localization::getInstance().currentLanguage && "currentLanguage is not set!");
     LanguageKey *langKey = Localization::getInstance().currentLanguage->getLanguageKey(section, key);
@@ -55,7 +55,7 @@ LanguageKey* _(const char *section, const char *key)
             CCLog("WARNING! Language Key not found in default Language: %s/%s", section, key);
         }
     }
-    return langKey;
+    return *langKey;
 }
 
 void Localization::addLanguage(const char *languageFile)
