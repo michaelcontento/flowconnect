@@ -433,6 +433,7 @@ Slot* Board::activateNextCheckpoint()
 
     CCARRAY_FOREACH(slots, it) {
         slot = static_cast<Slot*>(it);
+        slot->showIsFreeError(false);
 
         if (slot->isFree()) {
             ++numFreeSlots;
@@ -458,8 +459,15 @@ Slot* Board::activateNextCheckpoint()
     // do anything special with all checkpoints here, because the Slot class
     // takes care of stopping all animations for us.
 
-    if (allCheckpointVisited) {
+    if (numFreeSlots == 0) {
         handleAllCheckpointsVisited();
+    } else if (allCheckpointVisited) {
+        CCARRAY_FOREACH(slots, it) {
+            slot = static_cast<Slot*>(it);
+            if (slot->isFree()) {
+                slot->showIsFreeError();
+            }
+        }
     }
 
     return nextCheckpoint;

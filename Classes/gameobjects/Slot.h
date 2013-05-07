@@ -54,6 +54,7 @@ public:
 
     void reset();
     bool isFree() const;
+    void showIsFreeError(const bool flag = true);
 
     cocos2d::CCSize getSize() const;
 
@@ -65,6 +66,9 @@ private:
     cocos2d::CCLabelTTF* label;
     cocos2d::CCSprite* labelBackground;
     static cocos2d::CCAction* labelPulseAction;
+    cocos2d::CCSprite* emptySprite;
+    bool emptySpriteIsVisible;
+    cocos2d::CCAction* emptySpriteAnimation;
 
     void updateLineImage();
     bool isLineOpposite(const SlotLineType::Enum lineIn, const SlotLineType::Enum lineOut) const;

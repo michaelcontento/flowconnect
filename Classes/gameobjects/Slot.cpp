@@ -24,6 +24,9 @@ Slot::Slot()
 , isNextSlot_(false)
 , lineLayer(NULL)
 , label(NULL)
+, emptySprite(NULL)
+, emptySpriteIsVisible(false)
+, emptySpriteAnimation(NULL)
 , labelBackground(NULL)
 , number(SLOT_DEFAULT_NUMBER)
 , lineIn(SlotLineType::NONE)
@@ -33,6 +36,8 @@ Slot::Slot()
 
 Slot::~Slot()
 {
+    CC_SAFE_RELEASE_NULL(emptySprite);
+    CC_SAFE_RELEASE_NULL(emptySpriteAnimation);
 }
 
 bool Slot::init()
@@ -54,27 +59,25 @@ bool Slot::init()
     lineLayer->setZOrder(SLOT_ZORDER_LINE_LAYER);
     addChild(lineLayer);
 
-    if (!Slot::labelPulseAction) {
-        Slot::labelPulseAction = CCRepeatForever::create(
-            CCSequence::create(
-                CCSpawn::create(
-                    CCSequence::create(
-                        CCDelayTime::create(0.05),
-                        CCScaleTo::create(0.25, 0.8),
-                        CCDelayTime::create(0.075),
-                        CCScaleTo::create(0.25, 1.0),
-                        NULL
-                    ),
-                    CCRotateBy::create(0.625, 90),
+    Slot::labelPulseAction = CCRepeatForever::create(
+        CCSequence::create(
+            CCSpawn::create(
+                CCSequence::create(
+                    CCDelayTime::create(0.05),
+                    CCScaleTo::create(0.25, 0.8),
+                    CCDelayTime::create(0.075),
+                    CCScaleTo::create(0.25, 1.0),
                     NULL
                 ),
-                CCDelayTime::create(2),
+                CCRotateBy::create(0.625, 90),
                 NULL
-            )
-        );
-        Slot::labelPulseAction->retain();
-    }
-    
+            ),
+            CCDelayTime::create(2),
+            NULL
+        )
+    );
+    Slot::labelPulseAction->retain();
+
     return true;
 }
 
@@ -307,4 +310,44 @@ void Slot::showNumber()
         label->setZOrder(SLOT_ZORDER_LABEL);
         addChild(label);
     }
+}
+
+void Slot::showIsFreeError(const bool flag /* = true */)
+{
+    if (!emptySprite && !flag) {
+        return;
+    }
+
+    if (emptySpriteIsVisible == flag) {
+        return;
+    }
+    
+    if (!emptySprite) {
+        emptySprite = CCSprite::createWithSpriteFrameName("slot/touchindicator.png");
+        emptySprite->setPosition(ccpMult(ccpFromSize(getSize()), 0.5));
+        emptySprite->setColor(cocos2d::ccRED);
+        emptySprite->setOpacity(TOUCH_INDICATOR_OPACITY);
+        emptySprite->retain();
+
+        emptySpriteAnimation = CCRepeatForever::create(
+            CCSequence::create(
+                CCEaseIn::create(CCScaleTo::create(0.7, 0), 3),
+                CCEaseOut::create(CCScaleTo::create(0.6, 0.5), 3),
+                CCDelayTime::create(0.2),
+                NULL
+            )
+        );
+        emptySpriteAnimation->retain();
+    }
+
+    if (flag) {
+        addChild(emptySprite);
+
+        emptySprite->setScale(0.5);
+        emptySprite->stopAllActions();
+        emptySprite->runAction(emptySpriteAnimation);
+    } else {
+        removeChild(emptySprite, false);
+    }
+    emptySpriteIsVisible = flag;
 }
