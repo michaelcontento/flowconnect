@@ -38,14 +38,14 @@ bool MenuScene::init()
     auto menu = CCMenu::create();
     addChild(menu);
 
-    menu->addChild(ButtonFactory::create(_("menu.main", "play").getCString(), this, menu_selector(MenuScene::btnPlay)));
+    menu->addChild(ButtonFactory::create(_("menu.main", "play").get().c_str(), this, menu_selector(MenuScene::btnPlay)));
     //menu->addChild(ButtonFactory::create("Time Attack", this, menu_selector(MenuScene::btnPLayTimeAttack)));
     menu->addChild(ButtonFactory::createEmptyButton());
-    menu->addChild(ButtonFactory::create(_("menu.main", "leaderboard").getCString(), this, menu_selector(MenuScene::btnLeaderboard)));
-    menu->addChild(ButtonFactory::create(_("menu.main", "achievements").getCString(), this, menu_selector(MenuScene::btnAchievements)));
+    menu->addChild(ButtonFactory::create(_("menu.main", "leaderboard").get().c_str(), this, menu_selector(MenuScene::btnLeaderboard)));
+    menu->addChild(ButtonFactory::create(_("menu.main", "achievements").get().c_str(), this, menu_selector(MenuScene::btnAchievements)));
     menu->addChild(ButtonFactory::createEmptyButton());
-    menu->addChild(ButtonFactory::create(_("menu.main", "shop").getCString(), this, menu_selector(MenuScene::btnShop)));
-    menu->addChild(ButtonFactory::create(_("menu.main", "settings").getCString(), this, menu_selector(MenuScene::btnSettings)));
+    menu->addChild(ButtonFactory::create(_("menu.main", "shop").get().c_str(), this, menu_selector(MenuScene::btnShop)));
+    menu->addChild(ButtonFactory::create(_("menu.main", "settings").get().c_str(), this, menu_selector(MenuScene::btnSettings)));
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 
     addChild(ButtonFactory::createStar());

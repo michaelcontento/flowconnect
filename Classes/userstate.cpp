@@ -231,8 +231,8 @@ void userstate::refreshFreeHints()
     setHintWarning(true);
 
     CCMessageBox(
-        _("dialog.freehints", "body").assign("amount", hintsToAdd).getCString(),
-        _("dialog.freehints", "headline").getCString()
+        _("dialog.freehints", "body").assign("amount", hintsToAdd).get().c_str(),
+        _("dialog.freehints", "headline").get().c_str()
     );
 }
 
@@ -256,11 +256,11 @@ bool userstate::addStarsToUser(const unsigned int amount)
     int newAmount = getStarsForUser() + amount;
     if (newAmount < 0) {
         AlertView::createAlert(
-            _("alert.notenoughstars", "headline").getCString(),
-            _("alert.notenoughstars", "body").assign("amount", newAmount * -1).getCString(),
-            _("alert.notenoughstars", "btn.cancel").getCString()
+            _("alert.notenoughstars", "headline").get().c_str(),
+            _("alert.notenoughstars", "body").assign("amount", newAmount * -1).get().c_str(),
+            _("alert.notenoughstars", "btn.cancel").get().c_str()
         );
-        AlertView::addAlertButton(_("alert.notenoughstars", "btn.ok").getCString());
+        AlertView::addAlertButton(_("alert.notenoughstars", "btn.ok").get().c_str());
         AlertView::showAlert(alertDelegateNotEnoughStars);
         return false;
     }

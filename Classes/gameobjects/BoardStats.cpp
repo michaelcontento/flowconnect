@@ -91,18 +91,18 @@ void BoardStats::updateStats(float dt)
     statsMove->setString(
         _("game.stats", "moves")
         .assign("moves", board->getMoves())
-        .getCString()
+        .get().c_str()
     );
 
     statsBest->setString(
         _("game.stats", "time")
         .assign("time", board->getDuration(), "%.2f")
-        .getCString()
+        .get().c_str()
     );
 
     statsProgress->setString(
         _("game.stats", "solved")
         .assign("percent", (int)(board->getProgress() * 100))
-        .getCString()
+        .get().c_str()
     );
 }

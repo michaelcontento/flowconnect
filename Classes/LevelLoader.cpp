@@ -198,14 +198,14 @@ const char* LoaderCategory::getLocalizedName() const
 {
     static char key[10] = {0};
     snprintf(key, sizeof(key), "%d.name", localid);
-    return _("level.category", key).getCString();
+    return _("level.category", key).get().c_str();
 }
 
 const char* LoaderCategory::getLocalizedDescription() const
 {
     static char key[10] = {0};
     snprintf(key, sizeof(key), "%d.desc", localid);
-    return _("level.category", key).getCString();
+    return _("level.category", key).get().c_str();
 }
 
 const char* LoaderPage::getLocalizedName() const
@@ -221,7 +221,7 @@ const char* LoaderPage::getLocalizedName() const
     static char result[100] = {0};
     snprintf(
         result, sizeof(result),
-        _("level.pages", key).getCString(),
+        _("level.pages", key).get().c_str(),
         category->getLocalizedName()
     );
 

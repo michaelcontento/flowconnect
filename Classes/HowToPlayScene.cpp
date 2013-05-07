@@ -33,10 +33,10 @@ bool HowToPlayScene::init()
     }
 
     auto menu = CCMenu::create();
-    menu->addChild(ButtonFactory::create(_("menu.howto", "done").getCString(), this, menu_selector(HowToPlayScene::btnPlay)));
+    menu->addChild(ButtonFactory::create(_("menu.howto", "done").get().c_str(), this, menu_selector(HowToPlayScene::btnPlay)));
     addChild(menu);
 
-    addChild(ButtonFactory::createHeadline(_("menu.howto", "headline").getCString()));
+    addChild(ButtonFactory::createHeadline(_("menu.howto", "headline").get().c_str()));
     addChild(ButtonFactory::createSceneBackButton());
     addChild(ButtonFactory::createStar());
 

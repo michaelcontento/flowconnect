@@ -53,7 +53,7 @@ bool CategoryMenuScene::init()
 
     addChild(ButtonFactory::createSceneBackButton());
     addChild(ButtonFactory::createStar());
-    addChild(ButtonFactory::createHeadline(_("menu.category", "headline").getCString()));
+    addChild(ButtonFactory::createHeadline(_("menu.category", "headline").get().c_str()));
 
     return true;
 }

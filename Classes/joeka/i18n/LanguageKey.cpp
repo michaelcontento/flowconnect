@@ -53,17 +53,16 @@ LanguageKey& LanguageKey::assign(const char* varName, float value, const char* f
 
 std::string LanguageKey::get()
 {
+    if (parameters.empty()) {
+        return value;
+    }
+
     std::string formatted = value;
 
     for (auto row : parameters) {
         boost::replace_all(formatted, row.first, row.second);
     }
     parameters.clear();
-    
-    return formatted;
-}
 
-const char* LanguageKey::getCString()
-{
-    return get().c_str();
+    return formatted;
 }

@@ -61,8 +61,8 @@ void GameScene::onBtnGoBack()
         if (prePage) {
             if (!userstate::isPageFree(prePage)) {
                 CCMessageBox(
-                    _("dialog.pagelocked", "body").getCString(),
-                    _("dialog.pagelocked", "headline").getCString()
+                    _("dialog.pagelocked", "body").get().c_str(),
+                    _("dialog.pagelocked", "headline").get().c_str()
                 );
                 LevelMenuScene::scrollTo = prePage;
                 SceneManager::getInstance().popScene();
@@ -106,8 +106,8 @@ void GameScene::onBtnGoNext()
         if (nextPage) {
             if (!userstate::isPageFree(nextPage)) {
                 CCMessageBox(
-                    _("dialog.pagelocked", "body").getCString(),
-                    _("dialog.pagelocked", "headline").getCString()
+                    _("dialog.pagelocked", "body").get().c_str(),
+                    _("dialog.pagelocked", "headline").get().c_str()
                 );
                 LevelMenuScene::scrollTo = nextPage;
                 SceneManager::getInstance().popScene();
@@ -134,8 +134,8 @@ void GameScene::onBtnHint()
 
     if (freeHints == 0 && showWarning) {
         CCMessageBox(
-            _("dialog.hintwarning", "body").assign("amount", PRICE_HINT).getCString(),
-            _("dialog.hintwarning", "headline").getCString()
+            _("dialog.hintwarning", "body").assign("amount", PRICE_HINT).get().c_str(),
+            _("dialog.hintwarning", "headline").get().c_str()
         );
         userstate::setHintWarning(false);
         return;
@@ -319,7 +319,7 @@ void GameScene::onBoardFinished()
     alert->setTag(tagAlert);
     addChild(alert);
 
-    alert->setHeadline(_("alert.gamesolved", headlineKey.c_str()).getCString());
+    alert->setHeadline(_("alert.gamesolved", headlineKey.c_str()).get().c_str());
     alert->setBody(
         _("alert.gamesolved", (lastState == userstate::Mode::NONE) ? "body.first" : "body")
         .assign("moves.best", userstate::getLevelMoves(board->getLevel()))
@@ -329,11 +329,11 @@ void GameScene::onBoardFinished()
         .get().c_str()
     );
     alert->addButton(
-        _("alert.gamesolved", "btn.next").getCString(),
+        _("alert.gamesolved", "btn.next").get().c_str(),
         this, menu_selector(GameScene::onBtnGoNext)
     );
     alert->addButton(
-        _("alert.gamesolved", "btn.again").getCString(),
+        _("alert.gamesolved", "btn.again").get().c_str(),
         this, menu_selector(GameScene::onBtnReset)
     );
 

@@ -30,7 +30,6 @@ public:
     LanguageKey& assign(const char* varName, float value, const char* format);
 
     std::string get();
-    const char* getCString();
 };
 
 #endif /* defined(__Adventures_on_the_farm__LanguageKey__) */

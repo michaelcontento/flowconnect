@@ -4,19 +4,14 @@
 
 void AlertView::createAlert(const char* title, const char* message, const char* cancelButtonTitle)
 {
-    NSString *title_ = [NSString stringWithUTF8String:title ? title : ""];
-    NSString *message_ = [NSString stringWithUTF8String:message ? message : ""];
-    NSString *cancelButtonTitle_ = cancelButtonTitle ? [NSString stringWithUTF8String:cancelButtonTitle] : nil;
-    
-    [[AlertViewIOS sharedInstance] createAlertView:title_
-                                       andMessage:message_
-                             andCancelButtonTitle:cancelButtonTitle_];
+    [[AlertViewIOS sharedInstance] createAlertView:[NSString stringWithUTF8String:title]
+                                        andMessage:[NSString stringWithUTF8String:message]
+                              andCancelButtonTitle:[NSString stringWithUTF8String:cancelButtonTitle]];
 }
 
 int AlertView::addAlertButton(const char* buttonTitle)
 {
-    NSString *buttonTitle_ = [NSString stringWithUTF8String:buttonTitle ? buttonTitle : "Button"];
-    return [[AlertViewIOS sharedInstance] addAlertButton:buttonTitle_];
+    return [[AlertViewIOS sharedInstance] addAlertButton:[NSString stringWithUTF8String:buttonTitle]];
 }
 
 void AlertView::showAlert(AlertViewDelegate* delegate)

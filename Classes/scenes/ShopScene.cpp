@@ -47,7 +47,7 @@ bool ShopScene::init()
         showSpinner(true);
     }
 
-    addChild(ButtonFactory::createHeadline(_("menu.shop", "headline").getCString()));
+    addChild(ButtonFactory::createHeadline(_("menu.shop", "headline").get().c_str()));
     addChild(ButtonFactory::createSceneBackButton());
 
     auto star = ButtonFactory::createStar();
@@ -81,8 +81,8 @@ void ShopScene::showSpinner(const bool flag)
 
     if (flag) {
         auto alert = Alert::create();
-        alert->setHeadline(_("dialog.shopaction", "headline").getCString());
-        alert->setBody(_("dialog.shopaction", "body").getCString());
+        alert->setHeadline(_("dialog.shopaction", "headline").get().c_str());
+        alert->setBody(_("dialog.shopaction", "body").get().c_str());
         alert->showSpinner();
         alert->setTag(tagAlert);
         alert->setTimeout(shopTimeout, this, callfuncN_selector(ShopScene::alertTimeout));
@@ -96,8 +96,8 @@ void ShopScene::alertTimeout(CCObject* alert)
 {
     showSpinner(false);    
     CCMessageBox(
-        _("dialog.shoptimeouterror", "body").getCString(),
-        _("dialog.shoptimeouterror", "headline").getCString()
+        _("dialog.shoptimeouterror", "body").get().c_str(),
+        _("dialog.shoptimeouterror", "headline").get().c_str()
     );
 
     auto manager = Payment::Loader::globalManager;
@@ -124,8 +124,8 @@ void ShopScene::onPurchaseSucceed(Payment::Manager *const manager, Payment::Prod
 void ShopScene::onPurchaseFail(Payment::Manager* const manager)
 {
     CCMessageBox(
-        _("dialog.shoppurchaseerror", "body").getCString(),
-        _("dialog.shoppurchaseerror", "headline").getCString()
+        _("dialog.shoppurchaseerror", "body").get().c_str(),
+        _("dialog.shoppurchaseerror", "headline").get().c_str()
     );
 }
 
