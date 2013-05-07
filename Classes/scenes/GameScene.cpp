@@ -211,6 +211,7 @@ void GameScene::addBoardWithinContainer(Board* board)
     boardContainerInner->setScale(BOARD_WIDTH / board->getContentSize().width);
     boardContainerInner->setAnchorPoint(CCPoint(0.5, 0.5));
     boardContainerInner->addChild(board);
+    board->setTouchIndicatorScale(boardContainerInner->getScale());
 
     stats = BoardStats::createWithBoard(board);
     stats->setAnchorPoint(CCPoint(0.5, 0));

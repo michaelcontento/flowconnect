@@ -22,6 +22,7 @@ Board::Board()
 , progress(0)
 , duration(0)
 , timerStarted(false)
+, touchIndicatorScale(1)
 {
 }
 
@@ -583,7 +584,7 @@ void Board::createTouchIndicator()
     touchIndicator = CCSprite::createWithSpriteFrameName("slot/touchindicator.png");
     touchIndicator->setZOrder(BOARD_ZORDER_TOUCH_INDICATOR);
     touchIndicator->setOpacity(TOUCH_INDICATOR_OPACITY);
-    touchIndicator->setScale(2);
+    touchIndicator->setScale(1 / touchIndicatorScale);
 
     addChild(touchIndicator);
 }
