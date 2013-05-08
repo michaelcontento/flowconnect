@@ -98,10 +98,14 @@ void GameButton::addLabel()
     static char text[5] = {0};
     snprintf(text, sizeof(text), "%d", level->localid);
 
-    label = CCLabelTTF::create(text, DEFAULT_FONT_NAME, 48);
+    label = CCLabelTTF::create(text, DEFAULT_FONT_NAME, 42);
     label->setAnchorPoint(CCPoint(0.5, 0.5));
     label->setPosition(CCPoint(getContentSize().width / 2, getContentSize().height / 2));
     addChild(label);
+
+    if (level->localid >= 10 && level->localid < 20) {
+        label->setPositionX(label->getPositionX() - 2);
+    }
 }
 
 void GameButton::setBorderColor(const ccColor3B color)
