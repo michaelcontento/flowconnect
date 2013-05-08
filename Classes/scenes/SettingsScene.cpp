@@ -218,8 +218,10 @@ void SettingsScene::btnMusicToggle(CCObject* sender)
     auto engine = CocosDenshion::SimpleAudioEngine::sharedEngine();
     if (flag->getValue()) {
         engine->setBackgroundMusicVolume(1);
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
     } else {
         engine->setBackgroundMusicVolume(0);
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
     }
 
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");

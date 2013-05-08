@@ -214,6 +214,7 @@
 		C8A48AE2173A8EA00012D40F /* EziSocialObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A48ADC173A8E9F0012D40F /* EziSocialObject.cpp */; };
 		C8A48AE3173A8EA00012D40F /* libEziSocialPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AE0173A8EA00012D40F /* libEziSocialPlugin.a */; };
 		C8A48AE6173A8F000012D40F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AE5173A8F000012D40F /* MessageUI.framework */; };
+		C8A48AE8173AA4860012D40F /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8A48AE7173AA4860012D40F /* background.mp3 */; };
 		C8B62FE917392F9D00D00E5B /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE317392F9D00D00E5B /* Helpers.cpp */; };
 		C8B62FEA17392F9D00D00E5B /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE517392F9D00D00E5B /* StringHelper.cpp */; };
 		C8B62FEB17392F9D00D00E5B /* UrlOpener.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE817392F9D00D00E5B /* UrlOpener.mm */; };
@@ -677,6 +678,7 @@
 		C8A48AE0173A8EA00012D40F /* libEziSocialPlugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEziSocialPlugin.a; sourceTree = "<group>"; };
 		C8A48AE1173A8EA00012D40F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		C8A48AE5173A8F000012D40F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		C8A48AE7173AA4860012D40F /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		C8B62FE317392F9D00D00E5B /* Helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helpers.cpp; sourceTree = "<group>"; };
 		C8B62FE417392F9D00D00E5B /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
 		C8B62FE517392F9D00D00E5B /* StringHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringHelper.cpp; sourceTree = "<group>"; };
@@ -1595,6 +1597,7 @@
 		C8B62FF11739B82A00D00E5B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				C8A48AE7173AA4860012D40F /* background.mp3 */,
 				C8A48ABF173A60660012D40F /* checkpoint-1.mp3 */,
 				C8A48AC0173A60660012D40F /* checkpoint-2.mp3 */,
 				C8A48AC1173A60660012D40F /* checkpoint-3.mp3 */,
@@ -1799,6 +1802,7 @@
 				C8A48AC2173A60660012D40F /* checkpoint-1.mp3 in Resources */,
 				C8A48AC3173A60660012D40F /* checkpoint-2.mp3 in Resources */,
 				C8A48AC4173A60660012D40F /* checkpoint-3.mp3 in Resources */,
+				C8A48AE8173AA4860012D40F /* background.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
