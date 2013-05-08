@@ -5,6 +5,7 @@
 #include "userstate.h"
 #include "SceneManager.h"
 #include "ShopScene.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 
@@ -77,6 +78,7 @@ void StarButton::ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event)
 void StarButton::onClick()
 {
     if (enabled) {
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
         SceneManager::getInstance().gotoScene(ShopScene::scene());
     }
 }

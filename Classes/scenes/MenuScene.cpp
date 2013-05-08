@@ -9,6 +9,7 @@
 #include "LanguageKey.h"
 #include "GameCenter.h"
 #include "Loader.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 
@@ -55,33 +56,38 @@ bool MenuScene::init()
 
 void MenuScene::btnPlay()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     SceneManager::getInstance().gotoScene(CategoryMenuScene::scene());
 }
 
 void MenuScene::btnPLayTimeAttack()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     assert(false && "Not yet implemented");
 }
 
 void MenuScene::btnLeaderboard()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     auto gc = Avalon::GameCenter();
     gc.showScores();
 }
 
 void MenuScene::btnAchievements()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     auto gc = Avalon::GameCenter();
     gc.showAchievements();
 }
 
 void MenuScene::btnShop()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     SceneManager::getInstance().gotoScene(ShopScene::scene());
 }
 
 void MenuScene::btnSettings()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     SceneManager::getInstance().gotoScene(SettingsScene::scene());
 }
-

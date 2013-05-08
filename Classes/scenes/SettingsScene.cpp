@@ -62,6 +62,7 @@ bool SettingsScene::init()
         this,
         menu_selector(SettingsScene::btnMusicToggle)
     );
+    musicButton->setMode(userstate::hasMusic());
     menu->addChild(musicButton);
 
     auto soundButton = ToggleButton::create(
@@ -71,6 +72,7 @@ bool SettingsScene::init()
         this,
         menu_selector(SettingsScene::btnSoundToggle)
     );
+    soundButton->setMode(userstate::hasSounds());
     menu->addChild(soundButton);
 
     auto modeButton = ToggleButton::create(
@@ -157,6 +159,8 @@ void SettingsScene::onEnter()
 
 void SettingsScene::btnMoreGames()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
+
     for (auto provider : Ads::AdManager::adProviders) {
         auto cb = static_cast<Ads::ChartboostProvider*>(provider);
         if (cb) {
@@ -170,6 +174,8 @@ void SettingsScene::btnMoreGames()
 
 void SettingsScene::btnRemoveAds()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
+
     mode = MODE_REMOVE_ADS;
     AlertView::createAlert(
         _("alert.removeads", "headline").get().c_str(),
@@ -182,6 +188,8 @@ void SettingsScene::btnRemoveAds()
 
 void SettingsScene::btnReset()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
+
     mode = MODE_RESET_GAME;
     AlertView::createAlert(
         _("alert.resetgame", "headline").get().c_str(),
@@ -194,6 +202,8 @@ void SettingsScene::btnReset()
 
 void SettingsScene::btnHowToPlay()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
+
     oldGlobalLevel = globalLevel;
     globalLevel = NULL;
 
@@ -203,17 +213,37 @@ void SettingsScene::btnHowToPlay()
 void SettingsScene::btnMusicToggle(CCObject* sender)
 {
     auto flag = static_cast<CCBool*>(sender);
-    CCLog("MUSIC %s", (flag->getValue()) ? "on" : "off");
+    userstate::enableMusic(flag->getValue());
+
+    auto engine = CocosDenshion::SimpleAudioEngine::sharedEngine();
+    if (flag->getValue()) {
+        engine->setBackgroundMusicVolume(1);
+    } else {
+        engine->setBackgroundMusicVolume(0);
+    }
+
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 }
 
 void SettingsScene::btnSoundToggle(CCObject* sender)
 {
     auto flag = static_cast<CCBool*>(sender);
-    CCLog("SOUND %s", (flag->getValue()) ? "on" : "off");
+    userstate::enableSounds(flag->getValue());
+
+    auto engine = CocosDenshion::SimpleAudioEngine::sharedEngine();
+    if (flag->getValue()) {
+        engine->setEffectsVolume(1);
+    } else {
+        engine->setEffectsVolume(0);
+    }
+
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 }
 
 void SettingsScene::btnChangeMode(CCObject* sender)
 {
     auto flag = static_cast<CCBool*>(sender);
     userstate::setIsNumberMode(flag->getValue());
+    
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 }

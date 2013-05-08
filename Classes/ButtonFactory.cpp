@@ -130,7 +130,7 @@ CCMenu* ButtonFactory::createSceneBackButton()
     auto normal = CCSprite::createWithSpriteFrameName("buttons/home.png");
     menu->addChild(CCMenuItemSprite::create(
         normal, normal, normal,
-        &SceneManager::getInstance(), menu_selector(SceneManager::popScene)
+        &SceneManager::getInstance(), menu_selector(SceneManager::popSceneWithSound)
     ));
 
     menu->setPositionX(SIDE_MARGIN);

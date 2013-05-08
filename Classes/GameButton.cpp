@@ -5,6 +5,7 @@
 #include "HowToPlayScene.h"
 #include "SceneManager.h"
 #include "GameScene.h"
+#include "SimpleAudioEngine.h"
 
 #define ZORDER_STAR -1
 
@@ -113,7 +114,8 @@ void GameButton::onClick()
     if (pagelock && pagelock->onClick()) {
         return;
     }
-    
+
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     globalLevel = level;
 
     if (userstate::showHowToPlay()) {

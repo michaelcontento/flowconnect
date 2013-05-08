@@ -4,6 +4,7 @@
 #include "userstate.h"
 #include "Localization.h"
 #include "LanguageKey.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 
@@ -47,6 +48,8 @@ bool PageLockButton::onClick()
     if (userstate::isPageFree(page)) {
         return false;
     }
+
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 
     AlertView::createAlert(
         _("alert.unlockpage", "headline").get().c_str(),

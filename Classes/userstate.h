@@ -45,6 +45,12 @@ namespace userstate
     bool showAds();
     void setShowAds(const bool flag);
 
+    void enableMusic(const bool flag = true);
+    bool hasMusic();
+
+    void enableSounds(const bool flag = true);
+    bool hasSounds();
+
     bool isNumberMode();
     void setIsNumberMode(const bool flag);
 

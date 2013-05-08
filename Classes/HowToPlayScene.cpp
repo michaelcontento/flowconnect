@@ -6,6 +6,7 @@
 #include "SceneManager.h"
 #include "Localization.h"
 #include "LanguageKey.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 
@@ -45,6 +46,8 @@ bool HowToPlayScene::init()
 
 void HowToPlayScene::btnPlay()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
+
     if (globalLevel) {
         SceneManager::getInstance().gotoScene(GameScene::scene(), false);
     } else {

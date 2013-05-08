@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "ButtonFactory.h"
 #include "Colors.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 
@@ -100,6 +101,7 @@ void ToggleButton::setMode(const bool flag)
 
 void ToggleButton::onClick()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     mode = !mode;
     updateStatusLabel();
     (target->*selector)(CCBool::create(mode));

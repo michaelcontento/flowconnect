@@ -7,6 +7,7 @@
 #include "Localization.h"
 #include "LanguageKey.h"
 #include "userstate.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 
@@ -90,4 +91,5 @@ void CategoryMenuScene::btnGame(void* sender)
     lastStars = userstate::getStarsForCategory(category);
     globalLevel = category->pages.front()->levels.front();
     SceneManager::getInstance().gotoScene(LevelMenuScene::scene());
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 }

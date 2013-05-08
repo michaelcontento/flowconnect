@@ -203,9 +203,15 @@
 		C8A0C2A9171F61770094DDBB /* CategoryMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */; };
 		C8A0C2AC171F62B50094DDBB /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2AA171F62B50094DDBB /* LevelMenuScene.cpp */; };
 		C8A0C2B6171FD47E0094DDBB /* ButtonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */; };
+		C8A48AC2173A60660012D40F /* checkpoint-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8A48ABF173A60660012D40F /* checkpoint-1.mp3 */; };
+		C8A48AC3173A60660012D40F /* checkpoint-2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8A48AC0173A60660012D40F /* checkpoint-2.mp3 */; };
+		C8A48AC4173A60660012D40F /* checkpoint-3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8A48AC1173A60660012D40F /* checkpoint-3.mp3 */; };
 		C8B62FE917392F9D00D00E5B /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE317392F9D00D00E5B /* Helpers.cpp */; };
 		C8B62FEA17392F9D00D00E5B /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE517392F9D00D00E5B /* StringHelper.cpp */; };
 		C8B62FEB17392F9D00D00E5B /* UrlOpener.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE817392F9D00D00E5B /* UrlOpener.mm */; };
+		C8B62FFC1739B82A00D00E5B /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8B62FF41739B82A00D00E5B /* click.mp3 */; };
+		C8B62FFE1739B82A00D00E5B /* not-solved.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8B62FF61739B82A00D00E5B /* not-solved.mp3 */; };
+		C8B630001739B82A00D00E5B /* solved.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8B62FF81739B82A00D00E5B /* solved.mp3 */; };
 		C8C6E774172EA6DD0060466D /* ToggleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C6E772172EA6DD0060466D /* ToggleButton.cpp */; };
 		C8C6E779172F033B0060466D /* PageLockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C6E777172F033A0060466D /* PageLockButton.cpp */; };
 		C8CA622817141A32005660B3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622617141A32005660B3 /* GameScene.cpp */; };
@@ -647,12 +653,18 @@
 		C8A0C2B4171FD47E0094DDBB /* ButtonFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ButtonFactory.cpp; path = ../Classes/ButtonFactory.cpp; sourceTree = "<group>"; };
 		C8A0C2B5171FD47E0094DDBB /* ButtonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonFactory.h; path = ../Classes/ButtonFactory.h; sourceTree = "<group>"; };
 		C8A0C2B7172134BD0094DDBB /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = ../Classes/Globals.h; sourceTree = "<group>"; };
+		C8A48ABF173A60660012D40F /* checkpoint-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "checkpoint-1.mp3"; sourceTree = "<group>"; };
+		C8A48AC0173A60660012D40F /* checkpoint-2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "checkpoint-2.mp3"; sourceTree = "<group>"; };
+		C8A48AC1173A60660012D40F /* checkpoint-3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "checkpoint-3.mp3"; sourceTree = "<group>"; };
 		C8B62FE317392F9D00D00E5B /* Helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helpers.cpp; sourceTree = "<group>"; };
 		C8B62FE417392F9D00D00E5B /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
 		C8B62FE517392F9D00D00E5B /* StringHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringHelper.cpp; sourceTree = "<group>"; };
 		C8B62FE617392F9D00D00E5B /* StringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
 		C8B62FE717392F9D00D00E5B /* UrlOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlOpener.h; sourceTree = "<group>"; };
 		C8B62FE817392F9D00D00E5B /* UrlOpener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UrlOpener.mm; sourceTree = "<group>"; };
+		C8B62FF41739B82A00D00E5B /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		C8B62FF61739B82A00D00E5B /* not-solved.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "not-solved.mp3"; sourceTree = "<group>"; };
+		C8B62FF81739B82A00D00E5B /* solved.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = solved.mp3; sourceTree = "<group>"; };
 		C8C6E772172EA6DD0060466D /* ToggleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ToggleButton.cpp; path = ../Classes/ToggleButton.cpp; sourceTree = "<group>"; };
 		C8C6E773172EA6DD0060466D /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleButton.h; path = ../Classes/ToggleButton.h; sourceTree = "<group>"; };
 		C8C6E777172F033A0060466D /* PageLockButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PageLockButton.cpp; path = ../Classes/PageLockButton.cpp; sourceTree = "<group>"; };
@@ -1308,6 +1320,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C8B62FF11739B82A00D00E5B /* sounds */,
 				C8D8F2B6173091AD0073B7C8 /* payment.ini */,
 				C8D8F29917306D880073B7C8 /* ads.ini */,
 				C8C6E775172F00740060466D /* fonts */,
@@ -1514,6 +1527,19 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
+		C8B62FF11739B82A00D00E5B /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C8A48ABF173A60660012D40F /* checkpoint-1.mp3 */,
+				C8A48AC0173A60660012D40F /* checkpoint-2.mp3 */,
+				C8A48AC1173A60660012D40F /* checkpoint-3.mp3 */,
+				C8B62FF41739B82A00D00E5B /* click.mp3 */,
+				C8B62FF61739B82A00D00E5B /* not-solved.mp3 */,
+				C8B62FF81739B82A00D00E5B /* solved.mp3 */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		C8C6E775172F00740060466D /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1702,6 +1728,12 @@
 				C88324421729266A000E93ED /* fr.ini in Resources */,
 				C8D8F29A17306D880073B7C8 /* ads.ini in Resources */,
 				C8D8F2B7173091AE0073B7C8 /* payment.ini in Resources */,
+				C8B62FFC1739B82A00D00E5B /* click.mp3 in Resources */,
+				C8B62FFE1739B82A00D00E5B /* not-solved.mp3 in Resources */,
+				C8B630001739B82A00D00E5B /* solved.mp3 in Resources */,
+				C8A48AC2173A60660012D40F /* checkpoint-1.mp3 in Resources */,
+				C8A48AC3173A60660012D40F /* checkpoint-2.mp3 in Resources */,
+				C8A48AC4173A60660012D40F /* checkpoint-3.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

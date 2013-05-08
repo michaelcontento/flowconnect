@@ -453,3 +453,29 @@ int userstate::getLevelMoves(const LoaderLevel* level)
     auto settings = CCUserDefault::sharedUserDefault();
     return settings->getIntegerForKey(getLevelKey(level, "moves"));
 }
+
+void userstate::enableMusic(const bool flag /* = true */)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    settings->setBoolForKey("play_music", flag);
+    settings->flush();
+}
+
+bool userstate::hasMusic()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey("play_music", true);
+}
+
+void userstate::enableSounds(const bool flag /* = true */)
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    settings->setBoolForKey("play_sounds", flag);
+    settings->flush();
+}
+
+bool userstate::hasSounds()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey("play_sounds", true);
+}

@@ -30,6 +30,7 @@ public:
     void updateDuration(float dt);
     void reset();
     bool finishTillNextCheckpoint();
+    bool hasPendingCheckpoint() const;
 
     virtual void onEnter() override;
     virtual void onExit() override;
@@ -51,6 +52,7 @@ private:
     bool allCheckpointVisited;
     bool timerStarted;
     int numFreeSlots;
+    unsigned int highestNumber;
     bool finishReported;
 
     void removeAllSlots();
@@ -64,6 +66,7 @@ private:
     void appendUserPath(Slot* slot);
     void handleAllCheckpointsVisited();
     void startGameTimer();
+    void playCheckpointSound(const Slot* slot) const;
 
     void startTouchIndicatorBlink();
     void stopTouchIndicatorBlink();

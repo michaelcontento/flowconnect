@@ -28,6 +28,7 @@ namespace Ads
         ChartboostX::sharedChartboostX()->setAppSignature(appSignature.c_str());
         ChartboostX::sharedChartboostX()->startSession();
 
+        ChartboostX::sharedChartboostX()->cacheMoreApps();
         ChartboostX::sharedChartboostX()->cacheInterstitial();
         CCLog("[Chartboost] initilized with AppId: %s | AppSig: %s |", appId.c_str(), appSignature.c_str());
     }
@@ -59,7 +60,6 @@ namespace Ads
 
     void ChartboostProvider::didFailToLoadMoreApps()
     {
-        ChartboostX::sharedChartboostX()->cacheMoreApps();
         CCLog("[Chartboost] did fail to load more apps");
     }
 

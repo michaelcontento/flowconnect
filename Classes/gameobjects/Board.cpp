@@ -4,6 +4,7 @@
 #include "../Colors.h"
 #include "userstate.h"
 #include "GameScene.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 
@@ -24,6 +25,7 @@ Board::Board()
 , timerStarted(false)
 , touchIndicatorScale(1)
 , finishReported(false)
+, highestNumber(0)
 {
 }
 
@@ -120,6 +122,7 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         if ((isFirstCheckpoint(slot) && slot->isFree()) || !slot->isFree()) {
             lastCheckpoint = slot;
             slot->setLineOut(SlotLineType::NONE);
+            playCheckpointSound(slot);
         } else {
             return false;
         }
@@ -205,6 +208,7 @@ void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
     if (currentSlot->isCheckpoint()) {
         if (currentSlot->isNextSlot()) {
             // allowed because it's the next checkpoint
+            playCheckpointSound(currentSlot);
         } else if (currentSlot == getUserPathSlotBefore(lastSlot)) {
             // allowed because we're walking backwards
         } else {
@@ -338,6 +342,7 @@ void Board::createSlotsFromData(const char* data)
 
         if (nextNumber > 0) {
             nextSlot->setNumber(nextNumber);
+            highestNumber = MAX(nextNumber, highestNumber);
             if (nextNumber == 1) {
                 nextSlot->markAsNextSlot(true);
             }
@@ -462,6 +467,7 @@ Slot* Board::activateNextCheckpoint()
 
     if (numFreeSlots == 0) {
         handleAllCheckpointsVisited();
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("solved.mp3");
     } else if (allCheckpointVisited) {
         CCARRAY_FOREACH(slots, it) {
             slot = static_cast<Slot*>(it);
@@ -469,6 +475,7 @@ Slot* Board::activateNextCheckpoint()
                 slot->showIsFreeError();
             }
         }
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("not-solved.mp3");
     }
 
     return nextCheckpoint;
@@ -739,6 +746,7 @@ bool Board::finishTillNextCheckpoint()
         appendUserPath(currentSlot);
         if (nextSlot->isCheckpoint() && nextSlot->getNumber() == endCheckpointNumber) {
             appendUserPath(nextSlot);
+            playCheckpointSound(nextSlot);
             break;
         }
 
@@ -758,4 +766,23 @@ void Board::startGameTimer()
         timerStarted = true;
         schedule(schedule_selector(Board::updateDuration));
     }
+}
+
+void Board::playCheckpointSound(const Slot* slot) const
+{
+    if (slot->getNumber() == highestNumber) {
+        return;
+    }
+    
+    int soundIdx = ceil(slot->getNumber() / (float(highestNumber) / 3));
+
+    char buffer[25] = {0};
+    snprintf(buffer, sizeof(buffer), "checkpoint-%d.mp3", soundIdx);
+
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(buffer);
+}
+
+bool Board::hasPendingCheckpoint() const
+{
+    return !allCheckpointVisited;
 }

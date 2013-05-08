@@ -10,6 +10,7 @@
 #include "LevelMenuScene.h"
 #include "Alert.h"
 #include "AdManager.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 
@@ -73,6 +74,7 @@ void GameScene::onBtnGoBack()
     }
 
     if (prevLevel) {
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
         globalLevel = prevLevel;
         initBoardAndFade();
     }
@@ -80,6 +82,12 @@ void GameScene::onBtnGoBack()
 
 void GameScene::onBtnReset()
 {
+    if (board->getMoves() == 0) {
+        return;
+    }
+
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
+
     auto alert = getChildByTag(tagAlert);
     if (alert) {
         if (userstate::showAds()) {
@@ -118,6 +126,7 @@ void GameScene::onBtnGoNext()
     }
 
     if (nextLevel) {
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
         globalLevel = nextLevel;
         initBoardAndFade();
     }
@@ -125,10 +134,12 @@ void GameScene::onBtnGoNext()
 
 void GameScene::onBtnHint()
 {
-    if (board->isFinished()) {
+    if (!board->hasPendingCheckpoint()) {
         return;
     }
-    
+
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
+
     auto freeHints = userstate::getFreeHints();
     auto showWarning = userstate::showHintWarning();
 
@@ -153,11 +164,13 @@ void GameScene::onBtnHint()
 
 void GameScene::onBtnHelp()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     CCLog("HELP");
 }
 
 void GameScene::onBtnMenu()
 {
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     SceneManager::getInstance().popScene();
 }
 

@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 
 #include "ButtonFactory.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 
@@ -66,6 +67,12 @@ CCScene* SceneManager::popScene()
     sceneStack->removeLastObject();
     
     return gotoScene(previousScene, false);
+}
+
+CCScene* SceneManager::popSceneWithSound()
+{
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
+    return popScene();
 }
 
 CCScene* SceneManager::getLastScene()

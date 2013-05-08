@@ -43,6 +43,19 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto gc = Avalon::GameCenter();
     gc.login();
 
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("checkpoint-1.mp3");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("checkpoint-2.mp3");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("checkpoint-3.mp3");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("click.mp3");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("not-solved.mp3");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("solved.mp3");
+    if (!userstate::hasMusic()) {
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0);
+    }
+    if (!userstate::hasSounds()) {
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(0);
+    }
+
     userstate::refreshFreeHints();
     SceneManager::getInstance().gotoScene(MenuScene::scene());
 
