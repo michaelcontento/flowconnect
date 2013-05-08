@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "Localization.h"
 #include "LanguageKey.h"
+#include "userstate.h"
 
 using namespace cocos2d;
 
@@ -88,14 +89,20 @@ void BoardStats::updateStats(float dt)
 {
     assert(board && "this should never happen");
 
+    auto movesBest = userstate::getLevelMoves(board->getLevel());
+    auto timeBest = userstate::getLevelDuration(board->getLevel());
+    bool withBest = (movesBest > 0);
+
     statsMove->setString(
-        _("game.stats", "moves")
+        _("game.stats", withBest ? "moves.best" : "moves")
+        .assign("moves.best", movesBest)
         .assign("moves", board->getMoves())
         .get().c_str()
     );
 
     statsBest->setString(
-        _("game.stats", "time")
+        _("game.stats", withBest ? "time.best" : "time")
+        .assign("time.best", timeBest, "%.2f")
         .assign("time", board->getDuration(), "%.2f")
         .get().c_str()
     );
