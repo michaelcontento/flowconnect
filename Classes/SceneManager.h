@@ -16,6 +16,7 @@ public:
     cocos2d::CCScene* getLastScene();
 
 private:
+    cocos2d::CCScene* currentScene;
     cocos2d::CCArray* sceneStack;
     cocos2d::CCLayer* backgroundLayer;
 

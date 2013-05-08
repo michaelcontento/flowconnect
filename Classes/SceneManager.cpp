@@ -8,6 +8,7 @@ using namespace cocos2d;
 SceneManager::SceneManager()
 : backgroundLayer(NULL)
 , sceneStack(NULL)
+, currentScene(NULL)
 {
     sceneStack = CCArray::create();
     sceneStack->retain();
@@ -40,6 +41,18 @@ CCScene* SceneManager::gotoScene(CCScene* nextScene, const bool storePrevious)
     assert(nextScene != NULL && "Scene cannot be null");
 
     auto previousScene = CCDirector::sharedDirector()->getRunningScene();
+
+    // this happens if the last scene-change-request hasn't been switched
+    // inside cocos2d yet. just search for m_pRunningScene in CCDirector and
+    // have a look at the actual point of change. you'll notice that
+    // getRunningScene() could point to the "previous" scene and that would
+    // cause the "move background node to the next scene" logic below to
+    // crash, as it would be added to the same node twice. for this app it's
+    // safe to just ignore the change request :)
+    if (previousScene != currentScene) {
+        return currentScene;
+    }
+    
     if (previousScene) {
         previousScene->removeChild(backgroundLayer, false);
 
@@ -49,13 +62,14 @@ CCScene* SceneManager::gotoScene(CCScene* nextScene, const bool storePrevious)
     }
 
     nextScene->addChild(backgroundLayer, -INFINITY);
-
     ButtonFactory::resetColorCounter();
+
     if (previousScene) {
         CCDirector::sharedDirector()->replaceScene(nextScene);
     } else {
         CCDirector::sharedDirector()->runWithScene(nextScene);
     }
+    currentScene = nextScene;
 
     return nextScene;
 }
