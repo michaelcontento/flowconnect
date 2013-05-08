@@ -14,6 +14,30 @@
 
 using namespace cocos2d;
 
+void GameScene::createHintButton(cocos2d::CCMenu* menu)
+{
+    auto bg = CCSprite::createWithSpriteFrameName("buttons/hint-number.png");
+    bg->setAnchorPoint(CCPointZero);
+
+    hintLabel = CCLabelTTF::create("0", DEFAULT_FONT_NAME, 24);
+    hintLabel->setPosition(ccpMult(ccpFromSize(bg->getContentSize()), 0.5));
+    hintLabel->setAnchorPoint(CCPoint(0.5, 0.5));
+    hintLabel->setPositionY(hintLabel->getPositionY() + 1);
+
+    auto hint = createMenuitem("buttons/hint.png", menu, menu_selector(GameScene::onBtnHint));
+    hintNumber = CCNode::create();
+    hintNumber->addChild(bg);
+    hintNumber->addChild(hintLabel);
+    hintNumber->setContentSize(bg->getContentSize());
+    hintNumber->setAnchorPoint(CCPoint(0.5, 0.5));
+    hintNumber->setPosition(
+        hint->getContentSize().width - 5,
+        hint->getContentSize().height - 5
+    );
+    hint->addChild(hintNumber);
+    updateHintLabel();
+}
+
 #pragma mark Initialization
 
 GameScene::GameScene()
@@ -283,29 +307,9 @@ void GameScene::initLeftMenu()
     leftMenu = CCMenu::create();
     addChild(leftMenu);
 
-    auto bg = CCSprite::createWithSpriteFrameName("buttons/hint-number.png");
-    bg->setAnchorPoint(CCPointZero);
+    //createMenuitem("buttons/help.png", leftMenu, menu_selector(GameScene::onBtnHelp));
 
-    hintLabel = CCLabelTTF::create("0", DEFAULT_FONT_NAME, 24);
-    hintLabel->setPosition(ccpMult(ccpFromSize(bg->getContentSize()), 0.5));
-    hintLabel->setAnchorPoint(CCPoint(0.5, 0.5));
-    hintLabel->setPositionY(hintLabel->getPositionY() + 1);
-
-    createMenuitem("buttons/help.png", leftMenu, menu_selector(GameScene::onBtnHelp));
-
-    auto hint = createMenuitem("buttons/hint.png", leftMenu, menu_selector(GameScene::onBtnHint));
-    hintNumber = CCNode::create();
-    hintNumber->addChild(bg);
-    hintNumber->addChild(hintLabel);
-    hintNumber->setContentSize(bg->getContentSize());
-    hintNumber->setAnchorPoint(CCPoint(0.5, 0.5));
-    hintNumber->setPosition(
-        hint->getContentSize().width - 5,
-        hint->getContentSize().height - 5
-    );
-    hint->addChild(hintNumber);
-    updateHintLabel();
-
+    createHintButton(leftMenu);
     leftMenu->setPositionX((768 - BOARD_WIDTH) / 2);
     leftMenu->setPositionY((1024 - BOARD_WIDTH) / 4);
     leftMenu->setAnchorPoint(CCPoint(0, 0.5));

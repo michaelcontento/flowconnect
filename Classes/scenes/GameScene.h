@@ -51,6 +51,7 @@ private:
     void initBoardAndFade();
     void addBoardWithinContainer(Board* board);
 
+    void createHintButton(cocos2d::CCMenu* menu);
     void initLabels();
     void initLeftMenu();
     void initRightMenu();
