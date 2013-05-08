@@ -85,10 +85,6 @@ void GameScene::onBtnGoBack()
         LoaderPage* prePage = globalLevel->page->prev;
         if (prePage) {
             if (!userstate::isPageFree(prePage)) {
-                CCMessageBox(
-                    _("dialog.pagelocked", "body").get().c_str(),
-                    _("dialog.pagelocked", "headline").get().c_str()
-                );
                 LevelMenuScene::scrollTo = prePage;
                 SceneManager::getInstance().popScene();
             } else {
@@ -137,10 +133,6 @@ void GameScene::onBtnGoNext()
         LoaderPage* nextPage = globalLevel->page->next;
         if (nextPage) {
             if (!userstate::isPageFree(nextPage)) {
-                CCMessageBox(
-                    _("dialog.pagelocked", "body").get().c_str(),
-                    _("dialog.pagelocked", "headline").get().c_str()
-                );
                 LevelMenuScene::scrollTo = nextPage;
                 SceneManager::getInstance().popScene();
             } else {

@@ -22,6 +22,7 @@ LevelMenuScene::LevelMenuScene()
 , isFirstEnter(true)
 , buttons(NULL)
 , touchCounter(0)
+, pageLockButtons()
 {
     buttons = CCArray::create();
     buttons->retain();
@@ -60,6 +61,10 @@ void LevelMenuScene::onEnter()
     }
 
     if (LevelMenuScene::scrollTo) {
+        if (pageLockButtons.count(LevelMenuScene::scrollTo) > 0) {
+            pageLockButtons[LevelMenuScene::scrollTo]->onClick();
+        }
+
         adjustScrollView(LevelMenuScene::scrollTo);
         LevelMenuScene::scrollTo = NULL;
     }
@@ -211,6 +216,7 @@ CCNode* LevelMenuScene::createPageMenu(const LoaderPage* page) const
     PageLockButton* pagelock = NULL;
     if (!userstate::isPageFree(page)) {
         pagelock = PageLockButton::create(page);
+        pageLockButtons[page] = pagelock;
     }
 
     for (auto level : page->levels) {

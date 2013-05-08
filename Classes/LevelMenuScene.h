@@ -3,8 +3,10 @@
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
+#include <map>
 
 class LoaderPage;
+class PageLockButton;
 
 class LevelMenuScene : public cocos2d::CCLayer
 {
@@ -32,14 +34,15 @@ private:
     const unsigned int ITEMS_PER_ROW = 6;
     const unsigned int ITEM_PADDING = 15;
     const unsigned int INDICATOR_SPACING = 10;
-    unsigned short int touchCounter;
 
+    unsigned short int touchCounter;
     bool isFirstEnter;
     cocos2d::CCArray* pageIndicator;
     cocos2d::CCArray* buttons;
     unsigned int totalPages;
     int currentPage;
     cocos2d::extension::CCScrollViewWithMenu* scrollView;
+    mutable std::map<const LoaderPage*, PageLockButton*> pageLockButtons;
 
     cocos2d::CCNode* createMenuContainer();
     cocos2d::CCNode* createPageMenu(const LoaderPage* page) const;
