@@ -96,8 +96,8 @@ void AppDelegate::initPayment()
 void AppDelegate::initAds()
 {
     auto mgr = new cocos2d::extension::AssetsManager(
-        "http://www.coragames.com/apps/dummy/package.zip",
-        "http://www.coragames.com/apps/dummy/version"
+        "http://appdata.coragames.com/dtdng/package.zip",
+        "http://appdata.coragames.com/dtdng/version"
     );
     mgr->update();
     
@@ -109,23 +109,47 @@ void AppDelegate::initAds()
 void AppDelegate::initLocalization()
 {
     auto loca = &Localization::getInstance();
-    
     loca->addLanguage("en.ini");
     loca->setCurrentLanguage("en.ini");
     loca->setDefaultLanguage("en.ini");
 
-    switch (CCApplication::sharedApplication()->getCurrentLanguage()) {
-        case kLanguageGerman:
-            loca->addLanguage("de.ini");
-            loca->setCurrentLanguage("de.ini");
-            break;
-
-        case kLanguageFrench:
-            loca->addLanguage("fr.ini");
-            loca->setCurrentLanguage("fr.ini");
-            break;
-
-        default:
-            break;
+    auto langId = CCApplication::sharedApplication()->getCurrentLanguage();
+    std::string lang;
+    if (langId == kLanguageArabic) {
+        lang = "ar";
+    } else if (langId == kLanguageChinese) {
+        lang = "cn";
+    } else if (langId == kLanguageEnglish) {
+        // already set above
+        return;
+    } else if (langId == kLanguageFrench) {
+        lang = "fr";
+    } else if (langId == kLanguageGerman) {
+        lang = "de";
+    } else if (langId == kLanguageHungarian) {
+        lang = "hr";
+    } else if (langId == kLanguageItalian) {
+        lang = "it";
+    } else if (langId == kLanguageJapanese) {
+        lang = "ja";
+    } else if (langId == kLanguageKorean) {
+        lang = "ko";
+    } else if (langId == kLanguagePortuguese) {
+        lang = "pt";
+    } else if (langId == kLanguageRussian) {
+        lang = "ru";
+    } else if (langId == kLanguageSpanish) {
+        lang = "es";
+    } else {
+        // unknown id .. stick to the default (en)
+        return;
     }
+    lang += ".ini";
+
+    if (!CCFileUtils::sharedFileUtils()->isFileExist(lang.c_str())) {
+        return;
+    }
+
+    loca->addLanguage(lang.c_str());
+    loca->setCurrentLanguage(lang.c_str());
 }
