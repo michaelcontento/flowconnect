@@ -206,6 +206,14 @@
 		C8A48AC2173A60660012D40F /* checkpoint-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8A48ABF173A60660012D40F /* checkpoint-1.mp3 */; };
 		C8A48AC3173A60660012D40F /* checkpoint-2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8A48AC0173A60660012D40F /* checkpoint-2.mp3 */; };
 		C8A48AC4173A60660012D40F /* checkpoint-3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8A48AC1173A60660012D40F /* checkpoint-3.mp3 */; };
+		C8A48AC6173A8AEA0012D40F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AC5173A8AEA0012D40F /* FacebookSDK.framework */; };
+		C8A48AC8173A8B060012D40F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AC7173A8B050012D40F /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C8A48ACA173A8B170012D40F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AC9173A8B170012D40F /* Accounts.framework */; };
+		C8A48ACC173A8B210012D40F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48ACB173A8B210012D40F /* Security.framework */; };
+		C8A48AD2173A8BA60012D40F /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AD1173A8BA60012D40F /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C8A48AE2173A8EA00012D40F /* EziSocialObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A48ADC173A8E9F0012D40F /* EziSocialObject.cpp */; };
+		C8A48AE3173A8EA00012D40F /* libEziSocialPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AE0173A8EA00012D40F /* libEziSocialPlugin.a */; };
+		C8A48AE6173A8F000012D40F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AE5173A8F000012D40F /* MessageUI.framework */; };
 		C8B62FE917392F9D00D00E5B /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE317392F9D00D00E5B /* Helpers.cpp */; };
 		C8B62FEA17392F9D00D00E5B /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE517392F9D00D00E5B /* StringHelper.cpp */; };
 		C8B62FEB17392F9D00D00E5B /* UrlOpener.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8B62FE817392F9D00D00E5B /* UrlOpener.mm */; };
@@ -656,6 +664,19 @@
 		C8A48ABF173A60660012D40F /* checkpoint-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "checkpoint-1.mp3"; sourceTree = "<group>"; };
 		C8A48AC0173A60660012D40F /* checkpoint-2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "checkpoint-2.mp3"; sourceTree = "<group>"; };
 		C8A48AC1173A60660012D40F /* checkpoint-3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "checkpoint-3.mp3"; sourceTree = "<group>"; };
+		C8A48AC5173A8AEA0012D40F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		C8A48AC7173A8B050012D40F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C8A48AC9173A8B170012D40F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		C8A48ACB173A8B210012D40F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C8A48AD1173A8BA60012D40F /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		C8A48ADA173A8E9F0012D40F /* EziSocialDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EziSocialDefinition.h; sourceTree = "<group>"; };
+		C8A48ADB173A8E9F0012D40F /* EziSocialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EziSocialDelegate.h; sourceTree = "<group>"; };
+		C8A48ADC173A8E9F0012D40F /* EziSocialObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EziSocialObject.cpp; sourceTree = "<group>"; };
+		C8A48ADD173A8E9F0012D40F /* EziSocialObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EziSocialObject.h; sourceTree = "<group>"; };
+		C8A48ADF173A8EA00012D40F /* EziSocialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EziSocialManager.h; sourceTree = "<group>"; };
+		C8A48AE0173A8EA00012D40F /* libEziSocialPlugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEziSocialPlugin.a; sourceTree = "<group>"; };
+		C8A48AE1173A8EA00012D40F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		C8A48AE5173A8F000012D40F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C8B62FE317392F9D00D00E5B /* Helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helpers.cpp; sourceTree = "<group>"; };
 		C8B62FE417392F9D00D00E5B /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
 		C8B62FE517392F9D00D00E5B /* StringHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringHelper.cpp; sourceTree = "<group>"; };
@@ -728,9 +749,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8A48AE6173A8F000012D40F /* MessageUI.framework in Frameworks */,
+				C8D8F29817306D5F0073B7C8 /* SystemConfiguration.framework in Frameworks */,
+				C8A48AD2173A8BA60012D40F /* Twitter.framework in Frameworks */,
+				C8A48ACC173A8B210012D40F /* Security.framework in Frameworks */,
+				C8A48ACA173A8B170012D40F /* Accounts.framework in Frameworks */,
+				C8A48AC8173A8B060012D40F /* Social.framework in Frameworks */,
 				C8681C8B173322550020E78B /* libsqlite3.dylib in Frameworks */,
 				C813E7921731ADDA00F1889A /* GameKit.framework in Frameworks */,
-				C8D8F29817306D5F0073B7C8 /* SystemConfiguration.framework in Frameworks */,
 				C8D8F28F17306BBA0073B7C8 /* StoreKit.framework in Frameworks */,
 				C8D8F28D17306BAB0073B7C8 /* AdSupport.framework in Frameworks */,
 				15A3DA6A1682F886002FB0C5 /* libcocos2dx.a in Frameworks */,
@@ -747,6 +773,8 @@
 				D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */,
 				C8D8F28B17306B9A0073B7C8 /* libChartboost.a in Frameworks */,
 				C8D8F29117306C0D0073B7C8 /* RevMobAds.framework in Frameworks */,
+				C8A48AC6173A8AEA0012D40F /* FacebookSDK.framework in Frameworks */,
+				C8A48AE3173A8EA00012D40F /* libEziSocialPlugin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1247,6 +1275,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C8A48AE4173A8EA20012D40F /* EziSocial */,
 				C88AF13717280744004697BE /* joeka */,
 				C88AF0DD1723EC06004697BE /* buttons */,
 				C8CA622917142672005660B3 /* gameobjects */,
@@ -1280,6 +1309,12 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C8A48AE5173A8F000012D40F /* MessageUI.framework */,
+				C8A48AD1173A8BA60012D40F /* Twitter.framework */,
+				C8A48ACB173A8B210012D40F /* Security.framework */,
+				C8A48AC9173A8B170012D40F /* Accounts.framework */,
+				C8A48AC7173A8B050012D40F /* Social.framework */,
+				C8A48AC5173A8AEA0012D40F /* FacebookSDK.framework */,
 				C8681C8A173322550020E78B /* libsqlite3.dylib */,
 				C813E7911731ADDA00F1889A /* GameKit.framework */,
 				C8D8F29717306D5F0073B7C8 /* SystemConfiguration.framework */,
@@ -1525,6 +1560,36 @@
 				C8681CAA1733D1CF0020E78B /* BackendIos.mm */,
 			);
 			path = ios;
+			sourceTree = "<group>";
+		};
+		C8A48AD9173A8E9F0012D40F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C8A48ADA173A8E9F0012D40F /* EziSocialDefinition.h */,
+				C8A48ADB173A8E9F0012D40F /* EziSocialDelegate.h */,
+				C8A48ADC173A8E9F0012D40F /* EziSocialObject.cpp */,
+				C8A48ADD173A8E9F0012D40F /* EziSocialObject.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C8A48ADE173A8E9F0012D40F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C8A48ADF173A8EA00012D40F /* EziSocialManager.h */,
+				C8A48AE0173A8EA00012D40F /* libEziSocialPlugin.a */,
+				C8A48AE1173A8EA00012D40F /* Reachability.h */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		C8A48AE4173A8EA20012D40F /* EziSocial */ = {
+			isa = PBXGroup;
+			children = (
+				C8A48AD9173A8E9F0012D40F /* Common */,
+				C8A48ADE173A8E9F0012D40F /* iOS */,
+			);
+			name = EziSocial;
 			sourceTree = "<group>";
 		};
 		C8B62FF11739B82A00D00E5B /* sounds */ = {
@@ -1939,6 +2004,7 @@
 				C8B62FE917392F9D00D00E5B /* Helpers.cpp in Sources */,
 				C8B62FEA17392F9D00D00E5B /* StringHelper.cpp in Sources */,
 				C8B62FEB17392F9D00D00E5B /* UrlOpener.mm in Sources */,
+				C8A48AE2173A8EA00012D40F /* EziSocialObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1967,6 +2033,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Classes/joeka/ads\"",
+					"\"$(SRCROOT)/../../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -2000,6 +2067,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../Classes/joeka/ads/Chartboost-x/Chartboost-x/ios\"",
+					"\"$(SRCROOT)/../classes/iOS\"",
 				);
 				OTHER_CFLAGS = "-O2";
 				PRODUCT_NAME = FlowConnect;
@@ -2026,6 +2094,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Classes/joeka/ads\"",
+					"\"$(SRCROOT)/../../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2057,6 +2126,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../Classes/joeka/ads/Chartboost-x/Chartboost-x/ios\"",
+					"\"$(SRCROOT)/../classes/iOS\"",
 				);
 				PRODUCT_NAME = FlowConnect;
 				PROVISIONING_PROFILE = "";

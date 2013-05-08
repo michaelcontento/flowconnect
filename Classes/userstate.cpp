@@ -479,3 +479,34 @@ bool userstate::hasSounds()
     auto settings = CCUserDefault::sharedUserDefault();
     return settings->getBoolForKey("play_sounds", true);
 }
+
+
+bool userstate::fbLikeDone()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey("fb_like");
+}
+
+void userstate::fbLike()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    settings->setBoolForKey("fb_like", true);
+    settings->flush();
+
+    addStarsToUser(FREE_STARS);
+}
+
+bool userstate::rateUsDone()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey("rate_us");
+}
+
+void userstate::rateUs()
+{
+    auto settings = CCUserDefault::sharedUserDefault();
+    settings->setBoolForKey("rate_us", true);
+    settings->flush();
+    
+    addStarsToUser(FREE_STARS);
+}

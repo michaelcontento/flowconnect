@@ -6,6 +6,8 @@
 #include "Localization.h"
 #include "LanguageKey.h"
 #include "SceneManager.h"
+#include "EziSocialObject.h"
+#include "UrlOpener.h"
 
 using namespace cocos2d;
 using namespace Avalon;
@@ -54,6 +56,10 @@ bool ShopScene::init()
     star->enabled = false;
     addChild(star);
 
+    if (!userstate::fbLikeDone()) {
+        EziSocialObject::sharedObject()->setFacebookDelegate(this);
+    }
+
     return true;
 }
 
@@ -67,10 +73,27 @@ void ShopScene::createMenu(Payment::Manager* manager)
     menu->addChild(ButtonFactory::createPaymentButton(manager->getProduct("700")));
     menu->addChild(ButtonFactory::createPaymentButton(manager->getProduct("1600")));
     menu->addChild(ButtonFactory::createPaymentButton(manager->getProduct("2700")));
-    //menu->addChild(ButtonFactory::create("Rate us - 10", this, menu_selector(ShopScene::btnPurchase)));
-    //menu->addChild(ButtonFactory::create("Facebook like - 10", this, menu_selector(ShopScene::btnPurchase)));
+    if (!userstate::rateUsDone()) {
+        auto btn = ButtonFactory::createPaymentButton(
+            _("shop.rateus", "name").assign("amount", FREE_STARS).get().c_str(),
+            _("shop.rateus", "desc").assign("amount", FREE_STARS).get().c_str(),
+            _("shop.rateus", "price").assign("amount", FREE_STARS).get().c_str(),
+            this, menu_selector(ShopScene::btnRateUs)
+        );
+        btn->setTag(tagRateUs);
+        menu->addChild(btn);
+    }
+    if (!userstate::fbLikeDone()) {
+        auto btn = ButtonFactory::createPaymentButton(
+            _("shop.fblike", "name").assign("amount", FREE_STARS).get().c_str(),
+            _("shop.fblike", "desc").assign("amount", FREE_STARS).get().c_str(),
+            _("shop.fblike", "price").assign("amount", FREE_STARS).get().c_str(),
+            this, menu_selector(ShopScene::btnFacebookLike)
+        );
+        btn->setTag(tagFbLike);
+        menu->addChild(btn);
+    }
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
-
 }
 
 void ShopScene::showSpinner(const bool flag)
@@ -139,4 +162,66 @@ void ShopScene::onTransactionEnd(Payment::Manager *const manager)
 {
     showSpinner(false);
     release();
+}
+
+void ShopScene::btnFacebookLike()
+{
+    EziSocialObject::sharedObject()->openFacebookPage("212046412247647", true);
+}
+
+void ShopScene::btnRateUs()
+{
+    UrlOpener::open("itms-apps://itunes.apple.com/app/id/643074518");
+    userstate::rateUs();
+    CCMessageBox(
+        _("dialog.rateusthx", "body").assign("amount", FREE_STARS).get().c_str(),
+        _("dialog.rateusthx", "headline").get().c_str()
+    );
+
+    menu->removeChildByTag(tagRateUs);
+    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+}
+
+void ShopScene::fbSessionCallback(int responseCode)
+{
+}
+
+void ShopScene::fbUserDetailCallback(cocos2d::CCDictionary* data)
+{
+}
+
+void ShopScene::fbMessageCallback(int responseCode)
+{
+}
+
+void ShopScene::fbPageLikeCallback(int responseCode)
+{
+    userstate::fbLike();
+    CCMessageBox(
+        _("dialog.fblikethx", "body").assign("amount", FREE_STARS).get().c_str(),
+        _("dialog.fblikethx", "headline").get().c_str()
+    );
+
+    menu->removeChildByTag(tagFbLike);
+    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+}
+
+void ShopScene::fbFriendsCallback(cocos2d::CCArray* friends)
+{
+}
+
+void ShopScene::fbHighScoresCallback(cocos2d::CCArray* highScores)
+{
+}
+
+void ShopScene::fbSendRequestCallback(int responseCode, cocos2d::CCArray* friendsGotRequests)
+{
+}
+
+void ShopScene::fbRecieveRequestCallback(int responseCode, const char* message, const char* senderName, cocos2d::CCDictionary* dataDictionary)
+{
+}
+
+void ShopScene::fbUserPhotoCallback(const char *userPhotoPath)
+{
 }

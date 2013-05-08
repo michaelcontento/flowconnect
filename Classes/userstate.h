@@ -14,6 +14,8 @@
 #define KEY_USER_STARS "stars"
 #define START_STARS_AMOUNT 0
 
+#define FREE_STARS 10
+
 #define KEY_SHOW_HINT_WARNING "hint_warning"
 #define KEY_HINT_AMOUNT "hints"
 #define START_HINTS_AMOUNT 5
@@ -56,6 +58,12 @@ namespace userstate
 
     bool resetable();
     void forceRefillFreeHints();
+
+    bool fbLikeDone();
+    void fbLike();
+
+    bool rateUsDone();
+    void rateUs();
 
     int getFreeHints();
     void addFreeHint(const int amount);

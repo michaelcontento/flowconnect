@@ -92,25 +92,32 @@ CCMenuItemSprite* ButtonFactory::createCategory(LoaderCategory* category, CCObje
 
 CCMenuItemSprite* ButtonFactory::createPaymentButton(Avalon::Payment::Product* product)
 {
+    return createPaymentButton(
+        product->localizedName.c_str(),
+        product->localizedDescription.c_str(),
+        product->localizedPrice.c_str(),
+        (CCObject*)product, menu_selector(Avalon::Payment::Product::purchase)
+    );
+}
+
+CCMenuItemSprite* ButtonFactory::createPaymentButton(const char* name, const char* desc, const char* price, CCObject* target, SEL_MenuHandler selector)
+{
     auto sprite = CCSprite::createWithSpriteFrameName("buttons/borders/normal.png");
     auto button = CCMenuItemSprite::create(sprite, sprite);
-    button->setTarget((CCObject*)product, menu_selector(Avalon::Payment::Product::purchase));
+    button->setTarget(target, selector);
 
-    auto name = product->localizedName.c_str();
     auto nameLabel = CCLabelTTF::create(name, DEFAULT_FONT_NAME, 36);
     nameLabel->setAnchorPoint(CCPoint(0, 1));
     nameLabel->setPosition(CCPoint(35, button->getContentSize().height - 7));
     nameLabel->setColor(LINE_COLORS[ButtonFactory::colorCounter++]);
     button->addChild(nameLabel);
 
-    auto desc = product->localizedDescription.c_str();
     auto descLabel = CCLabelTTF::create(desc, SMALL_FONT_NAME, 28);
     descLabel->setAnchorPoint(CCPoint(0, 0));
     descLabel->setPosition(CCPoint(35, 7));
     descLabel->setOpacity(DISABLED_OPACITY);
     button->addChild(descLabel);
 
-    auto price = product->localizedPrice.c_str();
     auto priceLabel = CCLabelTTF::create(price, SMALL_FONT_NAME, 36);
     priceLabel->setOpacity(DISABLED_OPACITY);
     priceLabel->setAnchorPoint(CCPoint(1, 0.5));
