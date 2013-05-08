@@ -12,6 +12,9 @@ BoardStats::BoardStats()
 , statsMove(NULL)
 , statsProgress(NULL)
 , board(NULL)
+, withBest(false)
+, movesBest(0)
+, timeBest(0)
 {
 }
 
@@ -38,6 +41,10 @@ bool BoardStats::initWithBoard(Board* board)
     if (!CCNode::init() || !board) {
         return false;
     }
+
+    movesBest = userstate::getLevelMoves(board->getLevel());
+    timeBest = userstate::getLevelDuration(board->getLevel());
+    withBest = (movesBest > 0);
 
     statsMove = CCLabelTTF::create("", SMALL_FONT_NAME, 24);
     statsMove->setAnchorPoint(CCPoint(0, 0));
@@ -88,10 +95,6 @@ void BoardStats::setBoard(Board* board)
 void BoardStats::updateStats(float dt)
 {
     assert(board && "this should never happen");
-
-    auto movesBest = userstate::getLevelMoves(board->getLevel());
-    auto timeBest = userstate::getLevelDuration(board->getLevel());
-    bool withBest = (movesBest > 0);
 
     statsMove->setString(
         _("game.stats", withBest ? "moves.best" : "moves")

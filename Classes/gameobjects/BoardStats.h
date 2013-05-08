@@ -18,6 +18,9 @@ public:
     virtual void onExit() override;
 
 private:
+    bool withBest;
+    int movesBest;
+    float timeBest;
     Board* board;
     cocos2d::CCLabelTTF* statsMove;
     cocos2d::CCLabelTTF* statsBest;
