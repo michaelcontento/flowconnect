@@ -14,6 +14,10 @@ public:
     virtual bool init() override;
 
     void btnPlay();
+
+private:
+    const int BOARD_WIDTH = 400;
+
 };
 
 #endif /* defined(__FlowConnect__HowToPlayScene__) */

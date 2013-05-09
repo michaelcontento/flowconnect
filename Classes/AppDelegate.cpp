@@ -100,7 +100,7 @@ void AppDelegate::initAds()
         "http://appdata.coragames.com/dtdng/version"
     );
     mgr->update();
-    
+
     Ads::AdManager::initWithIniFile("ads.ini");
     Ads::AdManager::startService();
     Ads::AdManager::enabled = userstate::showAds();

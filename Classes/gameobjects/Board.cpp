@@ -14,6 +14,7 @@ Board::Board()
 : directions()
 , slots(NULL)
 , userPath(NULL)
+, gameScene(NULL)
 , level(NULL)
 , lastCheckpoint(NULL)
 , touchIndicator(NULL)
@@ -26,6 +27,8 @@ Board::Board()
 , touchIndicatorScale(1)
 , finishReported(false)
 , highestNumber(0)
+, withSounds(true)
+, isPlayable(true)
 {
 }
 
@@ -52,24 +55,32 @@ bool Board::init()
     return true;
 }
 
-bool Board::initWithLevel(const LoaderLevel* level, GameScene* gameScene)
+bool Board::initWithString(const char* level)
 {
-    assert(level && "null pointer");
-    assert(gameScene && "null pointer");
-    this->gameScene = gameScene;
-
     removeAllSlots();
-    createSlotsFromData(level->data);
+    createSlotsFromData(level);
     slots->reduceMemoryFootprint();
 
     float sqrtSize = sqrtf(slots->count());
     assert((float)(int)sqrtSize == sqrtSize && "grid must be quadratic");
 
     size = CCSize(sqrtSize, sqrtSize);
-    this->level = level;
     numFreeSlots = slots->count();
 
     positionSlotsOnScreen();
+
+    return true;
+}
+
+bool Board::initWithLevel(const LoaderLevel* level, GameScene* gameScene)
+{
+    assert(level && "null pointer");
+    assert(gameScene && "null pointer");
+    
+    this->gameScene = gameScene;
+    this->level = level;
+
+    initWithString(level->data);
 
     return true;
 }
@@ -104,6 +115,10 @@ void Board::onExit()
 
 bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (!isPlayable) {
+        return false;
+    }
+    
     if (isFinished()) {
         return false;
     }
@@ -467,7 +482,9 @@ Slot* Board::activateNextCheckpoint()
 
     if (numFreeSlots == 0) {
         handleAllCheckpointsVisited();
-        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("solved.mp3");
+        if (withSounds) {
+            CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("solved.mp3");
+        }
     } else if (allCheckpointVisited) {
         CCARRAY_FOREACH(slots, it) {
             slot = static_cast<Slot*>(it);
@@ -475,7 +492,9 @@ Slot* Board::activateNextCheckpoint()
                 slot->showIsFreeError();
             }
         }
-        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("not-solved.mp3");
+        if (withSounds) {
+            CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("not-solved.mp3");
+        }
     }
 
     return nextCheckpoint;
@@ -489,7 +508,9 @@ void Board::handleAllCheckpointsVisited()
 
     if (!finishReported) {
         finishReported = true;
-        gameScene->onBoardFinished();
+        if (gameScene) {
+            gameScene->onBoardFinished();
+        }
     }
 }
 
@@ -770,6 +791,10 @@ void Board::startGameTimer()
 
 void Board::playCheckpointSound(const Slot* slot) const
 {
+    if (!withSounds) {
+        return;
+    }
+
     if (slot->getNumber() == highestNumber) {
         return;
     }
@@ -785,4 +810,14 @@ void Board::playCheckpointSound(const Slot* slot) const
 bool Board::hasPendingCheckpoint() const
 {
     return !allCheckpointVisited;
+}
+
+void Board::playable(const bool flag /* = true */)
+{
+    isPlayable = flag;
+}
+
+void Board::enableSounds(const bool flag /* = true */)
+{
+    withSounds = flag;
 }

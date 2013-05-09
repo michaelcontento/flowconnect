@@ -17,6 +17,7 @@ public:
 
     CREATE_FUNC(Board);
     virtual bool init() override;
+    bool initWithString(const char* level);
     bool initWithLevel(const LoaderLevel* level, GameScene* gameScene);
 
     CC_SYNTHESIZE_READONLY(cocos2d::CCSize, size, Size);
@@ -32,6 +33,9 @@ public:
     bool finishTillNextCheckpoint();
     bool hasPendingCheckpoint() const;
 
+    void enableSounds(const bool flag = true);
+    void playable(const bool flag = true);
+
     virtual void onEnter() override;
     virtual void onExit() override;
 
@@ -44,6 +48,8 @@ public:
 
 private:
     cocos2d::CCArray* slots;
+    bool withSounds;
+    bool isPlayable;
     cocos2d::CCArray* userPath;
     std::vector<char> directions;
     GameScene* gameScene;
