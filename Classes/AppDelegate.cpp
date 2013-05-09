@@ -32,7 +32,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
     pDirector->setOpenGLView(pEGLView);
     pEGLView->setDesignResolutionSize(768, 1024, kResolutionExactFit);
-
+    
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 

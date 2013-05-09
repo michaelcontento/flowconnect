@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "EziSocialManager.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppController
 
@@ -58,8 +59,9 @@ static AppDelegate s_sharedApplication;
     [window makeKeyAndVisible];
 
     [[UIApplication sharedApplication] setStatusBarHidden:true];
-    
+
     cocos2d::CCApplication::sharedApplication()->run();
+    [Crashlytics startWithAPIKey:@"0bba8db2fa145bc487dc41da3d3cff39d062166d"];
 
     return YES;
 }
