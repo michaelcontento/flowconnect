@@ -183,7 +183,6 @@
 		C8681CAE1733F9330020E78B /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8681CAC1733F9320020E78B /* Loader.cpp */; };
 		C8681CB117352ED30020E78B /* GameCenterIos.m in Sources */ = {isa = PBXBuildFile; fileRef = C8681CB017352ED30020E78B /* GameCenterIos.m */; };
 		C8832440172924C1000E93ED /* en.ini in Resources */ = {isa = PBXBuildFile; fileRef = C883243F172924C1000E93ED /* en.ini */; };
-		C88324421729266A000E93ED /* fr.ini in Resources */ = {isa = PBXBuildFile; fileRef = C88324411729266A000E93ED /* fr.ini */; };
 		C88AF0E01723EC45004697BE /* StarButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0DE1723EC45004697BE /* StarButton.cpp */; };
 		C88AF0E717246A63004697BE /* userstate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E517246A62004697BE /* userstate.cpp */; };
 		C88AF0EA17256800004697BE /* SettingsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E817256800004697BE /* SettingsScene.cpp */; };
@@ -199,7 +198,6 @@
 		C88AF14317280746004697BE /* LanguageKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF13B17280746004697BE /* LanguageKey.cpp */; };
 		C88AF14417280746004697BE /* Localization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF13D17280746004697BE /* Localization.cpp */; };
 		C88AF14517280746004697BE /* IniReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF14017280746004697BE /* IniReader.cpp */; };
-		C88AF14F17280A30004697BE /* de.ini in Resources */ = {isa = PBXBuildFile; fileRef = C88AF14E17280A30004697BE /* de.ini */; };
 		C88AF15A17288A21004697BE /* AlertView.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88AF15617288A21004697BE /* AlertView.mm */; };
 		C88AF15B17288A21004697BE /* AlertViewIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = C88AF15917288A21004697BE /* AlertViewIOS.mm */; };
 		C893181317363CB800BC9289 /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C893181117363CB800BC9289 /* Alert.cpp */; };
@@ -625,7 +623,6 @@
 		C8681CB017352ED30020E78B /* GameCenterIos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterIos.m; sourceTree = "<group>"; };
 		C8681CB317353D800020E78B /* Payment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
 		C883243F172924C1000E93ED /* en.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = en.ini; sourceTree = "<group>"; };
-		C88324411729266A000E93ED /* fr.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fr.ini; sourceTree = "<group>"; };
 		C88AF0DE1723EC45004697BE /* StarButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StarButton.cpp; path = ../Classes/StarButton.cpp; sourceTree = "<group>"; };
 		C88AF0DF1723EC45004697BE /* StarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StarButton.h; path = ../Classes/StarButton.h; sourceTree = "<group>"; };
 		C88AF0E517246A62004697BE /* userstate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = userstate.cpp; path = ../Classes/userstate.cpp; sourceTree = "<group>"; };
@@ -652,7 +649,6 @@
 		C88AF13E17280746004697BE /* Localization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localization.h; sourceTree = "<group>"; };
 		C88AF14017280746004697BE /* IniReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IniReader.cpp; sourceTree = "<group>"; };
 		C88AF14117280746004697BE /* IniReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IniReader.h; sourceTree = "<group>"; };
-		C88AF14E17280A30004697BE /* de.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = de.ini; sourceTree = "<group>"; };
 		C88AF15517288A21004697BE /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		C88AF15617288A21004697BE /* AlertView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertView.mm; sourceTree = "<group>"; };
 		C88AF15717288A21004697BE /* AlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewDelegate.h; sourceTree = "<group>"; };
@@ -1531,9 +1527,7 @@
 		C88AF14D17280A30004697BE /* lang */ = {
 			isa = PBXGroup;
 			children = (
-				C88AF14E17280A30004697BE /* de.ini */,
 				C883243F172924C1000E93ED /* en.ini */,
-				C88324411729266A000E93ED /* fr.ini */,
 			);
 			path = lang;
 			sourceTree = "<group>";
@@ -1805,9 +1799,7 @@
 				C8DBAB92171C5EAA009849B4 /* levels in Resources */,
 				C88AF11D1725DD65004697BE /* RobotoCondensed-Bold.ttf in Resources */,
 				C88AF1221725DD65004697BE /* RobotoCondensed-Regular.ttf in Resources */,
-				C88AF14F17280A30004697BE /* de.ini in Resources */,
 				C8832440172924C1000E93ED /* en.ini in Resources */,
-				C88324421729266A000E93ED /* fr.ini in Resources */,
 				C8D8F29A17306D880073B7C8 /* ads.ini in Resources */,
 				C8D8F2B7173091AE0073B7C8 /* payment.ini in Resources */,
 				C8B62FFC1739B82A00D00E5B /* click.mp3 in Resources */,

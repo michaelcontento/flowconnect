@@ -46,8 +46,7 @@ bool HowToPlayScene::init()
     );
     menu->addChild(btn);
 
-    auto text = CCLabelTTF::create(_("menu.howto", "body").get().c_str(), SMALL_FONT_NAME, 28);
-    text->setHorizontalAlignment(kCCTextAlignmentLeft);
+    auto text = CCLabelTTF::create(_("menu.howto", "body").get().c_str(), SMALL_FONT_NAME, 36);
     text->setAnchorPoint(CCPoint(0.5, 0.5));
     text->setPosition(CCPoint(384, 800));
     addChild(text);
