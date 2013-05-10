@@ -185,6 +185,10 @@
 		C8681CAB1733D1CF0020E78B /* BackendIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8681CAA1733D1CF0020E78B /* BackendIos.mm */; };
 		C8681CAE1733F9330020E78B /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8681CAC1733F9320020E78B /* Loader.cpp */; };
 		C8681CB117352ED30020E78B /* GameCenterIos.m in Sources */ = {isa = PBXBuildFile; fileRef = C8681CB017352ED30020E78B /* GameCenterIos.m */; };
+		C8716C3A173DADCC00C90C4C /* icon-144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = C8716C39173DADCC00C90C4C /* icon-144x144.png */; };
+		C8716C3C173DADD000C90C4C /* icon-72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = C8716C3B173DADD000C90C4C /* icon-72x72.png */; };
+		C8716C3E173DADD500C90C4C /* icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C8716C3D173DADD500C90C4C /* icon-57x57.png */; };
+		C8716C40173DADD800C90C4C /* icon-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = C8716C3F173DADD800C90C4C /* icon-114x114.png */; };
 		C8832440172924C1000E93ED /* en.ini in Resources */ = {isa = PBXBuildFile; fileRef = C883243F172924C1000E93ED /* en.ini */; };
 		C8897C2A173D1F9400CF0FE7 /* money.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8897C29173D1F9400CF0FE7 /* money.mp3 */; };
 		C8897C2E173D42A400CF0FE7 /* libLocalyticsAMP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8897C2B173D42A400CF0FE7 /* libLocalyticsAMP.a */; };
@@ -632,6 +636,10 @@
 		C8681CAF17352ED30020E78B /* GameCenterIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterIos.h; sourceTree = "<group>"; };
 		C8681CB017352ED30020E78B /* GameCenterIos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterIos.m; sourceTree = "<group>"; };
 		C8681CB317353D800020E78B /* Payment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
+		C8716C39173DADCC00C90C4C /* icon-144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-144x144.png"; sourceTree = "<group>"; };
+		C8716C3B173DADD000C90C4C /* icon-72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72x72.png"; sourceTree = "<group>"; };
+		C8716C3D173DADD500C90C4C /* icon-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-57x57.png"; sourceTree = "<group>"; };
+		C8716C3F173DADD800C90C4C /* icon-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-114x114.png"; sourceTree = "<group>"; };
 		C883243F172924C1000E93ED /* en.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = en.ini; sourceTree = "<group>"; };
 		C8897C29173D1F9400CF0FE7 /* money.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = money.mp3; sourceTree = "<group>"; };
 		C8897C2B173D42A400CF0FE7 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLocalyticsAMP.a; sourceTree = "<group>"; };
@@ -1330,6 +1338,10 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C8716C3F173DADD800C90C4C /* icon-114x114.png */,
+				C8716C3D173DADD500C90C4C /* icon-57x57.png */,
+				C8716C3B173DADD000C90C4C /* icon-72x72.png */,
+				C8716C39173DADCC00C90C4C /* icon-144x144.png */,
 				C8897C33173D51A900CF0FE7 /* Default-Portrait@2x~ipad.png */,
 				C8897C31173D51A500CF0FE7 /* Default-Portrait~ipad.png */,
 				15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */,
@@ -1852,6 +1864,10 @@
 				C8897C2A173D1F9400CF0FE7 /* money.mp3 in Resources */,
 				C8897C32173D51A500CF0FE7 /* Default-Portrait~ipad.png in Resources */,
 				C8897C34173D51A900CF0FE7 /* Default-Portrait@2x~ipad.png in Resources */,
+				C8716C3A173DADCC00C90C4C /* icon-144x144.png in Resources */,
+				C8716C3C173DADD000C90C4C /* icon-72x72.png in Resources */,
+				C8716C3E173DADD500C90C4C /* icon-57x57.png in Resources */,
+				C8716C40173DADD800C90C4C /* icon-114x114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2096,8 +2112,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Contento";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Contento";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2133,7 +2149,7 @@
 					/Users/michaelcontento/Downloads/boost_1_53_0/boost_1_53_0,
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../Classes/joeka/ads/Chartboost-x/Chartboost-x/ios\"",
@@ -2143,8 +2159,8 @@
 				);
 				OTHER_CFLAGS = "-O2";
 				PRODUCT_NAME = "Space Dots";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "3183EE21-B2D3-4E26-B0EE-B2AF4722E885";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3183EE21-B2D3-4E26-B0EE-B2AF4722E885";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -2160,8 +2176,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Contento";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Contento";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2195,7 +2211,7 @@
 					/Users/michaelcontento/Downloads/boost_1_53_0/boost_1_53_0,
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../Classes/joeka/ads/Chartboost-x/Chartboost-x/ios\"",
@@ -2204,8 +2220,8 @@
 					"\"$(SRCROOT)/../classes\"",
 				);
 				PRODUCT_NAME = "Space Dots";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "3183EE21-B2D3-4E26-B0EE-B2AF4722E885";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3183EE21-B2D3-4E26-B0EE-B2AF4722E885";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
