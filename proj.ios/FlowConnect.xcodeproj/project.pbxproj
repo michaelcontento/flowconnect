@@ -188,6 +188,8 @@
 		C8832440172924C1000E93ED /* en.ini in Resources */ = {isa = PBXBuildFile; fileRef = C883243F172924C1000E93ED /* en.ini */; };
 		C8897C2A173D1F9400CF0FE7 /* money.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8897C29173D1F9400CF0FE7 /* money.mp3 */; };
 		C8897C2E173D42A400CF0FE7 /* libLocalyticsAMP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8897C2B173D42A400CF0FE7 /* libLocalyticsAMP.a */; };
+		C8897C32173D51A500CF0FE7 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C8897C31173D51A500CF0FE7 /* Default-Portrait~ipad.png */; };
+		C8897C34173D51A900CF0FE7 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C8897C33173D51A900CF0FE7 /* Default-Portrait@2x~ipad.png */; };
 		C88AF0E01723EC45004697BE /* StarButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0DE1723EC45004697BE /* StarButton.cpp */; };
 		C88AF0E717246A63004697BE /* userstate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E517246A62004697BE /* userstate.cpp */; };
 		C88AF0EA17256800004697BE /* SettingsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E817256800004697BE /* SettingsScene.cpp */; };
@@ -635,6 +637,8 @@
 		C8897C2B173D42A400CF0FE7 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLocalyticsAMP.a; sourceTree = "<group>"; };
 		C8897C2C173D42A400CF0FE7 /* LocalyticsAmpSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsAmpSession.h; sourceTree = "<group>"; };
 		C8897C2D173D42A400CF0FE7 /* LocalyticsSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsSession.h; sourceTree = "<group>"; };
+		C8897C31173D51A500CF0FE7 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		C8897C33173D51A900CF0FE7 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		C88AF0DE1723EC45004697BE /* StarButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StarButton.cpp; path = ../Classes/StarButton.cpp; sourceTree = "<group>"; };
 		C88AF0DF1723EC45004697BE /* StarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StarButton.h; path = ../Classes/StarButton.h; sourceTree = "<group>"; };
 		C88AF0E517246A62004697BE /* userstate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = userstate.cpp; path = ../Classes/userstate.cpp; sourceTree = "<group>"; };
@@ -1326,6 +1330,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C8897C33173D51A900CF0FE7 /* Default-Portrait@2x~ipad.png */,
+				C8897C31173D51A500CF0FE7 /* Default-Portrait~ipad.png */,
 				15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */,
 				15A3D8871682F7D5002FB0C5 /* Box2D */,
 				15A3D93A1682F7F9002FB0C5 /* chipmunk */,
@@ -1844,6 +1850,8 @@
 				C84C5A40173BF50600DF3912 /* de.ini in Resources */,
 				C804283D173D053700207497 /* star-fx.plist in Resources */,
 				C8897C2A173D1F9400CF0FE7 /* money.mp3 in Resources */,
+				C8897C32173D51A500CF0FE7 /* Default-Portrait~ipad.png in Resources */,
+				C8897C34173D51A900CF0FE7 /* Default-Portrait@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

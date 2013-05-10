@@ -282,6 +282,20 @@ int userstate::getStarsForUser()
     return settings->getIntegerForKey(KEY_USER_STARS, START_STARS_AMOUNT);
 }
 
+int userstate::getStarsReporting()
+{
+    int stars = getStarsForUser();
+    int limits[] = {10, 100, 1000, 10000, 100000, 1000000, 10000000};
+
+    for (int limit : limits) {
+        if (stars > limit) {
+            stars = round(stars / limit) * limit;
+        }
+    }
+
+    return stars;
+}
+
 Mode::Enum userstate::getModeForLevel(const LoaderLevel* level)
 {
     auto settings = CCUserDefault::sharedUserDefault();

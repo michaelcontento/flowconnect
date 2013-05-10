@@ -30,7 +30,7 @@ static AppDelegate s_sharedApplication;
 
     // Add the view controller's view to the window and display.
     window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
-    
+     
     // Init the EAGLView
     EAGLView *__glView = [EAGLView viewWithFrame: [window bounds]
                                      pixelFormat: kEAGLColorFormatRGB565
@@ -65,6 +65,7 @@ static AppDelegate s_sharedApplication;
     cocos2d::CCApplication::sharedApplication()->run();
     [Crashlytics startWithAPIKey:@"0bba8db2fa145bc487dc41da3d3cff39d062166d"];
     [[LocalyticsSession shared] startSession:@"ee497b7262c9e2c79ee9bc8-f09416dc-b981-11e2-895c-005cf8cbabd8"];
+    [[LocalyticsSession shared] setLoggingEnabled:YES];
 
     return YES;
 }
@@ -78,7 +79,7 @@ static AppDelegate s_sharedApplication;
     cocos2d::CCDirector::sharedDirector()->pause();
 
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-        [[NSString alloc] initWithFormat:@"%d", userstate::getStarsForUser()],
+        [[NSString alloc] initWithFormat:@"%d", userstate::getStarsReporting()],
         @"stars",
          nil];
     [[LocalyticsSession shared] tagEvent:@"app resign" attributes:dictionary];
@@ -116,7 +117,7 @@ static AppDelegate s_sharedApplication;
     cocos2d::CCApplication::sharedApplication()->applicationDidEnterBackground();
 
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-        [[NSString alloc] initWithFormat:@"%d", userstate::getStarsForUser()],
+        [[NSString alloc] initWithFormat:@"%d", userstate::getStarsReporting()],
         @"stars",
         nil];
     [[LocalyticsSession shared] tagEvent:@"app background" attributes:dictionary];
@@ -142,7 +143,7 @@ static AppDelegate s_sharedApplication;
      */
 
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-        [[NSString alloc] initWithFormat:@"%d", userstate::getStarsForUser()],
+        [[NSString alloc] initWithFormat:@"%d", userstate::getStarsReporting()],
         @"stars",
         nil];
     [[LocalyticsSession shared] tagEvent:@"app terminate" attributes:dictionary];

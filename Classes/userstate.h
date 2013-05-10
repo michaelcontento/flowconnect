@@ -80,6 +80,7 @@ namespace userstate
 
     int getStarsForUser();
     int getStarsForCategory(const LoaderCategory* category);
+    int getStarsReporting();
 
     Mode::Enum getModeForLevel(const LoaderLevel* level);
     void setModeForLevel(const LoaderLevel* level, Mode::Enum mode);
