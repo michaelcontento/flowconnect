@@ -187,6 +187,7 @@
 		C8681CB117352ED30020E78B /* GameCenterIos.m in Sources */ = {isa = PBXBuildFile; fileRef = C8681CB017352ED30020E78B /* GameCenterIos.m */; };
 		C8832440172924C1000E93ED /* en.ini in Resources */ = {isa = PBXBuildFile; fileRef = C883243F172924C1000E93ED /* en.ini */; };
 		C8897C2A173D1F9400CF0FE7 /* money.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8897C29173D1F9400CF0FE7 /* money.mp3 */; };
+		C8897C2E173D42A400CF0FE7 /* libLocalyticsAMP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8897C2B173D42A400CF0FE7 /* libLocalyticsAMP.a */; };
 		C88AF0E01723EC45004697BE /* StarButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0DE1723EC45004697BE /* StarButton.cpp */; };
 		C88AF0E717246A63004697BE /* userstate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E517246A62004697BE /* userstate.cpp */; };
 		C88AF0EA17256800004697BE /* SettingsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88AF0E817256800004697BE /* SettingsScene.cpp */; };
@@ -631,6 +632,9 @@
 		C8681CB317353D800020E78B /* Payment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
 		C883243F172924C1000E93ED /* en.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = en.ini; sourceTree = "<group>"; };
 		C8897C29173D1F9400CF0FE7 /* money.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = money.mp3; sourceTree = "<group>"; };
+		C8897C2B173D42A400CF0FE7 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLocalyticsAMP.a; sourceTree = "<group>"; };
+		C8897C2C173D42A400CF0FE7 /* LocalyticsAmpSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsAmpSession.h; sourceTree = "<group>"; };
+		C8897C2D173D42A400CF0FE7 /* LocalyticsSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsSession.h; sourceTree = "<group>"; };
 		C88AF0DE1723EC45004697BE /* StarButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StarButton.cpp; path = ../Classes/StarButton.cpp; sourceTree = "<group>"; };
 		C88AF0DF1723EC45004697BE /* StarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StarButton.h; path = ../Classes/StarButton.h; sourceTree = "<group>"; };
 		C88AF0E517246A62004697BE /* userstate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = userstate.cpp; path = ../Classes/userstate.cpp; sourceTree = "<group>"; };
@@ -786,6 +790,7 @@
 				C8A48AE3173A8EA00012D40F /* libEziSocialPlugin.a in Frameworks */,
 				C84C5A43173C1DAF00DF3912 /* Crashlytics.framework in Frameworks */,
 				C804283B173CE48600207497 /* libcurl.a in Frameworks */,
+				C8897C2E173D42A400CF0FE7 /* libLocalyticsAMP.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1291,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C8897C30173D42AD00CF0FE7 /* Localytics */,
 				C8A48AE4173A8EA20012D40F /* EziSocial */,
 				C88AF13717280744004697BE /* joeka */,
 				C88AF0DD1723EC06004697BE /* buttons */,
@@ -1465,6 +1471,16 @@
 				C8681C86173320BA0020E78B /* LocalStorage.h */,
 			);
 			path = LocalStorage;
+			sourceTree = "<group>";
+		};
+		C8897C30173D42AD00CF0FE7 /* Localytics */ = {
+			isa = PBXGroup;
+			children = (
+				C8897C2B173D42A400CF0FE7 /* libLocalyticsAMP.a */,
+				C8897C2C173D42A400CF0FE7 /* LocalyticsAmpSession.h */,
+				C8897C2D173D42A400CF0FE7 /* LocalyticsSession.h */,
+			);
+			name = Localytics;
 			sourceTree = "<group>";
 		};
 		C88AF0DD1723EC06004697BE /* buttons */ = {
@@ -2115,6 +2131,7 @@
 					"\"$(SRCROOT)/../Classes/joeka/ads/Chartboost-x/Chartboost-x/ios\"",
 					"\"$(SRCROOT)/../classes/iOS\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../classes\"",
 				);
 				OTHER_CFLAGS = "-O2";
 				PRODUCT_NAME = "Space Dots";
@@ -2176,6 +2193,7 @@
 					"\"$(SRCROOT)/../Classes/joeka/ads/Chartboost-x/Chartboost-x/ios\"",
 					"\"$(SRCROOT)/../classes/iOS\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../classes\"",
 				);
 				PRODUCT_NAME = "Space Dots";
 				PROVISIONING_PROFILE = "";

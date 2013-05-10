@@ -13,6 +13,8 @@
 #import "RootViewController.h"
 #import "EziSocialManager.h"
 #import <Crashlytics/Crashlytics.h>
+#import "LocalyticsSession.h"
+#include "userstate.h"
 
 @implementation AppController
 
@@ -62,6 +64,7 @@ static AppDelegate s_sharedApplication;
 
     cocos2d::CCApplication::sharedApplication()->run();
     [Crashlytics startWithAPIKey:@"0bba8db2fa145bc487dc41da3d3cff39d062166d"];
+    [[LocalyticsSession shared] startSession:@"ee497b7262c9e2c79ee9bc8-f09416dc-b981-11e2-895c-005cf8cbabd8"];
 
     return YES;
 }
@@ -73,6 +76,15 @@ static AppDelegate s_sharedApplication;
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
     cocos2d::CCDirector::sharedDirector()->pause();
+
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+        [[NSString alloc] initWithFormat:@"%d", userstate::getStarsForUser()],
+        @"stars",
+         nil];
+    [[LocalyticsSession shared] tagEvent:@"app resign" attributes:dictionary];
+
+    [[LocalyticsSession shared] close];
+    [[LocalyticsSession shared] upload];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -81,6 +93,9 @@ static AppDelegate s_sharedApplication;
      */
     cocos2d::CCDirector::sharedDirector()->resume();
     [[EziSocialManager sharedManager] handleApplicationDidBecomeActive];
+
+    [[LocalyticsSession shared] resume];
+    [[LocalyticsSession shared] upload];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -99,6 +114,15 @@ static AppDelegate s_sharedApplication;
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
     cocos2d::CCApplication::sharedApplication()->applicationDidEnterBackground();
+
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+        [[NSString alloc] initWithFormat:@"%d", userstate::getStarsForUser()],
+        @"stars",
+        nil];
+    [[LocalyticsSession shared] tagEvent:@"app background" attributes:dictionary];
+
+    [[LocalyticsSession shared] close];
+    [[LocalyticsSession shared] upload];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -106,6 +130,9 @@ static AppDelegate s_sharedApplication;
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
     cocos2d::CCApplication::sharedApplication()->applicationWillEnterForeground();
+
+    [[LocalyticsSession shared] resume];
+    [[LocalyticsSession shared] upload];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -113,6 +140,15 @@ static AppDelegate s_sharedApplication;
      Called when the application is about to terminate.
      See also applicationDidEnterBackground:.
      */
+
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+        [[NSString alloc] initWithFormat:@"%d", userstate::getStarsForUser()],
+        @"stars",
+        nil];
+    [[LocalyticsSession shared] tagEvent:@"app terminate" attributes:dictionary];
+     
+    [[LocalyticsSession shared] close];
+    [[LocalyticsSession shared] upload];
 }
 
 
