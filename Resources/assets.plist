@@ -56,6 +56,19 @@
                 <key>sourceSize</key>
                 <string>{48,48}</string>
             </dict>
+            <key>buttons/border.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{325,932},{56,54}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,1},{56,54}}</string>
+                <key>sourceSize</key>
+                <string>{56,56}</string>
+            </dict>
             <key>buttons/borders/gamemenu.png</key>
             <dict>
                 <key>frame</key>
@@ -137,7 +150,7 @@
             <key>buttons/hint-number.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{364,485},{34,34}}</string>
+                <string>{{364,521},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -202,15 +215,15 @@
             <key>buttons/star.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{325,932},{55,54}}</string>
+                <string>{{364,485},{36,34}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{0,1}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{55,54}}</string>
+                <string>{{0,0},{36,34}}</string>
                 <key>sourceSize</key>
-                <string>{57,56}</string>
+                <string>{36,36}</string>
             </dict>
             <key>giantlock.png</key>
             <dict>
@@ -365,7 +378,7 @@
             <key>size</key>
             <string>{524,1014}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7f11d4b437609ffd544e384058a37913$</string>
+            <string>$TexturePacker:SmartUpdate:b01b2f9088c2995cd6737cb0d5150039$</string>
             <key>textureFileName</key>
             <string>assets.png</string>
         </dict>

@@ -147,6 +147,7 @@
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
 		C804283B173CE48600207497 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C804283A173CE48600207497 /* libcurl.a */; };
+		C804283D173D053700207497 /* star-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C804283C173D053700207497 /* star-fx.plist */; };
 		C813E7921731ADDA00F1889A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C813E7911731ADDA00F1889A /* GameKit.framework */; };
 		C813E7991732357D00F1889A /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C813E7961732357D00F1889A /* GameCenter.mm */; };
 		C84C5A3A173AF0DD00DF3912 /* ezisocial.and in Resources */ = {isa = PBXBuildFile; fileRef = C84C5A38173AF0DD00DF3912 /* ezisocial.and */; };
@@ -557,6 +558,7 @@
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C804283A173CE48600207497 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
+		C804283C173D053700207497 /* star-fx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "star-fx.plist"; sourceTree = "<group>"; };
 		C813E7911731ADDA00F1889A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C813E7941732357D00F1889A /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
 		C813E7961732357D00F1889A /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
@@ -1363,6 +1365,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C804283C173D053700207497 /* star-fx.plist */,
 				C84C5A3C173AF0E000DF3912 /* EziSocial */,
 				C8B62FF11739B82A00D00E5B /* sounds */,
 				C8D8F2B6173091AD0073B7C8 /* payment.ini */,
@@ -1820,6 +1823,7 @@
 				C84C5A3B173AF0DD00DF3912 /* ezisocial.ios in Resources */,
 				C84C5A3E173BB60E00DF3912 /* solved.mp3 in Resources */,
 				C84C5A40173BF50600DF3912 /* de.ini in Resources */,
+				C804283D173D053700207497 /* star-fx.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
