@@ -65,7 +65,6 @@ static AppDelegate s_sharedApplication;
     cocos2d::CCApplication::sharedApplication()->run();
     [Crashlytics startWithAPIKey:@"0bba8db2fa145bc487dc41da3d3cff39d062166d"];
     [[LocalyticsSession shared] startSession:@"ee497b7262c9e2c79ee9bc8-f09416dc-b981-11e2-895c-005cf8cbabd8"];
-    [[LocalyticsSession shared] setLoggingEnabled:YES];
 
     return YES;
 }
@@ -82,7 +81,7 @@ static AppDelegate s_sharedApplication;
         [[NSString alloc] initWithFormat:@"%d", userstate::getStarsReporting()],
         @"stars",
          nil];
-    [[LocalyticsSession shared] tagEvent:@"app resign" attributes:dictionary];
+    [[LocalyticsSession shared] tagEvent:@"stats" attributes:dictionary];
 
     [[LocalyticsSession shared] close];
     [[LocalyticsSession shared] upload];
@@ -120,7 +119,7 @@ static AppDelegate s_sharedApplication;
         [[NSString alloc] initWithFormat:@"%d", userstate::getStarsReporting()],
         @"stars",
         nil];
-    [[LocalyticsSession shared] tagEvent:@"app background" attributes:dictionary];
+    [[LocalyticsSession shared] tagEvent:@"stats" attributes:dictionary];
 
     [[LocalyticsSession shared] close];
     [[LocalyticsSession shared] upload];
@@ -146,7 +145,7 @@ static AppDelegate s_sharedApplication;
         [[NSString alloc] initWithFormat:@"%d", userstate::getStarsReporting()],
         @"stars",
         nil];
-    [[LocalyticsSession shared] tagEvent:@"app terminate" attributes:dictionary];
+    [[LocalyticsSession shared] tagEvent:@"stats" attributes:dictionary];
      
     [[LocalyticsSession shared] close];
     [[LocalyticsSession shared] upload];
