@@ -146,7 +146,9 @@ void StarButton::animate(const int diff)
     if (diff == 0) {
         return;
     }
-    
+
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("money.mp3");
+
     if (!diffLabel) {
         diffLabel = CCLabelTTF::create("", DEFAULT_FONT_NAME, 36);
         diffLabel->setAnchorPoint(CCPoint(1, 0.5));
