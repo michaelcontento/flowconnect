@@ -221,8 +221,6 @@ void SettingsScene::btnMusicToggle(CCObject* sender)
     } else {
         engine->stopBackgroundMusic(false);
     }
-
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 }
 
 void SettingsScene::btnSoundToggle(CCObject* sender)
@@ -233,11 +231,10 @@ void SettingsScene::btnSoundToggle(CCObject* sender)
     auto engine = CocosDenshion::SimpleAudioEngine::sharedEngine();
     if (flag->getValue()) {
         engine->setEffectsVolume(1);
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     } else {
         engine->setEffectsVolume(0);
     }
-
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 }
 
 void SettingsScene::btnChangeMode(CCObject* sender)

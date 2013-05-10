@@ -50,6 +50,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("click.mp3");
     CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("not-solved.mp3");
     CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect("solved.mp3");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.15);
     if (userstate::hasMusic()) {
         CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("background.mp3", true);
     }
