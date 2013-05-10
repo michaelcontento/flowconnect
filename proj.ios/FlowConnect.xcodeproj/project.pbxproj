@@ -136,7 +136,6 @@
 		1A27573F1697CF2B00504026 /* CCEditBoxImplAndroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A27573D1697CF2B00504026 /* CCEditBoxImplAndroid.cpp */; };
 		1AC3624916D4A1E8000847F2 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AC3624316D4A1E8000847F2 /* AppController.mm */; };
 		1AC3624B16D4A1E8000847F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC3624516D4A1E8000847F2 /* main.m */; };
-		1ACB3244164770DE00914215 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACB3243164770DE00914215 /* libcurl.a */; };
 		1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */; };
 		1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCDA8116D4A25900906EA6 /* RootViewController.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -147,6 +146,7 @@
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		C804283B173CE48600207497 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C804283A173CE48600207497 /* libcurl.a */; };
 		C813E7921731ADDA00F1889A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C813E7911731ADDA00F1889A /* GameKit.framework */; };
 		C813E7991732357D00F1889A /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C813E7961732357D00F1889A /* GameCenter.mm */; };
 		C84C5A3A173AF0DD00DF3912 /* ezisocial.and in Resources */ = {isa = PBXBuildFile; fileRef = C84C5A38173AF0DD00DF3912 /* ezisocial.and */; };
@@ -543,7 +543,6 @@
 		1AC3624316D4A1E8000847F2 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = SOURCE_ROOT; };
 		1AC3624516D4A1E8000847F2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 		1AC3624616D4A1E8000847F2 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = SOURCE_ROOT; };
-		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = ../Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		1AFAF8B416D35DE700DB1158 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../Classes/AppDelegate.h; sourceTree = "<group>"; };
 		1AFCDA8016D4A25900906EA6 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = SOURCE_ROOT; };
@@ -557,6 +556,7 @@
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C804283A173CE48600207497 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
 		C813E7911731ADDA00F1889A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C813E7941732357D00F1889A /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
 		C813E7961732357D00F1889A /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
@@ -766,7 +766,6 @@
 				C8D8F28F17306BBA0073B7C8 /* StoreKit.framework in Frameworks */,
 				C8D8F28D17306BAB0073B7C8 /* AdSupport.framework in Frameworks */,
 				15A3DA6A1682F886002FB0C5 /* libcocos2dx.a in Frameworks */,
-				1ACB3244164770DE00914215 /* libcurl.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -782,6 +781,7 @@
 				C8A48AC6173A8AEA0012D40F /* FacebookSDK.framework in Frameworks */,
 				C8A48AE3173A8EA00012D40F /* libEziSocialPlugin.a in Frameworks */,
 				C84C5A43173C1DAF00DF3912 /* Crashlytics.framework in Frameworks */,
+				C804283B173CE48600207497 /* libcurl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1316,17 +1316,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				C8A48AE5173A8F000012D40F /* MessageUI.framework */,
-				C8A48AD1173A8BA60012D40F /* Twitter.framework */,
-				C8A48ACB173A8B210012D40F /* Security.framework */,
-				C8A48AC9173A8B170012D40F /* Accounts.framework */,
-				C8A48AC7173A8B050012D40F /* Social.framework */,
-				C8A48AC5173A8AEA0012D40F /* FacebookSDK.framework */,
-				C8681C8A173322550020E78B /* libsqlite3.dylib */,
-				C813E7911731ADDA00F1889A /* GameKit.framework */,
-				C8D8F29717306D5F0073B7C8 /* SystemConfiguration.framework */,
-				C8D8F28E17306BBA0073B7C8 /* StoreKit.framework */,
-				C8D8F28C17306BAB0073B7C8 /* AdSupport.framework */,
 				15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */,
 				15A3D8871682F7D5002FB0C5 /* Box2D */,
 				15A3D93A1682F7F9002FB0C5 /* chipmunk */,
@@ -1344,8 +1333,19 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C804283A173CE48600207497 /* libcurl.a */,
+				C8A48AE5173A8F000012D40F /* MessageUI.framework */,
+				C8A48AD1173A8BA60012D40F /* Twitter.framework */,
+				C8A48ACB173A8B210012D40F /* Security.framework */,
+				C8A48AC9173A8B170012D40F /* Accounts.framework */,
+				C8A48AC7173A8B050012D40F /* Social.framework */,
+				C8A48AC5173A8AEA0012D40F /* FacebookSDK.framework */,
+				C8681C8A173322550020E78B /* libsqlite3.dylib */,
+				C813E7911731ADDA00F1889A /* GameKit.framework */,
+				C8D8F29717306D5F0073B7C8 /* SystemConfiguration.framework */,
+				C8D8F28E17306BBA0073B7C8 /* StoreKit.framework */,
+				C8D8F28C17306BAB0073B7C8 /* AdSupport.framework */,
 				C84C5A42173C1DAF00DF3912 /* Crashlytics.framework */,
-				1ACB3243164770DE00914215 /* libcurl.a */,
 				BF170DB212928DE900B8313A /* libxml2.dylib */,
 				BF170DB412928DE900B8313A /* libz.dylib */,
 				D44C620F132DFF4E0009C878 /* AudioToolbox.framework */,
@@ -2106,6 +2106,7 @@
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../Classes/joeka/ads/Chartboost-x/Chartboost-x/ios\"",
 					"\"$(SRCROOT)/../classes/iOS\"",
+					"\"$(SRCROOT)\"",
 				);
 				OTHER_CFLAGS = "-O2";
 				PRODUCT_NAME = "Space Dots";
@@ -2166,6 +2167,7 @@
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../Classes/joeka/ads/Chartboost-x/Chartboost-x/ios\"",
 					"\"$(SRCROOT)/../classes/iOS\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Space Dots";
 				PROVISIONING_PROFILE = "";
