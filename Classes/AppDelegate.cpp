@@ -70,14 +70,19 @@ void AppDelegate::applicationDidEnterBackground()
     CCDirector::sharedDirector()->stopAnimation();
 
     SimpleAudioEngine::sharedEngine()->pauseAllEffects();
-    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+
+    if (userstate::hasMusic()) {
+        SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    }
 }
 
 void AppDelegate::applicationWillEnterForeground()
 {
     CCDirector::sharedDirector()->startAnimation();
 
-    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    if (userstate::hasMusic()) {
+        SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    }
     SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 
     userstate::refreshFreeHints();
