@@ -16,7 +16,7 @@ public:
     void btnPlay();
 
 private:
-    const int BOARD_WIDTH = 400;
+    static const int BOARD_WIDTH = 400;
 
 };
 

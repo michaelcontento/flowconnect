@@ -18,7 +18,7 @@ public:
     void btnGame(void* sender);
 
 private:
-    const unsigned int MENU_PADDING = 25;
+    static const unsigned int MENU_PADDING = 25;
     cocos2d::CCMenu* menu;
     int lastStars;
 

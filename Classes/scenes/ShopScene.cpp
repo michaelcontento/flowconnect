@@ -6,8 +6,11 @@
 #include "Localization.h"
 #include "LanguageKey.h"
 #include "SceneManager.h"
-#include "EziSocialObject.h"
 #include "UrlOpener.h"
+
+#ifdef WITH_EZISOCIAL
+#include "EziSocialObject.h"
+#endif
 
 using namespace cocos2d;
 using namespace Avalon;
@@ -56,9 +59,11 @@ bool ShopScene::init()
     star->enabled = false;
     addChild(star);
 
+    #ifdef WITH_EZISOCIAL
     if (!userstate::fbLikeDone()) {
         EziSocialObject::sharedObject()->setFacebookDelegate(this);
     }
+    #endif
 
     return true;
 }
@@ -166,7 +171,11 @@ void ShopScene::onTransactionEnd(Payment::Manager *const manager)
 
 void ShopScene::btnFacebookLike()
 {
+    #ifdef WITH_EZISOCIAL
     EziSocialObject::sharedObject()->openFacebookPage("212046412247647", true);
+    #else
+    fbPageLikeCallback(-1);
+    #endif
 }
 
 void ShopScene::btnRateUs()

@@ -11,10 +11,19 @@
 #import "cocos2d.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
-#import "EziSocialManager.h"
-#import <Crashlytics/Crashlytics.h>
-#import "LocalyticsSession.h"
 #include "userstate.h"
+
+#ifdef WITH_LOCALYTICS
+#import "LocalyticsSession.h"
+#endif
+
+#ifdef WITH_CRASHLYTICS
+#import <Crashlytics/Crashlytics.h>
+#endif
+
+#ifdef WITH_EZISOCIAL
+#import "EziSocialManager.h"
+#endif
 
 @implementation AppController
 
@@ -63,8 +72,14 @@ static AppDelegate s_sharedApplication;
     [[UIApplication sharedApplication] setStatusBarHidden:true];
 
     cocos2d::CCApplication::sharedApplication()->run();
+
+    #ifdef WITH_CRASHLYTICS
     [Crashlytics startWithAPIKey:@"0bba8db2fa145bc487dc41da3d3cff39d062166d"];
+    #endif
+
+    #ifdef WITH_LOCALYTICS
     [[LocalyticsSession shared] startSession:@"ee497b7262c9e2c79ee9bc8-f09416dc-b981-11e2-895c-005cf8cbabd8"];
+    #endif
 
     return YES;
 }
@@ -77,6 +92,7 @@ static AppDelegate s_sharedApplication;
      */
     cocos2d::CCDirector::sharedDirector()->pause();
 
+    #ifdef WITH_LOCALYTICS
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
         [[NSString alloc] initWithFormat:@"%d", userstate::getStarsReporting()],
         @"stars",
@@ -85,6 +101,7 @@ static AppDelegate s_sharedApplication;
 
     [[LocalyticsSession shared] close];
     [[LocalyticsSession shared] upload];
+    #endif
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -92,20 +109,27 @@ static AppDelegate s_sharedApplication;
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     cocos2d::CCDirector::sharedDirector()->resume();
-    [[EziSocialManager sharedManager] handleApplicationDidBecomeActive];
 
+    #ifdef WITH_EZISOCIAL
+    [[EziSocialManager sharedManager] handleApplicationDidBecomeActive];
+    #endif
+
+    #ifdef WITH_LOCALYTICS
     [[LocalyticsSession shared] resume];
     [[LocalyticsSession shared] upload];
+    #endif
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    #ifdef WITH_EZISOCIAL
     if ([sourceApplication isEqualToString:@"com.apple.mobilesafari"] ||
         [sourceApplication isEqualToString:@"com.facebook.Facebook"]) {
         return [[EziSocialManager sharedManager] handleURL:url];
     } else {
         return NO;
     }
+    #endif
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -115,6 +139,7 @@ static AppDelegate s_sharedApplication;
      */
     cocos2d::CCApplication::sharedApplication()->applicationDidEnterBackground();
 
+    #ifdef WITH_LOCALYTICS
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
         [[NSString alloc] initWithFormat:@"%d", userstate::getStarsReporting()],
         @"stars",
@@ -123,6 +148,7 @@ static AppDelegate s_sharedApplication;
 
     [[LocalyticsSession shared] close];
     [[LocalyticsSession shared] upload];
+    #endif
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -131,8 +157,10 @@ static AppDelegate s_sharedApplication;
      */
     cocos2d::CCApplication::sharedApplication()->applicationWillEnterForeground();
 
+    #ifdef WITH_LOCALYTICS
     [[LocalyticsSession shared] resume];
     [[LocalyticsSession shared] upload];
+    #endif
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -141,6 +169,7 @@ static AppDelegate s_sharedApplication;
      See also applicationDidEnterBackground:.
      */
 
+    #ifdef WITH_LOCALYTICS
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
         [[NSString alloc] initWithFormat:@"%d", userstate::getStarsReporting()],
         @"stars",
@@ -149,6 +178,7 @@ static AppDelegate s_sharedApplication;
      
     [[LocalyticsSession shared] close];
     [[LocalyticsSession shared] upload];
+    #endif
 }
 
 

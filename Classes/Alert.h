@@ -38,13 +38,13 @@ public:
     virtual void ccTouchCancelled(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent) override;
 
 private:
-    const int tagHeadline = 10;
-    const int tagBody = 11;
-    const int tagClose = 12;
-    const int tagMenu = 13;
-    const int tagSpinner = 14;
-    const int padding = 25;
-    const int buttonPadding = 15;
+    static const int tagHeadline = 10;
+    static const int tagBody = 11;
+    static const int tagClose = 12;
+    static const int tagMenu = 13;
+    static const int tagSpinner = 14;
+    static const int padding = 25;
+    static const int buttonPadding = 15;
     bool spinner;
     bool menuTracked;
     cocos2d::SEL_CallFuncN closeSelector;

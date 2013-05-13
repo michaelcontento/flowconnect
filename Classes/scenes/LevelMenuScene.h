@@ -31,9 +31,9 @@ public:
     virtual void ccTouchCancelled(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent) override;
 
 private:
-    const unsigned int ITEMS_PER_ROW = 6;
-    const unsigned int ITEM_PADDING = 15;
-    const unsigned int INDICATOR_SPACING = 10;
+    static const unsigned int ITEMS_PER_ROW = 6;
+    static const unsigned int ITEM_PADDING = 15;
+    static const unsigned int INDICATOR_SPACING = 10;
 
     unsigned short int touchCounter;
     bool isFirstEnter;

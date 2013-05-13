@@ -27,7 +27,7 @@ public:
     void btnSoundToggle(cocos2d::CCObject* sender);
 
 private:
-    const unsigned int MENU_PADDING = 25;
+    static const unsigned int MENU_PADDING = 25;
     const LoaderLevel* oldGlobalLevel;
     cocos2d::CCMenu* menu;
     unsigned int mode;

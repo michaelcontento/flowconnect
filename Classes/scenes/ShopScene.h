@@ -4,12 +4,17 @@
 #include "cocos2d.h"
 #include "../joeka/Payment.h"
 #include "../Alert.h"
+
+#ifdef WITH_EZISOCIAL
 #include "EziSocialDelegate.h"
+#endif
 
 class ShopScene
 : public cocos2d::CCLayer
 , public Avalon::Payment::ManagerDelegate
+#ifdef WITH_EZISOCIAL
 , public EziFacebookDelegate
+#endif
 {
 public:
     ShopScene();
@@ -44,11 +49,11 @@ public:
     void onTransactionEnd(Avalon::Payment::Manager* const manager);
     
 private:
-    const unsigned int MENU_PADDING = 25;
-    const int tagAlert = 10;
-    const int tagRateUs = 11;
-    const int tagFbLike = 12;
-    const float shopTimeout = 15;
+    static const unsigned int MENU_PADDING = 25;
+    static const int tagAlert = 10;
+    static const int tagRateUs = 11;
+    static const int tagFbLike = 12;
+    static const int shopTimeout = 15;
     cocos2d::CCMenu* menu;
 
     void createMenu(Avalon::Payment::Manager* manager);
