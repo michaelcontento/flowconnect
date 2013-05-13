@@ -1,16 +1,17 @@
 #include "HowToPlayScene.h"
 
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
 #include "Board.h"
 #include "Globals.h"
 #include "GameScene.h"
 #include "ButtonFactory.h"
 #include "SceneManager.h"
-#include "Localization.h"
-#include "LanguageKey.h"
 #include "SimpleAudioEngine.h"
 #include "userstate.h"
 
 using namespace cocos2d;
+using avalon::i18n::_;
 
 #pragma mark Initialization
 

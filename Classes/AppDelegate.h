@@ -1,8 +1,8 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
+#include <avalon/payment.h>
 #include "cocos2d.h"
-#include "joeka/Payment.h"
 
 /**
 @brief    The cocos2d Application.

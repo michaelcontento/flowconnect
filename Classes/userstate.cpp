@@ -1,17 +1,18 @@
 #include "userstate.h"
 
+#include <avalon/GameCenter.h>
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
+#include <ctime>
 #include "Globals.h"
 #include "StarButton.h"
-#include <ctime>
-#include "Localization.h"
-#include "LanguageKey.h"
 #include "AlertView.h"
 #include "SceneManager.h"
 #include "ShopScene.h"
-#include "GameCenter.h"
 
 using namespace userstate;
 using namespace cocos2d;
+using avalon::i18n::_;
 
 int getRankAmount(const int level)
 {
@@ -98,7 +99,7 @@ int getTotalStarsInAllOtherCategories(const LoaderCategory* category, const char
 
 void postAchievement(const char* mode, const LoaderCategory* category, const int value)
 {
-    auto gc = Avalon::GameCenter();
+    auto gc = avalon::GameCenter();
     char buf[50] = {0};
 
     snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.cat.%d", category->localid);
@@ -421,7 +422,7 @@ void userstate::setIsNumberMode(const bool flag)
 void userstate::updateLevelDuration(const LoaderLevel* level, const float duration)
 {
     auto settings = CCUserDefault::sharedUserDefault();
-    auto gc = Avalon::GameCenter();
+    auto gc = avalon::GameCenter();
 
     auto lastKey = getLevelKey(level, "duration");
     auto last = settings->getFloatForKey(lastKey);

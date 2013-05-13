@@ -1,5 +1,11 @@
 #include "SettingsScene.h"
 
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
+#include <avalon/ads/Manager.h>
+#include <avalon/ads/provider/Chartboost.h>
+#include <avalon/GameCenter.h>
+#include <avalon/utils/url.h>
 #include "Globals.h"
 #include "Colors.h"
 #include "HowToPlayScene.h"
@@ -7,17 +13,12 @@
 #include "CategoryMenuScene.h"
 #include "ButtonFactory.h"
 #include "SimpleAudioEngine.h"
-#include "Localization.h"
-#include "LanguageKey.h"
-#include "UrlOpener.h"
 #include "userstate.h"
 #include "ToggleButton.h"
-#include "GameCenter.h"
-#include "AdManager.h"
-#include "ChartboostProvider.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
+using avalon::i18n::_;
 
 #define MODE_NONE 0
 #define MODE_RESET_GAME 1
@@ -127,7 +128,7 @@ void SettingsScene::alertViewClickedButtonAtIndex(int buttonIndex)
         userstate::forceRefillFreeHints();
         userstate::setHintWarning(true);
         userstate::resetAllLevelModes();
-        auto gc = Avalon::GameCenter();
+        auto gc = avalon::GameCenter();
         gc.clearAllAchievements();
         gc.clearAllScores();
 
@@ -161,15 +162,15 @@ void SettingsScene::btnMoreGames()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 
-    for (auto provider : Ads::AdManager::adProviders) {
-        auto cb = static_cast<Ads::ChartboostProvider*>(provider);
+    for (auto provider : avalon::ads::Manager::adProviders) {
+        auto cb = static_cast<avalon::ads::provider::Chartboost*>(provider);
         if (cb) {
             cb->openAdLink();
             return;
         }
     }
-    
-    UrlOpener::open("itms-apps://itunes.com/apps/coragames");
+
+    avalon::utils::url::open("itms-apps://itunes.com/apps/coragames");
 }
 
 void SettingsScene::btnRemoveAds()

@@ -1,10 +1,11 @@
 #include "LevelLoader.h"
 
+#include <avalon/i18n/Localization.h>
+#include <avalon/i18n/LanguageKey.h>
 #include "userstate.h"
-#include "Localization.h"
-#include "LanguageKey.h"
 
 using namespace cocos2d;
+using avalon::i18n::_;
 
 #pragma mark Initialisation
 

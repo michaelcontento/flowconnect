@@ -1,15 +1,16 @@
 #include "CategoryMenuScene.h"
 
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
 #include "SceneManager.h"
 #include "LevelMenuScene.h"
 #include "LevelLoader.h"
 #include "ButtonFactory.h"
-#include "Localization.h"
-#include "LanguageKey.h"
 #include "userstate.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
+using avalon::i18n::_;
 
 extern LevelLoader globalLevelLoader;
 extern LoaderLevel* globalLevel;

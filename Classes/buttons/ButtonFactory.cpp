@@ -90,13 +90,13 @@ CCMenuItemSprite* ButtonFactory::createCategory(LoaderCategory* category, CCObje
     return button;
 }
 
-CCMenuItemSprite* ButtonFactory::createPaymentButton(Avalon::Payment::Product* product)
+CCMenuItemSprite* ButtonFactory::createPaymentButton(avalon::payment::Product* product)
 {
     return createPaymentButton(
         product->localizedName.c_str(),
         product->localizedDescription.c_str(),
         product->localizedPrice.c_str(),
-        (CCObject*)product, menu_selector(Avalon::Payment::Product::purchase)
+        (CCObject*)product, menu_selector(avalon::payment::Product::purchase)
     );
 }
 

@@ -1,17 +1,18 @@
 #include "MenuScene.h"
 
+#include <avalon/GameCenter.h>
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
 #include "SceneManager.h"
 #include "CategoryMenuScene.h"
 #include "ShopScene.h"
 #include "ButtonFactory.h"
 #include "SettingsScene.h"
-#include "Localization.h"
-#include "LanguageKey.h"
-#include "GameCenter.h"
 #include "Loader.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
+using avalon::i18n::_;
 
 #pragma mark Initialization
 
@@ -69,14 +70,14 @@ void MenuScene::btnPLayTimeAttack()
 void MenuScene::btnLeaderboard()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
-    auto gc = Avalon::GameCenter();
+    auto gc = avalon::GameCenter();
     gc.showScores();
 }
 
 void MenuScene::btnAchievements()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
-    auto gc = Avalon::GameCenter();
+    auto gc = avalon::GameCenter();
     gc.showAchievements();
 }
 

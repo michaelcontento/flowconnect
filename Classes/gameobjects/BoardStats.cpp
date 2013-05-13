@@ -1,11 +1,12 @@
 #include "BoardStats.h"
 
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
 #include "Globals.h"
-#include "Localization.h"
-#include "LanguageKey.h"
 #include "userstate.h"
 
 using namespace cocos2d;
+using avalon::i18n::_;
 
 BoardStats::BoardStats()
 : statsBest(NULL)

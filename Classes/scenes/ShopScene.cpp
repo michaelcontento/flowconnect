@@ -1,27 +1,28 @@
 #include "ShopScene.h"
 
 #include <boost/cast.hpp>
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
+#include <avalon/utils/url.h>
 #include "ButtonFactory.h"
 #include "userstate.h"
-#include "Localization.h"
-#include "LanguageKey.h"
 #include "SceneManager.h"
-#include "UrlOpener.h"
 
 #ifdef WITH_EZISOCIAL
 #include "EziSocialObject.h"
 #endif
 
 using namespace cocos2d;
-using namespace Avalon;
+using namespace avalon;
 using boost::polymorphic_downcast;
+using avalon::i18n::_;
 
 #pragma mark Initialization
 
 ShopScene::ShopScene()
 : menu(NULL)
 {
-    auto manager = Payment::Loader::globalManager;
+    auto manager = payment::Loader::globalManager;
     manager->delegate = this;
 }
 
@@ -42,7 +43,7 @@ bool ShopScene::init()
         return false;
     }
 
-    auto manager = Payment::Loader::globalManager;
+    auto manager = payment::Loader::globalManager;
     if (manager->isPurchaseReady()) {
         createMenu(manager.get());
     } else {
@@ -68,7 +69,7 @@ bool ShopScene::init()
     return true;
 }
 
-void ShopScene::createMenu(Payment::Manager* manager)
+void ShopScene::createMenu(payment::Manager* manager)
 {
     menu = CCMenu::create();
     addChild(menu);
@@ -128,28 +129,28 @@ void ShopScene::alertTimeout(CCObject* alert)
         _("dialog.shoptimeouterror", "headline").get().c_str()
     );
 
-    auto manager = Payment::Loader::globalManager;
+    auto manager = payment::Loader::globalManager;
     if (!manager->isPurchaseReady()) {
         manager->stopService();
         SceneManager::getInstance().popScene();
     }
 }
 
-void ShopScene::onServiceStarted(Payment::Manager* const manager)
+void ShopScene::onServiceStarted(payment::Manager* const manager)
 {
     createMenu(manager);
     showSpinner(false);
 }
 
-void ShopScene::onPurchaseSucceed(Payment::Manager *const manager, Payment::Product *const product)
+void ShopScene::onPurchaseSucceed(payment::Manager *const manager, payment::Product *const product)
 {
-    auto consumable = boost::polymorphic_downcast<Payment::ProductConsumable*>(product);
+    auto consumable = boost::polymorphic_downcast<payment::ProductConsumable*>(product);
 
     userstate::addStarsToUser(consumable->getQuantity());
     consumable->consume();
 }
 
-void ShopScene::onPurchaseFail(Payment::Manager* const manager)
+void ShopScene::onPurchaseFail(payment::Manager* const manager)
 {
     CCMessageBox(
         _("dialog.shoppurchaseerror", "body").get().c_str(),
@@ -157,13 +158,13 @@ void ShopScene::onPurchaseFail(Payment::Manager* const manager)
     );
 }
 
-void ShopScene::onTransactionStart(Payment::Manager *const manager)
+void ShopScene::onTransactionStart(payment::Manager *const manager)
 {
     retain();
     showSpinner(true);
 }
 
-void ShopScene::onTransactionEnd(Payment::Manager *const manager)
+void ShopScene::onTransactionEnd(payment::Manager *const manager)
 {
     showSpinner(false);
     release();
@@ -180,7 +181,7 @@ void ShopScene::btnFacebookLike()
 
 void ShopScene::btnRateUs()
 {
-    UrlOpener::open("itms-apps://itunes.apple.com/app/id/643074518");
+    avalon::utils::url::open("itms-apps://itunes.apple.com/app/id/643074518");
     userstate::rateUs();
     CCMessageBox(
         _("dialog.rateusthx", "body").assign("amount", FREE_STARS).get().c_str(),

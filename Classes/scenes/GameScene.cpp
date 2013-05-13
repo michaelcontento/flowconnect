@@ -1,18 +1,19 @@
 #include "GameScene.h"
 
+#include <avalon/ads/Manager.h>
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
 #include "SceneManager.h"
 #include "ButtonFactory.h"
 #include "../Colors.h"
 #include "Globals.h"
-#include "Localization.h"
-#include "LanguageKey.h"
 #include "userstate.h"
 #include "LevelMenuScene.h"
 #include "Alert.h"
-#include "AdManager.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
+using avalon::i18n::_;
 
 void GameScene::createHintButton(cocos2d::CCMenu* menu)
 {
@@ -111,7 +112,7 @@ void GameScene::onBtnReset()
     auto alert = getChildByTag(tagAlert);
     if (alert) {
         if (userstate::showAds()) {
-            Ads::AdManager::showFullscreenAd();
+            avalon::ads::Manager::showFullscreenAd();
         }
         removeChild(alert);
     }
@@ -123,7 +124,7 @@ void GameScene::onBtnGoNext()
     auto alert = getChildByTag(tagAlert);
     if (alert) {
         if (userstate::showAds()) {
-            Ads::AdManager::showFullscreenAd();
+            avalon::ads::Manager::showFullscreenAd();
         }
         removeChild(alert);
     }

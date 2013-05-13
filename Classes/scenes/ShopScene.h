@@ -1,8 +1,8 @@
 #ifndef __FlowConnect__ShopScene__
 #define __FlowConnect__ShopScene__
 
+#include <avalon/payment.h>
 #include "cocos2d.h"
-#include "../joeka/Payment.h"
 #include "../Alert.h"
 
 #ifdef WITH_EZISOCIAL
@@ -11,7 +11,7 @@
 
 class ShopScene
 : public cocos2d::CCLayer
-, public Avalon::Payment::ManagerDelegate
+, public avalon::payment::ManagerDelegate
 #ifdef WITH_EZISOCIAL
 , public EziFacebookDelegate
 #endif
@@ -40,13 +40,13 @@ public:
     void alertTimeout(CCObject* alert);
 
     /* Payment Receiver Interface */
-    void onServiceStarted(Avalon::Payment::Manager* const manager);
+    void onServiceStarted(avalon::payment::Manager* const manager);
 
-    void onPurchaseSucceed(Avalon::Payment::Manager* const manager, Avalon::Payment::Product* const product);
-    void onPurchaseFail(Avalon::Payment::Manager* const manager);
+    void onPurchaseSucceed(avalon::payment::Manager* const manager, avalon::payment::Product* const product);
+    void onPurchaseFail(avalon::payment::Manager* const manager);
 
-    void onTransactionStart(Avalon::Payment::Manager* const manager);
-    void onTransactionEnd(Avalon::Payment::Manager* const manager);
+    void onTransactionStart(avalon::payment::Manager* const manager);
+    void onTransactionEnd(avalon::payment::Manager* const manager);
     
 private:
     static const unsigned int MENU_PADDING = 25;
@@ -56,7 +56,7 @@ private:
     static const int shopTimeout = 15;
     cocos2d::CCMenu* menu;
 
-    void createMenu(Avalon::Payment::Manager* manager);
+    void createMenu(avalon::payment::Manager* manager);
     void showSpinner(const bool flag);
 };
 

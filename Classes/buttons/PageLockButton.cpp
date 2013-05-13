@@ -1,12 +1,13 @@
 #include "PageLockButton.h"
 
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
 #include "Globals.h"
 #include "userstate.h"
-#include "Localization.h"
-#include "LanguageKey.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
+using avalon::i18n::_;
 
 PageLockButton::PageLockButton()
 : page(NULL)

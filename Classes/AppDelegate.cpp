@@ -1,18 +1,18 @@
 #include "AppDelegate.h"
 
+#include <avalon/ads/Manager.h>
+#include <avalon/GameCenter.h>
 #include "SceneManager.h"
 #include "MenuScene.h"
 #include "SimpleAudioEngine.h"
 #include "Globals.h"
 #include "userstate.h"
 #include "Localization.h"
-#include "AdManager.h"
 #include "AssetsManager.h"
-#include "GameCenter.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
-using namespace Avalon;
+using namespace avalon;
 
 AppDelegate::AppDelegate()
 {
@@ -40,7 +40,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     initAds();
     initLocalization();
 
-    auto gc = Avalon::GameCenter();
+    auto gc = avalon::GameCenter();
     gc.login();
 
     CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("background.mp3");
@@ -88,14 +88,14 @@ void AppDelegate::applicationWillEnterForeground()
     userstate::refreshFreeHints();
 
     if (userstate::showAds()) {
-        Ads::AdManager::showFullscreenAd();
+        avalon::ads::Manager::showFullscreenAd();
     }
 }
 
 void AppDelegate::initPayment()
 {
-    Payment::Loader loader("payment.ini");
-    Payment::Loader::globalManager = loader.getManager();
+    payment::Loader loader("payment.ini");
+    payment::Loader::globalManager = loader.getManager();
 }
 
 void AppDelegate::initAds()
@@ -106,14 +106,14 @@ void AppDelegate::initAds()
     );
     mgr->update();
 
-    Ads::AdManager::initWithIniFile("ads.ini");
-    Ads::AdManager::startService();
-    Ads::AdManager::enabled = userstate::showAds();
+    avalon::ads::Manager::initWithIniFile("ads.ini");
+    avalon::ads::Manager::startService();
+    avalon::ads::Manager::enabled = userstate::showAds();
 }
 
 void AppDelegate::initLocalization()
 {
-    auto loca = &Localization::getInstance();
+    auto loca = &avalon::i18n::Localization::getInstance();
     loca->addLanguage("en.ini");
     loca->setCurrentLanguage("en.ini");
     loca->setDefaultLanguage("en.ini");
