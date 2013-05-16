@@ -3,8 +3,8 @@
 #include <avalon/ui/Alert.h>
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
-#include "Globals.h"
-#include "userstate.h"
+#include "../Globals.h"
+#include "../userstate.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;

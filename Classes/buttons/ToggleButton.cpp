@@ -1,8 +1,8 @@
 #include "ToggleButton.h"
 
-#include "Globals.h"
-#include "ButtonFactory.h"
-#include "Colors.h"
+#include "../Globals.h"
+#include "../buttons/ButtonFactory.h"
+#include "../Colors.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;

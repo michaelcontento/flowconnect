@@ -1,9 +1,9 @@
 #include "LevelMenuScene.h"
 
-#include "ButtonFactory.h"
+#include "../buttons/ButtonFactory.h"
 #include "Colors.h"
-#include "GameButton.h"
-#include "PageLockButton.h"
+#include "../buttons/GameButton.h"
+#include "../buttons/PageLockButton.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;

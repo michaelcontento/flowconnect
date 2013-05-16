@@ -2,7 +2,6 @@
 #define __FlowConnect__userstate__
 
 #include "cocos2d.h"
-#include "LevelLoader.h"
 
 #define PREFIX_LEVEL_MODE "lvl"
 #define PREFIX_CATEGORY_STARS "cat"
@@ -29,6 +28,10 @@
 
 #define KEY_SHOW_ADS "show_ads"
 #define KEY_NUMBER_MODE "number_mode"
+
+class LoaderPage;
+class LoaderCategory;
+class LoaderLevel;
 
 namespace userstate
 {

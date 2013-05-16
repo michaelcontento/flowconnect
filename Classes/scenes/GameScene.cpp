@@ -4,7 +4,7 @@
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
 #include "SceneManager.h"
-#include "ButtonFactory.h"
+#include "../buttons/ButtonFactory.h"
 #include "../Colors.h"
 #include "Globals.h"
 #include "userstate.h"

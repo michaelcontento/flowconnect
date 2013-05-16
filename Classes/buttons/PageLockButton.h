@@ -3,7 +3,7 @@
 
 #include <avalon/ui/AlertDelegate.h>
 #include "cocos2d.h"
-#include "LevelLoader.h"
+#include "../LevelLoader.h"
 
 class PageLockButton : public cocos2d::CCSprite, public avalon::ui::AlertDelegate
 {

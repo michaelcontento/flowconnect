@@ -4,10 +4,11 @@
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
 #include <avalon/utils/url.h>
-#include "ButtonFactory.h"
+#include "../buttons/ButtonFactory.h"
+#include "../Alert.h"
 #include "userstate.h"
 #include "SceneManager.h"
-#include "EziSocialObject.h"
+//#include "EziSocialObject.h"
 
 using namespace cocos2d;
 using namespace avalon;
@@ -58,7 +59,7 @@ bool ShopScene::init()
     addChild(star);
 
     if (!userstate::fbLikeDone()) {
-        EziSocialObject::sharedObject()->setFacebookDelegate(this);
+        //EziSocialObject::sharedObject()->setFacebookDelegate(this);
     }
 
     return true;
@@ -167,7 +168,7 @@ void ShopScene::onTransactionEnd(payment::Manager *const manager)
 
 void ShopScene::btnFacebookLike()
 {
-    EziSocialObject::sharedObject()->openFacebookPage("212046412247647", true);
+    //EziSocialObject::sharedObject()->openFacebookPage("212046412247647", true);
 }
 
 void ShopScene::btnRateUs()

@@ -2,9 +2,9 @@
 #define __FlowConnect__GameButton__
 
 #include "cocos2d.h"
-#include "LevelLoader.h"
-#include "userstate.h"
-#include "PageLockButton.h"
+#include "../LevelLoader.h"
+#include "../userstate.h"
+#include "../buttons/PageLockButton.h"
 
 class GameButton : public cocos2d::CCMenuItem
 {

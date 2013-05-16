@@ -1,10 +1,10 @@
 #include "StarButton.h"
 
-#include "Colors.h"
-#include "Globals.h"
-#include "userstate.h"
-#include "SceneManager.h"
-#include "ShopScene.h"
+#include "../Colors.h"
+#include "../Globals.h"
+#include "../userstate.h"
+#include "../scenes/SceneManager.h"
+#include "../scenes/ShopScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;

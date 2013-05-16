@@ -12,10 +12,10 @@
 #include "HowToPlayScene.h"
 #include "SceneManager.h"
 #include "CategoryMenuScene.h"
-#include "ButtonFactory.h"
+#include "../buttons/ButtonFactory.h"
 #include "SimpleAudioEngine.h"
 #include "userstate.h"
-#include "ToggleButton.h"
+#include "../buttons/ToggleButton.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;

@@ -49,8 +49,10 @@ struct LoaderLevel : LoaderRecord {
 class LevelLoader
 {
 public:
-    LevelLoader(const char* filename);
+    LevelLoader();
     virtual ~LevelLoader();
+
+    void loadLevel(const char* filename);
 
     CC_SYNTHESIZE_READONLY(std::vector<LoaderCategory*>, categories, Categories);
 
@@ -65,7 +67,6 @@ private:
 
     std::string getFileContent(const char* filename);
     
-    void loadLevel(const char* filename);
     void addCategory(const std::string& data);
     void addPage(const std::string& data);
     void addLevel(const std::string& data);

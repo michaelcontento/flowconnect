@@ -1,7 +1,6 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
-#include <avalon/payment.h>
 #include "cocos2d.h"
 
 /**

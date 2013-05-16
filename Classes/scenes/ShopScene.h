@@ -3,13 +3,12 @@
 
 #include <avalon/payment.h>
 #include "cocos2d.h"
-#include "../Alert.h"
-#include "EziSocialDelegate.h"
+//#include "EziSocialDelegate.h"
 
 class ShopScene
 : public cocos2d::CCLayer
 , public avalon::payment::ManagerDelegate
-, public EziFacebookDelegate
+//, public EziFacebookDelegate
 {
 public:
     ShopScene();

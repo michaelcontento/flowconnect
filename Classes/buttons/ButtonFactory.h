@@ -3,8 +3,8 @@
 
 #include <avalon/payment/Product.h>
 #include "cocos2d.h"
-#include "LevelLoader.h"
-#include "StarButton.h"
+#include "../LevelLoader.h"
+#include "../buttons/StarButton.h"
 
 class ButtonFactory
 {

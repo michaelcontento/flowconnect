@@ -1,5 +1,7 @@
 #include "Globals.h"
 
-LevelLoader globalLevelLoader = LevelLoader("levels");
-const LoaderLevel* globalLevel = globalLevelLoader.getCategories().front()->pages.front()->levels.front();
+#include "buttons/StarButton.h"
+
+LevelLoader globalLevelLoader;
+const LoaderLevel* globalLevel = NULL;
 StarButton* globalLastStarButton = NULL;

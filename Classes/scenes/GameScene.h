@@ -2,8 +2,8 @@
 #define __FlowConnect__GameScene__
 
 #include "cocos2d.h"
-#include "Board.h"
-#include "BoardStats.h"
+#include "../gameobjects/Board.h"
+#include "../gameobjects/BoardStats.h"
 
 class GameScene : public cocos2d::CCLayer
 {

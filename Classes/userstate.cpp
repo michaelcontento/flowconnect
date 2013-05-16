@@ -7,9 +7,10 @@
 #include <avalon/ui/AlertDelegate.h>
 #include <ctime>
 #include "Globals.h"
-#include "StarButton.h"
-#include "SceneManager.h"
-#include "ShopScene.h"
+#include "buttons/StarButton.h"
+#include "scenes/SceneManager.h"
+#include "scenes/ShopScene.h"
+#include "LevelLoader.h"
 
 using namespace userstate;
 using namespace cocos2d;

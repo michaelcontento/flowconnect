@@ -9,7 +9,7 @@ using avalon::i18n::_;
 
 #pragma mark Initialisation
 
-LevelLoader::LevelLoader(const char* filename)
+LevelLoader::LevelLoader()
 : categories()
 , idCounter(0)
 , categoryLocalCounter(0)
@@ -19,7 +19,6 @@ LevelLoader::LevelLoader(const char* filename)
 , currentPage(NULL)
 , lastRecord(NULL)
 {
-    loadLevel(filename);
 }
 
 LevelLoader::~LevelLoader()

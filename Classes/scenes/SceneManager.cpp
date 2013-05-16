@@ -1,6 +1,6 @@
 #include "SceneManager.h"
 
-#include "ButtonFactory.h"
+#include "../buttons/ButtonFactory.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;

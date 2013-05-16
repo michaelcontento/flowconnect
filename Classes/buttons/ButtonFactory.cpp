@@ -1,9 +1,9 @@
 #include "ButtonFactory.h"
 
-#include "Globals.h"
-#include "SceneManager.h"
-#include "Colors.h"
-#include "StarButton.h"
+#include "../Globals.h"
+#include "../scenes/SceneManager.h"
+#include "../Colors.h"
+#include "../buttons/StarButton.h"
 
 #define BOARD_WIDTH 696
 #define TOP_MARGIN (1024 - 50)
@@ -151,7 +151,11 @@ CCMenu* ButtonFactory::createSceneBackButton()
 CCMenuItem* ButtonFactory::createEmptyButton()
 {
     auto result = CCMenuItem::create();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     result->setContentSize(CCSize(0, 0));
+#else
+    result->setContentSize(CCSize(0, 25));
+#endif
     return result;
 }
 

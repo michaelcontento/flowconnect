@@ -2,8 +2,8 @@
 
 #include "Token.h"
 #include "../Colors.h"
-#include "userstate.h"
-#include "GameScene.h"
+#include "../userstate.h"
+#include "../scenes/GameScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;

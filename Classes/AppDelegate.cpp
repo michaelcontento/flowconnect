@@ -1,13 +1,14 @@
 #include "AppDelegate.h"
 
+#include <avalon/payment.h>
 #include <avalon/ads/Manager.h>
 #include <avalon/GameCenter.h>
-#include "SceneManager.h"
-#include "MenuScene.h"
+#include <avalon/i18n/Localization.h>
+#include "scenes/SceneManager.h"
+#include "scenes/MenuScene.h"
 #include "SimpleAudioEngine.h"
 #include "Globals.h"
 #include "userstate.h"
-#include "Localization.h"
 #include "AssetsManager.h"
 
 using namespace cocos2d;
@@ -32,6 +33,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
     pDirector->setOpenGLView(pEGLView);
     pEGLView->setDesignResolutionSize(768, 1024, kResolutionExactFit);
+
     
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
@@ -61,6 +63,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     userstate::refreshFreeHints();
     SceneManager::getInstance().gotoScene(MenuScene::scene());
+
+    globalLevelLoader.loadLevel("levels");
+    globalLevel = globalLevelLoader.getCategories().front()->pages.front()->levels.front();
 
     return true;
 }

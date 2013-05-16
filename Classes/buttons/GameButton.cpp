@@ -1,10 +1,10 @@
 #include "GameButton.h"
 
-#include "Globals.h"
-#include "userstate.h"
-#include "HowToPlayScene.h"
-#include "SceneManager.h"
-#include "GameScene.h"
+#include "../Globals.h"
+#include "../userstate.h"
+#include "../scenes/HowToPlayScene.h"
+#include "../scenes/SceneManager.h"
+#include "../scenes/GameScene.h"
 #include "SimpleAudioEngine.h"
 
 #define ZORDER_STAR -1

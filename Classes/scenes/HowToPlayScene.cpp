@@ -2,11 +2,11 @@
 
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
-#include "Board.h"
+#include "../gameobjects/Board.h"
 #include "Globals.h"
-#include "GameScene.h"
-#include "ButtonFactory.h"
-#include "SceneManager.h"
+#include "../scenes/GameScene.h"
+#include "../buttons/ButtonFactory.h"
+#include "../scenes/SceneManager.h"
 #include "SimpleAudioEngine.h"
 #include "userstate.h"
 
