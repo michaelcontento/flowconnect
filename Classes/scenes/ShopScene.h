@@ -4,17 +4,12 @@
 #include <avalon/payment.h>
 #include "cocos2d.h"
 #include "../Alert.h"
-
-#ifdef WITH_EZISOCIAL
 #include "EziSocialDelegate.h"
-#endif
 
 class ShopScene
 : public cocos2d::CCLayer
 , public avalon::payment::ManagerDelegate
-#ifdef WITH_EZISOCIAL
 , public EziFacebookDelegate
-#endif
 {
 public:
     ShopScene();

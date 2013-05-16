@@ -147,6 +147,7 @@
 		C804283B173CE48600207497 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C804283A173CE48600207497 /* libcurl.a */; };
 		C804283D173D053700207497 /* star-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C804283C173D053700207497 /* star-fx.plist */; };
 		C813E7921731ADDA00F1889A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C813E7911731ADDA00F1889A /* GameKit.framework */; };
+		C82D1C57174470D600BFE966 /* icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C89D955C174147A400903AF8 /* icon-57x57.png */; };
 		C830BC7D17414FF10096C4D8 /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C830BC6117414FF10096C4D8 /* Manager.cpp */; };
 		C830BC7E17414FF10096C4D8 /* Chartboost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C830BC6517414FF10096C4D8 /* Chartboost.cpp */; };
 		C830BC7F17414FF10096C4D8 /* Revmob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C830BC6717414FF10096C4D8 /* Revmob.cpp */; };
@@ -216,7 +217,6 @@
 		C89D95591741479300903AF8 /* HowToPlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C89D95531741479300903AF8 /* HowToPlayScene.cpp */; };
 		C89D955A1741479300903AF8 /* LevelMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C89D95551741479300903AF8 /* LevelMenuScene.cpp */; };
 		C89D955B1741479300903AF8 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C89D95571741479300903AF8 /* SceneManager.cpp */; };
-		C89D955D174147A400903AF8 /* icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C89D955C174147A400903AF8 /* icon-57x57.png */; };
 		C89D955F174147A700903AF8 /* icon-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = C89D955E174147A700903AF8 /* icon-114x114.png */; };
 		C89D9561174147AF00903AF8 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C89D9560174147AF00903AF8 /* Default-Portrait~ipad.png */; };
 		C89D9563174147B200903AF8 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C89D9562174147B200903AF8 /* Default-Portrait@2x~ipad.png */; };
@@ -1909,7 +1909,6 @@
 				C84C5A40173BF50600DF3912 /* de.ini in Resources */,
 				C804283D173D053700207497 /* star-fx.plist in Resources */,
 				C8897C2A173D1F9400CF0FE7 /* money.mp3 in Resources */,
-				C89D955D174147A400903AF8 /* icon-57x57.png in Resources */,
 				C89D955F174147A700903AF8 /* icon-114x114.png in Resources */,
 				C89D9561174147AF00903AF8 /* Default-Portrait~ipad.png in Resources */,
 				C89D9563174147B200903AF8 /* Default-Portrait@2x~ipad.png in Resources */,
@@ -1918,6 +1917,7 @@
 				C89D956A174147F900903AF8 /* Default.png in Resources */,
 				C89D956C174147FB00903AF8 /* Default@2x.png in Resources */,
 				C89D956E174147FD00903AF8 /* Default-568h@2x.png in Resources */,
+				C82D1C57174470D600BFE966 /* icon-57x57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2161,8 +2161,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Contento";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Contento";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Contento (98HM4RQW3X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Contento (98HM4RQW3X)";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2210,8 +2210,8 @@
 				);
 				OTHER_CFLAGS = "-O2";
 				PRODUCT_NAME = "Space Dots";
-				PROVISIONING_PROFILE = "3183EE21-B2D3-4E26-B0EE-B2AF4722E885";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3183EE21-B2D3-4E26-B0EE-B2AF4722E885";
+				PROVISIONING_PROFILE = "972260C7-56F2-4F2D-B593-7606FB95A2DD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "972260C7-56F2-4F2D-B593-7606FB95A2DD";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -2227,8 +2227,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Contento";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Contento";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Contento (98HM4RQW3X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Contento (98HM4RQW3X)";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2273,8 +2273,8 @@
 					"\"$(SRCROOT)/../../../../avalon/vendors/Chartboost-x/Chartboost-x/ios\"",
 				);
 				PRODUCT_NAME = "Space Dots";
-				PROVISIONING_PROFILE = "3183EE21-B2D3-4E26-B0EE-B2AF4722E885";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3183EE21-B2D3-4E26-B0EE-B2AF4722E885";
+				PROVISIONING_PROFILE = "972260C7-56F2-4F2D-B593-7606FB95A2DD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "972260C7-56F2-4F2D-B593-7606FB95A2DD";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

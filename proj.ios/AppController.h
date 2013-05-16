@@ -8,7 +8,6 @@
 
 #define WITH_LOCALYTICS 1
 #define WITH_CRASHLYTICS 1
-#define WITH_EZISOCIAL 1
 
 #import <UIKit/UIKit.h>
 

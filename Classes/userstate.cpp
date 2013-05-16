@@ -513,8 +513,14 @@ void userstate::fbLike()
 
 bool userstate::rateUsDone()
 {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    // it's not allowed to base features on this flag :(! see point 3.10 in
+    //   https://developer.apple.com/appstore/resources/approval/guidelines.html
+    return true;
+#else
     auto settings = CCUserDefault::sharedUserDefault();
     return settings->getBoolForKey("rate_us");
+#endif
 }
 
 void userstate::rateUs()
