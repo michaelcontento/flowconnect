@@ -1,11 +1,11 @@
 #ifndef __FlowConnect__PageLockButton__
 #define __FlowConnect__PageLockButton__
 
+#include <avalon/ui/AlertDelegate.h>
 #include "cocos2d.h"
 #include "LevelLoader.h"
-#include "AlertView.h"
 
-class PageLockButton : public cocos2d::CCSprite, public AlertViewDelegate
+class PageLockButton : public cocos2d::CCSprite, public avalon::ui::AlertDelegate
 {
 public:
     PageLockButton();
@@ -15,7 +15,7 @@ public:
     bool init(const LoaderPage* page);
 
     bool onClick();
-    virtual void alertViewClickedButtonAtIndex(int buttonIndex);
+    virtual void onAlertButtonClick(const unsigned int index, const std::string title) override;
 
 private:
     const LoaderPage* page;

@@ -1,11 +1,11 @@
 #ifndef __FlowConnect__SettingsScene__
 #define __FlowConnect__SettingsScene__
 
+#include <avalon/ui/AlertDelegate.h>
 #include "cocos2d.h"
 #include "LevelLoader.h"
-#include "AlertView.h"
 
-class SettingsScene : public cocos2d::CCLayer, public AlertViewDelegate
+class SettingsScene : public cocos2d::CCLayer, public avalon::ui::AlertDelegate
 {
 public:
     SettingsScene();
@@ -16,7 +16,7 @@ public:
     virtual bool init() override;
 
     virtual void onEnter() override;
-    virtual void alertViewClickedButtonAtIndex(int buttonIndex) override;
+    virtual void onAlertButtonClick(const unsigned int index, const std::string title) override;
 
     void btnReset();
     void btnRemoveAds();

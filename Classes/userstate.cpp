@@ -3,10 +3,11 @@
 #include <avalon/GameCenter.h>
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
+#include <avalon/ui/Alert.h>
+#include <avalon/ui/AlertDelegate.h>
 #include <ctime>
 #include "Globals.h"
 #include "StarButton.h"
-#include "AlertView.h"
 #include "SceneManager.h"
 #include "ShopScene.h"
 
@@ -123,12 +124,12 @@ void postAchievement(const char* mode, const LoaderCategory* category, const int
     }
 }
 
-class AlertDelegateNotEnoughStars : public AlertViewDelegate
+class AlertDelegateNotEnoughStars : public avalon::ui::AlertDelegate
 {
 public:
-    virtual void alertViewClickedButtonAtIndex(int buttonIndex)
+    virtual void onAlertButtonClick(const unsigned int index, const std::string title) override
     {
-        if (buttonIndex == 0) {
+        if (index == 0) {
             return;
         }
         SceneManager::getInstance().gotoScene(ShopScene::scene());
@@ -256,13 +257,12 @@ bool userstate::addStarsToUser(const unsigned int amount)
 
     int newAmount = getStarsForUser() + amount;
     if (newAmount < 0) {
-        AlertView::createAlert(
-            _("alert.notenoughstars", "headline").get().c_str(),
-            _("alert.notenoughstars", "body").assign("amount", newAmount * -1).get().c_str(),
-            _("alert.notenoughstars", "btn.cancel").get().c_str()
-        );
-        AlertView::addAlertButton(_("alert.notenoughstars", "btn.ok").get().c_str());
-        AlertView::showAlert(alertDelegateNotEnoughStars);
+        avalon::ui::Alert alert(alertDelegateNotEnoughStars);
+        alert.setTitle(_("alert.notenoughstars", "headline").get().c_str());
+        alert.setMessage(_("alert.notenoughstars", "body").assign("amount", newAmount * -1).get().c_str());
+        alert.addButton(0, _("alert.notenoughstars", "btn.cancel").get().c_str());
+        alert.addButton(1, _("alert.notenoughstars", "btn.ok").get().c_str());
+        alert.show();
         return false;
     }
 

@@ -6,6 +6,7 @@
 #include <avalon/ads/provider/Chartboost.h>
 #include <avalon/GameCenter.h>
 #include <avalon/utils/url.h>
+#include <avalon/ui/Alert.h>
 #include "Globals.h"
 #include "Colors.h"
 #include "HowToPlayScene.h"
@@ -118,9 +119,9 @@ bool SettingsScene::init()
     return true;
 }
 
-void SettingsScene::alertViewClickedButtonAtIndex(int buttonIndex)
+void SettingsScene::onAlertButtonClick(const unsigned int index, const std::string title)
 {
-    if (buttonIndex == 0) {
+    if (index == 0) {
         return;
     }
 
@@ -178,13 +179,12 @@ void SettingsScene::btnRemoveAds()
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 
     mode = MODE_REMOVE_ADS;
-    AlertView::createAlert(
-        _("alert.removeads", "headline").get().c_str(),
-        _("alert.removeads", "body").assign("amount", PRICE_REMOVE_ADS).get().c_str(),
-        _("alert.removeads", "btn.cancel").get().c_str()
-    );
-    AlertView::addAlertButton(_("alert.removeads", "btn.ok").get().c_str());
-    AlertView::showAlert(this);
+    avalon::ui::Alert alert(this);
+    alert.setTitle(_("alert.removeads", "headline").get().c_str());
+    alert.setMessage(_("alert.removeads", "body").assign("amount", PRICE_REMOVE_ADS).get().c_str());
+    alert.addButton(0, _("alert.removeads", "btn.cancel").get().c_str());
+    alert.addButton(1, _("alert.removeads", "btn.ok").get().c_str());
+    alert.show();
 }
 
 void SettingsScene::btnReset()
@@ -192,13 +192,12 @@ void SettingsScene::btnReset()
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 
     mode = MODE_RESET_GAME;
-    AlertView::createAlert(
-        _("alert.resetgame", "headline").get().c_str(),
-        _("alert.resetgame", "body").get().c_str(),
-        _("alert.resetgame", "btn.cancel").get().c_str()
-    );
-    AlertView::addAlertButton(_("alert.resetgame", "btn.ok").get().c_str());
-    AlertView::showAlert(this);
+    avalon::ui::Alert alert(this);
+    alert.setTitle(_("alert.resetgame", "headline").get().c_str());
+    alert.setMessage(_("alert.resetgame", "body").get().c_str());
+    alert.addButton(0, _("alert.resetgame", "btn.cancel").get().c_str());
+    alert.addButton(1, _("alert.resetgame", "btn.ok").get().c_str());
+    alert.show();
 }
 
 void SettingsScene::btnHowToPlay()

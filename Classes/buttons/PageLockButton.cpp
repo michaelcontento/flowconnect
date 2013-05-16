@@ -1,5 +1,6 @@
 #include "PageLockButton.h"
 
+#include <avalon/ui/Alert.h>
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
 #include "Globals.h"
@@ -52,20 +53,19 @@ bool PageLockButton::onClick()
 
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 
-    AlertView::createAlert(
-        _("alert.unlockpage", "headline").get().c_str(),
-        _("alert.unlockpage", "body").assign("amount", PRICE_PAGE).get().c_str(),
-        _("alert.unlockpage", "btn.cancel").get().c_str()
-    );
-    AlertView::addAlertButton(_("alert.unlockpage", "btn.ok").get().c_str());
-    AlertView::showAlert(this);
+    avalon::ui::Alert alert(this);
+    alert.setTitle(_("alert.unlockpage", "headline").get().c_str());
+    alert.setMessage(_("alert.unlockpage", "body").assign("amount", PRICE_PAGE).get().c_str());
+    alert.addButton(0, _("alert.unlockpage", "btn.cancel").get().c_str());
+    alert.addButton(1, _("alert.unlockpage", "btn.ok").get().c_str());
+    alert.show();
 
     return true;
 }
 
-void PageLockButton::alertViewClickedButtonAtIndex(int buttonIndex)
+void PageLockButton::onAlertButtonClick(const unsigned int index, const std::string title)
 {
-    if (buttonIndex == 0) {
+    if (index == 0) {
         return;
     }
 
