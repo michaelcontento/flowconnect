@@ -254,6 +254,4 @@ void SettingsScene::btnChangeMode(CCObject* sender)
 {
     auto flag = static_cast<CCBool*>(sender);
     userstate::setIsNumberMode(flag->getValue());
-    
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 }
