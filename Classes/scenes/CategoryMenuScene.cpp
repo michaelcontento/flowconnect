@@ -57,7 +57,13 @@ bool CategoryMenuScene::init()
     addChild(ButtonFactory::createStar());
     addChild(ButtonFactory::createHeadline(_("menu.category", "headline").get().c_str()));
 
+    setKeypadEnabled(true);
     return true;
+}
+
+void CategoryMenuScene::keyBackClicked()
+{
+    SceneManager::getInstance().popSceneWithSound();
 }
 
 void CategoryMenuScene::fillMenu()

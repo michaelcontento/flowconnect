@@ -76,7 +76,13 @@ bool GameScene::init()
     
     initBoard();
 
+    setKeypadEnabled(true);
     return true;
+}
+
+void GameScene::keyBackClicked()
+{
+    SceneManager::getInstance().popSceneWithSound();
 }
 
 void GameScene::onBtnGoBack()

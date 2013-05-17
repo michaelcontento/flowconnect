@@ -12,6 +12,7 @@ public:
     static cocos2d::CCScene* scene();
     CREATE_FUNC(HowToPlayScene);
     virtual bool init() override;
+    virtual void keyBackClicked() override;
 
     void btnPlay();
 

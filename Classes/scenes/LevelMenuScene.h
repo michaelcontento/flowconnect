@@ -22,6 +22,7 @@ public:
 
     void btnGame(void* sender) const;
     
+    virtual void keyBackClicked() override;
     virtual void onEnter() override;
     virtual void onExit() override;
 

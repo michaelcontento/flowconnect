@@ -117,7 +117,13 @@ bool SettingsScene::init()
     addChild(ButtonFactory::createSceneBackButton());
     addChild(ButtonFactory::createStar());
 
+    setKeypadEnabled(true);
     return true;
+}
+
+void SettingsScene::keyBackClicked()
+{
+    SceneManager::getInstance().popSceneWithSound();
 }
 
 void SettingsScene::onAlertButtonClick(const unsigned int index, const std::string title)

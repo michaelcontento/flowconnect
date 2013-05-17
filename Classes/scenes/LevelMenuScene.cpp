@@ -2,6 +2,7 @@
 
 #include "../buttons/ButtonFactory.h"
 #include "Colors.h"
+#include "../scenes/SceneManager.h"
 #include "../buttons/GameButton.h"
 #include "../buttons/PageLockButton.h"
 
@@ -102,7 +103,13 @@ bool LevelMenuScene::init()
     addChild(ButtonFactory::createSceneBackButton());
     addChild(ButtonFactory::createStar());
 
+    setKeypadEnabled(true);
     return true;
+}
+
+void LevelMenuScene::keyBackClicked()
+{
+    SceneManager::getInstance().popSceneWithSound();
 }
 
 CCNode* LevelMenuScene::createPageIndicatorContainer()

@@ -60,8 +60,15 @@ bool ShopScene::init()
     star->enabled = false;
     addChild(star);
 
+    setKeypadEnabled(true);
     return true;
 }
+
+void ShopScene::keyBackClicked()
+{
+    SceneManager::getInstance().popSceneWithSound();
+}
+
 
 void ShopScene::createMenu(payment::Manager* manager)
 {

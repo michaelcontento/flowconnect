@@ -94,7 +94,13 @@ bool HowToPlayScene::init()
     star->enabled = false;
     addChild(star);
 
+    setKeypadEnabled(true);
     return true;
+}
+
+void HowToPlayScene::keyBackClicked()
+{
+    SceneManager::getInstance().popSceneWithSound();
 }
 
 void HowToPlayScene::btnPlay()

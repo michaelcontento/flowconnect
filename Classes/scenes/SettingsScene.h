@@ -25,6 +25,7 @@ public:
     void btnChangeMode(cocos2d::CCObject* sender);
     void btnMusicToggle(cocos2d::CCObject* sender);
     void btnSoundToggle(cocos2d::CCObject* sender);
+    virtual void keyBackClicked() override;
 
 private:
     static const unsigned int MENU_PADDING = 25;

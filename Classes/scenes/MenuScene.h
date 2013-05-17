@@ -19,6 +19,7 @@ public:
     void btnAchievements();
     void btnShop();
     void btnSettings();
+    virtual void keyBackClicked() override;
 
 private:
     static const unsigned int MENU_PADDING = 30;

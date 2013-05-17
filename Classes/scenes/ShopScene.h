@@ -20,6 +20,7 @@ public:
     void btnRateUs();
 
     void alertTimeout(CCObject* alert);
+    virtual void keyBackClicked() override;
 
     /* Payment Receiver Interface */
     void onServiceStarted(avalon::payment::Manager* const manager);
