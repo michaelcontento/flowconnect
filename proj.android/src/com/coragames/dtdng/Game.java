@@ -30,7 +30,7 @@ import com.wenbin.ChartboostX.*;
 
 import android.os.Bundle;
 
-public class FlowConnect extends Cocos2dxActivity{
+public class Game extends Cocos2dxActivity{
 	
     protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);	
@@ -39,7 +39,7 @@ public class FlowConnect extends Cocos2dxActivity{
 
     public Cocos2dxGLSurfaceView onCreateView() {
     	Cocos2dxGLSurfaceView glSurfaceView = new Cocos2dxGLSurfaceView(this);
-    	// FlowConnect should create stencil buffer
+    	// Game should create stencil buffer
     	glSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
     	
     	return glSurfaceView;

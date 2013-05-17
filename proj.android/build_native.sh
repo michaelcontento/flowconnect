@@ -1,4 +1,4 @@
-APPNAME="FlowConnect"
+APPNAME="Space Dots"
 
 # options
 

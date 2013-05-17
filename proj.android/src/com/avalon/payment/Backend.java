@@ -3,10 +3,11 @@ package com.avalon.payment;
 import java.util.HashSet;
 import com.avalon.payment.PurchasingObserver;
 
-abstract class Backend
+public class Backend
 {
     private static PurchasingObserver mPurchaseObserver = null;
     private static HashSet<String> pendingItemData = new HashSet<String>();
+    private static int itemDataReturned = 0;
 
     public static boolean isInitialized()
     {
@@ -31,7 +32,7 @@ abstract class Backend
 
     public static boolean isPurchaseReady()
     {
-        return isInitialized();
+        return isInitialized() && itemDataReturned > 0;
     }
 
     public static void addItemDataRequest(String productId)
@@ -43,6 +44,12 @@ abstract class Backend
     {
         mPurchaseObserver.startItemDataRequest(pendingItemData);
         pendingItemData.clear();
+    }
+
+    public static void delegateOnItemData(String productId, String name, String desc, String priceStr, float price)
+    {
+        ++itemDataReturned;
+        onItemData(productId, name, desc, priceStr, price);
     }
 
     public static native void delegateOnServiceStarted();

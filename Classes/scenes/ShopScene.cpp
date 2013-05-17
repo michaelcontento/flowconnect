@@ -4,11 +4,12 @@
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
 #include <avalon/utils/url.h>
+#include <avalon/utils/platform.h>
 #include "../buttons/ButtonFactory.h"
 #include "../Alert.h"
 #include "userstate.h"
 #include "SceneManager.h"
-//#include "EziSocialObject.h"
+#include "EziSocialObject.h"
 
 using namespace cocos2d;
 using namespace avalon;
@@ -26,6 +27,8 @@ ShopScene::ShopScene()
 
 ShopScene::~ShopScene()
 {
+    auto manager = payment::Loader::globalManager;
+    manager->delegate = NULL;
 }
 
 CCScene* ShopScene::scene()
@@ -156,24 +159,33 @@ void ShopScene::onPurchaseFail(payment::Manager* const manager)
 
 void ShopScene::onTransactionStart(payment::Manager *const manager)
 {
+    cocos2d::CCLog("##### onTransactionStart");
     retain();
     showSpinner(true);
 }
 
 void ShopScene::onTransactionEnd(payment::Manager *const manager)
 {
+    cocos2d::CCLog("##### onTransactionEnd");
     showSpinner(false);
     release();
 }
 
 void ShopScene::btnFacebookLike()
 {
-    //EziSocialObject::sharedObject()->openFacebookPage("212046412247647", true);
+    EziSocialObject::sharedObject()->openFacebookPage("212046412247647", true);
 }
 
 void ShopScene::btnRateUs()
 {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     avalon::utils::url::open("itms-apps://itunes.apple.com/app/id/643074518");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    if (avalon::utils::platform::getFlavor().compare("amazon") == 0) {
+        avalon::utils::url::open("amzn://apps/android?p=com.coragames.dtdng");
+    }
+#endif
+
     userstate::rateUs();
     CCMessageBox(
         _("dialog.rateusthx", "body").assign("amount", FREE_STARS).get().c_str(),

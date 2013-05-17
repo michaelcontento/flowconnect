@@ -6,6 +6,7 @@
 #include <avalon/ads/provider/Chartboost.h>
 #include <avalon/GameCenter.h>
 #include <avalon/utils/url.h>
+#include <avalon/utils/platform.h>
 #include <avalon/ui/Alert.h>
 #include "Globals.h"
 #include "Colors.h"
@@ -163,6 +164,7 @@ void SettingsScene::btnMoreGames()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     for (auto provider : avalon::ads::Manager::adProviders) {
         auto cb = static_cast<avalon::ads::provider::Chartboost*>(provider);
         if (cb) {
@@ -172,6 +174,11 @@ void SettingsScene::btnMoreGames()
     }
 
     avalon::utils::url::open("itms-apps://itunes.com/apps/coragames");
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    if (avalon::utils::platform::getFlavor().compare("amazon") == 0) {
+        avalon::utils::url::open("amzn://apps/android?s=CoRa%20Games");
+    }
+#endif
 }
 
 void SettingsScene::btnRemoveAds()

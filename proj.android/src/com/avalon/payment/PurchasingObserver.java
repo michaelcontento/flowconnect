@@ -61,7 +61,12 @@ public class PurchasingObserver extends BasePurchasingObserver
         requestIds.put(requestId, productId);
 
         if (++taskCount == 1) {
-            Backend.delegateOnTransactionStart();
+            Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
+            activity.runOnGLThread(new Runnable() {
+                public void run() {
+                    Backend.delegateOnTransactionStart();
+                }
+            });
         }
     }
 
@@ -75,7 +80,6 @@ public class PurchasingObserver extends BasePurchasingObserver
         if (productIds.isEmpty()) {
             sendStoresProductsAndStartService();
         } else {
-            Log.v(TAG, "initiateItemDataRequest");
             PurchasingManager.initiateItemDataRequest(productIds);
         }
     }
@@ -185,12 +189,23 @@ public class PurchasingObserver extends BasePurchasingObserver
      */
     public void sendStoresProductsAndStartService()
     {
-        Backend.delegateOnServiceStarted();
-        for (Map.Entry<String,?> entry : getSharedPreferencesForCurrentUser().getAll().entrySet()) {
+        Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
+        activity.runOnGLThread(new Runnable() {
+            public void run() {
+                Backend.delegateOnServiceStarted();
+            }
+        });
+        
+        for (final Map.Entry<String,?> entry : getSharedPreferencesForCurrentUser().getAll().entrySet()) {
             if (entry.getKey().equals(OFFSET)) {
                 continue;
             }
-            Backend.delegateOnPurchaseSucceed(entry.getKey());
+            
+            activity.runOnGLThread(new Runnable() {
+                public void run() {
+                    Backend.delegateOnPurchaseSucceed(entry.getKey());
+                }
+            });
         }
     }
 
@@ -220,7 +235,12 @@ public class PurchasingObserver extends BasePurchasingObserver
             super.onPostExecute(result);
 
             if (result) {
-                Backend.onInitialized();
+                Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
+                activity.runOnGLThread(new Runnable() {
+                    public void run() {
+                        Backend.onInitialized();
+                    }
+                });
 
                 // Call initiatePurchaseUpdatesRequest for the returned user
                 // to sync purchases that are not yet fulfilled.
@@ -237,40 +257,61 @@ public class PurchasingObserver extends BasePurchasingObserver
      * Takes the items and display them in the logs. You can use this
      * information to display an in game storefront for your IAP items.
      */
-    private class ItemDataAsyncTask extends AsyncTask<ItemDataResponse, Void, Void> {
+    private class ItemDataAsyncTask extends AsyncTask<ItemDataResponse, Void, Boolean> {
         @Override
-        protected Void doInBackground(final ItemDataResponse... params) {
+        protected Boolean doInBackground(final ItemDataResponse... params) {
             final ItemDataResponse itemDataResponse = params[0];
+            Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
 
             switch (itemDataResponse.getItemDataRequestStatus()) {
                 case SUCCESSFUL_WITH_UNAVAILABLE_SKUS:
                     // Skus that you can not purchase will be here.
                     for (final String s : itemDataResponse.getUnavailableSkus()) {
                         Log.v(TAG, "onItemDataResponse: Unavailable SKU: " + s);
-                        Backend.onItemData(s, "", "", "", 0.0f);
+                        activity.runOnGLThread(new Runnable() {
+                            public void run() {
+                                Backend.delegateOnItemData(s, "", "", "", 0.0f);
+                            }
+                        });
                     }
+
+                    // no return here as we process the SUCESSFUL-branch too!
+                    // return true;
 
                 case SUCCESSFUL:
                     // Information you'll want to display about your IAP items is here
                     // In this example we'll simply log them.
                     final Map<String, Item> items = itemDataResponse.getItemData();
                     for (final String key : items.keySet()) {
-                        Item i = items.get(key);
-                        Backend.onItemData(key, i.getTitle(), i.getDescription(), i.getPrice(), 0.0f);
+                        final Item i = items.get(key);
                         Log.v(TAG, String.format(
                             "onItemDataResponse: Item\n  Title: %s\n  Type: %s\n  SKU: %s\n  Price: %s\n  Description: %s\n",
                             i.getTitle(), i.getItemType(), i.getSku(), i.getPrice(), i.getDescription()
                         ));
+                        activity.runOnGLThread(new Runnable() {
+                            public void run() {
+                                Backend.delegateOnItemData(key, i.getTitle(), i.getDescription(), i.getPrice(), 0.0f);
+                            }
+                        });
                     }
-                    break;
+                    return true;
 
                 case FAILED:
                     // On failed responses will fail gracefully.
-                    break;
+                    return false;
             }
 
-            sendStoresProductsAndStartService();
-            return null;
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success)
+        {
+            super.onPostExecute(success);
+            
+            if (success) {
+                sendStoresProductsAndStartService();
+            }
         }
     }
 
@@ -284,6 +325,7 @@ public class PurchasingObserver extends BasePurchasingObserver
         protected Boolean doInBackground(final PurchaseResponse... params)
         {
             final PurchaseResponse purchaseResponse = params[0];
+            Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
 
             // currently logged in user is different than what we have so update the state
             if (!purchaseResponse.getUserId().equals(userId)) {
@@ -297,14 +339,19 @@ public class PurchasingObserver extends BasePurchasingObserver
 
             final SharedPreferences settings = getSharedPreferencesForCurrentUser();
             final SharedPreferences.Editor editor = settings.edit();
-            String sku;
+            final String sku;
 
             switch (purchaseResponse.getPurchaseRequestStatus()) {
                 case SUCCESSFUL:
                     final Receipt receipt = purchaseResponse.getReceipt();
                     printReceipt(receipt);
 
-                    Backend.delegateOnPurchaseSucceed(receipt.getSku());
+                    activity.runOnGLThread(new Runnable() {
+                        public void run() {
+                            Backend.delegateOnPurchaseSucceed(receipt.getSku());
+                        }
+                    });
+
                     if (receipt.getItemType() == ItemType.ENTITLED) {
                         editor.putBoolean(receipt.getSku(), true);
                         editor.commit();
@@ -315,7 +362,12 @@ public class PurchasingObserver extends BasePurchasingObserver
                     sku = requestIds.get(purchaseResponse.getRequestId());
                     requestIds.remove(purchaseResponse.getRequestId());
 
-                    Backend.delegateOnPurchaseSucceed(sku);
+                    activity.runOnGLThread(new Runnable() {
+                        public void run() {
+                            Backend.delegateOnPurchaseSucceed(sku);
+                        }
+                    });
+                    
                     editor.putBoolean(sku, true);
                     editor.commit();
                     return true;
@@ -324,7 +376,12 @@ public class PurchasingObserver extends BasePurchasingObserver
                     sku = requestIds.get(purchaseResponse.getRequestId());
                     requestIds.remove(purchaseResponse.getRequestId());
 
-                    Backend.delegateOnPurchaseFail();
+                    activity.runOnGLThread(new Runnable() {
+                        public void run() {
+                            Backend.delegateOnPurchaseFail();
+                        }
+                    });
+                    
                     Log.v(TAG, "onPurchaseResponse: Failed SKU: " + sku);
                     return false;
 
@@ -332,7 +389,12 @@ public class PurchasingObserver extends BasePurchasingObserver
                     sku = requestIds.get(purchaseResponse.getRequestId());
                     requestIds.remove(purchaseResponse.getRequestId());
                     
-                    Backend.delegateOnPurchaseFail();
+                    activity.runOnGLThread(new Runnable() {
+                        public void run() {
+                            Backend.delegateOnPurchaseFail();
+                        }
+                    });
+                    
                     Log.v(TAG, "onPurchaseResponse: Invalid SKU: " + sku);
                     return false;
             }
@@ -345,7 +407,12 @@ public class PurchasingObserver extends BasePurchasingObserver
         {
             super.onPostExecute(success);
             if (--taskCount == 0) {
-                Backend.delegateOnTransactionEnd();
+                Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
+                activity.runOnGLThread(new Runnable() {
+                    public void run() {
+                        Backend.delegateOnTransactionEnd();
+                    }
+                });
             }
         }
     }
@@ -390,7 +457,13 @@ public class PurchasingObserver extends BasePurchasingObserver
                 printReceipt(receipt);
 
                 if (receipt.getItemType() == ItemType.ENTITLED) {
-                    Backend.delegateOnPurchaseSucceed(receipt.getSku());
+                    Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
+                    activity.runOnGLThread(new Runnable() {
+                        public void run() {
+                            Backend.delegateOnPurchaseSucceed(receipt.getSku());
+                        }
+                    });
+
                     editor.putBoolean(receipt.getSku(), true);
                     editor.commit();
                 }

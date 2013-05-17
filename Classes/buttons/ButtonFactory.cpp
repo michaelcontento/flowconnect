@@ -104,6 +104,7 @@ CCMenuItemSprite* ButtonFactory::createPaymentButton(const char* name, const cha
 {
     auto sprite = CCSprite::createWithSpriteFrameName("buttons/borders/normal.png");
     auto button = CCMenuItemSprite::create(sprite, sprite);
+    button->retain();
     button->setTarget(target, selector);
 
     auto nameLabel = CCLabelTTF::create(name, DEFAULT_FONT_NAME, 36);
@@ -126,7 +127,7 @@ CCMenuItemSprite* ButtonFactory::createPaymentButton(const char* name, const cha
         button->getContentSize().height / 2
     ));
     button->addChild(priceLabel);
-    
+
     return button;
 }
 

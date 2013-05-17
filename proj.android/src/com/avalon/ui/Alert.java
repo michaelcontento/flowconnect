@@ -2,8 +2,8 @@ package com.avalon.ui;
 
 import java.util.Map;
 import java.util.HashMap;
+import android.util.Log;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
@@ -25,14 +25,18 @@ class OnClick implements DialogInterface.OnClickListener
 
     public void onClick(DialogInterface dialog, int id)
     {
-        Alert.onClick(delegatePtr, index, label);
+        final Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
+        activity.runOnGLThread(new Runnable() {
+            public void run() {
+                Alert.onClick(delegatePtr, index, label);
+            }
+        });
     }
 }
 
-abstract class Alert
+class Alert
 {
-    @SuppressLint("UseSparseArrays")
-	private static HashMap<Integer, String> buttons = new HashMap<Integer, String>();
+    private static HashMap<Integer, String> buttons = new HashMap<Integer, String>();
 
     public static void reset()
     {
