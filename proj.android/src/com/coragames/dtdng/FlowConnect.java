@@ -26,12 +26,15 @@ package com.coragames.dtdng;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
+import com.wenbin.ChartboostX.*;
+
 import android.os.Bundle;
 
 public class FlowConnect extends Cocos2dxActivity{
 	
     protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);	
+		ChartboostXBridge.initChartboostXBridge(this);
 	}
 
     public Cocos2dxGLSurfaceView onCreateView() {
@@ -40,6 +43,13 @@ public class FlowConnect extends Cocos2dxActivity{
     	glSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
     	
     	return glSurfaceView;
+    }
+
+    @Override 
+    protected void onResume()
+    {
+        super.onResume();
+        ChartboostXBridge.initChartboostXBridge(this);
     }
 
     static {

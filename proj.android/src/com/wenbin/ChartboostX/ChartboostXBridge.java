@@ -36,10 +36,11 @@ import com.chartboost.sdk.*;
 public class ChartboostXBridge {
     private static final String TAG = "ChartboostX";
     private static WeakReference<Cocos2dxActivity> s_activity;
-    private static ChartBoost s_chartBoost;
+    private static Chartboost s_chartBoost;
 
     private static native boolean shouldRequestInterstitial(String location);
     private static native boolean shouldDisplayInterstitial(String location);
+    private static native boolean shouldRequestInterstitialsInFirstSession();
     private static native void didCacheInterstitial(String location);
     private static native void didFailToLoadInterstitial(String location);
     private static native void didDismissInterstitial(String location);
@@ -56,15 +57,19 @@ public class ChartboostXBridge {
     // the method must be called in main thread, before any other method
     public static void initChartboostXBridge(Cocos2dxActivity activity){
         ChartboostXBridge.s_activity = new WeakReference<Cocos2dxActivity>(activity);
-        ChartboostXBridge.s_chartBoost = ChartBoost.getSharedChartBoost(ChartboostXBridge.s_activity.get());
-        ChartboostXBridge.s_chartBoost.setDelegate(ChartboostXBridge.s_chartBoostDelegate);
+        ChartboostXBridge.s_chartBoost = Chartboost.sharedChartboost();
+        ChartboostXBridge.s_chartBoost.onCreate(
+            ChartboostXBridge.s_activity.get(),
+            "", "", // see setAppId() and setAppSignature()
+            ChartboostXBridge.s_chartBoostDelegate
+        );
     }
     
     public static void setAppId(String appId) {
         Log.v(TAG, "setAppId() is called... appId = " + appId);
         
         if (s_chartBoost != null) {
-            s_chartBoost.setAppId(appId);
+            s_chartBoost.setAppID(appId);
         } else {
             Log.w(TAG, "Abort! cannot get shared Chartboost!");
         }
@@ -86,7 +91,7 @@ public class ChartboostXBridge {
         if (s_chartBoost != null) {
             ChartboostXBridge.s_activity.get().runOnUiThread(new Runnable() {
                 public void run() {
-                    s_chartBoost.install();
+                    s_chartBoost.startSession();
                 }
             });
         } else {
@@ -218,58 +223,57 @@ public class ChartboostXBridge {
         }
     }
     
-    static private ChartBoostDelegate s_chartBoostDelegate = new ChartBoostDelegate() {
+    static private ChartboostDelegate s_chartBoostDelegate = new ChartboostDelegate() {
         /**
          * Interstital
          */
-        @Override
-        public boolean shouldRequestInterstitial()
+        public boolean shouldRequestInterstitial(String location)
         {
-            return ChartboostXBridge.shouldRequestInterstitial("");
+            return ChartboostXBridge.shouldRequestInterstitial(location);
         }
 
-        @Override
-        public boolean shouldDisplayInterstitial(View interstitialView)
+        public boolean shouldDisplayInterstitial(String location)
         {
-            return ChartboostXBridge.shouldDisplayInterstitial("");
+            return ChartboostXBridge.shouldDisplayInterstitial(location);
+        }
+
+        public boolean shouldRequestInterstitialsInFirstSession()
+        {
+            return ChartboostXBridge.shouldRequestInterstitialsInFirstSession();
+        }
+
+        public void didFailToLoadInterstitial(final String location)
+        {
+            ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
+                public void run() {
+                    ChartboostXBridge.didFailToLoadInterstitial(location);
+                }
+            });
+        }
+
+        public void didDismissInterstitial(final String location)
+        {
+            ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
+                public void run() {
+                    ChartboostXBridge.didDismissInterstitial(location);
+                }
+            });
         }
         
-        @Override
-        public void didFailToLoadInterstitial()
+        public void didCloseInterstitial(final String location)
         {
             ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
                 public void run() {
-                    ChartboostXBridge.didFailToLoadInterstitial("");
+                    ChartboostXBridge.didCloseInterstitial(location);
                 }
             });
         }
 
-        @Override
-        public void didDismissInterstitial(View interstitialView)
+        public void didClickInterstitial(final String location)
         {
             ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
                 public void run() {
-                    ChartboostXBridge.didDismissInterstitial("");
-                }
-            });
-        }
-        
-        @Override
-        public void didCloseInterstitial(View interstitialView)
-        {
-            ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
-                public void run() {
-                    ChartboostXBridge.didCloseInterstitial("");
-                }
-            });
-        }
-
-        @Override
-        public void didClickInterstitial(View interstitialView)
-        {
-            ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
-                public void run() {
-                    ChartboostXBridge.didClickInterstitial("");
+                    ChartboostXBridge.didClickInterstitial(location);
                 }
             });
         }
@@ -277,25 +281,21 @@ public class ChartboostXBridge {
         /**
          * More Apps
          */
-        @Override 
         public boolean shouldDisplayLoadingViewForMoreApps()
         {
             return ChartboostXBridge.shouldDisplayLoadingViewForMoreApps();
         }
         
-        @Override
-        public boolean shouldRequestMoreApps() {
-            
+        public boolean shouldRequestMoreApps()
+        {
             return ChartboostXBridge.shouldRequestMoreApps();
         }
         
-        @Override
-        public boolean shouldDisplayMoreApps(View interstitialView)
+        public boolean shouldDisplayMoreApps()
         {
             return ChartboostXBridge.shouldDisplayMoreApps();
         }
         
-        @Override
         public void didFailToLoadMoreApps()
         {
             ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
@@ -305,8 +305,7 @@ public class ChartboostXBridge {
             });
         }
 
-        @Override
-        public void didDismissMoreApps(View moreAppsView)
+        public void didDismissMoreApps()
         {
             ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
                 public void run() {
@@ -315,8 +314,7 @@ public class ChartboostXBridge {
             });
         }
         
-        @Override
-        public void didCloseMoreApps(View interstitialView)
+        public void didCloseMoreApps()
         {
             ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
                 public void run() {
@@ -325,14 +323,21 @@ public class ChartboostXBridge {
             });
         }
 
-        @Override
-        public void didClickMoreApps(View moreAppsView)
+        public void didClickMoreApps()
         {
             ChartboostXBridge.s_activity.get().runOnGLThread(new Runnable() {
                 public void run() {
                     ChartboostXBridge.didClickMoreApps();
                 }
             });
-        }       
+        }
+
+        /**
+         * Not forwarded yet
+         */
+        public void didShowMoreApps() {}
+        public void didShowInterstitial(String location) {}
+        public void didCacheMoreApps() {}
+        public void didCacheInterstitial(String location) {}
     };
 }
