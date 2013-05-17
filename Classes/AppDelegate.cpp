@@ -105,11 +105,11 @@ void AppDelegate::initPayment()
 
 void AppDelegate::initAds()
 {
-    /*auto mgr = new cocos2d::extension::AssetsManager(
+    auto mgr = new cocos2d::extension::AssetsManager(
         "http://appdata.coragames.com/dtdng/package.zip",
         "http://appdata.coragames.com/dtdng/version"
     );
-    mgr->update();*/
+    mgr->update();
 
     avalon::ads::Manager::initWithIniFile("ads.ini");
     avalon::ads::Manager::startService();

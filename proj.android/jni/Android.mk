@@ -9,13 +9,9 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 LOCAL_SRC_FILES := \
     hellocpp/main.cpp \
     $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/../../Classes/*.cpp)) \
-    $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/../../Classes/*/*.cpp)) \
-    $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/../../Vendors/EziSocial/Common/*.cpp)) \
-    $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/../../Vendors/EziSocial/Android/*.cpp))
+    $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/../../Classes/*/*.cpp))
 
-LOCAL_C_INCLUDES := \
-    $(LOCAL_PATH)/../../Classes \
-    $(LOCAL_PATH)/../../Vendors/EziSocial/Common
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

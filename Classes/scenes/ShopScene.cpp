@@ -9,7 +9,6 @@
 #include "../Alert.h"
 #include "userstate.h"
 #include "SceneManager.h"
-#include "EziSocialObject.h"
 
 using namespace cocos2d;
 using namespace avalon;
@@ -60,10 +59,6 @@ bool ShopScene::init()
     auto star = ButtonFactory::createStar();
     star->enabled = false;
     addChild(star);
-
-    if (!userstate::fbLikeDone()) {
-        //EziSocialObject::sharedObject()->setFacebookDelegate(this);
-    }
 
     return true;
 }
@@ -173,7 +168,16 @@ void ShopScene::onTransactionEnd(payment::Manager *const manager)
 
 void ShopScene::btnFacebookLike()
 {
-    EziSocialObject::sharedObject()->openFacebookPage("212046412247647", true);
+    avalon::utils::url::open("https://www.facebook.com/coragames");
+
+    userstate::fbLike();
+    CCMessageBox(
+        _("dialog.fblikethx", "body").assign("amount", FREE_STARS).get().c_str(),
+        _("dialog.fblikethx", "headline").get().c_str()
+    );
+
+    menu->removeChildByTag(tagFbLike);
+    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 }
 
 void ShopScene::btnRateUs()
@@ -194,48 +198,4 @@ void ShopScene::btnRateUs()
 
     menu->removeChildByTag(tagRateUs);
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
-}
-
-void ShopScene::fbSessionCallback(int responseCode)
-{
-}
-
-void ShopScene::fbUserDetailCallback(cocos2d::CCDictionary* data)
-{
-}
-
-void ShopScene::fbMessageCallback(int responseCode)
-{
-}
-
-void ShopScene::fbPageLikeCallback(int responseCode)
-{
-    userstate::fbLike();
-    CCMessageBox(
-        _("dialog.fblikethx", "body").assign("amount", FREE_STARS).get().c_str(),
-        _("dialog.fblikethx", "headline").get().c_str()
-    );
-
-    menu->removeChildByTag(tagFbLike);
-    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
-}
-
-void ShopScene::fbFriendsCallback(cocos2d::CCArray* friends)
-{
-}
-
-void ShopScene::fbHighScoresCallback(cocos2d::CCArray* highScores)
-{
-}
-
-void ShopScene::fbSendRequestCallback(int responseCode, cocos2d::CCArray* friendsGotRequests)
-{
-}
-
-void ShopScene::fbRecieveRequestCallback(int responseCode, const char* message, const char* senderName, cocos2d::CCDictionary* dataDictionary)
-{
-}
-
-void ShopScene::fbUserPhotoCallback(const char *userPhotoPath)
-{
 }

@@ -27,6 +27,7 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 import com.wenbin.ChartboostX.*;
+import com.chartboost.sdk.*;
 
 import android.os.Bundle;
 
@@ -55,4 +56,35 @@ public class Game extends Cocos2dxActivity{
     static {
         System.loadLibrary("cocos2dcpp");
     }     
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    
+        Chartboost.sharedChartboost().onStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Chartboost.sharedChartboost().onStop(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Chartboost.sharedChartboost().onDestroy(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // If an interstitial is on screen, close it. Otherwise continue as normal.
+        if (Chartboost.sharedChartboost().onBackPressed())
+            return;
+        else
+            super.onBackPressed();
+    }
 }

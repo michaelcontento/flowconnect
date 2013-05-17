@@ -12,7 +12,6 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #include "userstate.h"
-#import "EziSocialManager.h"
 
 #ifdef WITH_LOCALYTICS
 #import "LocalyticsSession.h"
@@ -107,22 +106,10 @@ static AppDelegate s_sharedApplication;
      */
     cocos2d::CCDirector::sharedDirector()->resume();
 
-    [[EziSocialManager sharedManager] handleApplicationDidBecomeActive];
-
     #ifdef WITH_LOCALYTICS
     [[LocalyticsSession shared] resume];
     [[LocalyticsSession shared] upload];
     #endif
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    if ([sourceApplication isEqualToString:@"com.apple.mobilesafari"] ||
-        [sourceApplication isEqualToString:@"com.facebook.Facebook"]) {
-        return [[EziSocialManager sharedManager] handleURL:url];
-    } else {
-        return NO;
-    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
