@@ -1,413 +1,173 @@
 package com.avalon.payment;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import java.util.List;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.HashMap;
-
-import com.amazon.inapp.purchasing.BasePurchasingObserver;
-import com.amazon.inapp.purchasing.GetUserIdResponse;
-import com.amazon.inapp.purchasing.GetUserIdResponse.GetUserIdRequestStatus;
-import com.amazon.inapp.purchasing.Offset;
-import com.amazon.inapp.purchasing.Item;
-import com.amazon.inapp.purchasing.Item.ItemType;
-import com.amazon.inapp.purchasing.ItemDataResponse;
-import com.amazon.inapp.purchasing.PurchaseResponse;
-import com.amazon.inapp.purchasing.PurchaseUpdatesResponse;
-import com.amazon.inapp.purchasing.PurchaseUpdatesResponse.PurchaseUpdatesRequestStatus;
-import com.amazon.inapp.purchasing.PurchasingManager;
-import com.amazon.inapp.purchasing.Receipt;
+import com.example.android.trivialdrivesample.util.IabHelper;
+import com.example.android.trivialdrivesample.util.IabResult;
+import com.example.android.trivialdrivesample.util.Inventory;
+import com.example.android.trivialdrivesample.util.Purchase;
+import com.example.android.trivialdrivesample.util.SkuDetails;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 import com.avalon.payment.Backend;
 
-/**
- * Purchasing Observer will be called on by the Purchasing Manager asynchronously.
- * Since the methods on the UI thread of the application, all fulfillment logic
- * is done via an AsyncTask. This way, any intensive processes will not hang
- * the UI thread and cause the application to become unresponsive.
- */
-public class PurchasingObserver extends BasePurchasingObserver
+public class PurchasingObserver
 {
-    private static final String OFFSET = "offset";
-    private static final String TAG = "avalon.payment.PurchasingObserver";
-    private String userId;
-    public Map<String, String> requestIds;
-    public Integer taskCount = 0;
+    static final String TAG = "avalon.payment.PurchasingObserver";
+    static final int RC_REQUEST = 10001;
+    Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
+    public static String base64EncodedPublicKey;
+    IabHelper mHelper;
+    private Integer taskCount = 0;
+    boolean checkTaskCountOnConsumeFinished = false;
 
-    /**
-     * Creates new instance of the PurchasingObserver class.
-     */
     public PurchasingObserver()
     {
-        super(Cocos2dxActivity.getContext());
-        PurchasingManager.registerObserver(this);
-        requestIds = new HashMap<String, String>();
-    }
-
-    /**
-     * Interface method for com.avalon.payment.Backend
-     *
-     * @param productId
-     */
-    public void purchase(String productId)
-    {
-        Log.v(TAG, "purchase started: SKU - " + productId);
-        final String requestId = PurchasingManager.initiatePurchaseRequest(productId);
-        requestIds.put(requestId, productId);
-
-        if (++taskCount == 1) {
-            Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
+        if (base64EncodedPublicKey.isEmpty()) {
             activity.runOnGLThread(new Runnable() {
                 public void run() {
-                    Backend.delegateOnTransactionStart();
+                    throw new RuntimeException("Required public key not set!");
                 }
             });
         }
-    }
 
-    /**
-     * Inteface method for com.avalon.payment.Backend
-     *
-     * @param productIds
-     */
-    public void startItemDataRequest(HashSet<String> productIds)
-    {
-        if (productIds.isEmpty()) {
-            sendStoresProductsAndStartService();
-        } else {
-            PurchasingManager.initiateItemDataRequest(productIds);
-        }
-    }
+        Log.v(TAG, "Creating IAB helper.");
+        mHelper = new IabHelper(activity, base64EncodedPublicKey);
+        mHelper.enableDebugLogging(true);
 
-    /**
-     * Invoked once the observer is registered with the Puchasing Manager if
-     * the boolean is false, the application is receiving responses from the
-     * SDK Tester. If the boolean is true, the application is live in production.
-     *
-     * @param isSandboxMode
-     *            Boolean value that shows if the app is live or not.
-     */
-    @Override
-    public void onSdkAvailable(final boolean isSandboxMode)
-    {
-        Log.v(TAG, "onSdkAvailable recieved: Response - " + isSandboxMode);
-        PurchasingManager.initiateGetUserIdRequest();
-    }
+        Log.v(TAG, "Starting setup.");
+        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+            public void onIabSetupFinished(IabResult result) {
+                Log.v(TAG, "Setup finished.");
 
-    /**
-     * Invoked once the call from initiateGetUserIdRequest is completed.
-     * On a successful response, a response object is passed which contains the
-     * request id, request status, and the userid generated for your application.
-     *
-     * @param getUserIdResponse
-     *            Response object containing the UserID
-     */
-    @Override
-    public void onGetUserIdResponse(final GetUserIdResponse getUserIdResponse)
-    {
-        Log.v(TAG, "onGetUserIdResponse recieved: Response - " + getUserIdResponse);
-        new GetUserIdAsyncTask().execute(getUserIdResponse);
-    }
-
-    /**
-     * Invoked once the call from initiateItemDataRequest is completed.
-     * On a successful response, a response object is passed which contains the request id, request status, and a set of
-     * item data for the requested skus. Items that have been suppressed or are unavailable will be returned in a
-     * set of unavailable skus.
-     *
-     * @param itemDataResponse
-     *            Response object containing a set of purchasable/non-purchasable items
-     */
-    @Override
-    public void onItemDataResponse(final ItemDataResponse itemDataResponse) {
-        Log.v(TAG, "onItemDataResponse recieved: Response - " + itemDataResponse);
-        new ItemDataAsyncTask().execute(itemDataResponse);
-    }
-
-    /**
-     * Is invoked once the call from initiatePurchaseRequest is completed.
-     * On a successful response, a response object is passed which contains the
-     * request id, request status, and the receipt of the purchase.
-     *
-     * @param purchaseResponse
-     *            Response object containing a receipt of a purchase
-     */
-    @Override
-    public void onPurchaseResponse(final PurchaseResponse purchaseResponse)
-    {
-        Log.v(TAG, "onPurchaseResponse recieved: Response - " + purchaseResponse);
-        new PurchaseAsyncTask().execute(purchaseResponse);
-    }
-
-    /**
-     * Is invoked once the call from initiatePurchaseUpdatesRequest is completed.
-     * On a successful response, a response object is passed which contains the
-     * request id, request status, a set of previously purchased receipts, a set
-     * of revoked skus, and the next offset if applicable. If a user downloads
-     * your application to another device, this call is used to sync up this
-     * device with all the user's purchases.
-     *
-     * @param purchaseUpdatesResponse
-     *            Response object containing the user's recent purchases.
-     */
-    @Override
-    public void onPurchaseUpdatesResponse(final PurchaseUpdatesResponse purchaseUpdatesResponse)
-    {
-        Log.v(TAG, "onPurchaseUpdatesResponse recieved: Response -" + purchaseUpdatesResponse);
-        new PurchaseUpdatesAsyncTask().execute(purchaseUpdatesResponse);
-    }
-
-    /*
-     * Helper method to print out relevant receipt information to the log.
-     */
-    private void printReceipt(final Receipt receipt)
-    {
-        Log.v(TAG, String.format(
-            "Receipt: ItemType: %s Sku: %s SubscriptionPeriod: %s",
-            receipt.getItemType(),
-            receipt.getSku(),
-            receipt.getSubscriptionPeriod()
-        ));
-    }
-
-    /*
-     * Helper method to access the users stores settings
-     */
-    public SharedPreferences getSharedPreferencesForCurrentUser()
-    {
-        return Cocos2dxActivity.getContext().getSharedPreferences(userId, Context.MODE_PRIVATE);
-    }
-
-    /*
-     * Helper method that sends all stored SKUs for the current user to the
-     * backend and - after that's done - flag the service as started.
-     */
-    public void sendStoresProductsAndStartService()
-    {
-        Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
-        activity.runOnGLThread(new Runnable() {
-            public void run() {
-                Backend.delegateOnServiceStarted();
-            }
-        });
-        
-        for (final Map.Entry<String,?> entry : getSharedPreferencesForCurrentUser().getAll().entrySet()) {
-            if (entry.getKey().equals(OFFSET)) {
-                continue;
-            }
-            
-            activity.runOnGLThread(new Runnable() {
-                public void run() {
-                    Backend.delegateOnPurchaseSucceed(entry.getKey());
+                if (!result.isSuccess()) {
+                    Log.e(TAG, "Problem setting up in-app billing: " + result);
+                    return;
                 }
-            });
-        }
-    }
 
-    /*
-     * Started when the Observer receives a GetUserIdResponse. The Shared
-     * Preferences file for the returned user id is accessed.
-     */
-    private class GetUserIdAsyncTask extends AsyncTask<GetUserIdResponse, Void, Boolean>
-    {
-        @Override
-        protected Boolean doInBackground(final GetUserIdResponse... params)
-        {
-            GetUserIdResponse getUserIdResponse = params[0];
-
-            if (getUserIdResponse.getUserIdRequestStatus() == GetUserIdRequestStatus.SUCCESSFUL) {
-                userId = getUserIdResponse.getUserId();
-                return true;
-            } else {
-                Log.v(TAG, "onGetUserIdResponse: Unable to get user ID.");
-                return false;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean result)
-        {
-            super.onPostExecute(result);
-
-            if (result) {
-                Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
                 activity.runOnGLThread(new Runnable() {
                     public void run() {
                         Backend.onInitialized();
                     }
                 });
-
-                // Call initiatePurchaseUpdatesRequest for the returned user
-                // to sync purchases that are not yet fulfilled.
-                final SharedPreferences settings = getSharedPreferencesForCurrentUser();
-                PurchasingManager.initiatePurchaseUpdatesRequest(Offset.fromString(
-                    settings.getString(OFFSET, Offset.BEGINNING.toString())
-                ));
             }
-        }
+        });
     }
 
-    /*
-     * Started when the observer receives an Item Data Response.
-     * Takes the items and display them in the logs. You can use this
-     * information to display an in game storefront for your IAP items.
-     */
-    private class ItemDataAsyncTask extends AsyncTask<ItemDataResponse, Void, Boolean> {
-        @Override
-        protected Boolean doInBackground(final ItemDataResponse... params) {
-            final ItemDataResponse itemDataResponse = params[0];
-            Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
-
-            switch (itemDataResponse.getItemDataRequestStatus()) {
-                case SUCCESSFUL_WITH_UNAVAILABLE_SKUS:
-                    // Skus that you can not purchase will be here.
-                    for (final String s : itemDataResponse.getUnavailableSkus()) {
-                        Log.v(TAG, "onItemDataResponse: Unavailable SKU: " + s);
-                        activity.runOnGLThread(new Runnable() {
-                            public void run() {
-                                Backend.delegateOnItemData(s, "", "", "", 0.0f);
-                            }
-                        });
-                    }
-
-                    // no return here as we process the SUCESSFUL-branch too!
-                    // return true;
-
-                case SUCCESSFUL:
-                    // Information you'll want to display about your IAP items is here
-                    // In this example we'll simply log them.
-                    final Map<String, Item> items = itemDataResponse.getItemData();
-                    for (final String key : items.keySet()) {
-                        final Item i = items.get(key);
-                        Log.v(TAG, String.format(
-                            "onItemDataResponse: Item\n  Title: %s\n  Type: %s\n  SKU: %s\n  Price: %s\n  Description: %s\n",
-                            i.getTitle(), i.getItemType(), i.getSku(), i.getPrice(), i.getDescription()
-                        ));
-                        activity.runOnGLThread(new Runnable() {
-                            public void run() {
-                                Backend.delegateOnItemData(key, i.getTitle(), i.getDescription(), i.getPrice(), 0.0f);
-                            }
-                        });
-                    }
-                    return true;
-
-                case FAILED:
-                    // On failed responses will fail gracefully.
-                    return false;
-            }
-
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success)
-        {
-            super.onPostExecute(success);
-            
-            if (success) {
-                sendStoresProductsAndStartService();
-            }
-        }
-    }
-
-    /*
-     * Started when the observer receives a Purchase Response
-     * Once the AsyncTask returns successfully, the UI is updated.
-     */
-    private class PurchaseAsyncTask extends AsyncTask<PurchaseResponse, Void, Boolean>
+    // We're being destroyed. It's important to dispose of the helper here!
+    protected void finalize()
     {
-        @Override
-        protected Boolean doInBackground(final PurchaseResponse... params)
-        {
-            final PurchaseResponse purchaseResponse = params[0];
-            Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
+        Log.v(TAG, "Destroying helper.");
+        if (mHelper != null) mHelper.dispose();
+        mHelper = null;
+    }
 
-            // currently logged in user is different than what we have so update the state
-            if (!purchaseResponse.getUserId().equals(userId)) {
-                userId = purchaseResponse.getUserId();
-                final SharedPreferences settings = getSharedPreferencesForCurrentUser();
-                PurchasingManager.initiatePurchaseUpdatesRequest(Offset.fromString(
-                    settings.getString(OFFSET, Offset.BEGINNING.toString())
-                ));
-                return false;
+    // Listener that's called when we finish querying the items we own
+    final IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener()
+    {
+        public void onQueryInventoryFinished(IabResult result, final Inventory inventory) {
+            Log.v(TAG, "Query inventory finished.");
+            if (result.isFailure()) {
+                Log.e(TAG, "Failed to query inventory: " + result);
+                return;
             }
 
-            final SharedPreferences settings = getSharedPreferencesForCurrentUser();
-            final SharedPreferences.Editor editor = settings.edit();
-            final String sku;
+            if (inventory.getAllDetailsSkus().isEmpty()) {
+                Log.e(TAG, "Not a single detail returned. Items defined in the Google Play backend?");
+                return;
+            }
 
-            switch (purchaseResponse.getPurchaseRequestStatus()) {
-                case SUCCESSFUL:
-                    final Receipt receipt = purchaseResponse.getReceipt();
-                    printReceipt(receipt);
+            for (String sku : inventory.getAllDetailsSkus()) {
+                final SkuDetails details = inventory.getSkuDetails(sku);
+                activity.runOnGLThread(new Runnable() {
+                    public void run() {
+                        String title = details.getTitle();
 
-                    activity.runOnGLThread(new Runnable() {
+                        // the title contains the name of the app and that's
+                        // something we .. well .. don't want to be there.
+                        //
+                        //     "Iap Title (APP NAME)" ==> "Iap Title"
+                        int substrPos = title.lastIndexOf("(") - 1;
+                        if (substrPos > 0) {
+                            title = title.substring(0, substrPos);
+                        }
+
+                        Backend.delegateOnItemData(
+                            details.getSku(),
+                            title,
+                            details.getDescription(),
+                            details.getPrice(),
+                            0.0f
+                        );
+                    }
+                });
+            }
+
+            activity.runOnGLThread(new Runnable() {
+                public void run() {
+                    Backend.delegateOnServiceStarted();
+                }
+            });
+
+            for (final String sku : inventory.getAllOwnedSkus()) {
+                if (true) {
+                    Log.v(TAG, "Consumable item: " + sku + ". Starting consumption.");
+                    activity.runOnUiThread(new Runnable() {
                         public void run() {
-                            Backend.delegateOnPurchaseSucceed(receipt.getSku());
+                            mHelper.consumeAsync(inventory.getPurchase(sku), mConsumeFinishedListener);
                         }
                     });
-
-                    if (receipt.getItemType() == ItemType.ENTITLED) {
-                        editor.putBoolean(receipt.getSku(), true);
-                        editor.commit();
-                    }
-                    return true;
-
-                case ALREADY_ENTITLED:
-                    sku = requestIds.get(purchaseResponse.getRequestId());
-                    requestIds.remove(purchaseResponse.getRequestId());
-
+                } else {
+                    Log.v(TAG, "Non-Consumable item " + sku + ". We're done.");
                     activity.runOnGLThread(new Runnable() {
                         public void run() {
                             Backend.delegateOnPurchaseSucceed(sku);
                         }
                     });
-                    
-                    editor.putBoolean(sku, true);
-                    editor.commit();
-                    return true;
-
-                case FAILED:
-                    sku = requestIds.get(purchaseResponse.getRequestId());
-                    requestIds.remove(purchaseResponse.getRequestId());
-
-                    activity.runOnGLThread(new Runnable() {
-                        public void run() {
-                            Backend.delegateOnPurchaseFail();
-                        }
-                    });
-                    
-                    Log.v(TAG, "onPurchaseResponse: Failed SKU: " + sku);
-                    return false;
-
-                case INVALID_SKU:
-                    sku = requestIds.get(purchaseResponse.getRequestId());
-                    requestIds.remove(purchaseResponse.getRequestId());
-                    
-                    activity.runOnGLThread(new Runnable() {
-                        public void run() {
-                            Backend.delegateOnPurchaseFail();
-                        }
-                    });
-                    
-                    Log.v(TAG, "onPurchaseResponse: Invalid SKU: " + sku);
-                    return false;
+                }
             }
 
-            return false;
+            checkTaskCountOnConsumeFinished = true;
         }
+    };
 
-        @Override
-        protected void onPostExecute(final Boolean success)
-        {
-            super.onPostExecute(success);
+    // Callback for when a purchase is finished
+    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener()
+    {
+        public void onIabPurchaseFinished(IabResult result, final Purchase purchase) {
+            Log.v(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
+
+            if (result.isFailure()) {
+                Log.e(TAG, "Error purchasing: " + result);
+                activity.runOnGLThread(new Runnable() {
+                    public void run() {
+                        Backend.delegateOnPurchaseFail();
+                    }
+                });
+            } else {
+                if (true) {
+                    Log.v(TAG, "Consumable item: " + purchase.getSku() + ". Starting consumption.");
+                    activity.runOnUiThread(new Runnable() {
+                        public void run() {
+                            mHelper.consumeAsync(purchase, mConsumeFinishedListener);
+                        }
+                    });
+                    return;
+                } else {
+                    Log.v(TAG, "Non-Consumable item " + purchase.getSku() + ". We're done.");
+                    activity.runOnGLThread(new Runnable() {
+                        public void run() {
+                            Backend.delegateOnPurchaseSucceed(purchase.getSku());
+                        }
+                    });
+                }
+            }
+
             if (--taskCount == 0) {
-                Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
                 activity.runOnGLThread(new Runnable() {
                     public void run() {
                         Backend.delegateOnTransactionEnd();
@@ -415,74 +175,68 @@ public class PurchasingObserver extends BasePurchasingObserver
                 });
             }
         }
+    };
+
+    // Called when consumption is complete
+    final IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener()
+    {
+        public void onConsumeFinished(final Purchase purchase, IabResult result) {
+            Log.v(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
+            if (!result.isSuccess()) {
+                Log.e(TAG, "Error while consuming " + purchase.getSku() + ".");
+                return;
+            }
+
+            Log.v(TAG, "Consumption of " + purchase.getSku() + " successful. Provisioning.");
+            activity.runOnGLThread(new Runnable() {
+                public void run() {
+                    Backend.delegateOnPurchaseSucceed(purchase.getSku());
+                }
+            });
+
+            if (checkTaskCountOnConsumeFinished && --taskCount == 0) {
+                activity.runOnGLThread(new Runnable() {
+                    public void run() {
+                        Backend.delegateOnTransactionEnd();
+                    }
+                });
+            }
+        }
+    };
+
+    /**
+     *
+     * PUBLIC API FOR com.avalon.payment.Backend
+     *
+     */
+
+    public void purchase(String sku)
+    {
+        if (++taskCount == 1) {
+            activity.runOnGLThread(new Runnable() {
+                public void run() {
+                    Backend.delegateOnTransactionStart();
+                }
+            });
+        }
+
+        Log.v(TAG, "Purchase started for: " + sku);
+        mHelper.launchPurchaseFlow(activity, sku, RC_REQUEST, mPurchaseFinishedListener);
     }
 
-    /*
-     * Started when the observer receives a Purchase Updates Response. Once the
-     * AsyncTask returns successfully, we'll update the UI.
-     */
-    private class PurchaseUpdatesAsyncTask extends AsyncTask<PurchaseUpdatesResponse, Void, Void>
+    public void startItemDataRequest(final List<String> moreSkus)
     {
-        @Override
-        protected Void doInBackground(final PurchaseUpdatesResponse... params)
-        {
-            final PurchaseUpdatesResponse purchaseUpdatesResponse = params[0];
-
-            // currently logged in user is different than what we have so update the state
-            if (!purchaseUpdatesResponse.getUserId().equals(userId)) {
-                return null;
+        Log.v(TAG, "Setup successful. Querying inventory.");
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                mHelper.queryInventoryAsync(true, moreSkus, mGotInventoryListener);
             }
+        });
+    }
 
-            final SharedPreferences prefs = getSharedPreferencesForCurrentUser();
-            final SharedPreferences.Editor editor = prefs.edit();
-
-            /*
-             * If the customer for some reason had items revoked, the skus for these items will be contained in the
-             * revoked skus set.
-             */
-            for (final String sku : purchaseUpdatesResponse.getRevokedSkus()) {
-                Log.v(TAG, "onPurchaseUpdatesResponse: Revoked SKU: " + sku);
-                editor.remove(sku);
-                editor.commit();
-            }
-
-            /*
-             * On failed responses the application will ignore the request.
-             */
-            if (purchaseUpdatesResponse.getPurchaseUpdatesRequestStatus() == PurchaseUpdatesRequestStatus.FAILED) {
-            	return null;
-            }
-
-            for (final Receipt receipt : purchaseUpdatesResponse.getReceipts()) {
-                printReceipt(receipt);
-
-                if (receipt.getItemType() == ItemType.ENTITLED) {
-                    Cocos2dxActivity activity = (Cocos2dxActivity) Cocos2dxActivity.getContext();
-                    activity.runOnGLThread(new Runnable() {
-                        public void run() {
-                            Backend.delegateOnPurchaseSucceed(receipt.getSku());
-                        }
-                    });
-
-                    editor.putBoolean(receipt.getSku(), true);
-                    editor.commit();
-                }
-            }
-            
-            /*
-             * Store the offset into shared preferences. If there has been more purchases since the
-             * last time our application updated, another initiatePurchaseUpdatesRequest is called with the new
-             * offset.
-             */
-            final Offset newOffset = purchaseUpdatesResponse.getOffset();
-            editor.putString(OFFSET, newOffset.toString());
-            editor.commit();
-            if (purchaseUpdatesResponse.isMore()) {
-                Log.v(TAG, "onPurchaseUpdatesResponse: Initiating Another Purchase Updates with offset: " + newOffset.toString());
-                PurchasingManager.initiatePurchaseUpdatesRequest(newOffset);
-            }
-
-            return null;
-        }
+    public boolean handleActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        Log.v(TAG, "handleActivityResult(" + requestCode + "," + resultCode + "," + data);
+        return mHelper.handleActivityResult(requestCode, resultCode, data);
     }
 }
