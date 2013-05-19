@@ -184,6 +184,9 @@ void SettingsScene::btnMoreGames()
     if (avalon::utils::platform::getFlavor().compare("amazon") == 0) {
         avalon::utils::url::open("amzn://apps/android?s=CoRa%20Games");
     }
+    if (avalon::utils::platform::getFlavor().compare("google") == 0) {
+        avalon::utils::url::open("market://search?q=pub:CoRa++Games");
+    }
 #endif
 }
 

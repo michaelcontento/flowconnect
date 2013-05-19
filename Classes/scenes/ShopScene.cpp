@@ -161,14 +161,12 @@ void ShopScene::onPurchaseFail(payment::Manager* const manager)
 
 void ShopScene::onTransactionStart(payment::Manager *const manager)
 {
-    cocos2d::CCLog("##### onTransactionStart");
     retain();
     showSpinner(true);
 }
 
 void ShopScene::onTransactionEnd(payment::Manager *const manager)
 {
-    cocos2d::CCLog("##### onTransactionEnd");
     showSpinner(false);
     release();
 }
@@ -194,6 +192,9 @@ void ShopScene::btnRateUs()
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     if (avalon::utils::platform::getFlavor().compare("amazon") == 0) {
         avalon::utils::url::open("amzn://apps/android?p=com.coragames.dtdng");
+    }
+    if (avalon::utils::platform::getFlavor().compare("google") == 0) {
+        avalon::utils::url::open("market://details?id=com.coragames.dtdng");
     }
 #endif
 
