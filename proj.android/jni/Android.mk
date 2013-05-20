@@ -25,7 +25,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += avalon_static
 LOCAL_CFLAGS += -std=c++11 -Doverride=
 
 AVALON_FEATURES := ads payment
-AVALON_FLAVOR := google
+AVALON_PLATFORM_FLAVOR := google
 
 include $(BUILD_SHARED_LIBRARY)
 
