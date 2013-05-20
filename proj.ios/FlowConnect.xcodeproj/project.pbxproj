@@ -146,6 +146,7 @@
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
 		C804283B173CE48600207497 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C804283A173CE48600207497 /* libcurl.a */; };
 		C804283D173D053700207497 /* star-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C804283C173D053700207497 /* star-fx.plist */; };
+		C809EC8A174AA91D00F4F3A6 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C809EC89174AA91D00F4F3A6 /* platform.cpp */; };
 		C813E7921731ADDA00F1889A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C813E7911731ADDA00F1889A /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C81C40EB17458CC8002E88B6 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C81C40E317458CC8002E88B6 /* background.mp3 */; };
 		C81C40EC17458CC8002E88B6 /* checkpoint-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C81C40E417458CC8002E88B6 /* checkpoint-1.mp3 */; };
@@ -167,7 +168,6 @@
 		C81C418E1746C9EF002E88B6 /* Backend.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C417F1746C9EF002E88B6 /* Backend.mm */; };
 		C81C418F1746C9EF002E88B6 /* BackendIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C41811746C9EF002E88B6 /* BackendIos.mm */; };
 		C81C41901746C9EF002E88B6 /* AlertNative.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C41831746C9EF002E88B6 /* AlertNative.mm */; };
-		C81C41911746C9EF002E88B6 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C81C41851746C9EF002E88B6 /* platform.cpp */; };
 		C81C41921746C9EF002E88B6 /* url.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C41861746C9EF002E88B6 /* url.mm */; };
 		C82D1C57174470D600BFE966 /* icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C89D955C174147A400903AF8 /* icon-57x57.png */; };
 		C82D1CC81744728F00BFE966 /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1C5E1744728F00BFE966 /* Manager.cpp */; };
@@ -553,6 +553,7 @@
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C804283A173CE48600207497 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
 		C804283C173D053700207497 /* star-fx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "star-fx.plist"; sourceTree = "<group>"; };
+		C809EC89174AA91D00F4F3A6 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		C813E7911731ADDA00F1889A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C81C40E317458CC8002E88B6 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		C81C40E417458CC8002E88B6 /* checkpoint-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "checkpoint-1.mp3"; sourceTree = "<group>"; };
@@ -579,7 +580,6 @@
 		C81C41801746C9EF002E88B6 /* BackendIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendIos.h; sourceTree = "<group>"; };
 		C81C41811746C9EF002E88B6 /* BackendIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BackendIos.mm; sourceTree = "<group>"; };
 		C81C41831746C9EF002E88B6 /* AlertNative.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertNative.mm; sourceTree = "<group>"; };
-		C81C41851746C9EF002E88B6 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		C81C41861746C9EF002E88B6 /* url.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = url.mm; sourceTree = "<group>"; };
 		C82D1C5B1744728F00BFE966 /* Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Banner.h; sourceTree = "<group>"; };
 		C82D1C5C1744728F00BFE966 /* Fullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fullscreen.h; sourceTree = "<group>"; };
@@ -1461,7 +1461,6 @@
 		C81C41841746C9EF002E88B6 /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				C81C41851746C9EF002E88B6 /* platform.cpp */,
 				C81C41861746C9EF002E88B6 /* url.mm */,
 			);
 			path = utils;
@@ -1571,6 +1570,7 @@
 			isa = PBXGroup;
 			children = (
 				C82D1CC41744728F00BFE966 /* numbers.h */,
+				C809EC89174AA91D00F4F3A6 /* platform.cpp */,
 				C82D1CC51744728F00BFE966 /* platform.h */,
 				C82D1CC61744728F00BFE966 /* Singleton.h */,
 				C82D1CC71744728F00BFE966 /* url.h */,
@@ -2076,8 +2076,8 @@
 				C81C418E1746C9EF002E88B6 /* Backend.mm in Sources */,
 				C81C418F1746C9EF002E88B6 /* BackendIos.mm in Sources */,
 				C81C41901746C9EF002E88B6 /* AlertNative.mm in Sources */,
-				C81C41911746C9EF002E88B6 /* platform.cpp in Sources */,
 				C81C41921746C9EF002E88B6 /* url.mm in Sources */,
+				C809EC8A174AA91D00F4F3A6 /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,7 +25,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += avalon_static
 LOCAL_CFLAGS += -std=c++11 -Doverride=
 
 AVALON_FEATURES := ads payment
-AVALON_FLAVOR := amazon
+AVALON_PLATFORM_FLAVOR := amazon
 
 include $(BUILD_SHARED_LIBRARY)
 
