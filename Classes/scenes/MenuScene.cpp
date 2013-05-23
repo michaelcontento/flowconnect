@@ -4,6 +4,7 @@
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
 #include <avalon/payment/Loader.h>
+#include <avalon/utils/platform.h>
 #include "SceneManager.h"
 #include "CategoryMenuScene.h"
 #include "ShopScene.h"
@@ -44,14 +45,14 @@ bool MenuScene::init()
     //menu->addChild(ButtonFactory::create("Time Attack", this, menu_selector(MenuScene::btnPLayTimeAttack)));
     menu->addChild(ButtonFactory::createEmptyButton());
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON
     menu->addChild(ButtonFactory::create(_("menu.main", "leaderboard").get().c_str(), this, menu_selector(MenuScene::btnLeaderboard)));
     menu->addChild(ButtonFactory::create(_("menu.main", "achievements").get().c_str(), this, menu_selector(MenuScene::btnAchievements)));
     menu->addChild(ButtonFactory::createEmptyButton());
 #endif
 
     menu->addChild(ButtonFactory::create(_("menu.main", "shop").get().c_str(), this, menu_selector(MenuScene::btnShop)));
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS)
+#if AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON
     menu->addChild(ButtonFactory::createEmptyButton());
 #endif
     menu->addChild(ButtonFactory::create(_("menu.main", "settings").get().c_str(), this, menu_selector(MenuScene::btnSettings)));
@@ -66,7 +67,7 @@ bool MenuScene::init()
 void MenuScene::keyBackClicked()
 {
     CCDirector::sharedDirector()->end();
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS)
+#if AVALON_PLATFORM_IS_IOS
     exit(0);
 #endif
 }
@@ -87,14 +88,18 @@ void MenuScene::btnLeaderboard()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     auto gc = avalon::GameCenter();
-    gc.showScores();
+    if (!gc.showScores()) {
+        showGameCenterDialog();
+    }
 }
 
 void MenuScene::btnAchievements()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     auto gc = avalon::GameCenter();
-    gc.showAchievements();
+    if (!gc.showAchievements()) {
+        showGameCenterDialog();
+    }
 }
 
 void MenuScene::btnShop()
@@ -107,4 +112,20 @@ void MenuScene::btnSettings()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     SceneManager::getInstance().gotoScene(SettingsScene::scene());
+}
+
+void MenuScene::showGameCenterDialog()
+{
+    char section[50] = {0};
+    snprintf(
+        section, sizeof(section),
+        "dialog.gamecentererror.%s%s",
+        avalon::utils::platform::getName().c_str(),
+        avalon::utils::platform::getFlavor().c_str()
+    );
+    
+    CCMessageBox(
+        _(section, "body").get().c_str(),
+        _(section, "headline").get().c_str()
+    );
 }

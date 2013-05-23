@@ -24,7 +24,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += avalon_static
 # preprocessor define - it's not supported yet :(
 LOCAL_CFLAGS += -std=c++11 -Doverride=
 
-AVALON_FEATURES := ads payment
+AVALON_FEATURES := ads payment gamecenter
 AVALON_PLATFORM_FLAVOR := amazon
 
 include $(BUILD_SHARED_LIBRARY)

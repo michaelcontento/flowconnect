@@ -1,5 +1,6 @@
 #include "ButtonFactory.h"
 
+#include <avalon/utils/platform.h>
 #include "../Globals.h"
 #include "../scenes/SceneManager.h"
 #include "../Colors.h"
@@ -152,7 +153,7 @@ CCMenu* ButtonFactory::createSceneBackButton()
 CCMenuItem* ButtonFactory::createEmptyButton()
 {
     auto result = CCMenuItem::create();
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON
     result->setContentSize(CCSize(0, 0));
 #else
     result->setContentSize(CCSize(0, 25));

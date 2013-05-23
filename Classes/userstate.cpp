@@ -440,10 +440,14 @@ void userstate::updateLevelDuration(const LoaderLevel* level, const float durati
 
     char buf[50] = {0};
     snprintf(buf, sizeof(buf), "com.coragames.dtdng.lb.%d", level->page->category->localid);
-    
+
     int handicap = LEVELS_PER_CATEGORY - getStarsForCategory(level->page->category);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     // value = (HOURS * 360000) + (MINUTES * 6000) + (SECONDS * 100) + CENTISECONDS;
     gc.postScore(buf, (handicap * 360000) + (newSum * 100));
+#else
+    gc.postScore(buf, (handicap * 1000000) + round(newSum));
+#endif
 }
 
 float userstate::getLevelDuration(const LoaderLevel* level)

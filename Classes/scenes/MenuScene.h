@@ -23,6 +23,8 @@ public:
 
 private:
     static const unsigned int MENU_PADDING = 30;
+
+    void showGameCenterDialog();
 };
 
 #endif /* defined(__FlowConnect__MenuScene__) */

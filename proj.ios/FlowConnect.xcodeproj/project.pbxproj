@@ -170,17 +170,23 @@
 		C82D1CD01744728F00BFE966 /* Product.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1C791744728F00BFE966 /* Product.cpp */; };
 		C82D1CD11744728F00BFE966 /* ProductConsumable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1C7B1744728F00BFE966 /* ProductConsumable.cpp */; };
 		C82D1CEC1744728F00BFE966 /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1CC01744728F00BFE966 /* Alert.cpp */; };
-		C84B74AF174BAE470091D051 /* ChartboostX_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B749D174BAE470091D051 /* ChartboostX_ios.mm */; };
-		C84B74B0174BAE470091D051 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C84B749E174BAE470091D051 /* libChartboost.a */; };
-		C84B74B1174BAE470091D051 /* Revmob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C84B749F174BAE470091D051 /* Revmob.cpp */; };
-		C84B74B2174BAE470091D051 /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C84B74A0174BAE470091D051 /* RevMobAds.framework */; };
-		C84B74B3174BAE470091D051 /* RevmobBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74A2174BAE470091D051 /* RevmobBridge.mm */; };
-		C84B74B4174BAE470091D051 /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74A4174BAE470091D051 /* GameCenter.mm */; };
-		C84B74B5174BAE470091D051 /* GameCenterIos.m in Sources */ = {isa = PBXBuildFile; fileRef = C84B74A6174BAE470091D051 /* GameCenterIos.m */; };
-		C84B74B6174BAE470091D051 /* Backend.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74A8174BAE470091D051 /* Backend.mm */; };
-		C84B74B7174BAE470091D051 /* BackendIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74AA174BAE470091D051 /* BackendIos.mm */; };
-		C84B74B8174BAE470091D051 /* AlertNative.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74AC174BAE470091D051 /* AlertNative.mm */; };
-		C84B74B9174BAE470091D051 /* url.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74AE174BAE470091D051 /* url.mm */; };
+		C83E0FCC174E72E80001E82F /* ChartboostX_android.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E0F9B174E72E80001E82F /* ChartboostX_android.cpp */; };
+		C83E0FCD174E72E80001E82F /* ChartboostXJni.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E0F9C174E72E80001E82F /* ChartboostXJni.cpp */; };
+		C83E0FCE174E72E80001E82F /* chartboost.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = C83E0FA0174E72E80001E82F /* chartboost.jar */; };
+		C83E0FCF174E72E80001E82F /* revmob.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = C83E0FA1174E72E80001E82F /* revmob.jar */; };
+		C83E0FD0174E72E80001E82F /* RevmobBridge.java in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FA6174E72E80001E82F /* RevmobBridge.java */; };
+		C83E0FD1174E72E80001E82F /* ChartboostXBridge.java in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FA9174E72E80001E82F /* ChartboostXBridge.java */; };
+		C83E0FD2174E72E80001E82F /* Revmob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FAA174E72E80001E82F /* Revmob.cpp */; };
+		C83E0FD4174E72E80001E82F /* Backend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FAD174E72E80001E82F /* Backend.cpp */; };
+		C83E0FD5174E72E80001E82F /* AlertNative.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FAF174E72E80001E82F /* AlertNative.cpp */; };
+		C83E0FD6174E72E80001E82F /* Alert.java in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FB5174E72E80001E82F /* Alert.java */; };
+		C83E0FD7174E72E80001E82F /* url.java in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FBC174E72E80001E82F /* url.java */; };
+		C83E0FD8174E72E80001E82F /* url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FBD174E72E80001E82F /* url.cpp */; };
+		C83E0FD9174E72E80001E82F /* in-app-purchasing.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = C83E0FC5174E72E80001E82F /* in-app-purchasing.jar */; };
+		C83E0FDA174E72E80001E82F /* Backend.java in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FCA174E72E80001E82F /* Backend.java */; };
+		C83E0FDB174E72E80001E82F /* PurchasingObserver.java in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FCB174E72E80001E82F /* PurchasingObserver.java */; };
+		C83E0FDD174E74A00001E82F /* GameCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FDC174E74A00001E82F /* GameCenter.cpp */; };
+		C83E0FE2174E74D00001E82F /* GameCenter.java in Sources */ = {isa = PBXBuildFile; fileRef = C83E0FE1174E74D00001E82F /* GameCenter.java */; };
 		C85ADF9A17458C2E00AD2D3F /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C85ADF9817458C2E00AD2D3F /* RobotoCondensed-Bold.ttf */; };
 		C85ADF9B17458C2E00AD2D3F /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C85ADF9917458C2E00AD2D3F /* RobotoCondensed-Regular.ttf */; };
 		C85D5275171B6A850076A88B /* background-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C85D5274171B6A850076A88B /* background-fx.plist */; };
@@ -603,22 +609,24 @@
 		C82D1CC51744728F00BFE966 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		C82D1CC61744728F00BFE966 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		C82D1CC71744728F00BFE966 /* url.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = url.h; sourceTree = "<group>"; };
-		C84B749B174BAE470091D051 /* CBAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAnalytics.h; sourceTree = "<group>"; };
-		C84B749C174BAE470091D051 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
-		C84B749D174BAE470091D051 /* ChartboostX_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChartboostX_ios.mm; sourceTree = "<group>"; };
-		C84B749E174BAE470091D051 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
-		C84B749F174BAE470091D051 /* Revmob.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Revmob.cpp; sourceTree = "<group>"; };
-		C84B74A0174BAE470091D051 /* RevMobAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevMobAds.framework; sourceTree = "<group>"; };
-		C84B74A1174BAE470091D051 /* RevmobBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevmobBridge.h; sourceTree = "<group>"; };
-		C84B74A2174BAE470091D051 /* RevmobBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RevmobBridge.mm; sourceTree = "<group>"; };
-		C84B74A4174BAE470091D051 /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
-		C84B74A5174BAE470091D051 /* GameCenterIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterIos.h; sourceTree = "<group>"; };
-		C84B74A6174BAE470091D051 /* GameCenterIos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterIos.m; sourceTree = "<group>"; };
-		C84B74A8174BAE470091D051 /* Backend.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Backend.mm; sourceTree = "<group>"; };
-		C84B74A9174BAE470091D051 /* BackendIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendIos.h; sourceTree = "<group>"; };
-		C84B74AA174BAE470091D051 /* BackendIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BackendIos.mm; sourceTree = "<group>"; };
-		C84B74AC174BAE470091D051 /* AlertNative.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertNative.mm; sourceTree = "<group>"; };
-		C84B74AE174BAE470091D051 /* url.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = url.mm; sourceTree = "<group>"; };
+		C83E0F9B174E72E80001E82F /* ChartboostX_android.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChartboostX_android.cpp; sourceTree = "<group>"; };
+		C83E0F9C174E72E80001E82F /* ChartboostXJni.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChartboostXJni.cpp; sourceTree = "<group>"; };
+		C83E0F9D174E72E80001E82F /* ChartboostXJni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartboostXJni.h; sourceTree = "<group>"; };
+		C83E0FA0174E72E80001E82F /* chartboost.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = chartboost.jar; sourceTree = "<group>"; };
+		C83E0FA1174E72E80001E82F /* revmob.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = revmob.jar; sourceTree = "<group>"; };
+		C83E0FA6174E72E80001E82F /* RevmobBridge.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = RevmobBridge.java; sourceTree = "<group>"; };
+		C83E0FA9174E72E80001E82F /* ChartboostXBridge.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ChartboostXBridge.java; sourceTree = "<group>"; };
+		C83E0FAA174E72E80001E82F /* Revmob.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Revmob.cpp; sourceTree = "<group>"; };
+		C83E0FAD174E72E80001E82F /* Backend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Backend.cpp; sourceTree = "<group>"; };
+		C83E0FAF174E72E80001E82F /* AlertNative.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlertNative.cpp; sourceTree = "<group>"; };
+		C83E0FB5174E72E80001E82F /* Alert.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Alert.java; sourceTree = "<group>"; };
+		C83E0FBC174E72E80001E82F /* url.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = url.java; sourceTree = "<group>"; };
+		C83E0FBD174E72E80001E82F /* url.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = url.cpp; sourceTree = "<group>"; };
+		C83E0FC5174E72E80001E82F /* in-app-purchasing.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "in-app-purchasing.jar"; sourceTree = "<group>"; };
+		C83E0FCA174E72E80001E82F /* Backend.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Backend.java; sourceTree = "<group>"; };
+		C83E0FCB174E72E80001E82F /* PurchasingObserver.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PurchasingObserver.java; sourceTree = "<group>"; };
+		C83E0FDC174E74A00001E82F /* GameCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCenter.cpp; sourceTree = "<group>"; };
+		C83E0FE1174E74D00001E82F /* GameCenter.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GameCenter.java; sourceTree = "<group>"; };
 		C84C5A42173C1DAF00DF3912 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C85ADF9817458C2E00AD2D3F /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 		C85ADF9917458C2E00AD2D3F /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
@@ -774,8 +782,9 @@
 				D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */,
 				C804283B173CE48600207497 /* libcurl.a in Frameworks */,
 				C89D959A17414D0F00903AF8 /* Crashlytics.framework in Frameworks */,
-				C84B74B0174BAE470091D051 /* libChartboost.a in Frameworks */,
-				C84B74B2174BAE470091D051 /* RevMobAds.framework in Frameworks */,
+				C83E0FCE174E72E80001E82F /* chartboost.jar in Frameworks */,
+				C83E0FCF174E72E80001E82F /* revmob.jar in Frameworks */,
+				C83E0FD9174E72E80001E82F /* in-app-purchasing.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1480,7 +1489,8 @@
 		C82D1C7E1744728F00BFE966 /* platform */ = {
 			isa = PBXGroup;
 			children = (
-				C84B7498174BAE470091D051 /* ios */,
+				C83E0F98174E72E80001E82F /* android */,
+				C83E0FBE174E72E80001E82F /* android-amazon */,
 			);
 			path = platform;
 			sourceTree = "<group>";
@@ -1515,75 +1525,324 @@
 			name = avalon;
 			sourceTree = "<group>";
 		};
-		C84B7498174BAE470091D051 /* ios */ = {
+		C83E0F98174E72E80001E82F /* android */ = {
 			isa = PBXGroup;
 			children = (
-				C84B7499174BAE470091D051 /* ads */,
-				C84B74A3174BAE470091D051 /* gamecenter */,
-				C84B74A7174BAE470091D051 /* payment */,
-				C84B74AB174BAE470091D051 /* ui */,
-				C84B74AD174BAE470091D051 /* utils */,
+				C83E0F99174E72E80001E82F /* ads */,
+				C83E0FAC174E72E80001E82F /* payment */,
+				C83E0FAE174E72E80001E82F /* ui */,
+				C83E0FB6174E72E80001E82F /* utils */,
 			);
-			path = ios;
+			path = android;
 			sourceTree = "<group>";
 		};
-		C84B7499174BAE470091D051 /* ads */ = {
+		C83E0F99174E72E80001E82F /* ads */ = {
 			isa = PBXGroup;
 			children = (
-				C84B749A174BAE470091D051 /* provider */,
+				C83E0F9A174E72E80001E82F /* provider */,
 			);
 			path = ads;
 			sourceTree = "<group>";
 		};
-		C84B749A174BAE470091D051 /* provider */ = {
+		C83E0F9A174E72E80001E82F /* provider */ = {
 			isa = PBXGroup;
 			children = (
-				C84B749B174BAE470091D051 /* CBAnalytics.h */,
-				C84B749C174BAE470091D051 /* Chartboost.h */,
-				C84B749D174BAE470091D051 /* ChartboostX_ios.mm */,
-				C84B749E174BAE470091D051 /* libChartboost.a */,
-				C84B749F174BAE470091D051 /* Revmob.cpp */,
-				C84B74A0174BAE470091D051 /* RevMobAds.framework */,
-				C84B74A1174BAE470091D051 /* RevmobBridge.h */,
-				C84B74A2174BAE470091D051 /* RevmobBridge.mm */,
+				C83E0F9B174E72E80001E82F /* ChartboostX_android.cpp */,
+				C83E0F9C174E72E80001E82F /* ChartboostXJni.cpp */,
+				C83E0F9D174E72E80001E82F /* ChartboostXJni.h */,
+				C83E0F9E174E72E80001E82F /* java */,
+				C83E0FAA174E72E80001E82F /* Revmob.cpp */,
 			);
 			path = provider;
 			sourceTree = "<group>";
 		};
-		C84B74A3174BAE470091D051 /* gamecenter */ = {
+		C83E0F9E174E72E80001E82F /* java */ = {
 			isa = PBXGroup;
 			children = (
-				C84B74A4174BAE470091D051 /* GameCenter.mm */,
-				C84B74A5174BAE470091D051 /* GameCenterIos.h */,
-				C84B74A6174BAE470091D051 /* GameCenterIos.m */,
+				C83E0F9F174E72E80001E82F /* libs */,
+				C83E0FA2174E72E80001E82F /* src */,
 			);
-			path = gamecenter;
+			path = java;
 			sourceTree = "<group>";
 		};
-		C84B74A7174BAE470091D051 /* payment */ = {
+		C83E0F9F174E72E80001E82F /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				C84B74A8174BAE470091D051 /* Backend.mm */,
-				C84B74A9174BAE470091D051 /* BackendIos.h */,
-				C84B74AA174BAE470091D051 /* BackendIos.mm */,
+				C83E0FA0174E72E80001E82F /* chartboost.jar */,
+				C83E0FA1174E72E80001E82F /* revmob.jar */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		C83E0FA2174E72E80001E82F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FA3174E72E80001E82F /* com */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C83E0FA3174E72E80001E82F /* com */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FA4174E72E80001E82F /* avalon */,
+				C83E0FA7174E72E80001E82F /* wenbin */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		C83E0FA4174E72E80001E82F /* avalon */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FA5174E72E80001E82F /* ads */,
+			);
+			path = avalon;
+			sourceTree = "<group>";
+		};
+		C83E0FA5174E72E80001E82F /* ads */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FA6174E72E80001E82F /* RevmobBridge.java */,
+			);
+			path = ads;
+			sourceTree = "<group>";
+		};
+		C83E0FA7174E72E80001E82F /* wenbin */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FA8174E72E80001E82F /* ChartboostX */,
+			);
+			path = wenbin;
+			sourceTree = "<group>";
+		};
+		C83E0FA8174E72E80001E82F /* ChartboostX */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FA9174E72E80001E82F /* ChartboostXBridge.java */,
+			);
+			path = ChartboostX;
+			sourceTree = "<group>";
+		};
+		C83E0FAC174E72E80001E82F /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FAD174E72E80001E82F /* Backend.cpp */,
 			);
 			path = payment;
 			sourceTree = "<group>";
 		};
-		C84B74AB174BAE470091D051 /* ui */ = {
+		C83E0FAE174E72E80001E82F /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				C84B74AC174BAE470091D051 /* AlertNative.mm */,
+				C83E0FAF174E72E80001E82F /* AlertNative.cpp */,
+				C83E0FB0174E72E80001E82F /* java */,
 			);
 			path = ui;
 			sourceTree = "<group>";
 		};
-		C84B74AD174BAE470091D051 /* utils */ = {
+		C83E0FB0174E72E80001E82F /* java */ = {
 			isa = PBXGroup;
 			children = (
-				C84B74AE174BAE470091D051 /* url.mm */,
+				C83E0FB1174E72E80001E82F /* src */,
+			);
+			path = java;
+			sourceTree = "<group>";
+		};
+		C83E0FB1174E72E80001E82F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FB2174E72E80001E82F /* com */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C83E0FB2174E72E80001E82F /* com */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FB3174E72E80001E82F /* avalon */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		C83E0FB3174E72E80001E82F /* avalon */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FB4174E72E80001E82F /* ui */,
+			);
+			path = avalon;
+			sourceTree = "<group>";
+		};
+		C83E0FB4174E72E80001E82F /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FB5174E72E80001E82F /* Alert.java */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		C83E0FB6174E72E80001E82F /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FB7174E72E80001E82F /* java */,
+				C83E0FBD174E72E80001E82F /* url.cpp */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		C83E0FB7174E72E80001E82F /* java */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FB8174E72E80001E82F /* src */,
+			);
+			path = java;
+			sourceTree = "<group>";
+		};
+		C83E0FB8174E72E80001E82F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FB9174E72E80001E82F /* com */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C83E0FB9174E72E80001E82F /* com */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FBA174E72E80001E82F /* avalon */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		C83E0FBA174E72E80001E82F /* avalon */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FBB174E72E80001E82F /* utils */,
+			);
+			path = avalon;
+			sourceTree = "<group>";
+		};
+		C83E0FBB174E72E80001E82F /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FBC174E72E80001E82F /* url.java */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		C83E0FBE174E72E80001E82F /* android-amazon */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FBF174E72E80001E82F /* gamecenter */,
+				C83E0FC2174E72E80001E82F /* payment */,
+			);
+			path = "android-amazon";
+			sourceTree = "<group>";
+		};
+		C83E0FBF174E72E80001E82F /* gamecenter */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FDC174E74A00001E82F /* GameCenter.cpp */,
+				C83E0FC0174E72E80001E82F /* java */,
+			);
+			path = gamecenter;
+			sourceTree = "<group>";
+		};
+		C83E0FC0174E72E80001E82F /* java */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FDE174E74D00001E82F /* src */,
+				C83E0FC1174E72E80001E82F /* libs */,
+			);
+			path = java;
+			sourceTree = "<group>";
+		};
+		C83E0FC1174E72E80001E82F /* libs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		C83E0FC2174E72E80001E82F /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FC3174E72E80001E82F /* java */,
+			);
+			path = payment;
+			sourceTree = "<group>";
+		};
+		C83E0FC3174E72E80001E82F /* java */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FC4174E72E80001E82F /* libs */,
+				C83E0FC6174E72E80001E82F /* src */,
+			);
+			path = java;
+			sourceTree = "<group>";
+		};
+		C83E0FC4174E72E80001E82F /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FC5174E72E80001E82F /* in-app-purchasing.jar */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		C83E0FC6174E72E80001E82F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FC7174E72E80001E82F /* com */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C83E0FC7174E72E80001E82F /* com */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FC8174E72E80001E82F /* avalon */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		C83E0FC8174E72E80001E82F /* avalon */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FC9174E72E80001E82F /* payment */,
+			);
+			path = avalon;
+			sourceTree = "<group>";
+		};
+		C83E0FC9174E72E80001E82F /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FCA174E72E80001E82F /* Backend.java */,
+				C83E0FCB174E72E80001E82F /* PurchasingObserver.java */,
+			);
+			path = payment;
+			sourceTree = "<group>";
+		};
+		C83E0FDE174E74D00001E82F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FDF174E74D00001E82F /* com */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C83E0FDF174E74D00001E82F /* com */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FE0174E74D00001E82F /* avalon */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		C83E0FE0174E74D00001E82F /* avalon */ = {
+			isa = PBXGroup;
+			children = (
+				C83E0FE1174E74D00001E82F /* GameCenter.java */,
+			);
+			path = avalon;
 			sourceTree = "<group>";
 		};
 		C8681C49173320B30020E78B /* spine */ = {
@@ -2069,15 +2328,20 @@
 				C82D1CD11744728F00BFE966 /* ProductConsumable.cpp in Sources */,
 				C82D1CEC1744728F00BFE966 /* Alert.cpp in Sources */,
 				C809EC8A174AA91D00F4F3A6 /* platform.cpp in Sources */,
-				C84B74AF174BAE470091D051 /* ChartboostX_ios.mm in Sources */,
-				C84B74B1174BAE470091D051 /* Revmob.cpp in Sources */,
-				C84B74B3174BAE470091D051 /* RevmobBridge.mm in Sources */,
-				C84B74B4174BAE470091D051 /* GameCenter.mm in Sources */,
-				C84B74B5174BAE470091D051 /* GameCenterIos.m in Sources */,
-				C84B74B6174BAE470091D051 /* Backend.mm in Sources */,
-				C84B74B7174BAE470091D051 /* BackendIos.mm in Sources */,
-				C84B74B8174BAE470091D051 /* AlertNative.mm in Sources */,
-				C84B74B9174BAE470091D051 /* url.mm in Sources */,
+				C83E0FCC174E72E80001E82F /* ChartboostX_android.cpp in Sources */,
+				C83E0FCD174E72E80001E82F /* ChartboostXJni.cpp in Sources */,
+				C83E0FD0174E72E80001E82F /* RevmobBridge.java in Sources */,
+				C83E0FD1174E72E80001E82F /* ChartboostXBridge.java in Sources */,
+				C83E0FD2174E72E80001E82F /* Revmob.cpp in Sources */,
+				C83E0FD4174E72E80001E82F /* Backend.cpp in Sources */,
+				C83E0FD5174E72E80001E82F /* AlertNative.cpp in Sources */,
+				C83E0FD6174E72E80001E82F /* Alert.java in Sources */,
+				C83E0FD7174E72E80001E82F /* url.java in Sources */,
+				C83E0FD8174E72E80001E82F /* url.cpp in Sources */,
+				C83E0FDA174E72E80001E82F /* Backend.java in Sources */,
+				C83E0FDB174E72E80001E82F /* PurchasingObserver.java in Sources */,
+				C83E0FDD174E74A00001E82F /* GameCenter.cpp in Sources */,
+				C83E0FE2174E74D00001E82F /* GameCenter.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
