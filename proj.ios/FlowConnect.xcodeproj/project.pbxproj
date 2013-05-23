@@ -158,17 +158,6 @@
 		C81C40F217458CC8002E88B6 /* solved.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C81C40EA17458CC8002E88B6 /* solved.mp3 */; };
 		C81C40F617458CDB002E88B6 /* de.ini in Resources */ = {isa = PBXBuildFile; fileRef = C81C40F417458CDB002E88B6 /* de.ini */; };
 		C81C40F717458CDB002E88B6 /* en.ini in Resources */ = {isa = PBXBuildFile; fileRef = C81C40F517458CDB002E88B6 /* en.ini */; };
-		C81C41871746C9EF002E88B6 /* ChartboostX_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C41741746C9EF002E88B6 /* ChartboostX_ios.mm */; };
-		C81C41881746C9EF002E88B6 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C81C41751746C9EF002E88B6 /* libChartboost.a */; };
-		C81C41891746C9EF002E88B6 /* Revmob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C81C41761746C9EF002E88B6 /* Revmob.cpp */; };
-		C81C418A1746C9EF002E88B6 /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81C41771746C9EF002E88B6 /* RevMobAds.framework */; };
-		C81C418B1746C9EF002E88B6 /* RevmobBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C41791746C9EF002E88B6 /* RevmobBridge.mm */; };
-		C81C418C1746C9EF002E88B6 /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C417B1746C9EF002E88B6 /* GameCenter.mm */; };
-		C81C418D1746C9EF002E88B6 /* GameCenterIos.m in Sources */ = {isa = PBXBuildFile; fileRef = C81C417D1746C9EF002E88B6 /* GameCenterIos.m */; };
-		C81C418E1746C9EF002E88B6 /* Backend.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C417F1746C9EF002E88B6 /* Backend.mm */; };
-		C81C418F1746C9EF002E88B6 /* BackendIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C41811746C9EF002E88B6 /* BackendIos.mm */; };
-		C81C41901746C9EF002E88B6 /* AlertNative.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C41831746C9EF002E88B6 /* AlertNative.mm */; };
-		C81C41921746C9EF002E88B6 /* url.mm in Sources */ = {isa = PBXBuildFile; fileRef = C81C41861746C9EF002E88B6 /* url.mm */; };
 		C82D1C57174470D600BFE966 /* icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C89D955C174147A400903AF8 /* icon-57x57.png */; };
 		C82D1CC81744728F00BFE966 /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1C5E1744728F00BFE966 /* Manager.cpp */; };
 		C82D1CC91744728F00BFE966 /* Chartboost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1C621744728F00BFE966 /* Chartboost.cpp */; };
@@ -181,6 +170,17 @@
 		C82D1CD01744728F00BFE966 /* Product.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1C791744728F00BFE966 /* Product.cpp */; };
 		C82D1CD11744728F00BFE966 /* ProductConsumable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1C7B1744728F00BFE966 /* ProductConsumable.cpp */; };
 		C82D1CEC1744728F00BFE966 /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1CC01744728F00BFE966 /* Alert.cpp */; };
+		C84B74AF174BAE470091D051 /* ChartboostX_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B749D174BAE470091D051 /* ChartboostX_ios.mm */; };
+		C84B74B0174BAE470091D051 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C84B749E174BAE470091D051 /* libChartboost.a */; };
+		C84B74B1174BAE470091D051 /* Revmob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C84B749F174BAE470091D051 /* Revmob.cpp */; };
+		C84B74B2174BAE470091D051 /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C84B74A0174BAE470091D051 /* RevMobAds.framework */; };
+		C84B74B3174BAE470091D051 /* RevmobBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74A2174BAE470091D051 /* RevmobBridge.mm */; };
+		C84B74B4174BAE470091D051 /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74A4174BAE470091D051 /* GameCenter.mm */; };
+		C84B74B5174BAE470091D051 /* GameCenterIos.m in Sources */ = {isa = PBXBuildFile; fileRef = C84B74A6174BAE470091D051 /* GameCenterIos.m */; };
+		C84B74B6174BAE470091D051 /* Backend.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74A8174BAE470091D051 /* Backend.mm */; };
+		C84B74B7174BAE470091D051 /* BackendIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74AA174BAE470091D051 /* BackendIos.mm */; };
+		C84B74B8174BAE470091D051 /* AlertNative.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74AC174BAE470091D051 /* AlertNative.mm */; };
+		C84B74B9174BAE470091D051 /* url.mm in Sources */ = {isa = PBXBuildFile; fileRef = C84B74AE174BAE470091D051 /* url.mm */; };
 		C85ADF9A17458C2E00AD2D3F /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C85ADF9817458C2E00AD2D3F /* RobotoCondensed-Bold.ttf */; };
 		C85ADF9B17458C2E00AD2D3F /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C85ADF9917458C2E00AD2D3F /* RobotoCondensed-Regular.ttf */; };
 		C85D5275171B6A850076A88B /* background-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C85D5274171B6A850076A88B /* background-fx.plist */; };
@@ -565,22 +565,6 @@
 		C81C40EA17458CC8002E88B6 /* solved.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = solved.mp3; sourceTree = "<group>"; };
 		C81C40F417458CDB002E88B6 /* de.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = de.ini; sourceTree = "<group>"; };
 		C81C40F517458CDB002E88B6 /* en.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = en.ini; sourceTree = "<group>"; };
-		C81C41721746C9EF002E88B6 /* CBAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAnalytics.h; sourceTree = "<group>"; };
-		C81C41731746C9EF002E88B6 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
-		C81C41741746C9EF002E88B6 /* ChartboostX_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChartboostX_ios.mm; sourceTree = "<group>"; };
-		C81C41751746C9EF002E88B6 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
-		C81C41761746C9EF002E88B6 /* Revmob.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Revmob.cpp; sourceTree = "<group>"; };
-		C81C41771746C9EF002E88B6 /* RevMobAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevMobAds.framework; sourceTree = "<group>"; };
-		C81C41781746C9EF002E88B6 /* RevmobBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevmobBridge.h; sourceTree = "<group>"; };
-		C81C41791746C9EF002E88B6 /* RevmobBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RevmobBridge.mm; sourceTree = "<group>"; };
-		C81C417B1746C9EF002E88B6 /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
-		C81C417C1746C9EF002E88B6 /* GameCenterIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterIos.h; sourceTree = "<group>"; };
-		C81C417D1746C9EF002E88B6 /* GameCenterIos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterIos.m; sourceTree = "<group>"; };
-		C81C417F1746C9EF002E88B6 /* Backend.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Backend.mm; sourceTree = "<group>"; };
-		C81C41801746C9EF002E88B6 /* BackendIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendIos.h; sourceTree = "<group>"; };
-		C81C41811746C9EF002E88B6 /* BackendIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BackendIos.mm; sourceTree = "<group>"; };
-		C81C41831746C9EF002E88B6 /* AlertNative.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertNative.mm; sourceTree = "<group>"; };
-		C81C41861746C9EF002E88B6 /* url.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = url.mm; sourceTree = "<group>"; };
 		C82D1C5B1744728F00BFE966 /* Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Banner.h; sourceTree = "<group>"; };
 		C82D1C5C1744728F00BFE966 /* Fullscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fullscreen.h; sourceTree = "<group>"; };
 		C82D1C5D1744728F00BFE966 /* Link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Link.h; sourceTree = "<group>"; };
@@ -619,6 +603,22 @@
 		C82D1CC51744728F00BFE966 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		C82D1CC61744728F00BFE966 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		C82D1CC71744728F00BFE966 /* url.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = url.h; sourceTree = "<group>"; };
+		C84B749B174BAE470091D051 /* CBAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAnalytics.h; sourceTree = "<group>"; };
+		C84B749C174BAE470091D051 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
+		C84B749D174BAE470091D051 /* ChartboostX_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChartboostX_ios.mm; sourceTree = "<group>"; };
+		C84B749E174BAE470091D051 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
+		C84B749F174BAE470091D051 /* Revmob.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Revmob.cpp; sourceTree = "<group>"; };
+		C84B74A0174BAE470091D051 /* RevMobAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevMobAds.framework; sourceTree = "<group>"; };
+		C84B74A1174BAE470091D051 /* RevmobBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevmobBridge.h; sourceTree = "<group>"; };
+		C84B74A2174BAE470091D051 /* RevmobBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RevmobBridge.mm; sourceTree = "<group>"; };
+		C84B74A4174BAE470091D051 /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
+		C84B74A5174BAE470091D051 /* GameCenterIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterIos.h; sourceTree = "<group>"; };
+		C84B74A6174BAE470091D051 /* GameCenterIos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterIos.m; sourceTree = "<group>"; };
+		C84B74A8174BAE470091D051 /* Backend.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Backend.mm; sourceTree = "<group>"; };
+		C84B74A9174BAE470091D051 /* BackendIos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendIos.h; sourceTree = "<group>"; };
+		C84B74AA174BAE470091D051 /* BackendIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BackendIos.mm; sourceTree = "<group>"; };
+		C84B74AC174BAE470091D051 /* AlertNative.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertNative.mm; sourceTree = "<group>"; };
+		C84B74AE174BAE470091D051 /* url.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = url.mm; sourceTree = "<group>"; };
 		C84C5A42173C1DAF00DF3912 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C85ADF9817458C2E00AD2D3F /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 		C85ADF9917458C2E00AD2D3F /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
@@ -752,6 +752,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				C8A48AE6173A8F000012D40F /* MessageUI.framework in Frameworks */,
 				C8D8F29817306D5F0073B7C8 /* SystemConfiguration.framework in Frameworks */,
 				C8A48ACC173A8B210012D40F /* Security.framework in Frameworks */,
@@ -762,8 +764,6 @@
 				C8D8F28D17306BAB0073B7C8 /* AdSupport.framework in Frameworks */,
 				15A3DA6A1682F886002FB0C5 /* libcocos2dx.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
 				BF1712461292920000B8313A /* libxml2.dylib in Frameworks */,
 				BF1712471292920000B8313A /* libz.dylib in Frameworks */,
@@ -774,8 +774,8 @@
 				D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */,
 				C804283B173CE48600207497 /* libcurl.a in Frameworks */,
 				C89D959A17414D0F00903AF8 /* Crashlytics.framework in Frameworks */,
-				C81C41881746C9EF002E88B6 /* libChartboost.a in Frameworks */,
-				C81C418A1746C9EF002E88B6 /* RevMobAds.framework in Frameworks */,
+				C84B74B0174BAE470091D051 /* libChartboost.a in Frameworks */,
+				C84B74B2174BAE470091D051 /* RevMobAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1395,77 +1395,6 @@
 			name = lang;
 			sourceTree = "<group>";
 		};
-		C81C416F1746C9EF002E88B6 /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				C81C41701746C9EF002E88B6 /* ads */,
-				C81C417A1746C9EF002E88B6 /* gamecenter */,
-				C81C417E1746C9EF002E88B6 /* payment */,
-				C81C41821746C9EF002E88B6 /* ui */,
-				C81C41841746C9EF002E88B6 /* utils */,
-			);
-			path = ios;
-			sourceTree = "<group>";
-		};
-		C81C41701746C9EF002E88B6 /* ads */ = {
-			isa = PBXGroup;
-			children = (
-				C81C41711746C9EF002E88B6 /* provider */,
-			);
-			path = ads;
-			sourceTree = "<group>";
-		};
-		C81C41711746C9EF002E88B6 /* provider */ = {
-			isa = PBXGroup;
-			children = (
-				C81C41721746C9EF002E88B6 /* CBAnalytics.h */,
-				C81C41731746C9EF002E88B6 /* Chartboost.h */,
-				C81C41741746C9EF002E88B6 /* ChartboostX_ios.mm */,
-				C81C41751746C9EF002E88B6 /* libChartboost.a */,
-				C81C41761746C9EF002E88B6 /* Revmob.cpp */,
-				C81C41771746C9EF002E88B6 /* RevMobAds.framework */,
-				C81C41781746C9EF002E88B6 /* RevmobBridge.h */,
-				C81C41791746C9EF002E88B6 /* RevmobBridge.mm */,
-			);
-			path = provider;
-			sourceTree = "<group>";
-		};
-		C81C417A1746C9EF002E88B6 /* gamecenter */ = {
-			isa = PBXGroup;
-			children = (
-				C81C417B1746C9EF002E88B6 /* GameCenter.mm */,
-				C81C417C1746C9EF002E88B6 /* GameCenterIos.h */,
-				C81C417D1746C9EF002E88B6 /* GameCenterIos.m */,
-			);
-			path = gamecenter;
-			sourceTree = "<group>";
-		};
-		C81C417E1746C9EF002E88B6 /* payment */ = {
-			isa = PBXGroup;
-			children = (
-				C81C417F1746C9EF002E88B6 /* Backend.mm */,
-				C81C41801746C9EF002E88B6 /* BackendIos.h */,
-				C81C41811746C9EF002E88B6 /* BackendIos.mm */,
-			);
-			path = payment;
-			sourceTree = "<group>";
-		};
-		C81C41821746C9EF002E88B6 /* ui */ = {
-			isa = PBXGroup;
-			children = (
-				C81C41831746C9EF002E88B6 /* AlertNative.mm */,
-			);
-			path = ui;
-			sourceTree = "<group>";
-		};
-		C81C41841746C9EF002E88B6 /* utils */ = {
-			isa = PBXGroup;
-			children = (
-				C81C41861746C9EF002E88B6 /* url.mm */,
-			);
-			path = utils;
-			sourceTree = "<group>";
-		};
 		C82D1C591744728F00BFE966 /* avalon */ = {
 			isa = PBXGroup;
 			children = (
@@ -1551,7 +1480,7 @@
 		C82D1C7E1744728F00BFE966 /* platform */ = {
 			isa = PBXGroup;
 			children = (
-				C81C416F1746C9EF002E88B6 /* ios */,
+				C84B7498174BAE470091D051 /* ios */,
 			);
 			path = platform;
 			sourceTree = "<group>";
@@ -1584,6 +1513,77 @@
 				C82D1C591744728F00BFE966 /* avalon */,
 			);
 			name = avalon;
+			sourceTree = "<group>";
+		};
+		C84B7498174BAE470091D051 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				C84B7499174BAE470091D051 /* ads */,
+				C84B74A3174BAE470091D051 /* gamecenter */,
+				C84B74A7174BAE470091D051 /* payment */,
+				C84B74AB174BAE470091D051 /* ui */,
+				C84B74AD174BAE470091D051 /* utils */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		C84B7499174BAE470091D051 /* ads */ = {
+			isa = PBXGroup;
+			children = (
+				C84B749A174BAE470091D051 /* provider */,
+			);
+			path = ads;
+			sourceTree = "<group>";
+		};
+		C84B749A174BAE470091D051 /* provider */ = {
+			isa = PBXGroup;
+			children = (
+				C84B749B174BAE470091D051 /* CBAnalytics.h */,
+				C84B749C174BAE470091D051 /* Chartboost.h */,
+				C84B749D174BAE470091D051 /* ChartboostX_ios.mm */,
+				C84B749E174BAE470091D051 /* libChartboost.a */,
+				C84B749F174BAE470091D051 /* Revmob.cpp */,
+				C84B74A0174BAE470091D051 /* RevMobAds.framework */,
+				C84B74A1174BAE470091D051 /* RevmobBridge.h */,
+				C84B74A2174BAE470091D051 /* RevmobBridge.mm */,
+			);
+			path = provider;
+			sourceTree = "<group>";
+		};
+		C84B74A3174BAE470091D051 /* gamecenter */ = {
+			isa = PBXGroup;
+			children = (
+				C84B74A4174BAE470091D051 /* GameCenter.mm */,
+				C84B74A5174BAE470091D051 /* GameCenterIos.h */,
+				C84B74A6174BAE470091D051 /* GameCenterIos.m */,
+			);
+			path = gamecenter;
+			sourceTree = "<group>";
+		};
+		C84B74A7174BAE470091D051 /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				C84B74A8174BAE470091D051 /* Backend.mm */,
+				C84B74A9174BAE470091D051 /* BackendIos.h */,
+				C84B74AA174BAE470091D051 /* BackendIos.mm */,
+			);
+			path = payment;
+			sourceTree = "<group>";
+		};
+		C84B74AB174BAE470091D051 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				C84B74AC174BAE470091D051 /* AlertNative.mm */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		C84B74AD174BAE470091D051 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				C84B74AE174BAE470091D051 /* url.mm */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		C8681C49173320B30020E78B /* spine */ = {
@@ -2068,16 +2068,16 @@
 				C82D1CD01744728F00BFE966 /* Product.cpp in Sources */,
 				C82D1CD11744728F00BFE966 /* ProductConsumable.cpp in Sources */,
 				C82D1CEC1744728F00BFE966 /* Alert.cpp in Sources */,
-				C81C41871746C9EF002E88B6 /* ChartboostX_ios.mm in Sources */,
-				C81C41891746C9EF002E88B6 /* Revmob.cpp in Sources */,
-				C81C418B1746C9EF002E88B6 /* RevmobBridge.mm in Sources */,
-				C81C418C1746C9EF002E88B6 /* GameCenter.mm in Sources */,
-				C81C418D1746C9EF002E88B6 /* GameCenterIos.m in Sources */,
-				C81C418E1746C9EF002E88B6 /* Backend.mm in Sources */,
-				C81C418F1746C9EF002E88B6 /* BackendIos.mm in Sources */,
-				C81C41901746C9EF002E88B6 /* AlertNative.mm in Sources */,
-				C81C41921746C9EF002E88B6 /* url.mm in Sources */,
 				C809EC8A174AA91D00F4F3A6 /* platform.cpp in Sources */,
+				C84B74AF174BAE470091D051 /* ChartboostX_ios.mm in Sources */,
+				C84B74B1174BAE470091D051 /* Revmob.cpp in Sources */,
+				C84B74B3174BAE470091D051 /* RevmobBridge.mm in Sources */,
+				C84B74B4174BAE470091D051 /* GameCenter.mm in Sources */,
+				C84B74B5174BAE470091D051 /* GameCenterIos.m in Sources */,
+				C84B74B6174BAE470091D051 /* Backend.mm in Sources */,
+				C84B74B7174BAE470091D051 /* BackendIos.mm in Sources */,
+				C84B74B8174BAE470091D051 /* AlertNative.mm in Sources */,
+				C84B74B9174BAE470091D051 /* url.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2145,8 +2145,13 @@
 					"\"$(SRCROOT)/../Vendors/Localytics\"",
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/Chartboost-x/Chartboost-x/ios\"",
+					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider/samsungadhub\"",
 				);
 				OTHER_CFLAGS = "-O2";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "Space Dots";
 				PROVISIONING_PROFILE = "972260C7-56F2-4F2D-B593-7606FB95A2DD";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "972260C7-56F2-4F2D-B593-7606FB95A2DD";
@@ -2208,6 +2213,11 @@
 					"\"$(SRCROOT)/../Vendors/Localytics\"",
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/Chartboost-x/Chartboost-x/ios\"",
+					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider/samsungadhub\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "Space Dots";
 				PROVISIONING_PROFILE = "972260C7-56F2-4F2D-B593-7606FB95A2DD";

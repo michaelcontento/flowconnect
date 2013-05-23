@@ -181,12 +181,13 @@ void SettingsScene::btnMoreGames()
 
     avalon::utils::url::open("itms-apps://itunes.com/apps/coragames");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    if (avalon::utils::platform::getFlavor().compare("amazon") == 0) {
+    #if (AVALON_PLATFORM_FLAVOR == AVALON_PLATFORM_FLAVOR_AMAZON)
         avalon::utils::url::open("amzn://apps/android?s=CoRa%20Games");
-    }
-    if (avalon::utils::platform::getFlavor().compare("google") == 0) {
+    #elif (AVALON_PLATFORM_FLAVOR == AVALON_PLATFORM_FLAVOR_GOOGLE)
         avalon::utils::url::open("market://search?q=pub:CoRa++Games");
-    }
+    #elif (AVALON_PLATFORM_FLAVOR == AVALON_PLATFORM_FLAVOR_SAMSUNG)
+        avalon::utils::url::open("samsungapps://SellerDetail/fnvddticys");
+    #endif
 #endif
 }
 
