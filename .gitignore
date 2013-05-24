@@ -4,3 +4,6 @@ proj.ios/FlowConnect.xcodeproj/xcuserdata/
 
 # OSX garbage
 .DS_Store
+
+# only keep the pxm files
+Mocks/rank/*.png
