@@ -1,2 +1,11 @@
+==== Version 2 ====
+- General: Alert if GameCenter could not be initialized / used
+- General: Performance improvements with CCLabelBMFont instead of CCLabelTTF
+- iOS:     Local GameCenter caching
+- iOS:     Potential invalid pointer crash in payment backend fixed
+- Amazon:  With GameCenter enabled
+- Android: "fat binary" to support modern devices as good as possible
+- Android: Icon changed
+
 ==== Version 1 ====
 - First release
