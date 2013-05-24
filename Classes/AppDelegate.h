@@ -32,10 +32,6 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground() override;
-
-    void initPayment();
-    void initAds();
-    void initLocalization();
 };
 
 #endif // _APP_DELEGATE_H_

@@ -189,6 +189,7 @@
 		C83E1012174F71180001E82F /* RobotoCondensed-Regular-36.png in Resources */ = {isa = PBXBuildFile; fileRef = C83E1010174F71180001E82F /* RobotoCondensed-Regular-36.png */; };
 		C83E1015174F77780001E82F /* RobotoCondensed-Regular-28.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C83E1013174F77780001E82F /* RobotoCondensed-Regular-28.fnt */; };
 		C83E1016174F77780001E82F /* RobotoCondensed-Regular-28.png in Resources */ = {isa = PBXBuildFile; fileRef = C83E1014174F77780001E82F /* RobotoCondensed-Regular-28.png */; };
+		C83E1019174F7FF60001E82F /* IntroScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E1017174F7FF50001E82F /* IntroScene.cpp */; };
 		C85ADF9A17458C2E00AD2D3F /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C85ADF9817458C2E00AD2D3F /* RobotoCondensed-Bold.ttf */; };
 		C85ADF9B17458C2E00AD2D3F /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C85ADF9917458C2E00AD2D3F /* RobotoCondensed-Regular.ttf */; };
 		C85D5275171B6A850076A88B /* background-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C85D5274171B6A850076A88B /* background-fx.plist */; };
@@ -635,6 +636,8 @@
 		C83E1010174F71180001E82F /* RobotoCondensed-Regular-36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RobotoCondensed-Regular-36.png"; sourceTree = "<group>"; };
 		C83E1013174F77780001E82F /* RobotoCondensed-Regular-28.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RobotoCondensed-Regular-28.fnt"; sourceTree = "<group>"; };
 		C83E1014174F77780001E82F /* RobotoCondensed-Regular-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RobotoCondensed-Regular-28.png"; sourceTree = "<group>"; };
+		C83E1017174F7FF50001E82F /* IntroScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IntroScene.cpp; path = ../Classes/scenes/IntroScene.cpp; sourceTree = "<group>"; };
+		C83E1018174F7FF50001E82F /* IntroScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntroScene.h; path = ../Classes/scenes/IntroScene.h; sourceTree = "<group>"; };
 		C84C5A42173C1DAF00DF3912 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C85ADF9817458C2E00AD2D3F /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 		C85ADF9917458C2E00AD2D3F /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
@@ -1748,6 +1751,8 @@
 		C8CA622517141A21005660B3 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				C83E1017174F7FF50001E82F /* IntroScene.cpp */,
+				C83E1018174F7FF50001E82F /* IntroScene.h */,
 				C89D95531741479300903AF8 /* HowToPlayScene.cpp */,
 				C89D95541741479300903AF8 /* HowToPlayScene.h */,
 				C89D95551741479300903AF8 /* LevelMenuScene.cpp */,
@@ -2118,6 +2123,7 @@
 				C83E1008174F6ED80001E82F /* BackendIos.mm in Sources */,
 				C83E1009174F6ED80001E82F /* AlertNative.mm in Sources */,
 				C83E100A174F6ED80001E82F /* url.mm in Sources */,
+				C83E1019174F7FF60001E82F /* IntroScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
