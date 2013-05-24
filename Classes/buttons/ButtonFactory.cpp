@@ -153,7 +153,7 @@ CCMenu* ButtonFactory::createSceneBackButton()
 CCMenuItem* ButtonFactory::createEmptyButton()
 {
     auto result = CCMenuItem::create();
-#if AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON
+#if AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON || AVALON_PLATFORM_IS_ANDROID_GOOGLE
     result->setContentSize(CCSize(0, 0));
 #else
     result->setContentSize(CCSize(0, 25));

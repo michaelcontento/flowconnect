@@ -29,6 +29,9 @@ import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 import com.wenbin.ChartboostX.*;
 import com.chartboost.sdk.*;
 
+import com.avalon.payment.Backend;
+import android.content.Intent;
+
 import android.os.Bundle;
 
 public class Game extends Cocos2dxActivity{
@@ -36,6 +39,7 @@ public class Game extends Cocos2dxActivity{
     protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);	
 		ChartboostXBridge.initChartboostXBridge(this);
+		Backend.setPublicKey("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv/G1iMd4B704VRrx2QuscgW+IrePszT8JdHNWTJtoYTF5c42SeMSP16445psWzNQ6tDaHdNsxOzIArC+jbBYaClk3WWN2PGrp7SgHIGqpb9dCNjjFTdL0Ui3e/NfRP/dMnN4bwFD3Hj/tkbodRMfI991OrRS2RSYTk8H62zxhNQXdvWuZuIxAuegylqZX7EjUZVbTSh+v6LCfFisCI+0wuNyuXeBjPh7Ut+zgWCaFVmnj7bJXLgIKXavEraVGmOA+/2mR71Wt8IE8MLyXpd8Kf2YLxrVlaqnsoiLl7SaDfP2ZHhaBjWb00VxIaEoof+/ojSqmchfxDFZ6bQQsBNJDQIDAQAB");
 	}
 
     public Cocos2dxGLSurfaceView onCreateView() {
@@ -86,5 +90,13 @@ public class Game extends Cocos2dxActivity{
             return;
         else
             super.onBackPressed();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (Backend.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

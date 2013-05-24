@@ -15,8 +15,6 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
-#LOCAL_WHOLE_STATIC_LIBRARIES += box2d_static
-#LOCAL_WHOLE_STATIC_LIBRARIES += chipmunk_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_extension_static
 LOCAL_WHOLE_STATIC_LIBRARIES += avalon_static
 
@@ -24,8 +22,8 @@ LOCAL_WHOLE_STATIC_LIBRARIES += avalon_static
 # preprocessor define - it's not supported yet :(
 LOCAL_CFLAGS += -std=c++11 -Doverride=
 
-AVALON_FEATURES := ads payment
-AVALON_PLATFORM_FLAVOR := amazon
+AVALON_FEATURES := ads payment gamecenter
+AVALON_PLATFORM_FLAVOR := google
 
 include $(BUILD_SHARED_LIBRARY)
 
