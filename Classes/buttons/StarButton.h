@@ -24,9 +24,9 @@ public:
 
 private:
     int amount;
-    cocos2d::CCLabelTTF* counter;
+    cocos2d::CCLabelBMFont* counter;
     cocos2d::CCSprite* star;
-    cocos2d::CCLabelTTF* diffLabel;
+    cocos2d::CCLabelBMFont* diffLabel;
     cocos2d::CCAction* labelAction;
     cocos2d::CCAction* starAction;
     cocos2d::CCParticleSystemQuad* starEffect;

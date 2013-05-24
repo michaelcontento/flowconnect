@@ -91,7 +91,13 @@ void Alert::setHeadline(const char* headline)
         removeChild(old, true);
     }
 
-    auto label = CCLabelTTF::create(headline, DEFAULT_FONT_NAME, 36);
+    CCNode* label = NULL;
+    auto langId = CCApplication::sharedApplication()->getCurrentLanguage();
+    if (langId == kLanguageEnglish || langId == kLanguageGerman) {
+        label = CCLabelBMFont::create(headline, DEFAULT_FNT_36, kCCLabelAutomaticWidth, kCCTextAlignmentCenter);
+    } else {
+        label = CCLabelTTF::create(headline, DEFAULT_FONT_NAME, 36);
+    }
     label->setTag(tagHeadline);
     addChild(label);
 
@@ -107,8 +113,17 @@ void Alert::setBody(const char* body)
         removeChild(old, true);
     }
 
-    auto label = CCLabelTTF::create(body, SMALL_FONT_NAME, 28);
-    label->setColor(ccGRAY);
+    CCNode* label = NULL;
+    auto langId = CCApplication::sharedApplication()->getCurrentLanguage();
+    if (langId == kLanguageEnglish || langId == kLanguageGerman) {
+        label = CCLabelBMFont::create(body, SMALL_FNT_28, kCCLabelAutomaticWidth, kCCTextAlignmentCenter);
+    } else {
+        label = CCLabelTTF::create(body, SMALL_FONT_NAME, 28);
+    }
+    // CCLabelBMFont doesn't inherit from CCNodeRGBA and there is no other
+    // base class we could utilize to avoid this cast. But both labels inhert
+    // from CCRGBAProtocol so this cast is always safe.
+    dynamic_cast<CCRGBAProtocol*>(label)->setColor(ccGRAY);
     label->setTag(tagBody);
     addChild(label);
 

@@ -24,7 +24,7 @@ private:
     userstate::Mode::Enum lastState;
     cocos2d::CCSprite* star;
     cocos2d::CCSprite* border;
-    cocos2d::CCLabelTTF* label;
+    cocos2d::CCLabelBMFont* label;
 
     void addBackground();
     void addLabel();

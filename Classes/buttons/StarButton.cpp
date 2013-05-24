@@ -41,7 +41,7 @@ bool StarButton::init()
     star->setPositionY(star->getPositionY() + 1);
     addChild(star);
 
-    counter = CCLabelTTF::create("", DEFAULT_FONT_NAME, 36);
+    counter = CCLabelBMFont::create("", DEFAULT_FNT_36, kCCLabelAutomaticWidth, kCCTextAlignmentCenter);
     counter->setOpacity(DISABLED_OPACITY);
     counter->setAnchorPoint(CCPoint(1, 0.5));
     counter->setPosition(CCPoint(-5, getContentSize().height / 2));
@@ -150,7 +150,7 @@ void StarButton::animate(const int diff)
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("money.mp3");
 
     if (!diffLabel) {
-        diffLabel = CCLabelTTF::create("", DEFAULT_FONT_NAME, 36);
+        diffLabel = CCLabelBMFont::create("", DEFAULT_FNT_36, kCCLabelAutomaticWidth, kCCTextAlignmentCenter);
         diffLabel->setAnchorPoint(CCPoint(1, 0.5));
         addChild(diffLabel);
     }

@@ -98,7 +98,7 @@ void GameButton::addLabel()
     static char text[5] = {0};
     snprintf(text, sizeof(text), "%d", level->localid);
 
-    label = CCLabelTTF::create(text, DEFAULT_FONT_NAME, 42);
+    label = CCLabelBMFont::create(text, DEFAULT_FNT_42, kCCLabelAutomaticWidth, kCCTextAlignmentCenter);
     label->setAnchorPoint(CCPoint(0.5, 0.5));
     label->setPosition(CCPoint(getContentSize().width / 2, getContentSize().height / 2));
     addChild(label);

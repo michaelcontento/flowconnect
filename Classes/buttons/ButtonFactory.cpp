@@ -78,7 +78,7 @@ CCMenuItemSprite* ButtonFactory::createCategory(LoaderCategory* category, CCObje
             category->countLevels()
         );
 
-        auto solved = CCLabelTTF::create(buf, SMALL_FONT_NAME, 36);
+        auto solved = CCLabelBMFont::create(buf, SMALL_FNT_36, kCCLabelAutomaticWidth, kCCTextAlignmentCenter);
         solved->setOpacity(DISABLED_OPACITY);
         solved->setAnchorPoint(CCPoint(1, 0.5));
         solved->setPosition(CCPoint(

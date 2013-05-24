@@ -4,7 +4,11 @@
 #include "LevelLoader.h"
 
 #define DEFAULT_FONT_NAME "RobotoCondensed-Bold"
+#define DEFAULT_FNT_42 "RobotoCondensed-Bold-42.fnt"
+#define DEFAULT_FNT_36 "RobotoCondensed-Bold-36.fnt"
 #define SMALL_FONT_NAME "RobotoCondensed-Regular"
+#define SMALL_FNT_36 "RobotoCondensed-Regular-36.fnt"
+#define SMALL_FNT_28 "RobotoCondensed-Regular-28.fnt"
 
 #define PRICE_REMOVE_ADS 50
 #define PRICE_HINT 1
