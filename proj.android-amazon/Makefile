@@ -3,6 +3,7 @@ run: clean-src debug logcat
 deepclean: clean
 	ant clean
 	rm -rf obj/local/armeabi/*
+	rm -rf obj/local/armeabi-v7a/*
 	rm -rf libs/armeabi/libcocos2dcpp.so
 
 clean: clean-src clean-libs

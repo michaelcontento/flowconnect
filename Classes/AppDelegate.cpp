@@ -28,7 +28,7 @@ AppDelegate::~AppDelegate()
 bool AppDelegate::applicationDidFinishLaunching()
 {
     CCDirector* pDirector = CCDirector::sharedDirector();
-    pDirector->setDisplayStats(true);
+    //pDirector->setDisplayStats(true);
 
     CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
     pDirector->setOpenGLView(pEGLView);
