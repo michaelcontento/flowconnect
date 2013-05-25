@@ -34,12 +34,27 @@ import android.content.Intent;
 
 import android.os.Bundle;
 
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+
+import com.google.android.gms.appstate.AppStateClient;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.games.GamesClient;
+import com.google.android.gms.plus.PlusClient;
+
 public class Game extends Cocos2dxActivity{
+
+    protected GameHelper mHelper;
 	
     protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);	
 		ChartboostXBridge.initChartboostXBridge(this);
 		Backend.setPublicKey("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv/G1iMd4B704VRrx2QuscgW+IrePszT8JdHNWTJtoYTF5c42SeMSP16445psWzNQ6tDaHdNsxOzIArC+jbBYaClk3WWN2PGrp7SgHIGqpb9dCNjjFTdL0Ui3e/NfRP/dMnN4bwFD3Hj/tkbodRMfI991OrRS2RSYTk8H62zxhNQXdvWuZuIxAuegylqZX7EjUZVbTSh+v6LCfFisCI+0wuNyuXeBjPh7Ut+zgWCaFVmnj7bJXLgIKXavEraVGmOA+/2mR71Wt8IE8MLyXpd8Kf2YLxrVlaqnsoiLl7SaDfP2ZHhaBjWb00VxIaEoof+/ojSqmchfxDFZ6bQQsBNJDQIDAQAB");
+
+		mHelper = new GameHelper(this);
+        mHelper.setup(this, mRequestedClients);
 	}
 
     public Cocos2dxGLSurfaceView onCreateView() {
@@ -55,6 +70,7 @@ public class Game extends Cocos2dxActivity{
     {
         super.onResume();
         ChartboostXBridge.initChartboostXBridge(this);
+        mHelper.beginUserInitiatedSignIn();
     }
 
     static {
@@ -67,6 +83,7 @@ public class Game extends Cocos2dxActivity{
         super.onStart();
     
         Chartboost.sharedChartboost().onStart(this);
+        mHelper.onStart(this);
     }
 
     @Override
@@ -74,6 +91,7 @@ public class Game extends Cocos2dxActivity{
         super.onStop();
 
         Chartboost.sharedChartboost().onStop(this);
+        mHelper.onStop(this);
     }
 
     @Override
@@ -98,5 +116,6 @@ public class Game extends Cocos2dxActivity{
         if (Backend.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
         }
+        mHelper.onActivityResult(request, response, data);
     }
 }
