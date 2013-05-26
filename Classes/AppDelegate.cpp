@@ -54,8 +54,4 @@ void AppDelegate::applicationWillEnterForeground()
     SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 
     userstate::refreshFreeHints();
-
-    if (userstate::showAds()) {
-        avalon::ads::Manager::showFullscreenAd();
-    }
 }
