@@ -1,3 +1,11 @@
+==== Version 3 ====
+- General: Free hints cooldown changed from 24 to 36 hours
+- General: Changed amount of free hints from 5 to 3
+- General: Increased price per page from 30 to 33 stars
+- General: Increased remove ads price from 50 to 60 stars
+- General: Remove ads on app resume
+- iOS:     Appirater integrated
+
 ==== Version 2 ====
 - General: Alert if GameCenter could not be initialized / used
 - General: Performance improvements with CCLabelBMFont instead of CCLabelTTF
