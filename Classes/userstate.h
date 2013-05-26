@@ -17,7 +17,7 @@
 
 #define KEY_SHOW_HINT_WARNING "hint_warning"
 #define KEY_HINT_AMOUNT "hints"
-#define START_HINTS_AMOUNT 5
+#define START_HINTS_AMOUNT 3
 
 #define KEY_FREE_HINT_COOLDOWN "hint_cooldown"
 #define FREE_HINTS_AFTER_COOLDOWN START_HINTS_AMOUNT
