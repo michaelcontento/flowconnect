@@ -34,4 +34,4 @@ debug: copy native
 	ant debug && ant installd
 
 release: copy native
-	ant release && installr
+	ant release && ant installr
