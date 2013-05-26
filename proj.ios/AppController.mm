@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #include "userstate.h"
+#import "Appirater.h"
 
 #ifdef WITH_LOCALYTICS
 #import "LocalyticsSession.h"
@@ -77,6 +78,14 @@ static AppDelegate s_sharedApplication;
     [[LocalyticsSession shared] startSession:@"ee497b7262c9e2c79ee9bc8-f09416dc-b981-11e2-895c-005cf8cbabd8"];
     #endif
 
+    [Appirater setAppId:@"643074518"];
+    [Appirater setDaysUntilPrompt:2];
+    [Appirater setUsesUntilPrompt:6];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:NO];
+    [Appirater appLaunched:YES];
+
     return YES;
 }
 
@@ -141,6 +150,8 @@ static AppDelegate s_sharedApplication;
     [[LocalyticsSession shared] resume];
     [[LocalyticsSession shared] upload];
     #endif
+
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

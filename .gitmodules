@@ -1,0 +1,3 @@
+[submodule "Vendors/appirater"]
+	path = Vendors/appirater
+	url = git@github.com:arashpayan/appirater.git
