@@ -12,7 +12,7 @@
 
 #define PRICE_REMOVE_ADS 60
 #define PRICE_HINT 1
-#define PRICE_PAGE 30
+#define PRICE_PAGE 33
 
 class StarButton;
 
