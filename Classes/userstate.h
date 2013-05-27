@@ -13,7 +13,7 @@
 #define KEY_USER_STARS "stars"
 #define START_STARS_AMOUNT 0
 
-#define FREE_STARS 10
+#define FREE_STARS 5
 
 #define KEY_SHOW_HINT_WARNING "hint_warning"
 #define KEY_HINT_AMOUNT "hints"

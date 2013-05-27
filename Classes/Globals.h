@@ -10,9 +10,9 @@
 #define SMALL_FNT_36 "RobotoCondensed-Regular-36.fnt"
 #define SMALL_FNT_28 "RobotoCondensed-Regular-28.fnt"
 
-#define PRICE_REMOVE_ADS 60
+#define PRICE_REMOVE_ADS 75
 #define PRICE_HINT 1
-#define PRICE_PAGE 33
+#define PRICE_PAGE 36
 
 class StarButton;
 
