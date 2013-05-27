@@ -2,6 +2,7 @@
 - General: Increased price per page from 33 to 36 stars
 - General: Increased remove ads price from 60 to 75 stars
 - General: Reduced free stars on FB / rate us from 10 to 5 stars
+- iOS:     Fix null pointer crash (Crashlytics: 51a38d881610bcbef33598b3)
 
 ==== Version 3 ====
 - General: Free hints cooldown changed from 24 to 36 hours
