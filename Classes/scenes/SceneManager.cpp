@@ -77,6 +77,10 @@ CCScene* SceneManager::gotoScene(CCScene* nextScene, const bool storePrevious)
 CCScene* SceneManager::popScene()
 {
     auto previousScene = getLastScene();
+    if (!previousScene) {
+        return NULL;
+    }
+
     previousScene->retain();
     sceneStack->removeLastObject();
     
