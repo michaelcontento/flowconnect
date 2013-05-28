@@ -5,6 +5,7 @@
 #include <avalon/i18n/Localization.h>
 #include <avalon/ui/Alert.h>
 #include <avalon/ui/AlertDelegate.h>
+#include <avalon/utils/platform.h>
 #include <ctime>
 #include "Globals.h"
 #include "buttons/StarButton.h"
@@ -158,8 +159,12 @@ void userstate::setIsPageFree(const LoaderPage* page, const bool flag)
 
 bool userstate::showAds()
 {
+#if AVALON_PLATFORM_IS_ANDROID_SAMSUNG
+    return false;
+#else
     auto settings = CCUserDefault::sharedUserDefault();
     return settings->getBoolForKey(KEY_SHOW_ADS, true);
+#endif
 }
 
 void userstate::setShowAds(const bool flag)

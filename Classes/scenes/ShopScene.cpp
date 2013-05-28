@@ -187,15 +187,14 @@ void ShopScene::btnFacebookLike()
 
 void ShopScene::btnRateUs()
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if AVALON_PLATFORM_IS_IOS
     avalon::utils::url::open("itms-apps://itunes.apple.com/app/id/643074518");
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    if (avalon::utils::platform::getFlavor().compare("amazon") == 0) {
-        avalon::utils::url::open("amzn://apps/android?p=com.coragames.dtdng");
-    }
-    if (avalon::utils::platform::getFlavor().compare("google") == 0) {
-        avalon::utils::url::open("market://details?id=com.coragames.dtdng");
-    }
+#elif AVALON_PLATFORM_IS_ANDROID_AMAZON
+    avalon::utils::url::open("amzn://apps/android?p=com.coragames.dtdng");
+#elif AVALON_PLATFORM_IS_ANDROID_GOOGLE
+    avalon::utils::url::open("market://details?id=com.coragames.dtdng");
+#elif AVALON_PLATFORM_IS_ANDROID_SAMSUNG
+    avalon::utils::url::open("samsungapps://ProductDetail/com.coragames.dtdng");
 #endif
 
     userstate::rateUs();

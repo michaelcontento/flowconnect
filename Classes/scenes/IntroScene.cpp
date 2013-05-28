@@ -56,6 +56,12 @@ void IntroScene::loadResources()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
+    auto mgr = new cocos2d::extension::AssetsManager(
+        "http://appdata.coragames.com/dtdng/package.zip",
+        "http://appdata.coragames.com/dtdng/version"
+    );
+    mgr->update();
+
     initPayment();
     initAds();
     initLocalization();
@@ -94,15 +100,11 @@ void IntroScene::initPayment()
 
 void IntroScene::initAds()
 {
-    auto mgr = new cocos2d::extension::AssetsManager(
-        "http://appdata.coragames.com/dtdng/package.zip",
-        "http://appdata.coragames.com/dtdng/version"
-    );
-    mgr->update();
-
-    avalon::ads::Manager::initWithIniFile("ads.ini");
-    avalon::ads::Manager::startService();
     avalon::ads::Manager::enabled = userstate::showAds();
+    if (avalon::ads::Manager::enabled) {
+        avalon::ads::Manager::initWithIniFile("ads.ini");
+        avalon::ads::Manager::startService();
+    }
 }
 
 void IntroScene::initLocalization()
