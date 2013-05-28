@@ -1,0 +1,7 @@
+# binay stuff
+bin/
+obj/
+assets/
+gen/
+libs/armeabi/
+libs/armeabi-v7a/
