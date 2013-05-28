@@ -2,7 +2,6 @@ package com.avalon.payment;
 
 import java.util.Map;
 import java.util.HashMap;
-import android.content.Intent;
 
 import com.avalon.payment.PurchasingObserver;
 
