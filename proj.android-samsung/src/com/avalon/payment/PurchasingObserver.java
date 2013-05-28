@@ -32,7 +32,6 @@ public class PurchasingObserver implements PlasmaListener
         plasma = new Plasma(itemGroupId, activity);
         plasma.setPlasmaListener(this);
         plasma.setShowProgressDialog(false);
-        plasma.setDeveloperFlag(1);
 
         threadOnInitialized();
     }
