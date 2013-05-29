@@ -254,10 +254,6 @@ public class PurchasingObserver
         this.productIds = productIds;
         final List<String> moreSkus = new ArrayList<String>(productIds.keySet());
 
-for (String sku : moreSkus) {
-    Log.v(TAG, "ASD: " + sku);
-}
-
         activity.runOnUiThread(new Runnable() {
             public void run() {
                 mHelper.queryInventoryAsync(true, moreSkus, mGotInventoryListener);

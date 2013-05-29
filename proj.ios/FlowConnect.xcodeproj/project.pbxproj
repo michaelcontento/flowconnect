@@ -147,6 +147,7 @@
 		C804283B173CE48600207497 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C804283A173CE48600207497 /* libcurl.a */; };
 		C804283D173D053700207497 /* star-fx.plist in Resources */ = {isa = PBXBuildFile; fileRef = C804283C173D053700207497 /* star-fx.plist */; };
 		C809EC8A174AA91D00F4F3A6 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C809EC89174AA91D00F4F3A6 /* platform.cpp */; };
+		C80BA0611755F8A7002EEF8C /* es.ini in Resources */ = {isa = PBXBuildFile; fileRef = C80BA0601755F8A7002EEF8C /* es.ini */; };
 		C813E7921731ADDA00F1889A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C813E7911731ADDA00F1889A /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C81C40EB17458CC8002E88B6 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C81C40E317458CC8002E88B6 /* background.mp3 */; };
 		C81C40EC17458CC8002E88B6 /* checkpoint-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C81C40E417458CC8002E88B6 /* checkpoint-1.mp3 */; };
@@ -569,6 +570,7 @@
 		C804283A173CE48600207497 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
 		C804283C173D053700207497 /* star-fx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "star-fx.plist"; sourceTree = "<group>"; };
 		C809EC89174AA91D00F4F3A6 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		C80BA0601755F8A7002EEF8C /* es.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = es.ini; sourceTree = "<group>"; };
 		C813E7911731ADDA00F1889A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C81C40E317458CC8002E88B6 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		C81C40E417458CC8002E88B6 /* checkpoint-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "checkpoint-1.mp3"; sourceTree = "<group>"; };
@@ -1448,6 +1450,7 @@
 		C81C40F817458CDE002E88B6 /* lang */ = {
 			isa = PBXGroup;
 			children = (
+				C80BA0601755F8A7002EEF8C /* es.ini */,
 				C81C40F417458CDB002E88B6 /* de.ini */,
 				C81C40F517458CDB002E88B6 /* en.ini */,
 			);
@@ -1986,6 +1989,7 @@
 				C8F0E6CD17522F5100148924 /* Appirater.podspec in Resources */,
 				C8F0E6CE17522F5100148924 /* AppiraterLocalizable.strings in Resources */,
 				C8F0E6CF17522F5100148924 /* README.md in Resources */,
+				C80BA0611755F8A7002EEF8C /* es.ini in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
