@@ -19,12 +19,14 @@ public:
     void btnAchievements();
     void btnShop();
     void btnSettings();
+    void btnGoogle(cocos2d::CCObject* object);
     virtual void keyBackClicked() override;
 
 private:
     static const unsigned int MENU_PADDING = 30;
 
     void showGameCenterDialog();
+    void showGoogleLoginDialog();
 };
 
 #endif /* defined(__FlowConnect__MenuScene__) */

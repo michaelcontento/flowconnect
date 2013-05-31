@@ -447,9 +447,12 @@ void userstate::updateLevelDuration(const LoaderLevel* level, const float durati
     snprintf(buf, sizeof(buf), "com.coragames.dtdng.lb.%d", level->page->category->localid);
 
     int handicap = LEVELS_PER_CATEGORY - getStarsForCategory(level->page->category);
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if AVALON_PLATFORM_IS_IOS
     // value = (HOURS * 360000) + (MINUTES * 6000) + (SECONDS * 100) + CENTISECONDS;
     gc.postScore(buf, (handicap * 360000) + (newSum * 100));
+#elif AVALON_PLATFORM_IS_ANDROID_GOOGLE
+    // value = (HOURS * 3600000) + (MINUTES * 60000) + (SECONDS * 1000) + MILLISECONDS;
+    gc.postScore(buf, (handicap * 3600000) + (newSum * 1000));
 #else
     gc.postScore(buf, (handicap * 1000000) + round(newSum));
 #endif

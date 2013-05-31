@@ -20,6 +20,7 @@ public:
     static StarButton* createStar();
     static cocos2d::CCMenuItemSprite* createPaymentButton(avalon::payment::Product* product);
     static cocos2d::CCMenuItemSprite* createPaymentButton(const char* name, const char* desc, const char* price, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector);
+    static cocos2d::CCMenuItemSprite* createGoogleButton(cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector);
     
 private:
     ButtonFactory() {}

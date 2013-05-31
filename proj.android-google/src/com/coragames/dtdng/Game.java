@@ -30,12 +30,12 @@ import com.wenbin.ChartboostX.*;
 import com.chartboost.sdk.*;
 
 import com.avalon.payment.Backend;
-import android.content.Intent;
+import com.avalon.GameCenter;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class Game extends Cocos2dxActivity{
-
     protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);	
 		ChartboostXBridge.initChartboostXBridge(this);
@@ -65,8 +65,8 @@ public class Game extends Cocos2dxActivity{
     @Override
     protected void onStart() {
         super.onStart();
-    
         Chartboost.sharedChartboost().onStart(this);
+        GameCenter.onStart();
     }
 
     @Override
@@ -74,6 +74,7 @@ public class Game extends Cocos2dxActivity{
         super.onStop();
 
         Chartboost.sharedChartboost().onStop(this);
+        GameCenter.onStop();
     }
 
     @Override
@@ -95,8 +96,9 @@ public class Game extends Cocos2dxActivity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (Backend.handleActivityResult(requestCode, resultCode, data)) {
+        if (!Backend.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
+            GameCenter.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

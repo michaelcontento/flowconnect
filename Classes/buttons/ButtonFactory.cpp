@@ -1,6 +1,9 @@
 #include "ButtonFactory.h"
 
 #include <avalon/utils/platform.h>
+#include <avalon/GameCenter.h>
+#include <avalon/i18n/LanguageKey.h>
+#include <avalon/i18n/Localization.h>
 #include "../Globals.h"
 #include "../scenes/SceneManager.h"
 #include "../Colors.h"
@@ -11,6 +14,7 @@
 #define SIDE_MARGIN ((768 - BOARD_WIDTH) / 2)
 
 using namespace cocos2d;
+using avalon::i18n::_;
 
 unsigned int ButtonFactory::colorCounter = 0;
 
@@ -132,6 +136,36 @@ CCMenuItemSprite* ButtonFactory::createPaymentButton(const char* name, const cha
     return button;
 }
 
+CCMenuItemSprite* ButtonFactory::createGoogleButton(CCObject* target, SEL_MenuHandler selector)
+{
+    auto sprite = CCSprite::createWithSpriteFrameName("buttons/borders/normal.png");
+    auto button = CCMenuItemSprite::create(sprite, sprite);
+    button->retain();
+    button->setTarget(target, selector);
+
+    std::string text = _("btn.googlelogin", "signin").get();
+#if AVALON_PLATFORM_IS_ANDROID_GOOGLE
+    auto gc = avalon::GameCenter();
+    if (gc.isSignedIn()) {
+        text = _("btn.googlelogin", "signout").get();
+    }
+#endif
+
+    auto label = CCLabelTTF::create(text.c_str(), DEFAULT_FONT_NAME, 48);
+    label->setAnchorPoint(CCPoint(0.5, 0.5));
+    label->setPosition(ccpMult(ccpFromSize(button->getContentSize()), 0.5));
+    label->setColor(LINE_COLORS[ButtonFactory::colorCounter++]);
+    label->setTag(TAG_GOOGLE_LABEL);
+    button->addChild(label);
+
+    auto gplus = CCSprite::createWithSpriteFrameName("google/g+.png");
+    gplus->setAnchorPoint(CCPoint(0, 0));
+    gplus->setPosition(CCPoint(-90, -4));
+    label->addChild(gplus);
+
+    return button;
+}
+
 CCMenu* ButtonFactory::createSceneBackButton()
 {
     auto menu = CCMenu::create();
@@ -153,7 +187,7 @@ CCMenu* ButtonFactory::createSceneBackButton()
 CCMenuItem* ButtonFactory::createEmptyButton()
 {
     auto result = CCMenuItem::create();
-#if AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON
+#if AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON || AVALON_PLATFORM_IS_ANDROID_GOOGLE
     result->setContentSize(CCSize(0, 0));
 #else
     result->setContentSize(CCSize(0, 25));

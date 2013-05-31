@@ -14,6 +14,8 @@
 #define PRICE_HINT 1
 #define PRICE_PAGE 36
 
+#define TAG_GOOGLE_LABEL 42
+
 class StarButton;
 
 extern LevelLoader globalLevelLoader;

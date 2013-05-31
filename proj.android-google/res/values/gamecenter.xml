@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Leaderboards -->
+    <string name="com.coragames.dtdng.lb.1">CgkIteeQ38EEEAIQBg</string>
+    <string name="com.coragames.dtdng.lb.2">CgkIteeQ38EEEAIQBw</string>
+    <string name="com.coragames.dtdng.lb.3">CgkIteeQ38EEEAIQCA</string>
+    <string name="com.coragames.dtdng.lb.4">CgkIteeQ38EEEAIQCQ</string>
+    <string name="com.coragames.dtdng.lb.5">CgkIteeQ38EEEAIQCg</string>
+    <string name="com.coragames.dtdng.lb.6">CgkIteeQ38EEEAIQCw</string>
+
+    <!-- Achievements -->
+    <string name="com.coragames.dtdng.ac.rank.1">CgkIteeQ38EEEAIQAQ</string>
+    <string name="com.coragames.dtdng.ac.rank.1.perfect">CgkIteeQ38EEEAIQAg</string>
+    <string name="com.coragames.dtdng.ac.rank.2">CgkIteeQ38EEEAIQAw</string>
+    <string name="com.coragames.dtdng.ac.rank.2.perfect">CgkIteeQ38EEEAIQBA</string>
+    <string name="com.coragames.dtdng.ac.rank.3">CgkIteeQ38EEEAIQBQ</string>
+    <string name="com.coragames.dtdng.ac.rank.3.perfect">CgkIteeQ38EEEAIQDA</string>
+    <string name="com.coragames.dtdng.ac.rank.4">CgkIteeQ38EEEAIQDQ</string>
+    <string name="com.coragames.dtdng.ac.rank.4.perfect">CgkIteeQ38EEEAIQDg</string>
+    <string name="com.coragames.dtdng.ac.rank.5">CgkIteeQ38EEEAIQDw</string>
+    <string name="com.coragames.dtdng.ac.rank.5.perfect">CgkIteeQ38EEEAIQEA</string>
+    <string name="com.coragames.dtdng.ac.rank.6">CgkIteeQ38EEEAIQEQ</string>
+    <string name="com.coragames.dtdng.ac.rank.6.perfect">CgkIteeQ38EEEAIQEg</string>
+    <string name="com.coragames.dtdng.ac.rank.7">CgkIteeQ38EEEAIQEw</string>
+    <string name="com.coragames.dtdng.ac.rank.7.perfect">CgkIteeQ38EEEAIQFA</string>
+    <string name="com.coragames.dtdng.ac.cat.1">CgkIteeQ38EEEAIQFQ</string>
+    <string name="com.coragames.dtdng.ac.cat.1.perfect">CgkIteeQ38EEEAIQFg</string>
+    <string name="com.coragames.dtdng.ac.cat.2">CgkIteeQ38EEEAIQFg</string>
+    <string name="com.coragames.dtdng.ac.cat.2.perfect">CgkIteeQ38EEEAIQGA</string>
+    <string name="com.coragames.dtdng.ac.cat.3">CgkIteeQ38EEEAIQGQ</string>
+    <string name="com.coragames.dtdng.ac.cat.3.perfect">CgkIteeQ38EEEAIQGg</string>
+    <string name="com.coragames.dtdng.ac.cat.4">CgkIteeQ38EEEAIQGw</string>
+    <string name="com.coragames.dtdng.ac.cat.4.perfect">CgkIteeQ38EEEAIQHA</string>
+    <string name="com.coragames.dtdng.ac.cat.5">CgkIteeQ38EEEAIQHQ</string>
+    <string name="com.coragames.dtdng.ac.cat.5.perfect">CgkIteeQ38EEEAIQHg</string>
+    <string name="com.coragames.dtdng.ac.cat.6">CgkIteeQ38EEEAIQHw</string>
+    <string name="com.coragames.dtdng.ac.cat.6.perfect">CgkIteeQ38EEEAIQIA</string>
+</resources>
