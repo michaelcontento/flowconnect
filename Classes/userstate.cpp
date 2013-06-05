@@ -105,9 +105,16 @@ void postAchievement(const char* mode, const LoaderCategory* category, const int
     auto gc = avalon::GameCenter();
     char buf[50] = {0};
 
-    snprintf(buf, sizeof(buf), "com.coragames.dtdng.ac.cat.%d", category->localid);
+    // --- CATEGORY
+    snprintf(
+        buf, sizeof(buf),
+        "com.coragames.dtdng.ac.cat.%d%s",
+        category->localid,
+        (strcmp(mode, "perfect") == 0) ? ".perfect" : ""
+    );
     gc.postAchievement(buf, value * 100 / LEVELS_PER_CATEGORY);
 
+    // --- RANK
     for (int i = 1; i <= MAX_RANK_ID; ++i) {
         int sum = getTotalStarsInAllOtherCategories(category, mode) + value;
         int percent = sum * 100 / getRankAmount(i);
