@@ -6,6 +6,7 @@
 #include <avalon/ui/Alert.h>
 #include <avalon/ui/AlertDelegate.h>
 #include <avalon/utils/platform.h>
+#include <avalon/ads/Manager.h>
 #include <ctime>
 #include "Globals.h"
 #include "buttons/StarButton.h"
@@ -179,6 +180,7 @@ void userstate::setShowAds(const bool flag)
     auto settings = CCUserDefault::sharedUserDefault();
     settings->setBoolForKey(KEY_SHOW_ADS, flag);
     settings->flush();
+    avalon::ads::Manager::enabled = flag;
 }
 
 bool userstate::resetable()
