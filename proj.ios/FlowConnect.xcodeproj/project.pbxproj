@@ -159,7 +159,6 @@
 		C81C40F217458CC8002E88B6 /* solved.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C81C40EA17458CC8002E88B6 /* solved.mp3 */; };
 		C81C40F617458CDB002E88B6 /* de.ini in Resources */ = {isa = PBXBuildFile; fileRef = C81C40F417458CDB002E88B6 /* de.ini */; };
 		C81C40F717458CDB002E88B6 /* en.ini in Resources */ = {isa = PBXBuildFile; fileRef = C81C40F517458CDB002E88B6 /* en.ini */; };
-		C82ADB9D1757ED27001802FD /* Game.java in Sources */ = {isa = PBXBuildFile; fileRef = C82ADB9C1757ED27001802FD /* Game.java */; };
 		C82ADBB81758D997001802FD /* ChartboostX_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82ADBA51758D997001802FD /* ChartboostX_ios.mm */; };
 		C82ADBB91758D997001802FD /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C82ADBA61758D997001802FD /* libChartboost.a */; };
 		C82ADBBA1758D997001802FD /* Revmob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82ADBA71758D997001802FD /* Revmob.cpp */; };
@@ -583,7 +582,6 @@
 		C81C40EA17458CC8002E88B6 /* solved.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = solved.mp3; sourceTree = "<group>"; };
 		C81C40F417458CDB002E88B6 /* de.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = de.ini; sourceTree = "<group>"; };
 		C81C40F517458CDB002E88B6 /* en.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = en.ini; sourceTree = "<group>"; };
-		C82ADB9C1757ED27001802FD /* Game.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = Game.java; path = "../proj.android-google/src/com/coragames/dtdng/Game.java"; sourceTree = "<group>"; };
 		C82ADBA31758D997001802FD /* CBAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAnalytics.h; sourceTree = "<group>"; };
 		C82ADBA41758D997001802FD /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
 		C82ADBA51758D997001802FD /* ChartboostX_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChartboostX_ios.mm; sourceTree = "<group>"; };
@@ -1750,7 +1748,6 @@
 		C89D956F1741482A00903AF8 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				C82ADB9C1757ED27001802FD /* Game.java */,
 				C8F0E6AA17522F5100148924 /* appirater */,
 				C830BC8717414FFB0096C4D8 /* avalon */,
 				C89D959817414D0F00903AF8 /* Crashlytics */,
@@ -2207,7 +2204,6 @@
 				C809EC8A174AA91D00F4F3A6 /* platform.cpp in Sources */,
 				C83E1019174F7FF60001E82F /* IntroScene.cpp in Sources */,
 				C8F0E6CC17522F5100148924 /* Appirater.m in Sources */,
-				C82ADB9D1757ED27001802FD /* Game.java in Sources */,
 				C82ADBB81758D997001802FD /* ChartboostX_ios.mm in Sources */,
 				C82ADBBA1758D997001802FD /* Revmob.cpp in Sources */,
 				C82ADBBC1758D997001802FD /* RevmobBridge.mm in Sources */,
