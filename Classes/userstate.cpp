@@ -231,7 +231,7 @@ void userstate::refreshFreeHints()
 
     // yup .. user is full of free hints
     auto hintsToAdd = FREE_HINTS_AFTER_COOLDOWN - getFreeHints();
-    if (hintsToAdd == 0) {
+    if (hintsToAdd <= 0) {
         return;
     }
 
