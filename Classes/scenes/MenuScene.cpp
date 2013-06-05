@@ -5,6 +5,7 @@
 #include <avalon/i18n/Localization.h>
 #include <avalon/payment/Loader.h>
 #include <avalon/utils/platform.h>
+#include <avalon/ads/Manager.h>
 #include "SceneManager.h"
 #include "CategoryMenuScene.h"
 #include "ShopScene.h"
@@ -31,6 +32,18 @@ CCScene* MenuScene::scene()
     CCScene *scene = CCScene::create();
     scene->addChild(MenuScene::create());
     return scene;
+}
+
+void MenuScene::onEnter()
+{
+    CCLayer::onEnter();
+    avalon::ads::Manager::showBannerIgnoreTime();
+}
+
+void MenuScene::onExit()
+{
+    avalon::ads::Manager::hide();
+    CCLayer::onExit();
 }
 
 bool MenuScene::init()

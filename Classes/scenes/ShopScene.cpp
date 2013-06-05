@@ -5,6 +5,7 @@
 #include <avalon/i18n/Localization.h>
 #include <avalon/utils/url.h>
 #include <avalon/utils/platform.h>
+#include <avalon/ads/Manager.h>
 #include "../buttons/ButtonFactory.h"
 #include "../Alert.h"
 #include "userstate.h"
@@ -35,6 +36,18 @@ CCScene* ShopScene::scene()
     CCScene *scene = CCScene::create();
     scene->addChild(ShopScene::create());
     return scene;
+}
+
+void ShopScene::onEnter()
+{
+    CCLayer::onEnter();
+    avalon::ads::Manager::showBannerIgnoreTime();
+}
+
+void ShopScene::onExit()
+{
+    avalon::ads::Manager::hide();
+    CCLayer::onExit();
 }
 
 bool ShopScene::init()

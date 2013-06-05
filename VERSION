@@ -3,6 +3,7 @@
 - General: Avalon updated (auto&, obey BOOST_ASSERT, ...)
 - General: Release with NDEBUG defined
 - General: Disable ads if "remove ads" has been purchased
+- General: Add banner ads to some menus
 
 ==== Version 4 ====
 - General: Increased price per page from 33 to 36 stars

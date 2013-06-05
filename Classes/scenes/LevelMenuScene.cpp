@@ -1,5 +1,6 @@
 #include "LevelMenuScene.h"
 
+#include <avalon/ads/Manager.h>
 #include "../buttons/ButtonFactory.h"
 #include "Colors.h"
 #include "../scenes/SceneManager.h"
@@ -45,6 +46,7 @@ CCScene* LevelMenuScene::scene()
 void LevelMenuScene::onEnter()
 {
     CCLayer::onEnter();
+    avalon::ads::Manager::showBannerIgnoreTime();
 
     CCDirector::sharedDirector()
         ->getTouchDispatcher()
@@ -73,6 +75,7 @@ void LevelMenuScene::onEnter()
 
 void LevelMenuScene::onExit()
 {
+    avalon::ads::Manager::hide();
     CCLayer::onExit();
 
     CCDirector::sharedDirector()

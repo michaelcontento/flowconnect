@@ -13,6 +13,9 @@ public:
     CREATE_FUNC(MenuScene);
     virtual bool init() override;
 
+    virtual void onEnter() override;
+    virtual void onExit() override;
+
     void btnPlay();
     void btnPLayTimeAttack();
     void btnLeaderboard();
