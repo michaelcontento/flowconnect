@@ -123,6 +123,7 @@ void GameScene::onBtnReset()
     auto alert = getChildByTag(tagAlert);
     if (alert) {
         if (userstate::showAds()) {
+            avalon::ads::Manager::hide();
             avalon::ads::Manager::showFullscreenAd();
         }
         removeChild(alert);
@@ -135,6 +136,7 @@ void GameScene::onBtnGoNext()
     auto alert = getChildByTag(tagAlert);
     if (alert) {
         if (userstate::showAds()) {
+            avalon::ads::Manager::hide();
             avalon::ads::Manager::showFullscreenAd();
         }
         removeChild(alert);
@@ -339,6 +341,7 @@ void GameScene::initLeftMenu()
 
 void GameScene::onTimeAttackTimeout()
 {
+    avalon::ads::Manager::showBannerIgnoreTime();
     board->forceCancelTouch();
     
     auto alert = Alert::create();
@@ -366,12 +369,15 @@ void GameScene::onBtnAttackExtraTime()
     if (userstate::addStarsToUser(-2)) {
         stats->resetAttackLevelTime();
         removeChildByTag(tagAlert);
+        avalon::ads::Manager::hide();
     }
 }
 
 void GameScene::onBtnClose()
 {
     removeChildByTag(tagAlert);
+    avalon::ads::Manager::hide();
+    avalon::ads::Manager::showFullscreenAd();
     SceneManager::getInstance().popSceneWithSound();
 }
 
@@ -383,7 +389,9 @@ void GameScene::onBoardFinished()
         stats->resetAttackLevelTime();
         return;
     }
-    
+
+    avalon::ads::Manager::showBannerIgnoreTime();
+
     auto lastState = userstate::getModeForLevel(board->getLevel());
     auto moves = board->getMoves();
     auto perfectMoves = (board->getSize().width * board->getSize().height) - 1;

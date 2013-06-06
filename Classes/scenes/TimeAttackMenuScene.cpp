@@ -1,9 +1,8 @@
 #include "TimeAttackMenuScene.h"
 
-#include <vector.h>
-#include <list.h>
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
+#include <avalon/ads/Manager.h>
 #include "SceneManager.h"
 #include "LevelMenuScene.h"
 #include "LevelLoader.h"
@@ -39,8 +38,15 @@ CCScene* TimeAttackMenuScene::scene()
 void TimeAttackMenuScene::onEnter()
 {
     CCLayer::onEnter();
-
+    avalon::ads::Manager::showBannerIgnoreTime();
+    
     // @TODO: Update records!
+}
+
+void TimeAttackMenuScene::onExit()
+{
+    avalon::ads::Manager::hide();
+    CCLayer::onExit();
 }
 
 bool TimeAttackMenuScene::init()

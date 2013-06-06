@@ -2349,7 +2349,6 @@
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/Chartboost-x/Chartboost-x/ios\"",
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider/samsungadhub\"",
-					"\"$(SRCROOT)/../../../../avalon/vendors/tapfortap/ios\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/TapForTap/TapForTap-iOS-2.3.2/TapForTap\"",
 				);
 				OTHER_CFLAGS = "-O2";
@@ -2420,7 +2419,6 @@
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/Chartboost-x/Chartboost-x/ios\"",
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider/samsungadhub\"",
-					"\"$(SRCROOT)/../../../../avalon/vendors/tapfortap/ios\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/TapForTap/TapForTap-iOS-2.3.2/TapForTap\"",
 				);
 				OTHER_LDFLAGS = (
