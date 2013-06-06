@@ -36,6 +36,8 @@ public:
     void enableSounds(const bool flag = true);
     void playable(const bool flag = true);
 
+    void forceCancelTouch();
+
     virtual void onEnter() override;
     virtual void onExit() override;
 
@@ -50,6 +52,7 @@ private:
     cocos2d::CCArray* slots;
     bool withSounds;
     bool isPlayable;
+    bool touchForceCancelled;
     cocos2d::CCArray* userPath;
     std::vector<char> directions;
     GameScene* gameScene;

@@ -12,6 +12,9 @@
 #include "Alert.h"
 #include "SimpleAudioEngine.h"
 
+int GameScene::mode = GameScene::MODE_NORMAL;
+int GameScene::timeAttackId = 0;
+
 using namespace cocos2d;
 using avalon::i18n::_;
 
@@ -49,11 +52,13 @@ GameScene::GameScene()
 , headlineLabel(NULL)
 , hintLabel(NULL)
 , hintNumber(NULL)
+, attackLevel(1)
 {
 }
 
 GameScene::~GameScene()
 {
+    CC_SAFE_RELEASE_NULL(stats);
 }
 
 CCScene* GameScene::scene()
@@ -235,8 +240,16 @@ void GameScene::initBoard()
     if (headlineLabel) {
         removeChild(headlineLabel);
     }
-    
-    headlineLabel = ButtonFactory::createHeadline(globalLevel->getLocalizedName());
+
+    if (mode == MODE_NORMAL) {
+        headlineLabel = ButtonFactory::createHeadline(globalLevel->getLocalizedName());
+    } else {
+        headlineLabel = ButtonFactory::createHeadline(
+            _("game", "headline.attack")
+            .assign("level", attackLevel)
+            .get().c_str()
+        );
+    }
     addChild(headlineLabel);
 }
 
@@ -249,7 +262,13 @@ void GameScene::addBoardWithinContainer(Board* board)
     boardContainerInner->addChild(board);
     board->setTouchIndicatorScale(boardContainerInner->getScale());
 
-    stats = BoardStats::createWithBoard(board);
+    if (!stats) {
+        stats = BoardStats::createWithBoard(board);
+        stats->retain();
+        stats->setGameScene(this);
+    } else {
+        stats->setBoard(board);
+    }
     stats->setAnchorPoint(CCPoint(0.5, 0));
     stats->setPositionY(BOARD_WIDTH / 2);
 
@@ -275,7 +294,9 @@ void GameScene::initRightMenu()
     rightMenu = CCMenu::create();
     addChild(rightMenu);
 
-    createMenuitem("buttons/go-back.png", rightMenu, menu_selector(GameScene::onBtnGoBack));
+    if (mode == MODE_NORMAL) {
+        createMenuitem("buttons/go-back.png", rightMenu, menu_selector(GameScene::onBtnGoBack));
+    }
     createMenuitem("buttons/reset.png", rightMenu, menu_selector(GameScene::onBtnReset));
     createMenuitem("buttons/go-next.png", rightMenu, menu_selector(GameScene::onBtnGoNext));
 
@@ -316,8 +337,53 @@ void GameScene::initLeftMenu()
     leftMenu->alignItemsHorizontallyWithPadding(BUTTON_SPACING);
 }
 
+void GameScene::onTimeAttackTimeout()
+{
+    board->forceCancelTouch();
+    
+    auto alert = Alert::create();
+    alert->setTag(tagAlert);
+    addChild(alert);
+
+    alert->setHeadline(_("alert.attacktimeout", "headline").get().c_str());
+    alert->setBody(
+        _("alert.attacktimeout", "body")
+        .assign("amount", attackLevel)
+        .get().c_str()
+    );
+    alert->addButton(
+        _("alert.attacktimeout", "btn.extratime").get().c_str(),
+        this, menu_selector(GameScene::onBtnAttackExtraTime)
+    );
+    alert->addButton(
+        _("alert.attacktimeout", "btn.close").get().c_str(),
+        this, menu_selector(GameScene::onBtnClose)
+    );
+}
+
+void GameScene::onBtnAttackExtraTime()
+{
+    if (userstate::addStarsToUser(-2)) {
+        stats->resetAttackLevelTime();
+        removeChildByTag(tagAlert);
+    }
+}
+
+void GameScene::onBtnClose()
+{
+    removeChildByTag(tagAlert);
+    SceneManager::getInstance().popSceneWithSound();
+}
+
 void GameScene::onBoardFinished()
 {
+    if (mode == MODE_TIMEATTACK) {
+        attackLevel += 1;
+        onBtnGoNext();
+        stats->resetAttackLevelTime();
+        return;
+    }
+    
     auto lastState = userstate::getModeForLevel(board->getLevel());
     auto moves = board->getMoves();
     auto perfectMoves = (board->getSize().width * board->getSize().height) - 1;

@@ -121,6 +121,7 @@ void GameButton::onClick()
 
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     globalLevel = level;
+    GameScene::mode = GameScene::MODE_NORMAL;
 
     if (userstate::showHowToPlay()) {
         userstate::setShowHowToPlay(false);

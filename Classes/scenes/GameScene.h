@@ -8,6 +8,11 @@
 class GameScene : public cocos2d::CCLayer
 {
 public:
+    static const int MODE_NORMAL = 0;
+    static const int MODE_TIMEATTACK = 1;
+    static int mode;
+    static int timeAttackId;
+    
     GameScene();
     virtual ~GameScene();
 
@@ -29,6 +34,10 @@ public:
     void enableMenus(const bool flag);
 
     void onBoardFinished();
+    void onTimeAttackTimeout();
+
+    void onBtnAttackExtraTime();
+    void onBtnClose();
 
 private:
     static const int BOARD_MARGIN = 25;
@@ -36,6 +45,7 @@ private:
     static const int BOARD_WIDTH = 696;
     static const int tagAlert = 42;
 
+    int attackLevel;
     cocos2d::CCNode* boardContainer;
     Board* board;
     BoardStats* stats;

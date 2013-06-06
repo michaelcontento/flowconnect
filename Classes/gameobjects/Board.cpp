@@ -29,6 +29,7 @@ Board::Board()
 , highestNumber(0)
 , withSounds(true)
 , isPlayable(true)
+, touchForceCancelled(false)
 {
 }
 
@@ -115,6 +116,8 @@ void Board::onExit()
 
 bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    touchForceCancelled = false;
+    
     if (!isPlayable) {
         return false;
     }
@@ -176,6 +179,10 @@ bool Board::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 
 void Board::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (touchForceCancelled) {
+        return;
+    }
+    
     // no checkpoint left to visit? the user might a) proceed to the next level
     // or b) restart somewhere with _a new_ touch.
     if (allCheckpointVisited) {
@@ -820,4 +827,9 @@ void Board::playable(const bool flag /* = true */)
 void Board::enableSounds(const bool flag /* = true */)
 {
     withSounds = flag;
+}
+
+void Board::forceCancelTouch()
+{
+    touchForceCancelled = true;
 }

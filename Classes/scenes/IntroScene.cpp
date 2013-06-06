@@ -56,11 +56,11 @@ void IntroScene::loadResources()
     CCSpriteFrameCache::sharedSpriteFrameCache()
         ->addSpriteFramesWithFile("assets.plist");
 
-    auto mgr = new cocos2d::extension::AssetsManager(
+/*    auto mgr = new cocos2d::extension::AssetsManager(
         "http://appdata.coragames.com/dtdng/package.zip",
         "http://appdata.coragames.com/dtdng/version"
     );
-    mgr->update();
+    mgr->update();*/
 
     initPayment();
     initAds();
@@ -113,7 +113,7 @@ void IntroScene::initLocalization()
     loca->addLanguage("en.ini");
     loca->setCurrentLanguage("en.ini");
     loca->setDefaultLanguage("en.ini");
-
+    return;
     auto langId = CCApplication::sharedApplication()->getCurrentLanguage();
     std::string lang;
     if (langId == kLanguageArabic) {

@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "Board.h"
 
+class GameScene;
+
 class BoardStats : public cocos2d::CCNode
 {
 public:
@@ -17,11 +19,21 @@ public:
     virtual void onEnter() override;
     virtual void onExit() override;
 
+    void setGameScene(GameScene* gameScene);
+    void resetAttackLevelTime();
+
+    static float getAttackLevelTime(const int id);
+    static float getAttackPufferTime(const int id);
+
 private:
     bool withBest;
     int movesBest;
     float timeBest;
+    float attackTimeLevel;
+    float attackTimePuffer;
+    bool attackFinished;
     Board* board;
+    GameScene* gameScene;
     cocos2d::CCLabelTTF* statsMove;
     cocos2d::CCLabelTTF* statsBest;
     cocos2d::CCLabelTTF* statsProgress;

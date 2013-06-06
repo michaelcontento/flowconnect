@@ -100,7 +100,7 @@ bool LevelMenuScene::init()
 
     auto indicator = createPageIndicatorContainer();
     indicator->setAnchorPoint(CCPoint(0.5, 0.5));
-    indicator->setPosition(CCPoint(384, 120));
+    indicator->setPosition(CCPoint(384, 140));
     addChild(indicator);
 
     addChild(ButtonFactory::createSceneBackButton());

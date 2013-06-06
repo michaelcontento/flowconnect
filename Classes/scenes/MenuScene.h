@@ -26,7 +26,7 @@ public:
     virtual void keyBackClicked() override;
 
 private:
-    static const unsigned int MENU_PADDING = 30;
+    static const unsigned int MENU_PADDING = 20;
 
     void showGameCenterDialog();
     void showGoogleLoginDialog();

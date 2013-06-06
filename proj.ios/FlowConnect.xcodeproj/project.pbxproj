@@ -246,6 +246,9 @@
 		C8A48ACA173A8B170012D40F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AC9173A8B170012D40F /* Accounts.framework */; };
 		C8A48ACC173A8B210012D40F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48ACB173A8B210012D40F /* Security.framework */; };
 		C8A48AE6173A8F000012D40F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A48AE5173A8F000012D40F /* MessageUI.framework */; };
+		C8A714CE1760A20A0078E612 /* TimeAttackMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A714CC1760A2090078E612 /* TimeAttackMenuScene.cpp */; };
+		C8A714DF1760C9D60078E612 /* libTapForTapAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714DA1760C9D60078E612 /* libTapForTapAds.a */; };
+		C8A714E31760CA260078E612 /* TapForTap.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8A714E21760CA250078E612 /* TapForTap.mm */; };
 		C8CA622817141A32005660B3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622617141A32005660B3 /* GameScene.cpp */; };
 		C8CA622C17142683005660B3 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622A17142683005660B3 /* Board.cpp */; };
 		C8CA622F1714268F005660B3 /* Slot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622D1714268F005660B3 /* Slot.cpp */; };
@@ -746,6 +749,15 @@
 		C8A48ACB173A8B210012D40F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C8A48AD1173A8BA60012D40F /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		C8A48AE5173A8F000012D40F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		C8A714CC1760A2090078E612 /* TimeAttackMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeAttackMenuScene.cpp; path = ../Classes/scenes/TimeAttackMenuScene.cpp; sourceTree = "<group>"; };
+		C8A714CD1760A2090078E612 /* TimeAttackMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeAttackMenuScene.h; path = ../Classes/scenes/TimeAttackMenuScene.h; sourceTree = "<group>"; };
+		C8A714CF1760C8B10078E612 /* TapForTap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapForTap.h; sourceTree = "<group>"; };
+		C8A714DA1760C9D60078E612 /* libTapForTapAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTapForTapAds.a; sourceTree = "<group>"; };
+		C8A714DB1760C9D60078E612 /* TapForTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapForTap.h; sourceTree = "<group>"; };
+		C8A714DC1760C9D60078E612 /* TapForTapAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapForTapAdView.h; sourceTree = "<group>"; };
+		C8A714DD1760C9D60078E612 /* TapForTapAppWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapForTapAppWall.h; sourceTree = "<group>"; };
+		C8A714DE1760C9D60078E612 /* TapForTapInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapForTapInterstitial.h; sourceTree = "<group>"; };
+		C8A714E21760CA250078E612 /* TapForTap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TapForTap.mm; sourceTree = "<group>"; };
 		C8CA622617141A32005660B3 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/scenes/GameScene.cpp; sourceTree = "<group>"; };
 		C8CA622717141A32005660B3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/scenes/GameScene.h; sourceTree = "<group>"; };
 		C8CA622A17142683005660B3 /* Board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Board.cpp; path = ../Classes/gameobjects/Board.cpp; sourceTree = "<group>"; };
@@ -836,6 +848,7 @@
 				C89D959A17414D0F00903AF8 /* Crashlytics.framework in Frameworks */,
 				C82ADBB91758D997001802FD /* libChartboost.a in Frameworks */,
 				C82ADBBB1758D997001802FD /* RevMobAds.framework in Frameworks */,
+				C8A714DF1760C9D60078E612 /* libTapForTapAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1480,6 +1493,8 @@
 		C82ADBA21758D997001802FD /* provider */ = {
 			isa = PBXGroup;
 			children = (
+				C8A714E21760CA250078E612 /* TapForTap.mm */,
+				C8A714D91760C9D60078E612 /* TapForTap */,
 				C82ADBA31758D997001802FD /* CBAnalytics.h */,
 				C82ADBA41758D997001802FD /* Chartboost.h */,
 				C82ADBA51758D997001802FD /* ChartboostX_ios.mm */,
@@ -1575,6 +1590,7 @@
 				C82D1C631744728F00BFE966 /* Chartboost.h */,
 				C82D1C641744728F00BFE966 /* ChartboostX.h */,
 				C82D1C651744728F00BFE966 /* Revmob.h */,
+				C8A714CF1760C8B10078E612 /* TapForTap.h */,
 			);
 			path = provider;
 			sourceTree = "<group>";
@@ -1775,6 +1791,19 @@
 			path = Crashlytics;
 			sourceTree = "<group>";
 		};
+		C8A714D91760C9D60078E612 /* TapForTap */ = {
+			isa = PBXGroup;
+			children = (
+				C8A714DA1760C9D60078E612 /* libTapForTapAds.a */,
+				C8A714DB1760C9D60078E612 /* TapForTap.h */,
+				C8A714DC1760C9D60078E612 /* TapForTapAdView.h */,
+				C8A714DD1760C9D60078E612 /* TapForTapAppWall.h */,
+				C8A714DE1760C9D60078E612 /* TapForTapInterstitial.h */,
+			);
+			name = TapForTap;
+			path = "../../../../../vendors/TapForTap/TapForTap-iOS-2.3.2/TapForTap";
+			sourceTree = "<group>";
+		};
 		C8C6E775172F00740060466D /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1807,6 +1836,8 @@
 				C8CA622717141A32005660B3 /* GameScene.h */,
 				C8D628CC171EB34300631416 /* MenuScene.cpp */,
 				C8D628CD171EB34300631416 /* MenuScene.h */,
+				C8A714CC1760A2090078E612 /* TimeAttackMenuScene.cpp */,
+				C8A714CD1760A2090078E612 /* TimeAttackMenuScene.h */,
 				C8A0C2A7171F61770094DDBB /* CategoryMenuScene.cpp */,
 				C8A0C2A8171F61770094DDBB /* CategoryMenuScene.h */,
 				C88AF0E817256800004697BE /* SettingsScene.cpp */,
@@ -2213,6 +2244,8 @@
 				C82ADBC01758D997001802FD /* BackendIos.mm in Sources */,
 				C82ADBC11758D997001802FD /* AlertNative.mm in Sources */,
 				C82ADBC21758D997001802FD /* url.mm in Sources */,
+				C8A714CE1760A20A0078E612 /* TimeAttackMenuScene.cpp in Sources */,
+				C8A714E31760CA260078E612 /* TapForTap.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2316,6 +2349,8 @@
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/Chartboost-x/Chartboost-x/ios\"",
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider/samsungadhub\"",
+					"\"$(SRCROOT)/../../../../avalon/vendors/tapfortap/ios\"",
+					"\"$(SRCROOT)/../../../../avalon/vendors/TapForTap/TapForTap-iOS-2.3.2/TapForTap\"",
 				);
 				OTHER_CFLAGS = "-O2";
 				OTHER_LDFLAGS = (
@@ -2385,6 +2420,8 @@
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/Chartboost-x/Chartboost-x/ios\"",
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider/samsungadhub\"",
+					"\"$(SRCROOT)/../../../../avalon/vendors/tapfortap/ios\"",
+					"\"$(SRCROOT)/../../../../avalon/vendors/TapForTap/TapForTap-iOS-2.3.2/TapForTap\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",

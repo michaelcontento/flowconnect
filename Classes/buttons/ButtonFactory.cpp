@@ -188,7 +188,7 @@ CCMenuItem* ButtonFactory::createEmptyButton()
 {
     auto result = CCMenuItem::create();
 #if AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON || AVALON_PLATFORM_IS_ANDROID_GOOGLE
-    result->setContentSize(CCSize(0, 0));
+    result->setContentSize(CCSize(0, 15));
 #else
     result->setContentSize(CCSize(0, 25));
 #endif

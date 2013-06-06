@@ -2,6 +2,7 @@
 
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
+#include "GameScene.h"
 #include "Globals.h"
 #include "userstate.h"
 
@@ -16,6 +17,10 @@ BoardStats::BoardStats()
 , withBest(false)
 , movesBest(0)
 , timeBest(0)
+, gameScene(NULL)
+, attackTimeLevel(0)
+, attackTimePuffer(0)
+, attackFinished(false)
 {
 }
 
@@ -96,24 +101,96 @@ void BoardStats::setBoard(Board* board)
 void BoardStats::updateStats(float dt)
 {
     assert(board && "this should never happen");
+    attackTimeLevel -= dt;
+    if (attackTimeLevel < 0) {
+        attackTimePuffer = MAX(0, attackTimePuffer + attackTimeLevel);
+        attackTimeLevel = 0;
+    }
 
-    statsMove->setString(
-        _("game.stats", withBest ? "moves.best" : "moves")
-        .assign("moves.best", movesBest)
-        .assign("moves", board->getMoves())
-        .get().c_str()
-    );
+    if (GameScene::mode == GameScene::MODE_TIMEATTACK) {
+        statsMove->setString(
+            _("game.stats", "attack.puffer")
+            .assign("time", MAX(attackTimePuffer, 0))
+            .get().c_str()
+        );
+    } else {
+        statsMove->setString(
+            _("game.stats", withBest ? "moves.best" : "moves")
+            .assign("moves.best", movesBest)
+            .assign("moves", board->getMoves())
+            .get().c_str()
+        );
+    }
 
-    statsBest->setString(
-        _("game.stats", withBest ? "time.best" : "time")
-        .assign("time.best", timeBest, "%.2f")
-        .assign("time", board->getDuration(), "%.2f")
-        .get().c_str()
-    );
+    if (GameScene::mode == GameScene::MODE_TIMEATTACK) {
+        statsBest->setString(
+            _("game.stats", "attack.level")
+            .assign("time", attackTimeLevel)
+            .get().c_str()
+        );
+    } else {
+        statsBest->setString(
+            _("game.stats", withBest ? "time.best" : "time")
+            .assign("time.best", timeBest, "%.2f")
+            .assign("time", board->getDuration(), "%.2f")
+            .get().c_str()
+        );
+    }
 
     statsProgress->setString(
         _("game.stats", "solved")
         .assign("percent", (int)(board->getProgress() * 100))
         .get().c_str()
     );
+
+    if (!attackFinished && GameScene::mode == GameScene::MODE_TIMEATTACK && (attackTimePuffer + attackTimeLevel) <= 0) {
+        gameScene->onTimeAttackTimeout();
+        attackFinished = true;
+    }
+}
+
+void BoardStats::setGameScene(GameScene* gameScene)
+{
+    this->gameScene = gameScene;
+    attackFinished = false;
+    attackTimeLevel = getAttackLevelTime(GameScene::timeAttackId);
+    attackTimePuffer = getAttackPufferTime(GameScene::timeAttackId);
+}
+
+void BoardStats::resetAttackLevelTime()
+{
+    attackFinished = false;
+    attackTimeLevel = getAttackLevelTime(GameScene::timeAttackId);
+}
+
+float BoardStats::getAttackLevelTime(const int id)
+{
+    // 5x5 and 4x4+5x5
+    if (id == 1 || id == 3) {
+        return 3;
+    }
+    
+    // 6x6 and 5x5+6x6
+    if (id == 2 || id == 4) {
+        return 5;
+    }
+
+    // 4x4 and default
+    return 2;
+}
+
+float BoardStats::getAttackPufferTime(const int id)
+{
+    // 5x5 and 4x4+5x5
+    if (id == 1 || id == 3) {
+        return 20;
+    }
+
+    // 6x6 and 5x5+6x6
+    if (id == 2 || id == 4) {
+        return 25;
+    }
+
+    // 4x4 and default
+    return 15;
 }

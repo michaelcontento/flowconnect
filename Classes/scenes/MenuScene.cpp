@@ -9,6 +9,7 @@
 #include "SceneManager.h"
 #include "CategoryMenuScene.h"
 #include "ShopScene.h"
+#include "TimeAttackMenuScene.h"
 #include "../buttons/ButtonFactory.h"
 #include "../Globals.h"
 #include "SettingsScene.h"
@@ -56,7 +57,7 @@ bool MenuScene::init()
     addChild(menu);
 
     menu->addChild(ButtonFactory::create(_("menu.main", "play").get().c_str(), this, menu_selector(MenuScene::btnPlay)));
-    //menu->addChild(ButtonFactory::create("Time Attack", this, menu_selector(MenuScene::btnPLayTimeAttack)));
+    menu->addChild(ButtonFactory::create(_("menu.main", "timeattack").get().c_str(), this, menu_selector(MenuScene::btnPLayTimeAttack)));
     menu->addChild(ButtonFactory::createEmptyButton());
 
 #if AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON || AVALON_PLATFORM_IS_ANDROID_GOOGLE
@@ -105,7 +106,7 @@ void MenuScene::btnPlay()
 void MenuScene::btnPLayTimeAttack()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
-    assert(false && "Not yet implemented");
+    SceneManager::getInstance().gotoScene(TimeAttackMenuScene::scene());
 }
 
 void MenuScene::btnLeaderboard()
