@@ -162,7 +162,6 @@
 		C82ADBB81758D997001802FD /* ChartboostX_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82ADBA51758D997001802FD /* ChartboostX_ios.mm */; };
 		C82ADBB91758D997001802FD /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C82ADBA61758D997001802FD /* libChartboost.a */; };
 		C82ADBBA1758D997001802FD /* Revmob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82ADBA71758D997001802FD /* Revmob.cpp */; };
-		C82ADBBB1758D997001802FD /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C82ADBA81758D997001802FD /* RevMobAds.framework */; };
 		C82ADBBC1758D997001802FD /* RevmobBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82ADBAA1758D997001802FD /* RevmobBridge.mm */; };
 		C82ADBBD1758D997001802FD /* GameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82ADBAD1758D997001802FD /* GameCenter.mm */; };
 		C82ADBBE1758D997001802FD /* GameCenterIos.m in Sources */ = {isa = PBXBuildFile; fileRef = C82ADBAF1758D997001802FD /* GameCenterIos.m */; };
@@ -249,6 +248,8 @@
 		C8A714CE1760A20A0078E612 /* TimeAttackMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8A714CC1760A2090078E612 /* TimeAttackMenuScene.cpp */; };
 		C8A714DF1760C9D60078E612 /* libTapForTapAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714DA1760C9D60078E612 /* libTapForTapAds.a */; };
 		C8A714E31760CA260078E612 /* TapForTap.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8A714E21760CA250078E612 /* TapForTap.mm */; };
+		C8A714E91760E6490078E612 /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714E41760DB310078E612 /* RevMobAds.framework */; };
+		C8A714EA1760E66B0078E612 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714E61760DB5C0078E612 /* CoreLocation.framework */; };
 		C8CA622817141A32005660B3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622617141A32005660B3 /* GameScene.cpp */; };
 		C8CA622C17142683005660B3 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622A17142683005660B3 /* Board.cpp */; };
 		C8CA622F1714268F005660B3 /* Slot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622D1714268F005660B3 /* Slot.cpp */; };
@@ -590,7 +591,6 @@
 		C82ADBA51758D997001802FD /* ChartboostX_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChartboostX_ios.mm; sourceTree = "<group>"; };
 		C82ADBA61758D997001802FD /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
 		C82ADBA71758D997001802FD /* Revmob.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Revmob.cpp; sourceTree = "<group>"; };
-		C82ADBA81758D997001802FD /* RevMobAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevMobAds.framework; sourceTree = "<group>"; };
 		C82ADBA91758D997001802FD /* RevmobBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevmobBridge.h; sourceTree = "<group>"; };
 		C82ADBAA1758D997001802FD /* RevmobBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RevmobBridge.mm; sourceTree = "<group>"; };
 		C82ADBAD1758D997001802FD /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
@@ -758,6 +758,8 @@
 		C8A714DD1760C9D60078E612 /* TapForTapAppWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapForTapAppWall.h; sourceTree = "<group>"; };
 		C8A714DE1760C9D60078E612 /* TapForTapInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapForTapInterstitial.h; sourceTree = "<group>"; };
 		C8A714E21760CA250078E612 /* TapForTap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TapForTap.mm; sourceTree = "<group>"; };
+		C8A714E41760DB310078E612 /* RevMobAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevMobAds.framework; path = ../../../../../vendors/revmob/ios/RevMobAds.framework; sourceTree = "<group>"; };
+		C8A714E61760DB5C0078E612 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C8CA622617141A32005660B3 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/scenes/GameScene.cpp; sourceTree = "<group>"; };
 		C8CA622717141A32005660B3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/scenes/GameScene.h; sourceTree = "<group>"; };
 		C8CA622A17142683005660B3 /* Board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Board.cpp; path = ../Classes/gameobjects/Board.cpp; sourceTree = "<group>"; };
@@ -823,6 +825,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8A714EA1760E66B0078E612 /* CoreLocation.framework in Frameworks */,
 				C8D8F29817306D5F0073B7C8 /* SystemConfiguration.framework in Frameworks */,
 				C8F0E6A917522F0900148924 /* CFNetwork.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -847,7 +850,7 @@
 				C804283B173CE48600207497 /* libcurl.a in Frameworks */,
 				C89D959A17414D0F00903AF8 /* Crashlytics.framework in Frameworks */,
 				C82ADBB91758D997001802FD /* libChartboost.a in Frameworks */,
-				C82ADBBB1758D997001802FD /* RevMobAds.framework in Frameworks */,
+				C8A714E91760E6490078E612 /* RevMobAds.framework in Frameworks */,
 				C8A714DF1760C9D60078E612 /* libTapForTapAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1380,6 +1383,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C8A714E61760DB5C0078E612 /* CoreLocation.framework */,
 				C8F0E6A817522F0900148924 /* CFNetwork.framework */,
 				15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */,
 				15A3D8871682F7D5002FB0C5 /* Box2D */,
@@ -1493,6 +1497,7 @@
 		C82ADBA21758D997001802FD /* provider */ = {
 			isa = PBXGroup;
 			children = (
+				C8A714E41760DB310078E612 /* RevMobAds.framework */,
 				C8A714E21760CA250078E612 /* TapForTap.mm */,
 				C8A714D91760C9D60078E612 /* TapForTap */,
 				C82ADBA31758D997001802FD /* CBAnalytics.h */,
@@ -1500,7 +1505,6 @@
 				C82ADBA51758D997001802FD /* ChartboostX_ios.mm */,
 				C82ADBA61758D997001802FD /* libChartboost.a */,
 				C82ADBA71758D997001802FD /* Revmob.cpp */,
-				C82ADBA81758D997001802FD /* RevMobAds.framework */,
 				C82ADBA91758D997001802FD /* RevmobBridge.h */,
 				C82ADBAA1758D997001802FD /* RevmobBridge.mm */,
 				C82ADBAB1758D997001802FD /* samsungadhub */,
@@ -2313,6 +2317,7 @@
 					"\"$(SRCROOT)/../Vendors/Crashlytics\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/revmob\"",
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider\"",
+					"\"$(SRCROOT)/../../../../avalon/vendors/revmob/ios\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -2324,6 +2329,7 @@
 					CC_TARGET_OS_IPHONE,
 					"COCOS2D_DEBUG=1",
 					CC_ENABLE_CHIPMUNK_INTEGRATION,
+					AVALON_PLATFORM_IOS_USE_CORELOCATION,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -2384,6 +2390,7 @@
 					"\"$(SRCROOT)/../Vendors/Crashlytics\"",
 					"\"$(SRCROOT)/../../../../avalon/vendors/revmob\"",
 					"\"$(SRCROOT)/../../../../avalon/avalon/platform/ios/ads/provider\"",
+					"\"$(SRCROOT)/../../../../avalon/vendors/revmob/ios\"",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2394,6 +2401,7 @@
 					CC_TARGET_OS_IPHONE,
 					CC_ENABLE_CHIPMUNK_INTEGRATION,
 					NDEBUG,
+					AVALON_PLATFORM_IOS_USE_CORELOCATION,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
