@@ -397,6 +397,42 @@ void userstate::setModeForLevel(const LoaderLevel* level, Mode::Enum mode)
     settings->flush();
 }
 
+void userstate::setScoreForTimeAttack(const int id, const int score)
+{
+    if (score <= 0) {
+        return;
+    }
+    
+    auto settings = CCUserDefault::sharedUserDefault();
+    auto lastScore = userstate::getScoreForTimeAttack(id);
+    if (score <= lastScore) {
+        return;
+    }
+
+    // Settings
+    char key[25] = {0};
+    snprintf(key, sizeof(key), "%s_%d", PREFIX_TIMEATTACK_SCORE, id);
+    settings->setIntegerForKey(key, score);
+    settings->flush();
+
+    // GameCenter
+    auto gc = avalon::GameCenter();
+    char buf[50] = {0};
+    snprintf(buf, sizeof(buf), "com.coragames.dtdng.lb.attack.%d", id);
+    CCLog(">> POST %s %d", buf, score);
+    gc.postScore(buf, score);
+}
+
+int userstate::getScoreForTimeAttack(const int id)
+{
+    char key[25] = {0};
+    snprintf(key, sizeof(key), "%s_%d", PREFIX_TIMEATTACK_SCORE, id);
+
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getIntegerForKey(key, 0);
+
+}
+
 int userstate::getStarsForCategory(const LoaderCategory* category)
 {
     auto settings = CCUserDefault::sharedUserDefault();

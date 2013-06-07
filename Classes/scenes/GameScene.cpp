@@ -354,6 +354,8 @@ void GameScene::onTimeAttackTimeout()
     alert->setTag(tagAlert);
     addChild(alert);
 
+    userstate::setScoreForTimeAttack(timeAttackId, attackLevel - 1);
+
     alert->setHeadline(_("alert.attacktimeout", "headline").get().c_str());
     alert->setBody(
         _("alert.attacktimeout", "body")

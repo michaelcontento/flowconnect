@@ -6,6 +6,7 @@
 #define PREFIX_LEVEL_MODE "lvl"
 #define PREFIX_CATEGORY_STARS "cat"
 #define PREFIX_PAGE_FREE "page_free"
+#define PREFIX_TIMEATTACK_SCORE "timeattack"
 
 #define MAX_RANK_ID 7
 #define LEVELS_PER_CATEGORY 216
@@ -80,6 +81,9 @@ namespace userstate
 
     bool addStarsToUser(const unsigned int amount);
     void resetAllLevelModes();
+
+    void setScoreForTimeAttack(const int id, const int score);
+    int getScoreForTimeAttack(const int id);
 
     int getStarsForUser();
     int getStarsForCategory(const LoaderCategory* category);

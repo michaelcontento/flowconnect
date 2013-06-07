@@ -1,5 +1,6 @@
 #include "TimeAttackMenuScene.h"
 
+#include <boost/lexical_cast.hpp>
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
 #include <avalon/ads/Manager.h>
@@ -89,13 +90,19 @@ void TimeAttackMenuScene::createButton(const int id)
     snprintf(name, sizeof(name), "level.%d.name", id);
     snprintf(desc, sizeof(desc), "level.%d.desc", id);
 
+    int score = userstate::getScoreForTimeAttack(id);
+    std::string scoreStr("");
+    if (score > 0) {
+        scoreStr = boost::lexical_cast<std::string>(score);
+    }
+
     auto button = ButtonFactory::createPaymentButton(
         _("menu.timeattack", name).get().c_str(),
         _("menu.timeattack", desc)
         .assign("time.level", (int)BoardStats::getAttackLevelTime(id))
         .assign("time.puffer", (int)BoardStats::getAttackPufferTime(id))
         .get().c_str(),
-        "-",
+        scoreStr.c_str(),
         this, menu_selector(TimeAttackMenuScene::btnGame)
     );
     button->setUserObject(CCInteger::create(id));
