@@ -51,6 +51,13 @@ char* getPageKey(const unsigned int categoryId, const unsigned int pageId)
     return tmpKey;
 }
 
+char* getAttackKey(const int id)
+{
+    static char tmpKey[50] = {0};
+    snprintf(tmpKey, sizeof(tmpKey), "%s_%d", PREFIX_TIMEATTACK_SCORE, id);
+    return tmpKey;
+}
+
 char* getPageKey(const LoaderPage* page)
 {
     return getPageKey(page->category->localid, page->localid);
@@ -362,6 +369,10 @@ void userstate::resetAllLevelModes()
         settings->setFloatForKey(categoryKey, 0);
     }
 
+    for (int i = 0; i < AMOUNT_TIMEATTACK_MODES; ++i) {
+        settings->setIntegerForKey(getAttackKey(i), 0);
+    }
+
     setShowHowToPlay(true);
     
     // it's important to do this after setShowHowToPlay() because it
@@ -410,9 +421,7 @@ void userstate::setScoreForTimeAttack(const int id, const int score)
     }
 
     // Settings
-    char key[25] = {0};
-    snprintf(key, sizeof(key), "%s_%d", PREFIX_TIMEATTACK_SCORE, id);
-    settings->setIntegerForKey(key, score);
+    settings->setIntegerForKey(getAttackKey(id), score);
     settings->flush();
 
     // GameCenter
@@ -425,11 +434,8 @@ void userstate::setScoreForTimeAttack(const int id, const int score)
 
 int userstate::getScoreForTimeAttack(const int id)
 {
-    char key[25] = {0};
-    snprintf(key, sizeof(key), "%s_%d", PREFIX_TIMEATTACK_SCORE, id);
-
     auto settings = CCUserDefault::sharedUserDefault();
-    return settings->getIntegerForKey(key, 0);
+    return settings->getIntegerForKey(getAttackKey(id), 0);
 
 }
 

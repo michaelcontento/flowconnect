@@ -375,7 +375,8 @@ void GameScene::onTimeAttackTimeout()
     alert->setHeadline(_("alert.attacktimeout", "headline").get().c_str());
     alert->setBody(
         _("alert.attacktimeout", "body")
-        .assign("amount", (attackLevel - 1))
+        .assign("levels", (attackLevel - 1))
+        .assign("stars", PRICE_TIMEATTACK_CONTINUE)
         .get().c_str()
     );
     alert->addButton(
@@ -390,7 +391,7 @@ void GameScene::onTimeAttackTimeout()
 
 void GameScene::onBtnAttackExtraTime()
 {
-    if (userstate::addStarsToUser(-2)) {
+    if (userstate::addStarsToUser(-PRICE_TIMEATTACK_CONTINUE)) {
         stats->resetAttackLevelTime();
         removeChildByTag(tagAlert);
         avalon::ads::Manager::hide();
