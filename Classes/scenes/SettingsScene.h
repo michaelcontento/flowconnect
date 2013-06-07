@@ -29,7 +29,7 @@ public:
     virtual void keyBackClicked() override;
 
 private:
-    static const unsigned int MENU_PADDING = 25;
+    static const unsigned int MENU_PADDING = 20;
     const LoaderLevel* oldGlobalLevel;
     cocos2d::CCMenu* menu;
     unsigned int mode;
