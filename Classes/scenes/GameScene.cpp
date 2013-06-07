@@ -392,7 +392,7 @@ void GameScene::onTimeAttackTimeout()
 void GameScene::onBtnAttackExtraTime()
 {
     if (userstate::addStarsToUser(-PRICE_TIMEATTACK_CONTINUE)) {
-        stats->resetAttackLevelTime();
+        stats->addContinueTime();
         removeChildByTag(tagAlert);
         avalon::ads::Manager::hide();
     }

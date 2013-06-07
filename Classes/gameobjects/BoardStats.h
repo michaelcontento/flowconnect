@@ -21,6 +21,7 @@ public:
 
     void setGameScene(GameScene* gameScene);
     void resetAttackLevelTime();
+    void addContinueTime();
 
     static float getAttackLevelTime(const int id);
     static float getAttackPufferTime(const int id);

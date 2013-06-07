@@ -161,7 +161,12 @@ void BoardStats::resetAttackLevelTime()
 {
     attackFinished = false;
     attackTimeLevel = getAttackLevelTime(GameScene::timeAttackId);
+}
+
+void BoardStats::addContinueTime()
+{
     attackTimePuffer = getAttackLevelTime(GameScene::timeAttackId);
+    resetAttackLevelTime();
 }
 
 float BoardStats::getAttackLevelTime(const int id)
