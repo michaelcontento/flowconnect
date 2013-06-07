@@ -21,5 +21,7 @@ class StarButton;
 extern LevelLoader globalLevelLoader;
 extern const LoaderLevel* globalLevel;
 extern StarButton* globalLastStarButton;
+extern std::vector<LoaderLevel*> globalAttackLevels;
+extern std::vector<LoaderLevel*>::iterator globalAttackIterator;
 
 #endif

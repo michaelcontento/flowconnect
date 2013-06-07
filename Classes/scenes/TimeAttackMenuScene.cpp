@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "LevelMenuScene.h"
 #include "LevelLoader.h"
+#include "Globals.h"
 #include "../buttons/ButtonFactory.h"
 #include "userstate.h"
 #include "GameScene.h"
@@ -14,9 +15,6 @@
 
 using namespace cocos2d;
 using avalon::i18n::_;
-
-extern LevelLoader globalLevelLoader;
-extern LoaderLevel* globalLevel;
 
 #pragma mark Initialization
 
@@ -91,7 +89,7 @@ void TimeAttackMenuScene::createButton(const int id)
     snprintf(desc, sizeof(desc), "level.%d.desc", id);
 
     int score = userstate::getScoreForTimeAttack(id);
-    std::string scoreStr("");
+    std::string scoreStr("-");
     if (score > 0) {
         scoreStr = boost::lexical_cast<std::string>(score);
     }
@@ -124,6 +122,78 @@ void TimeAttackMenuScene::btnGame(void* sender)
     GameScene::mode = GameScene::MODE_TIMEATTACK;
     GameScene::timeAttackId = index->getValue();
 
+    setGlobalLevelAndAttackLevelQueue(index->getValue());
+
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     SceneManager::getInstance().gotoScene(GameScene::scene());
+}
+
+void TimeAttackMenuScene::setGlobalLevelAndAttackLevelQueue(const int id)
+{
+    globalAttackLevels.clear();
+
+    std::vector<LoaderLevel*> levels;
+    if (id == 0) {
+        levels = getLevelsForCategory(4); // 4x4
+    } else if (id == 1) {
+        levels = getLevelsForCategory(5); // 5x5
+    } else if (id == 2) {
+        levels = getLevelsForCategory(6); // 6x6
+    } else if (id == 3) {
+        levels = getMergedLevels(4, 5); // 4x4 and 5x5
+    } else if (id == 4) {
+        levels = getMergedLevels(5, 6); // 5x5 and 6x6
+    }
+
+    globalAttackLevels = levels;
+    globalAttackIterator = globalAttackLevels.begin();
+    globalLevel = *globalAttackIterator;
+}
+
+std::vector<LoaderLevel*> TimeAttackMenuScene::getLevelsForCategory(const int id)
+{
+    std::vector<LoaderLevel*> levels;
+    
+    for (auto& category : globalLevelLoader.getCategories()) {
+        if (category->localid == id) {
+            levels.reserve(category->countLevels());
+            for (auto& page : category->pages) {
+                for (auto& level : page->levels) {
+                    levels.push_back(level);
+                }
+            }
+
+            std::srand(std::time(0));
+            std::random_shuffle(levels.begin(), levels.end());
+
+            return levels;
+        }
+    }
+
+    return levels;
+}
+
+std::vector<LoaderLevel*> TimeAttackMenuScene::getMergedLevels(const int a, const int b)
+{
+    auto levelsA = getLevelsForCategory(a);
+    auto levelsB = getLevelsForCategory(b);
+
+    std::vector<LoaderLevel*> levels;
+    levels.reserve(levelsA.size() + levelsB.size());
+
+    auto iterA = levelsA.begin();
+    auto iterB = levelsB.begin();
+
+    while (iterA != levelsA.end() || iterB != levelsB.end()) {
+        if (iterA != levelsA.end()) {
+            levels.push_back(*iterA);
+            ++iterA;
+        }
+        if (iterB != levelsB.end()) {
+            levels.push_back(*iterB);
+            ++iterB;
+        }
+    }
+
+    return levels;
 }

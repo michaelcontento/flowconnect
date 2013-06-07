@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 
+class LoaderLevel;
+
 class TimeAttackMenuScene : public cocos2d::CCLayer
 {
 public:
@@ -24,6 +26,9 @@ private:
 
     void createMenu();
     void createButton(const int id);
+    void setGlobalLevelAndAttackLevelQueue(const int id);
+    std::vector<LoaderLevel*> getLevelsForCategory(const int id);
+    std::vector<LoaderLevel*> getMergedLevels(const int a, const int b);
 };
 
 #endif /* defined(__FlowConnect__TimeAttackScene__) */

@@ -98,6 +98,10 @@ void GameScene::keyBackClicked()
 
 void GameScene::onBtnGoBack()
 {
+    if (mode == MODE_TIMEATTACK) {
+        return;
+    }
+    
     LoaderLevel* prevLevel = globalLevel->prev;
     if (!prevLevel) {
         LoaderPage* prePage = globalLevel->page->prev;
@@ -148,17 +152,29 @@ void GameScene::onBtnGoNext()
         removeChild(alert);
     }
 
-    LoaderLevel* nextLevel = globalLevel->next;
-    if (!nextLevel) {
-        LoaderPage* nextPage = globalLevel->page->next;
-        if (nextPage) {
-            if (!userstate::isPageFree(nextPage)) {
-                LevelMenuScene::scrollTo = nextPage;
-                SceneManager::getInstance().popScene();
-            } else {
-                nextLevel = nextPage->levels.front();
+    LoaderLevel* nextLevel = NULL;
+    if (mode == MODE_NORMAL) {
+        nextLevel = globalLevel->next;
+        if (!nextLevel) {
+            LoaderPage* nextPage = globalLevel->page->next;
+            if (nextPage) {
+                if (!userstate::isPageFree(nextPage)) {
+                    LevelMenuScene::scrollTo = nextPage;
+                    SceneManager::getInstance().popScene();
+                } else {
+                    nextLevel = nextPage->levels.front();
+                }
             }
         }
+    } else {
+        if (globalAttackLevels.size() == 0) {
+            return;
+        }
+
+        if (++globalAttackIterator == globalAttackLevels.end()) {
+            globalAttackIterator = globalAttackLevels.begin();
+        }
+        nextLevel = *globalAttackIterator;
     }
 
     if (nextLevel) {
@@ -359,7 +375,7 @@ void GameScene::onTimeAttackTimeout()
     alert->setHeadline(_("alert.attacktimeout", "headline").get().c_str());
     alert->setBody(
         _("alert.attacktimeout", "body")
-        .assign("amount", attackLevel)
+        .assign("amount", (attackLevel - 1))
         .get().c_str()
     );
     alert->addButton(
