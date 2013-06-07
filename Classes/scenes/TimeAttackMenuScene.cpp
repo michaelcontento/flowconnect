@@ -38,8 +38,7 @@ void TimeAttackMenuScene::onEnter()
 {
     CCLayer::onEnter();
     avalon::ads::Manager::showBannerIgnoreTime();
-    
-    // @TODO: Update records!
+    createMenu();
 }
 
 bool TimeAttackMenuScene::init()
@@ -50,7 +49,6 @@ bool TimeAttackMenuScene::init()
 
     menu = CCMenu::create();
     addChild(menu);
-    createMenu();
 
     addChild(ButtonFactory::createSceneBackButton());
     addChild(ButtonFactory::createStar());
