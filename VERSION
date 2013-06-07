@@ -1,4 +1,5 @@
 ==== Version 5 ====
+- General: TimeAttack mode added
 - General: Don't do anything on negative daily free hints
 - General: Avalon updated (auto&, obey BOOST_ASSERT, ...)
 - General: Release with NDEBUG defined
