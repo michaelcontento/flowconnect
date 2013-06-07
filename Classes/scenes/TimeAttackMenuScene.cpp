@@ -43,12 +43,6 @@ void TimeAttackMenuScene::onEnter()
     // @TODO: Update records!
 }
 
-void TimeAttackMenuScene::onExit()
-{
-    avalon::ads::Manager::hide();
-    CCLayer::onExit();
-}
-
 bool TimeAttackMenuScene::init()
 {
     if (!CCLayer::init()) {

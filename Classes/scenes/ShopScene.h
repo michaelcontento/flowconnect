@@ -20,7 +20,6 @@ public:
     void btnRateUs();
 
     virtual void onEnter() override;
-    virtual void onExit() override;
 
     void alertTimeout(CCObject* alert);
     virtual void keyBackClicked() override;

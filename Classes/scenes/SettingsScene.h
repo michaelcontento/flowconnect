@@ -16,6 +16,7 @@ public:
     virtual bool init() override;
 
     virtual void onEnter() override;
+    virtual void onExit() override;
     virtual void onAlertButtonClick(const unsigned int index, const std::string title) override;
 
     void btnReset();

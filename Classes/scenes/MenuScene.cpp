@@ -41,12 +41,6 @@ void MenuScene::onEnter()
     avalon::ads::Manager::showBannerIgnoreTime();
 }
 
-void MenuScene::onExit()
-{
-    avalon::ads::Manager::hide();
-    CCLayer::onExit();
-}
-
 bool MenuScene::init()
 {
     if (!CCLayer::init()) {

@@ -75,7 +75,6 @@ void LevelMenuScene::onEnter()
 
 void LevelMenuScene::onExit()
 {
-    avalon::ads::Manager::hide();
     CCLayer::onExit();
 
     CCDirector::sharedDirector()

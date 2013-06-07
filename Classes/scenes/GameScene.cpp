@@ -18,6 +18,12 @@ int GameScene::timeAttackId = 0;
 using namespace cocos2d;
 using avalon::i18n::_;
 
+void GameScene::onEnter()
+{
+    CCLayer::onEnter();
+    avalon::ads::Manager::hide();
+}
+
 void GameScene::createHintButton(cocos2d::CCMenu* menu)
 {
     auto bg = CCSprite::createWithSpriteFrameName("buttons/hint-number.png");

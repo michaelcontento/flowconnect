@@ -14,7 +14,6 @@ public:
     virtual bool init() override;
 
     virtual void onEnter() override;
-    virtual void onExit() override;
     virtual void keyBackClicked() override;
 
     void btnGame(void* sender);

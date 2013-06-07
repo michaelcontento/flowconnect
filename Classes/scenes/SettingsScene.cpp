@@ -159,11 +159,18 @@ void SettingsScene::onAlertButtonClick(const unsigned int index, const std::stri
 void SettingsScene::onEnter()
 {
     CCLayer::onEnter();
+    avalon::ads::Manager::hide();
     
     if (oldGlobalLevel) {
         globalLevel = oldGlobalLevel;
         oldGlobalLevel = NULL;
     }
+}
+
+void SettingsScene::onExit()
+{
+    avalon::ads::Manager::showBannerIgnoreTime();
+    CCLayer::onExit();
 }
 
 void SettingsScene::btnMoreGames()

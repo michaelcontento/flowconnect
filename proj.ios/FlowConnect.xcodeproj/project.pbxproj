@@ -250,6 +250,8 @@
 		C8A714E31760CA260078E612 /* TapForTap.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8A714E21760CA250078E612 /* TapForTap.mm */; };
 		C8A714E91760E6490078E612 /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714E41760DB310078E612 /* RevMobAds.framework */; };
 		C8A714EA1760E66B0078E612 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714E61760DB5C0078E612 /* CoreLocation.framework */; };
+		C8A714ED1761B9410078E612 /* IAd.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8A714EC1761B9400078E612 /* IAd.mm */; };
+		C8A714EF1761BB830078E612 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714EE1761BB820078E612 /* iAd.framework */; };
 		C8CA622817141A32005660B3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622617141A32005660B3 /* GameScene.cpp */; };
 		C8CA622C17142683005660B3 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622A17142683005660B3 /* Board.cpp */; };
 		C8CA622F1714268F005660B3 /* Slot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622D1714268F005660B3 /* Slot.cpp */; };
@@ -760,6 +762,9 @@
 		C8A714E21760CA250078E612 /* TapForTap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TapForTap.mm; sourceTree = "<group>"; };
 		C8A714E41760DB310078E612 /* RevMobAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevMobAds.framework; path = ../../../../../vendors/revmob/ios/RevMobAds.framework; sourceTree = "<group>"; };
 		C8A714E61760DB5C0078E612 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C8A714EB1761B9130078E612 /* IAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAd.h; sourceTree = "<group>"; };
+		C8A714EC1761B9400078E612 /* IAd.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IAd.mm; sourceTree = "<group>"; };
+		C8A714EE1761BB820078E612 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		C8CA622617141A32005660B3 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/scenes/GameScene.cpp; sourceTree = "<group>"; };
 		C8CA622717141A32005660B3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/scenes/GameScene.h; sourceTree = "<group>"; };
 		C8CA622A17142683005660B3 /* Board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Board.cpp; path = ../Classes/gameobjects/Board.cpp; sourceTree = "<group>"; };
@@ -825,6 +830,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8A714EF1761BB830078E612 /* iAd.framework in Frameworks */,
 				C8A714EA1760E66B0078E612 /* CoreLocation.framework in Frameworks */,
 				C8D8F29817306D5F0073B7C8 /* SystemConfiguration.framework in Frameworks */,
 				C8F0E6A917522F0900148924 /* CFNetwork.framework in Frameworks */,
@@ -1383,6 +1389,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C8A714EE1761BB820078E612 /* iAd.framework */,
 				C8A714E61760DB5C0078E612 /* CoreLocation.framework */,
 				C8F0E6A817522F0900148924 /* CFNetwork.framework */,
 				15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */,
@@ -1497,6 +1504,7 @@
 		C82ADBA21758D997001802FD /* provider */ = {
 			isa = PBXGroup;
 			children = (
+				C8A714EC1761B9400078E612 /* IAd.mm */,
 				C8A714E41760DB310078E612 /* RevMobAds.framework */,
 				C8A714E21760CA250078E612 /* TapForTap.mm */,
 				C8A714D91760C9D60078E612 /* TapForTap */,
@@ -1590,6 +1598,7 @@
 		C82D1C611744728F00BFE966 /* provider */ = {
 			isa = PBXGroup;
 			children = (
+				C8A714EB1761B9130078E612 /* IAd.h */,
 				C82D1C621744728F00BFE966 /* Chartboost.cpp */,
 				C82D1C631744728F00BFE966 /* Chartboost.h */,
 				C82D1C641744728F00BFE966 /* ChartboostX.h */,
@@ -2250,6 +2259,7 @@
 				C82ADBC21758D997001802FD /* url.mm in Sources */,
 				C8A714CE1760A20A0078E612 /* TimeAttackMenuScene.cpp in Sources */,
 				C8A714E31760CA260078E612 /* TapForTap.mm in Sources */,
+				C8A714ED1761B9410078E612 /* IAd.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

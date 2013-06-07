@@ -44,12 +44,6 @@ void ShopScene::onEnter()
     avalon::ads::Manager::showBannerIgnoreTime();
 }
 
-void ShopScene::onExit()
-{
-    avalon::ads::Manager::hide();
-    CCLayer::onExit();
-}
-
 bool ShopScene::init()
 {
     if (!CCLayer::init()) {

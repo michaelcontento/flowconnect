@@ -21,6 +21,7 @@ public:
     virtual bool init() override;
     
     virtual void keyBackClicked() override;
+    virtual void onEnter() override;
 
     void onBtnGoBack();
     void onBtnReset();
