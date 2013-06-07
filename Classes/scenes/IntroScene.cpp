@@ -113,7 +113,7 @@ void IntroScene::initLocalization()
     loca->addLanguage("en.ini");
     loca->setCurrentLanguage("en.ini");
     loca->setDefaultLanguage("en.ini");
-    return;
+
     auto langId = CCApplication::sharedApplication()->getCurrentLanguage();
     std::string lang;
     if (langId == kLanguageArabic) {
