@@ -38,7 +38,7 @@ bool HowToPlayScene::init()
 
     auto menu = CCMenu::create();
     menu->setAnchorPoint(CCPoint(0.5, 0.5));
-    menu->setPosition(CCPoint(384, 120));
+    menu->setPosition(CCPoint(384, 170));
     addChild(menu);
 
     auto btn = ButtonFactory::create(
@@ -49,7 +49,7 @@ bool HowToPlayScene::init()
 
     auto text = CCLabelTTF::create(_("menu.howto", "body").get().c_str(), SMALL_FONT_NAME, 36);
     text->setAnchorPoint(CCPoint(0.5, 0.5));
-    text->setPosition(CCPoint(384, 800));
+    text->setPosition(CCPoint(384, 820));
     addChild(text);
 
     auto board = Board::create();
@@ -83,7 +83,7 @@ bool HowToPlayScene::init()
 
     auto boardContainer = CCNode::create();
     boardContainer->setAnchorPoint(CCPoint(0.5, 0.5));
-    boardContainer->setPosition(CCPoint(384, 450));
+    boardContainer->setPosition(CCPoint(384, 480));
     boardContainer->addChild(boardContainerInner);
     addChild(boardContainer);
 
