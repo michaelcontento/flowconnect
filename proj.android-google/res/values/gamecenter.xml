@@ -7,6 +7,11 @@
     <string name="com.coragames.dtdng.lb.4">CgkIteeQ38EEEAIQCQ</string>
     <string name="com.coragames.dtdng.lb.5">CgkIteeQ38EEEAIQCg</string>
     <string name="com.coragames.dtdng.lb.6">CgkIteeQ38EEEAIQCw</string>
+    <string name="com.coragames.dtdng.lb.attack.0">CgkIteeQ38EEEAIQIQ</string>
+    <string name="com.coragames.dtdng.lb.attack.1">CgkIteeQ38EEEAIQIg</string>
+    <string name="com.coragames.dtdng.lb.attack.2">CgkIteeQ38EEEAIQIw</string>
+    <string name="com.coragames.dtdng.lb.attack.3">CgkIteeQ38EEEAIQJA</string>
+    <string name="com.coragames.dtdng.lb.attack.4">CgkIteeQ38EEEAIQJQ</string>
 
     <!-- Achievements -->
     <string name="com.coragames.dtdng.ac.rank.1">CgkIteeQ38EEEAIQAQ</string>
