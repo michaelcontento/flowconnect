@@ -19,9 +19,10 @@ copy:
 	cp -r ../Vendors/avalon/avalon/platform/android/ads/provider/java/* .
 	cp -r ../Vendors/avalon/avalon/platform/android/ui/java/* .
 	cp -r ../Vendors/avalon/avalon/platform/android/utils/java/* .
-	# Amazon
+	# Google
 	cp -r ../Vendors/avalon/avalon/platform/android-google/gamecenter/java/* .
 	cp -r ../Vendors/avalon/avalon/platform/android-google/payment/java/* .
+	cp -r ../Vendors/avalon/avalon/platform/android-google/ads/provider/java/* .
 
 logcat:
 	~/android-sdk-macosx/platform-tools/adb logcat

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.coragames.dtdng"
-    android:versionCode="41"
-    android:versionName="4.1">
+    android:versionCode="50"
+    android:versionName="5.0">
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
     <uses-feature android:glEsVersion="0x00020000" />
@@ -28,6 +28,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.tapfortap.TapForTapActivity"/>
+
          <meta-data android:name="com.google.android.gms.games.APP_ID"
                      android:value="@string/app_id" />
     </application>
@@ -42,4 +44,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 </manifest> 

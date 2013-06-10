@@ -1,6 +1,6 @@
 #include "TimeAttackMenuScene.h"
 
-#include <boost/lexical_cast.hpp>
+#include <algorithm>
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
 #include <avalon/ads/Manager.h>
@@ -89,7 +89,7 @@ void TimeAttackMenuScene::createButton(const int id)
     int score = userstate::getScoreForTimeAttack(id);
     std::string scoreStr("-");
     if (score > 0) {
-        scoreStr = boost::lexical_cast<std::string>(score);
+        scoreStr = score;
     }
 
     auto button = ButtonFactory::createPaymentButton(
@@ -161,7 +161,7 @@ std::vector<LoaderLevel*> TimeAttackMenuScene::getLevelsForCategory(const int id
                 }
             }
 
-            std::srand(std::time(0));
+            std::srand(time(0));
             std::random_shuffle(levels.begin(), levels.end());
 
             return levels;

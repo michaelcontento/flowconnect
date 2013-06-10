@@ -2,7 +2,7 @@
 
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
-#include "GameScene.h"
+#include "../scenes/GameScene.h"
 #include "Globals.h"
 #include "userstate.h"
 

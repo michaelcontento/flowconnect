@@ -167,12 +167,6 @@ void SettingsScene::onEnter()
     }
 }
 
-void SettingsScene::onExit()
-{
-    avalon::ads::Manager::showBannerIgnoreTime();
-    CCLayer::onExit();
-}
-
 void SettingsScene::btnMoreGames()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");

@@ -2,6 +2,7 @@
 #define __FlowConnect__MenuScene__
 
 #include "cocos2d.h"
+#include <avalon/utils/platform.h>
 
 class MenuScene : public cocos2d::CCLayer
 {
@@ -25,7 +26,11 @@ public:
     virtual void keyBackClicked() override;
 
 private:
+#if AVALON_PLATFORM_IS_ANDROID_GOOGLE
+    static const unsigned int MENU_PADDING = 15;
+#else
     static const unsigned int MENU_PADDING = 20;
+#endif
 
     void showGameCenterDialog();
     void showGoogleLoginDialog();

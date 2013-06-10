@@ -4,7 +4,6 @@
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
 #include <avalon/payment/Loader.h>
-#include <avalon/utils/platform.h>
 #include <avalon/ads/Manager.h>
 #include "SceneManager.h"
 #include "CategoryMenuScene.h"
