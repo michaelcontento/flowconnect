@@ -181,6 +181,7 @@
 		C82D1CD01744728F00BFE966 /* Product.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1C791744728F00BFE966 /* Product.cpp */; };
 		C82D1CD11744728F00BFE966 /* ProductConsumable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1C7B1744728F00BFE966 /* ProductConsumable.cpp */; };
 		C82D1CEC1744728F00BFE966 /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82D1CC01744728F00BFE966 /* Alert.cpp */; };
+		C831B84B17673AAE006E5482 /* cn.ini in Resources */ = {isa = PBXBuildFile; fileRef = C831B84A17673AAE006E5482 /* cn.ini */; };
 		C83E0FE6174F6EA40001E82F /* RobotoCondensed-Bold-42.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C83E0FE4174F6EA40001E82F /* RobotoCondensed-Bold-42.fnt */; };
 		C83E0FE7174F6EA40001E82F /* RobotoCondensed-Bold-42.png in Resources */ = {isa = PBXBuildFile; fileRef = C83E0FE5174F6EA40001E82F /* RobotoCondensed-Bold-42.png */; };
 		C83E100D174F6FF60001E82F /* RobotoCondensed-Bold-36.fnt in Resources */ = {isa = PBXBuildFile; fileRef = C83E100B174F6FF60001E82F /* RobotoCondensed-Bold-36.fnt */; };
@@ -642,6 +643,7 @@
 		C82D1CC51744728F00BFE966 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		C82D1CC61744728F00BFE966 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		C82D1CC71744728F00BFE966 /* url.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = url.h; sourceTree = "<group>"; };
+		C831B84A17673AAE006E5482 /* cn.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cn.ini; sourceTree = "<group>"; };
 		C83E0FE4174F6EA40001E82F /* RobotoCondensed-Bold-42.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RobotoCondensed-Bold-42.fnt"; sourceTree = "<group>"; };
 		C83E0FE5174F6EA40001E82F /* RobotoCondensed-Bold-42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RobotoCondensed-Bold-42.png"; sourceTree = "<group>"; };
 		C83E100B174F6FF60001E82F /* RobotoCondensed-Bold-36.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RobotoCondensed-Bold-36.fnt"; sourceTree = "<group>"; };
@@ -1476,6 +1478,7 @@
 		C81C40F817458CDE002E88B6 /* lang */ = {
 			isa = PBXGroup;
 			children = (
+				C831B84A17673AAE006E5482 /* cn.ini */,
 				C89D5AAE1766271800EDCFB4 /* it.ini */,
 				C80BA0601755F8A7002EEF8C /* es.ini */,
 				C81C40F417458CDB002E88B6 /* de.ini */,
@@ -2038,6 +2041,7 @@
 				C8F0E6CF17522F5100148924 /* README.md in Resources */,
 				C80BA0611755F8A7002EEF8C /* es.ini in Resources */,
 				C89D5AAF1766271800EDCFB4 /* it.ini in Resources */,
+				C831B84B17673AAE006E5482 /* cn.ini in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
