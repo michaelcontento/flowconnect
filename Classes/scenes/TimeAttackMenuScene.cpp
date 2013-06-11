@@ -89,7 +89,9 @@ void TimeAttackMenuScene::createButton(const int id)
     int score = userstate::getScoreForTimeAttack(id);
     std::string scoreStr("-");
     if (score > 0) {
-        scoreStr = score;
+        char buf[10] = {0};
+        snprintf(buf, sizeof(buf), "%d", score);
+        scoreStr.assign(buf);
     }
 
     auto button = ButtonFactory::createPaymentButton(
