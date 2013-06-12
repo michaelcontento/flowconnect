@@ -28,24 +28,22 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setOpenGLView(pEGLView);
     pEGLView->setDesignResolutionSize(768, 1024, kResolutionExactFit);
 
-
     SceneManager::getInstance().gotoScene(IntroScene::scene());
     return true;
 }
 
 void AppDelegate::applicationDidEnterBackground()
 {
-    CCDirector::sharedDirector()->stopAnimation();
-
     SimpleAudioEngine::sharedEngine()->pauseAllEffects();
+    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 
-    if (userstate::hasMusic()) {
-        SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
-    }
+    CCDirector::sharedDirector()->stopAnimation();
+    CCDirector::sharedDirector()->pause();
 }
 
 void AppDelegate::applicationWillEnterForeground()
 {
+    CCDirector::sharedDirector()->resume();
     CCDirector::sharedDirector()->startAnimation();
 
     if (userstate::hasMusic()) {
