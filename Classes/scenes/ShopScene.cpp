@@ -160,10 +160,12 @@ void ShopScene::onPurchaseSucceed(payment::Manager *const manager, payment::Prod
 
 void ShopScene::onPurchaseFail(payment::Manager* const manager)
 {
+#if !AVALON_PLATFORM_IS_ANDROID_AMAZON
     CCMessageBox(
         _("dialog.shoppurchaseerror", "body").get().c_str(),
         _("dialog.shoppurchaseerror", "headline").get().c_str()
     );
+#endif
 }
 
 void ShopScene::onTransactionStart(payment::Manager *const manager)
