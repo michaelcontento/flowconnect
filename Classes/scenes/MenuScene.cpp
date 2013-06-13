@@ -50,6 +50,9 @@ bool MenuScene::init()
     addChild(menu);
 
     menu->addChild(ButtonFactory::create(_("menu.main", "play").get().c_str(), this, menu_selector(MenuScene::btnPlay)));
+#if !(AVALON_PLATFORM_IS_IOS || AVALON_PLATFORM_IS_ANDROID_AMAZON || AVALON_PLATFORM_IS_ANDROID_GOOGLE)
+    menu->addChild(ButtonFactory::createEmptyButton());
+#endif
     menu->addChild(ButtonFactory::create(_("menu.main", "timeattack").get().c_str(), this, menu_selector(MenuScene::btnPLayTimeAttack)));
     menu->addChild(ButtonFactory::createEmptyButton());
 
