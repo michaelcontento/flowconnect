@@ -254,6 +254,7 @@
 		C8A714EA1760E66B0078E612 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714E61760DB5C0078E612 /* CoreLocation.framework */; };
 		C8A714ED1761B9410078E612 /* IAd.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8A714EC1761B9400078E612 /* IAd.mm */; };
 		C8A714EF1761BB830078E612 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714EE1761BB820078E612 /* iAd.framework */; };
+		C8B825C5176D3435008CAE8B /* ko.ini in Resources */ = {isa = PBXBuildFile; fileRef = C8B825C4176D3435008CAE8B /* ko.ini */; };
 		C8C03DBE176888360049EEE6 /* ja.ini in Resources */ = {isa = PBXBuildFile; fileRef = C8C03DBD176888360049EEE6 /* ja.ini */; };
 		C8CA622817141A32005660B3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622617141A32005660B3 /* GameScene.cpp */; };
 		C8CA622C17142683005660B3 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8CA622A17142683005660B3 /* Board.cpp */; };
@@ -770,6 +771,7 @@
 		C8A714EB1761B9130078E612 /* IAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAd.h; sourceTree = "<group>"; };
 		C8A714EC1761B9400078E612 /* IAd.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IAd.mm; sourceTree = "<group>"; };
 		C8A714EE1761BB820078E612 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		C8B825C4176D3435008CAE8B /* ko.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ko.ini; sourceTree = "<group>"; };
 		C8C03DBD176888360049EEE6 /* ja.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ja.ini; sourceTree = "<group>"; };
 		C8CA622617141A32005660B3 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/scenes/GameScene.cpp; sourceTree = "<group>"; };
 		C8CA622717141A32005660B3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/scenes/GameScene.h; sourceTree = "<group>"; };
@@ -1480,6 +1482,7 @@
 		C81C40F817458CDE002E88B6 /* lang */ = {
 			isa = PBXGroup;
 			children = (
+				C8B825C4176D3435008CAE8B /* ko.ini */,
 				C8C03DBD176888360049EEE6 /* ja.ini */,
 				C831B84A17673AAE006E5482 /* cn.ini */,
 				C89D5AAE1766271800EDCFB4 /* it.ini */,
@@ -2046,6 +2049,7 @@
 				C89D5AAF1766271800EDCFB4 /* it.ini in Resources */,
 				C831B84B17673AAE006E5482 /* cn.ini in Resources */,
 				C8C03DBE176888360049EEE6 /* ja.ini in Resources */,
+				C8B825C5176D3435008CAE8B /* ko.ini in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

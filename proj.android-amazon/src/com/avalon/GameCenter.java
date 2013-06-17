@@ -22,7 +22,7 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 
 public abstract class GameCenter
 {
-    private static AmazonGames agsGameClient;
+    private static AmazonGames agsGameClient = null;
     private static LeaderboardsClient lbClient = null;
     private static AchievementsClient acClient = null;
     private static final String TAG = "avalon.GameCenter";
@@ -47,7 +47,7 @@ public abstract class GameCenter
 
     public static boolean showAchievements()
     {
-        if (acClient == null) {
+        if (agsGameClient == null || !agsGameClient.isReady() || acClient == null) {
             return false;
         } else {
             acClient.showAchievementsOverlay();
@@ -57,7 +57,7 @@ public abstract class GameCenter
 
     public static void postAchievement(String idName, int percentComplete)
     {
-        if (acClient == null) {
+        if (agsGameClient == null || !agsGameClient.isReady() || acClient == null) {
             return;
         }
 
@@ -74,7 +74,7 @@ public abstract class GameCenter
 
     public static void clearAllAchievements()
     {
-        if (acClient == null) {
+        if (agsGameClient == null || !agsGameClient.isReady() || acClient == null) {
             return;
         }
 
@@ -91,7 +91,7 @@ public abstract class GameCenter
 
     public static boolean showScores()
     {
-        if (lbClient == null) {
+        if (agsGameClient == null || !agsGameClient.isReady() || lbClient == null) {
             return false;
         } else {
             lbClient.showLeaderboardsOverlay();
@@ -101,7 +101,7 @@ public abstract class GameCenter
 
     public static void postScore(String idName, int score)
     {
-        if (lbClient == null) {
+        if (agsGameClient == null || !agsGameClient.isReady() || lbClient == null) {
             return;
         }
 
@@ -133,5 +133,4 @@ public abstract class GameCenter
             // result is ignored
         }
     };
-
 }
