@@ -18,6 +18,22 @@ using namespace userstate;
 using namespace cocos2d;
 using avalon::i18n::_;
 
+bool hasFileFlag(const char* file)
+{
+    for (auto& path : CCFileUtils::sharedFileUtils()->getSearchPaths()) {
+        auto filename = path + "/" + file;
+        if (CCFileUtils::sharedFileUtils()->isFileExist(filename.c_str())) {
+            unsigned long size = 0;
+            auto content = cocos2d::CCFileUtils::sharedFileUtils()->getFileData(filename.c_str(), "rb", &size);
+            if (size > 0 && content[0] == '1') {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 int getRankAmount(const int level)
 {
     if (level == 1) {
@@ -177,8 +193,12 @@ bool userstate::showAds()
 #if AVALON_PLATFORM_IS_ANDROID_SAMSUNG
     return false;
 #else
-    auto settings = CCUserDefault::sharedUserDefault();
-    return settings->getBoolForKey(KEY_SHOW_ADS, true);
+    if (hasFileFlag("newads.ini")) {
+        return false;
+    } else {
+        auto settings = CCUserDefault::sharedUserDefault();
+        return settings->getBoolForKey(KEY_SHOW_ADS, true);
+    }
 #endif
 }
 
@@ -578,11 +598,13 @@ bool userstate::rateUsDone()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     // it's not allowed to base features on this flag :(! see point 3.10 in
     //   https://developer.apple.com/appstore/resources/approval/guidelines.html
-    return true;
-#else
+    if (!hasFileFlag("newshop.ini")) {
+        return true;
+    }
+#endif
+
     auto settings = CCUserDefault::sharedUserDefault();
     return settings->getBoolForKey("rate_us");
-#endif
 }
 
 void userstate::rateUs()
