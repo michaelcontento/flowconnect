@@ -425,11 +425,9 @@ void userstate::setScoreForTimeAttack(const int id, const int score)
     settings->flush();
 
     // GameCenter
-    auto gc = avalon::GameCenter();
-    char buf[50] = {0};
+    char buf[60] = {0};
     snprintf(buf, sizeof(buf), "com.coragames.dtdng.lb.attack.%d", id);
-    CCLog(">> POST %s %d", buf, score);
-    gc.postScore(buf, score);
+    avalon::GameCenter().postScore(buf, score);
 }
 
 int userstate::getScoreForTimeAttack(const int id)
