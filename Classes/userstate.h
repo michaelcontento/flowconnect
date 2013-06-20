@@ -92,6 +92,9 @@ namespace userstate
     Mode::Enum getModeForLevel(const LoaderLevel* level);
     void setModeForLevel(const LoaderLevel* level, Mode::Enum mode);
 
+    void unlockAllPages();
+    bool canUnlockAll();
+
     void updateLevelDuration(const LoaderLevel* level, const float duration);
     float getLevelDuration(const LoaderLevel* level);
 

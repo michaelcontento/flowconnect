@@ -615,3 +615,25 @@ void userstate::rateUs()
     
     addStarsToUser(FREE_STARS);
 }
+
+void userstate::unlockAllPages()
+{
+    for (auto& category : globalLevelLoader.getCategories()) {
+        for (auto& page : category->pages) {
+            setIsPageFree(page, true);
+        }
+    }
+}
+
+bool userstate::canUnlockAll()
+{
+    for (auto& category : globalLevelLoader.getCategories()) {
+        for (auto& page : category->pages) {
+            if (!isPageFree(page)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}

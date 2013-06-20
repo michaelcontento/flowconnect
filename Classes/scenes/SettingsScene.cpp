@@ -25,11 +25,15 @@ using avalon::i18n::_;
 #define MODE_NONE 0
 #define MODE_RESET_GAME 1
 #define MODE_REMOVE_ADS 2
+#define MODE_UNLOCK_ALL 3
 
 #define TAG_RESET_BUTTON 10
 #define TAG_REMOVE_ADS 11
+#define TAG_UNLOCK_ALL 12
 
 #pragma mark Initialization
+
+int unlockAllPrice = 0;
 
 SettingsScene::SettingsScene()
 : oldGlobalLevel(NULL)
@@ -94,11 +98,11 @@ bool SettingsScene::init()
 
     auto showAds = userstate::showAds();
     auto resetable = userstate::resetable();
-    if (showAds && resetable) {
-        menu->setPositionY(menu->getPositionY() - 30);
-    }
-    if (showAds || resetable) {
+    auto unlockAll = userstate::canUnlockAll();
+
+    if (showAds || resetable || unlockAll) {
         menu->addChild(ButtonFactory::createEmptyButton());
+        menu->setPositionY(menu->getPositionY() - 30);
     }
     if (showAds) {
         auto btn = ButtonFactory::create(_("menu.settings", "removeads").get().c_str(), this, menu_selector(SettingsScene::btnRemoveAds));
@@ -110,8 +114,17 @@ bool SettingsScene::init()
         btn->setTag(TAG_RESET_BUTTON);
         menu->addChild(btn);
     }
+    if (unlockAll) {
+        auto btn = ButtonFactory::create(_("menu.settings", "unlockall").get().c_str(), this, menu_selector(SettingsScene::btnUnlockAll));
+        btn->setTag(TAG_UNLOCK_ALL);
+        menu->addChild(btn);
+    }
 
-    menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+    if (menu->getChildrenCount() <= 9) {
+        menu->alignItemsVerticallyWithPadding(MENU_PADDING + 10);
+    } else {
+        menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+    }
 
     addChild(ButtonFactory::createHeadline(_("menu.settings", "headline").get().c_str()));
     addChild(ButtonFactory::createSceneBackButton());
@@ -142,14 +155,36 @@ void SettingsScene::onAlertButtonClick(const unsigned int index, const std::stri
 
         menu->removeChildByTag(TAG_RESET_BUTTON, true);
         menu->setPositionY(512);
-        menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+
+        if (menu->getChildrenCount() <= 9) {
+            menu->alignItemsVerticallyWithPadding(MENU_PADDING + 10);
+        } else {
+            menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+        }
     } else if (mode == MODE_REMOVE_ADS) {
         if (userstate::addStarsToUser(PRICE_REMOVE_ADS * -1)) {
             userstate::setShowAds(false);
             
             menu->removeChildByTag(TAG_REMOVE_ADS, true);
             menu->setPositionY(512);
-            menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+
+            if (menu->getChildrenCount() <= 9) {
+                menu->alignItemsVerticallyWithPadding(MENU_PADDING + 10);
+            } else {
+                menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+            }
+        }
+    } else if (mode == MODE_UNLOCK_ALL && unlockAllPrice > 0) {
+        if (userstate::addStarsToUser(unlockAllPrice * -1)) {
+            userstate::unlockAllPages();
+            menu->removeChildByTag(TAG_UNLOCK_ALL, true);
+            menu->setPositionY(512);
+
+            if (menu->getChildrenCount() <= 9) {
+                menu->alignItemsVerticallyWithPadding(MENU_PADDING + 10);
+            } else {
+                menu->alignItemsVerticallyWithPadding(MENU_PADDING);
+            }
         }
     }
 
@@ -215,6 +250,35 @@ void SettingsScene::btnReset()
     alert.setMessage(_("alert.resetgame", "body").get().c_str());
     alert.addButton(0, _("alert.resetgame", "btn.cancel").get().c_str());
     alert.addButton(1, _("alert.resetgame", "btn.ok").get().c_str());
+    alert.show();
+}
+
+void SettingsScene::btnUnlockAll()
+{
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
+
+    int lockedPages = 0;
+    for (auto& category : globalLevelLoader.getCategories()) {
+        for (auto& page : category->pages) {
+            if (!userstate::isPageFree(page)) {
+                ++lockedPages;
+            }
+        }
+    }
+    unlockAllPrice = static_cast<int>((lockedPages * 36) * 0.85);
+
+    mode = MODE_UNLOCK_ALL;
+    avalon::ui::Alert alert(this);
+    alert.setTitle(_("alert.unlockall", "headline").get().c_str());
+    alert.setMessage(
+        _("alert.unlockall", "body")
+        .assign("percent", 15)
+        .assign("stars", unlockAllPrice)
+        .assign("levels", lockedPages * 36)
+        .get().c_str()
+    );
+    alert.addButton(0, _("alert.unlockall", "btn.cancel").get().c_str());
+    alert.addButton(1, _("alert.unlockall", "btn.ok").get().c_str());
     alert.show();
 }
 

@@ -22,13 +22,14 @@ public:
     void btnRemoveAds();
     void btnHowToPlay();
     void btnMoreGames();
+    void btnUnlockAll();
     void btnChangeMode(cocos2d::CCObject* sender);
     void btnMusicToggle(cocos2d::CCObject* sender);
     void btnSoundToggle(cocos2d::CCObject* sender);
     virtual void keyBackClicked() override;
 
 private:
-    static const unsigned int MENU_PADDING = 20;
+    static const unsigned int MENU_PADDING = 10;
     const LoaderLevel* oldGlobalLevel;
     cocos2d::CCMenu* menu;
     unsigned int mode;
