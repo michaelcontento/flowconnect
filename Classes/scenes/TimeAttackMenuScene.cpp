@@ -73,9 +73,6 @@ void TimeAttackMenuScene::createMenu()
     createButton(3);
     createButton(4);
 
-    // comming soon button
-    menu->addChild(ButtonFactory::createCategory(globalLevelLoader.getCategories().back(), NULL, NULL));
-
     menu->alignItemsVerticallyWithPadding(MENU_PADDING);
 }
 

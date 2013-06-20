@@ -2,6 +2,7 @@
 
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
+#include <avalon/ads/Manager.h>
 #include "SceneManager.h"
 #include "LevelMenuScene.h"
 #include "LevelLoader.h"
@@ -51,6 +52,13 @@ bool CategoryMenuScene::init()
     }
 
     menu = CCMenu::create();
+    if (avalon::ads::Manager::enabled) {
+        menu->setScale(0.9);
+        menu->setPositionX(menu->getPositionX() - 45);
+        menu->setPositionY(menu->getPositionY() - 35);
+    } else {
+        menu->setPositionY(menu->getPositionY() - 45);
+    }
     addChild(menu);
 
     addChild(ButtonFactory::createSceneBackButton());

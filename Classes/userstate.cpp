@@ -156,7 +156,7 @@ public:
 
 bool userstate::isPageFree(const LoaderPage* page)
 {
-    if (page->localid == 1) {
+    if (page->localid == 1 && page->category->localid <= 6) {
         return true;
     }
     
