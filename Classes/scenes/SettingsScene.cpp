@@ -34,6 +34,7 @@ using avalon::i18n::_;
 #pragma mark Initialization
 
 int unlockAllPrice = 0;
+bool SettingsScene::triggerRemoveAds = false;
 
 SettingsScene::SettingsScene()
 : oldGlobalLevel(NULL)
@@ -44,6 +45,7 @@ SettingsScene::SettingsScene()
 
 SettingsScene::~SettingsScene()
 {
+    triggerRemoveAds = false;
 }
 
 CCScene* SettingsScene::scene()
@@ -199,6 +201,11 @@ void SettingsScene::onEnter()
     if (oldGlobalLevel) {
         globalLevel = oldGlobalLevel;
         oldGlobalLevel = NULL;
+    }
+
+    if (triggerRemoveAds) {
+        btnRemoveAds();
+        triggerRemoveAds = false;
     }
 }
 

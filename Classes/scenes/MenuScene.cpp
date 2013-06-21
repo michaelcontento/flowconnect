@@ -13,6 +13,7 @@
 #include "../Globals.h"
 #include "SettingsScene.h"
 #include "SimpleAudioEngine.h"
+#include "userstate.h"
 
 using namespace cocos2d;
 using avalon::i18n::_;
@@ -20,6 +21,7 @@ using avalon::i18n::_;
 #pragma mark Initialization
 
 MenuScene::MenuScene()
+: menu(NULL)
 {
 }
 
@@ -38,6 +40,10 @@ void MenuScene::onEnter()
 {
     CCLayer::onEnter();
     avalon::ads::Manager::showBannerIgnoreTime();
+    
+    if (menu && !userstate::showAds()) {
+        menu->removeChildByTag(TAG_REMOVEADS);
+    }
 }
 
 bool MenuScene::init()
@@ -46,7 +52,7 @@ bool MenuScene::init()
         return false;
     }
 
-    auto menu = CCMenu::create();
+    menu = CCMenu::create();
     addChild(menu);
 
     menu->addChild(ButtonFactory::create(_("menu.main", "play").get().c_str(), this, menu_selector(MenuScene::btnPlay)));
@@ -80,6 +86,22 @@ bool MenuScene::init()
     ggames->setPosition(CCPoint(768 - 10, 10));
     addChild(ggames);
 #endif
+
+    if (userstate::showAds()) {
+        auto name = std::string("removeads");
+        auto langId = CCApplication::sharedApplication()->getCurrentLanguage();
+        if (langId == kLanguageGerman) {
+            name += "-de";
+        }
+        name += ".png";
+
+        auto sprite = CCSprite::createWithSpriteFrameName(name.c_str());
+        auto btn = CCMenuItemSprite::create(sprite, sprite, this, menu_selector(MenuScene::btnRemoveAds));
+        btn->setTag(TAG_REMOVEADS);
+        btn->setPosition(CCPoint(-384, 512));
+        btn->setAnchorPoint(CCPoint(0, 1));
+        menu->addChild(btn);
+    }
 
     setKeypadEnabled(true);
     return true;
@@ -151,6 +173,12 @@ void MenuScene::btnSettings()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
     SceneManager::getInstance().gotoScene(SettingsScene::scene());
+}
+
+void MenuScene::btnRemoveAds()
+{
+    SettingsScene::triggerRemoveAds = true;
+    btnSettings();
 }
 
 void MenuScene::btnGoogle(CCObject* object)

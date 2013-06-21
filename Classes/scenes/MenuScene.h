@@ -22,6 +22,7 @@ public:
     void btnAchievements();
     void btnShop();
     void btnSettings();
+    void btnRemoveAds();
     void btnGoogle(cocos2d::CCObject* object);
     virtual void keyBackClicked() override;
 
@@ -31,7 +32,8 @@ private:
 #else
     static const unsigned int MENU_PADDING = 20;
 #endif
-
+    static const unsigned int TAG_REMOVEADS = 42;
+    cocos2d::CCMenu* menu;
     void showGameCenterDialog();
     void showGoogleLoginDialog();
 };

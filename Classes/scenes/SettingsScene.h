@@ -28,6 +28,8 @@ public:
     void btnSoundToggle(cocos2d::CCObject* sender);
     virtual void keyBackClicked() override;
 
+    static bool triggerRemoveAds;
+
 private:
     static const unsigned int MENU_PADDING = 10;
     const LoaderLevel* oldGlobalLevel;
