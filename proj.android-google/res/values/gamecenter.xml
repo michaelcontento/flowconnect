@@ -7,6 +7,9 @@
     <string name="com.coragames.dtdng.lb.4">CgkIteeQ38EEEAIQCQ</string>
     <string name="com.coragames.dtdng.lb.5">CgkIteeQ38EEEAIQCg</string>
     <string name="com.coragames.dtdng.lb.6">CgkIteeQ38EEEAIQCw</string>
+    <string name="com.coragames.dtdng.lb.7">CgkIteeQ38EEEAIQJg</string>
+    <string name="com.coragames.dtdng.lb.8">CgkIteeQ38EEEAIQJw</string>
+    <string name="com.coragames.dtdng.lb.9">CgkIteeQ38EEEAIQKA</string>
     <string name="com.coragames.dtdng.lb.attack.0">CgkIteeQ38EEEAIQIQ</string>
     <string name="com.coragames.dtdng.lb.attack.1">CgkIteeQ38EEEAIQIg</string>
     <string name="com.coragames.dtdng.lb.attack.2">CgkIteeQ38EEEAIQIw</string>
@@ -40,4 +43,10 @@
     <string name="com.coragames.dtdng.ac.cat.5.perfect">CgkIteeQ38EEEAIQHg</string>
     <string name="com.coragames.dtdng.ac.cat.6">CgkIteeQ38EEEAIQHw</string>
     <string name="com.coragames.dtdng.ac.cat.6.perfect">CgkIteeQ38EEEAIQIA</string>
+    <string name="com.coragames.dtdng.ac.cat.7">CgkIteeQ38EEEAIQKQ</string>
+    <string name="com.coragames.dtdng.ac.cat.7.perfect">CgkIteeQ38EEEAIQLA</string>
+    <string name="com.coragames.dtdng.ac.cat.8">CgkIteeQ38EEEAIQKg</string>
+    <string name="com.coragames.dtdng.ac.cat.8.perfect">CgkIteeQ38EEEAIQLQ</string>
+    <string name="com.coragames.dtdng.ac.cat.9">CgkIteeQ38EEEAIQKw</string>
+    <string name="com.coragames.dtdng.ac.cat.9.perfect">CgkIteeQ38EEEAIQLg</string>
 </resources>
