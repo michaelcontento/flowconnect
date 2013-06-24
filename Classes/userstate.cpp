@@ -192,14 +192,13 @@ bool userstate::showAds()
 {
 #if AVALON_PLATFORM_IS_ANDROID_SAMSUNG
     return false;
-#else
+#elif AVALON_PLATFORM_IS_IOS
     if (hasFileFlag("newads.ini")) {
         return false;
-    } else {
-        auto settings = CCUserDefault::sharedUserDefault();
-        return settings->getBoolForKey(KEY_SHOW_ADS, true);
     }
 #endif
+    auto settings = CCUserDefault::sharedUserDefault();
+    return settings->getBoolForKey(KEY_SHOW_ADS, true);
 }
 
 void userstate::setShowAds(const bool flag)
