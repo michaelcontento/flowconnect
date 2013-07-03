@@ -251,7 +251,6 @@
 		C8A714DF1760C9D60078E612 /* libTapForTapAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714DA1760C9D60078E612 /* libTapForTapAds.a */; };
 		C8A714E31760CA260078E612 /* TapForTap.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8A714E21760CA250078E612 /* TapForTap.mm */; };
 		C8A714E91760E6490078E612 /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714E41760DB310078E612 /* RevMobAds.framework */; };
-		C8A714EA1760E66B0078E612 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714E61760DB5C0078E612 /* CoreLocation.framework */; };
 		C8A714ED1761B9410078E612 /* IAd.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8A714EC1761B9400078E612 /* IAd.mm */; };
 		C8A714EF1761BB830078E612 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A714EE1761BB820078E612 /* iAd.framework */; };
 		C8B825C5176D3435008CAE8B /* ko.ini in Resources */ = {isa = PBXBuildFile; fileRef = C8B825C4176D3435008CAE8B /* ko.ini */; };
@@ -839,7 +838,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8A714EF1761BB830078E612 /* iAd.framework in Frameworks */,
-				C8A714EA1760E66B0078E612 /* CoreLocation.framework in Frameworks */,
 				C8D8F29817306D5F0073B7C8 /* SystemConfiguration.framework in Frameworks */,
 				C8F0E6A917522F0900148924 /* CFNetwork.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -2355,7 +2353,6 @@
 					CC_TARGET_OS_IPHONE,
 					"COCOS2D_DEBUG=1",
 					CC_ENABLE_CHIPMUNK_INTEGRATION,
-					AVALON_PLATFORM_IOS_USE_CORELOCATION,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -2427,7 +2424,6 @@
 					CC_TARGET_OS_IPHONE,
 					CC_ENABLE_CHIPMUNK_INTEGRATION,
 					NDEBUG,
-					AVALON_PLATFORM_IOS_USE_CORELOCATION,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
