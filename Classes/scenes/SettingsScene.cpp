@@ -3,7 +3,6 @@
 #include <avalon/i18n/LanguageKey.h>
 #include <avalon/i18n/Localization.h>
 #include <avalon/ads/Manager.h>
-#include <avalon/ads/provider/Chartboost.h>
 #include <avalon/GameCenter.h>
 #include <avalon/utils/url.h>
 #include <avalon/utils/platform.h>
@@ -214,15 +213,7 @@ void SettingsScene::btnMoreGames()
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("click.mp3");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    for (auto provider : avalon::ads::Manager::adProviders) {
-        auto cb = static_cast<avalon::ads::provider::Chartboost*>(provider);
-        if (cb) {
-            cb->openAdLink();
-            return;
-        }
-    }
-
-    avalon::utils::url::open("itms-apps://itunes.com/apps/coragames");
+    avalon::utils::url::open("http://target.georiot.com/Proxy.ashx?tsid=1302&GR_URL=https%3A%2F%2Fitunes.apple.com%2Fus%2Fartist%2Fcora-games%2Fid544717446");
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     #if (AVALON_PLATFORM_FLAVOR == AVALON_PLATFORM_FLAVOR_AMAZON)
         avalon::utils::url::open("amzn://apps/android?s=CoRa%20Games");
