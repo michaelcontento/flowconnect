@@ -2,6 +2,8 @@
 - General: More levels and achievements
 - General: "Remove Ads"-Button added to the main menu
 - General: "Unlock all levels" in the Settings
+- iOS:     Properly hide iAd banner ads
+- iOS:     Use GeoRiot affiliate link for "more games"
 
 ==== Version 5 ====
 - General: TimeAttack mode added
